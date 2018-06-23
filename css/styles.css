@@ -1,0 +1,305 @@
+/*
+ * Enrique Ruiz Durazo.
+ *
+ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Karla, sans-serif;
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+  background-color: #fafafa;
+}
+
+.sep {
+  position: absolute;
+  width: 1px;
+  height: 10%;
+  background-color: #ccc;
+  top: 77.5%;
+  left: 50%;
+}
+
+
+/*************************************************
+ ********** Left *********************************
+ *************************************************/
+
+.left {
+  width: 100%;
+  height: 55vh;
+ }
+
+.logo {
+  display: flex;
+  justify-content: center;
+  margin-top: 45vh;
+ }
+
+.social-media {
+   margin-top: 2vh;
+   display: flex;
+   justify-content: center;
+ }
+
+.social-media ul {
+  list-style: none;
+  padding: 0;
+}
+
+.social-media-icons li {
+  width: 35px;
+  height: 35px;
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.social-media-icons li img, .social-media-icons li img:active, .social-media-icons li img:visited {
+  opacity: .4;
+  transition: opacity .5s;
+}
+
+.social-media-icons li img:hover {
+  opacity: .8;
+}
+
+.lang {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.lang a, .lang a:active, .lang a:visited {
+  text-decoration: none;
+  color: #000;
+  opacity: .4;
+  transition: opacity .5s;
+}
+
+.lang a:hover {
+  text-decoration: none;
+  opacity: .6;
+}
+
+
+
+
+/*************************************************
+ ********** Right ********************************
+ *************************************************/
+
+.right {
+  position: relative;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.greeting {
+  margin-top: 20vh;
+}
+
+h1 {
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+  letter-spacing: .05em;
+  margin-top: 0;
+  margin-bottom: 4vh;
+}
+
+h1 i {
+  font-weight: 700i;
+}
+
+p {
+  margin-top: 0;
+  line-height: 1.5em;
+  letter-spacing: .02em;
+}
+
+
+
+.learn-more, .learn-more:active, .learn-more:visited {
+  text-decoration: none;
+  color: #2080ff;
+  display: inline-block;
+  font-size: 1.05em;
+  margin-top: 6vh;
+  transition: border .5s;
+  border-bottom: solid 2px rgba(32, 128, 255, 0);
+}
+
+.learn-more:hover {
+  border-bottom: solid 2px rgba(32, 128, 255, 0.8);
+}
+
+
+h2 {
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+  letter-spacing: .05em;
+  margin-bottom: 2.5vh;
+  padding-top: 40vh;
+}
+
+h2 i {
+  font-weight: 700i;
+}
+
+.expertise {
+
+}
+
+.expertise ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+h3 {
+  font-family: Roboto, monospace, sans-serif;
+  font-weight: 700;
+  font-size: 1.1em;
+  margin-bottom: .25em;
+  letter-spacing: .05em;
+}
+
+.expertise p {
+  color: #808080;
+  max-width: 400px;
+}
+
+
+
+
+ .contact {
+   min-height: 100vh;
+ }
+
+ .contact a, .contact a:active, .contact a:visited {
+   font-family: Roboto Mono, monospace, sans-serif;
+   font-weight: 700;
+   letter-spacing: .01em;
+   color: #202020;
+   font-size: 1.2em;
+   text-decoration: none;
+   border-bottom: solid 2px rgba(32, 128, 255, 0);
+   transition: border .5s, color .5s;
+ }
+
+ .contact a:hover {
+   color: #404040;
+   border-bottom: solid 2px rgba(128, 128, 128, 0.4);
+ }
+
+ .credits p {
+   color: #000;
+   opacity: .4;
+   position: absolute;
+   margin: 0;
+   bottom: 30px;
+ }
+
+
+/*
+ * Media queries
+ *
+ */
+
+@media (min-width: 480px) {
+  body {
+    font-size: 18px;
+  }
+
+}
+
+@media (min-width: 800px) {
+
+}
+
+@media (min-width: 1120px) {
+  body {
+    font-size: 20px;
+  }
+
+
+}
+
+@media (min-width: 1440px) {
+  .sep {
+    position: fixed;
+    width: 1px;
+    height: 30%;
+    background-color: #ccc;
+    top: 35%;
+    left: 50%;
+  }
+
+  .content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /*************************************************
+   ********** Left *********************************
+   *************************************************/
+
+  .left {
+    position: fixed;
+    width: 50%;
+    height: 100%;
+  }
+
+  .social-media-icons li {
+    width: 35px;
+    height: 35px;
+  }
+
+  .lang {
+    top: auto;
+    bottom: 30px;
+  }
+
+  /*************************************************
+   ********** Right ********************************
+   *************************************************/
+
+  .right {
+    grid-column: 2 / 3;
+    position: relative;
+    width: 560px;
+    margin: 0 auto;
+  }
+
+  .greeting {
+    margin-top: 40vh;
+  }
+
+  /*
+  .showcase {
+
+  }
+
+  .showcase h3 {
+    font-size: .8em;
+  }
+
+  .showcase p {
+    font-size: .8em;
+  }
+  */
+
+  /* soft shadow spec for project thumbnails */
+
+  /*
+  .work {
+    box-shadow: 0px 0px 12px 1px rgba(87, 87, 87, 0.2);
+  }
+  */
+
+
+
+}
