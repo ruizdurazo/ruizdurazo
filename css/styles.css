@@ -160,7 +160,7 @@ h2 i {
 }
 
 h3 {
-  font-family: Roboto, monospace, sans-serif;
+  font-family: Roboto, sans-serif;
   font-weight: 700;
   font-size: 1.1em;
   margin-bottom: .25em;
@@ -180,7 +180,7 @@ h3 {
  }
 
  .contact a, .contact a:active, .contact a:visited {
-   font-family: Roboto Mono, monospace, sans-serif;
+   font-family: Roboto Mono, sans-serif;
    font-weight: 700;
    letter-spacing: .01em;
    color: #202020;

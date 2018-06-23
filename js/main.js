@@ -10,8 +10,12 @@ var word_element = $('#slideshow-anim');
 var anim_delay = 3500; //ms
 var anim_duration = 750; //ms
 
+var timerId;
+var num = 0;
+
+/*
 $(document).ready(function() {
-  var timerId = setTimeout(function animRun() {
+  timerId = setTimeout(function animRun() {
     i++;
     if (i >= word_count) i = 0;
     word_element.fadeTo(anim_duration, 0, function() {
@@ -21,3 +25,35 @@ $(document).ready(function() {
     var timerId = setTimeout(animRun, anim_delay);
   }, anim_delay);
 });
+*/
+
+//console.log('hello');
+timerId = setInterval(function animRun() {
+  //console.log(num);
+  //num++;
+  i++;
+  if (i >= word_count) i = 0;
+  word_element.fadeTo(anim_duration, 0, function() {
+    word_element.html(words[i]);
+    word_element.fadeTo(anim_duration, 1)
+  });
+}, anim_delay);
+
+document.addEventListener('visibilitychange', function() {
+  if (document.hidden) {
+    //console.log('bye');
+    clearInterval(timerId);
+  } else {
+    //console.log('hello');
+    timerId = setInterval(function animRun() {
+      //console.log(num);
+      //num++;
+      i++;
+      if (i >= word_count) i = 0;
+      word_element.fadeTo(anim_duration, 0, function() {
+        word_element.html(words[i]);
+        word_element.fadeTo(anim_duration, 1)
+      });
+    }, anim_delay);
+  }
+}, false);
