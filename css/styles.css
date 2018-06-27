@@ -159,12 +159,18 @@ h2 i {
   padding-left: 0;
 }
 
+.expertise img {
+  margin-top: 20px;
+}
+
 h3 {
   font-family: Roboto, sans-serif;
   font-weight: 700;
   font-size: 1.1em;
   margin-bottom: .25em;
   letter-spacing: .05em;
+  margin-top: 0;
+  margin-bottom: 10px;
 }
 
 .expertise p {
