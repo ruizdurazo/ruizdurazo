@@ -106,6 +106,7 @@ body {
 h1 {
   font-family: Roboto, sans-serif;
   font-weight: 700;
+  font-size: 2.0em;
   letter-spacing: .05em;
   margin-top: 0;
   margin-bottom: 4vh;
@@ -115,10 +116,34 @@ h1 i {
   font-weight: 700i;
 }
 
+h2 {
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+  font-size: 2.0em;
+  letter-spacing: .05em;
+  margin-bottom: 2.5vh;
+  padding-top: 40vh;
+}
+
+h2 i {
+  font-weight: 700i;
+}
+
+h3 {
+  font-family: Roboto Mono, sans-serif;
+  font-weight: 500;
+  font-size: 1.2em;
+  margin-bottom: .25em;
+  letter-spacing: .05em;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
 p {
   margin-top: 0;
   line-height: 1.5em;
   letter-spacing: .02em;
+  color: #404040;
 }
 
 
@@ -138,17 +163,6 @@ p {
 }
 
 
-h2 {
-  font-family: Roboto, sans-serif;
-  font-weight: 700;
-  letter-spacing: .05em;
-  margin-bottom: 2.5vh;
-  padding-top: 40vh;
-}
-
-h2 i {
-  font-weight: 700i;
-}
 
 .expertise {
 
@@ -163,18 +177,8 @@ h2 i {
   margin-top: 20px;
 }
 
-h3 {
-  font-family: Roboto, sans-serif;
-  font-weight: 700;
-  font-size: 1.1em;
-  margin-bottom: .25em;
-  letter-spacing: .05em;
-  margin-top: 0;
-  margin-bottom: 10px;
-}
 
 .expertise p {
-  color: #808080;
   max-width: 400px;
 }
 
@@ -192,13 +196,13 @@ h3 {
    color: #202020;
    font-size: 1.2em;
    text-decoration: none;
-   border-bottom: solid 2px rgba(32, 128, 255, 0);
+   border-bottom: solid 2px rgba(128, 128, 128, 0);
    transition: border .5s, color .5s;
  }
 
  .contact a:hover {
    color: #404040;
-   border-bottom: solid 2px rgba(128, 128, 128, 0.4);
+   border-bottom: solid 2px rgba(64,64,64, 0.4);
  }
 
  .credits p {
