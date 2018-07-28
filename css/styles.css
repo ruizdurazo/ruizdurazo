@@ -1,6 +1,6 @@
 /*
  * Enrique Ruiz Durazo.
- *
+ * 2018
  */
 
 html {
@@ -9,53 +9,84 @@ html {
 
 body {
   font-family: Karla, sans-serif;
-  font-size: 16px;
+  font-size: 14px;
+  color: #202020;
   padding: 0;
   margin: 0;
-  background-color: #fafafa;
+  background-color: #fff;
+}
+
+::-moz-selection {
+  background: #efefef;
+}
+
+::selection {
+  background: #efefef;
 }
 
 .sep {
-  position: absolute;
-  width: 1px;
-  height: 10%;
-  background-color: #ccc;
-  top: 77.5%;
-  left: 50%;
+  display: inline-block;
+  width: 10%;
+  height: 2px;
+  background-color: #ddd;
+  margin-top: 10vh;
+  margin-bottom: 5vh;
 }
 
+.content {
+  position: relative;
+  width: 280px;
+  margin: 0;
+  padding: 0 20px;
+  /*padding: 0 20px;*/
+  top: 30px;
+}
 
-/*************************************************
- ********** Left *********************************
- *************************************************/
+/********** Left **************************************************************/
+
+#left {
+  position: relative;
+  width: 240px;
+}
 
 .left {
-  width: 100%;
-  height: 55vh;
- }
+
+}
 
 .logo {
+  height: 24px;
   display: flex;
-  justify-content: center;
-  margin-top: 45vh;
- }
+}
+
+.logo img, .logo img:active, .logo img:visited {
+  width: 100%;
+  transition: opacity .5s;
+}
+
+.logo img:hover {
+  opacity: .6;
+}
 
 .social-media {
-   margin-top: 2vh;
-   display: flex;
-   justify-content: center;
- }
+
+}
 
 .social-media ul {
   list-style: none;
   padding: 0;
+  margin: 36px 0;
 }
 
 .social-media-icons li {
-  width: 35px;
-  height: 35px;
   display: inline-block;
-  margin: 0 5px;
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+}
+
+.social-media-icons li img {
+  width: 100%;
+  height: 100%;
 }
 
 .social-media-icons li img, .social-media-icons li img:active, .social-media-icons li img:visited {
@@ -68,10 +99,7 @@ body {
 }
 
 .lang {
-  position: absolute;
-  top: 30px;
-  left: 50%;
-  transform: translateX(-50%);
+  margin-bottom: 3em;
 }
 
 .lang a, .lang a:active, .lang a:visited {
@@ -82,47 +110,44 @@ body {
 }
 
 .lang a:hover {
-  text-decoration: none;
-  opacity: .6;
+  opacity: .8;
 }
 
+/********** Right *************************************************************/
 
-
-
-/*************************************************
- ********** Right ********************************
- *************************************************/
+#right {
+  position: relative;
+}
 
 .right {
-  position: relative;
-  width: 50%;
-  margin: 0 auto;
+
 }
 
 .greeting {
-  margin-top: 20vh;
+  position: relative;
+  max-width: 400px;
 }
 
 h1 {
   font-family: Roboto, sans-serif;
   font-weight: 700;
-  font-size: 2.0em;
-  letter-spacing: .05em;
-  margin-top: 0;
-  margin-bottom: 4vh;
+  font-size: 2.074em;
+  letter-spacing: .04em;
+  margin-top: 0em;
+  margin-bottom: 1em;
 }
 
 h1 i {
-  font-weight: 700i;
+  font-weight: 900i;
 }
 
 h2 {
   font-family: Roboto, sans-serif;
   font-weight: 700;
-  font-size: 2.0em;
-  letter-spacing: .05em;
-  margin-bottom: 2.5vh;
-  padding-top: 40vh;
+  font-size: 1.728em;
+  letter-spacing: .04em;
+  margin-top: 0;
+  margin-bottom: 4vh;
 }
 
 h2 i {
@@ -130,39 +155,50 @@ h2 i {
 }
 
 h3 {
-  font-family: Roboto Mono, sans-serif;
-  font-weight: 500;
-  font-size: 1.2em;
-  margin-bottom: .25em;
-  letter-spacing: .05em;
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+  font-size: 1.44em;
+  letter-spacing: .04em;
   margin-top: 0;
-  margin-bottom: 10px;
+  margin-bottom: .5em;
+}
+
+h4 {
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+  font-size: 1.2em;
+  letter-spacing: .04em;
+  margin-top: 0;
+  margin-bottom: .5em;
 }
 
 p {
-  margin-top: 0;
   line-height: 1.5em;
-  letter-spacing: .02em;
-  color: #404040;
+  letter-spacing: .01em;
+  margin-top: 0;
+  margin-bottom: 1em;
 }
 
+u {
+  text-decoration: none;
+  border-bottom: solid 4px #8aff4d;
+}
 
 
 .learn-more, .learn-more:active, .learn-more:visited {
   text-decoration: none;
-  color: #2080ff;
+  color: #0a60ff;
   display: inline-block;
   font-size: 1.05em;
-  margin-top: 6vh;
+  margin-top: 2em;
+  margin-bottom: 10vh;
   transition: border .5s;
-  border-bottom: solid 2px rgba(32, 128, 255, 0);
+  border-bottom: solid 2px rgba(10, 96, 255, 0);
 }
 
 .learn-more:hover {
-  border-bottom: solid 2px rgba(32, 128, 255, 0.8);
+  border-bottom: solid 2px rgba(10, 96, 255, 0.8);
 }
-
-
 
 .expertise {
 
@@ -171,145 +207,346 @@ p {
 .expertise ul {
   list-style: none;
   padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 10vh;
 }
 
 .expertise img {
-  margin-top: 20px;
+  margin: 20px 0;
+  width: 60px;
+  height: 60px;
 }
-
 
 .expertise p {
   max-width: 400px;
 }
 
+.contact {
+  min-height: 100vh;
+}
+
+.contact a, .contact a:active, .contact a:visited {
+  font-family: Roboto Mono, sans-serif;
+  font-weight: 700;
+  letter-spacing: .01em;
+  color: #202020;
+  font-size: 1.2em;
+  text-decoration: none;
+  border-bottom: solid 4px rgba(138, 255, 77, 0);
+  transition: border .5s;
+}
+
+.contact a:hover {
+  border-bottom: solid 4px rgba(138, 255, 77, 0.8);
+}
+
+.credits {
+  position: absolute;
+  bottom: 30px;
+}
+
+.credits p {
+  color: #000;
+  opacity: .4;
+  margin: 0;
+}
+
+
+/********** Error *************************************************************/
+
+.error {
+  position: fixed;
+  width: 100%;
+  top: 33%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.error h1 {
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  font-size: 5em;
+  color: #aaa;
+  text-align: center;
+  margin-bottom: 10vh;
+}
+
+.error p {
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+  font-size: 1.2em;
+  color: #aaa;
+  text-align: center;
+  margin-bottom: 2vh;
+}
+
+#es-error {
+  color: #ccc;
+}
+
+
+/******************************************************************************
+ ********** 320 ***************************************************************/
+
+@media (min-width: 320px) {
+  body {
+    font-size: calc(14px + (16 - 14) * (100vw - 320px) / (375 - 320));
+  }
+
+  .content {
+    width: calc(100vw - 40px);
+    margin: 0 auto;
+    padding: 0 10px
+  }
+
+
+  /********** Left ************************************************************/
+
+  .social-media-icons li {
+    width: calc(24px + (28 - 24) * (100vw - 320px) / (760 - 320));
+    height: calc(24px + (28 - 24) * (100vw - 320px) / (760 - 320));
+  }
+
+  /********** Right ***********************************************************/
+
+  .right {
+
+  }
+
+
+}
+
+
+/******************************************************************************
+ ********* 375 ****************************************************************/
+
+@media (min-width: 375px) {
+  body {
+    font-size: 16px;
+  }
 
 
 
- .contact {
-   min-height: 100vh;
- }
-
- .contact a, .contact a:active, .contact a:visited {
-   font-family: Roboto Mono, sans-serif;
-   font-weight: 700;
-   letter-spacing: .01em;
-   color: #202020;
-   font-size: 1.2em;
-   text-decoration: none;
-   border-bottom: solid 2px rgba(128, 128, 128, 0);
-   transition: border .5s, color .5s;
- }
-
- .contact a:hover {
-   color: #404040;
-   border-bottom: solid 2px rgba(64,64,64, 0.4);
- }
-
- .credits p {
-   color: #000;
-   opacity: .4;
-   position: absolute;
-   margin: 0;
-   bottom: 30px;
- }
+}
 
 
-/*
- * Media queries
- *
- */
+/******************************************************************************
+ ********* 480 ****************************************************************/
 
 @media (min-width: 480px) {
-  body {
-    font-size: 18px;
+  .content {
+    width: calc(440px + (680 - 440) * (100vw - 480px) / (760 - 480));
   }
 
 }
 
-@media (min-width: 800px) {
+
+/******************************************************************************
+ ********* 640 ****************************************************************/
+
+@media (min-width: 640px) {
+  body {
+    font-size: calc(16px + (20 - 16) * (100vw - 640px) / (1280 - 640));
+  }
+
 
 }
 
+
+/******************************************************************************
+ ********* 760 ****************************************************************/
+
+@media (min-width: 760px) {
+  .content {
+    width: calc(680px + (880 - 680) * (100vw - 760px) / (960 - 760));
+    /*width: calc(760px + (880 - 760) * (100vw - 760px) / (960 - 760));
+    */
+
+  }
+
+  /********** Left ************************************************************/
+
+  #left {
+    position: fixed;
+    height: calc(100vh - 60px);
+  }
+
+  .social-media ul {
+    margin: 10vh 0;
+  }
+
+  .social-media-icons li {
+    width: 28px;
+    height: 28px;
+  }
+
+
+  .lang {
+    position: absolute;
+    margin-bottom: 0;
+    bottom: 0;
+  }
+
+  .lang p {
+    margin: 0;
+  }
+
+  /*********** Right **********************************************************/
+
+  #right {
+
+  }
+
+  .right {
+    position: absolute;
+    width: 400px;
+    left: 280px;
+    padding-left: 10px;
+  }
+
+  .greeting {
+    margin-top: 25vh;
+  }
+
+}
+
+
+/******************************************************************************
+ ********** 960 ***************************************************************/
+
+@media (min-width: 960px) {
+  .content {
+    width: calc(100vw - 80px);
+    /* width: calc(100vw - 80px); */
+  }
+
+
+  /********** Left ************************************************************/
+
+
+  .left {
+
+  }
+
+
+
+  /*********** Right **********************************************************/
+
+  #right {
+    /*
+    position: absolute;
+    width: calc(((100vw - 80px) / 3) * 2);
+    top: 0;
+    left: auto;
+    right: 0;
+    */
+  }
+
+  .right {
+
+  }
+
+}
+
+
+/******************************************************************************
+ ********** 1120 **************************************************************/
+
 @media (min-width: 1120px) {
+
+
+  /********** Left ************************************************************/
+
+
+}
+
+
+/******************************************************************************
+  ********** 1280 *************************************************************/
+
+@media (min-width: 1280px) {
   body {
     font-size: 20px;
   }
 
-
-}
-
-@media (min-width: 1440px) {
-  .sep {
-    position: fixed;
-    width: 1px;
-    height: 30%;
-    background-color: #ccc;
-    top: 35%;
-    left: 50%;
-  }
-
   .content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+
   }
 
-  /*************************************************
-   ********** Left *********************************
-   *************************************************/
+
+  /********** Left ************************************************************/
+
+  #left {
+
+  }
 
   .left {
-    position: fixed;
-    width: 50%;
-    height: 100%;
+
   }
 
-  .social-media-icons li {
-    width: 35px;
-    height: 35px;
+  .logo img {
+
   }
 
-  .lang {
-    top: auto;
-    bottom: 30px;
-  }
 
-  /*************************************************
-   ********** Right ********************************
-   *************************************************/
+  /********** Right ***********************************************************/
+
+  #right {
+
+  }
 
   .right {
-    grid-column: 2 / 3;
-    position: relative;
-    width: 560px;
-    margin: 0 auto;
-  }
-
-  .greeting {
-    margin-top: 40vh;
-  }
-
-  /*
-  .showcase {
 
   }
 
-  .showcase h3 {
-    font-size: .8em;
-  }
+}
 
-  .showcase p {
-    font-size: .8em;
-  }
-  */
 
-  /* soft shadow spec for project thumbnails */
+/******************************************************************************
+  ********** 1440 *************************************************************/
 
-  /*
-  .work {
-    box-shadow: 0px 0px 12px 1px rgba(87, 87, 87, 0.2);
-  }
-  */
+@media (min-width: 1440px) {
+
 
 
 
 }
+
+
+
+
+  /*
+    h1 {
+      font-size: 1.296em;
+    }
+
+    h2 {
+      font-size: 1.215em;
+    }
+
+    h3 {
+      font-size: 1.138em;
+    }
+
+    h4 {
+      font-size: 1.067em;
+    }
+
+----
+
+   h1 {
+     font-size: 2.074em;
+   }
+
+   h2 {
+     font-size: 1.728em;
+   }
+
+   h3 {
+     font-size: 1.44em;
+   }
+
+   h4 {
+     font-size: 1.2em;
+   }
+*/
