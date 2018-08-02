@@ -218,9 +218,10 @@ u {
 }
 
 .expertise img {
-  margin: 20px 0;
-  width: 60px;
-  height: 60px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  width: 64px;
+  height: 64px;
 }
 
 .contact {
