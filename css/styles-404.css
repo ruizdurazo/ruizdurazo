@@ -1,0 +1,195 @@
+/*
+ * Enrique Ruiz Durazo.
+ * 2018
+ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  color: #202020;
+  padding: 0;
+  margin: 0;
+  background-color: #fff;
+}
+
+::-moz-selection {
+  color: #fff;
+  background: #404040;
+}
+
+::selection {
+  color: #fff;
+  background: #404040;
+}
+
+.content {
+  position: relative;
+  width: 280px;
+  margin: 0;
+  padding: 0 20px;
+  top: 30px;
+}
+
+
+/********** Left **************************************************************/
+
+#left {
+  position: relative;
+  width: 240px;
+}
+
+.logo {
+  height: 24px;
+  display: flex;
+}
+
+.logo img, .logo img:active, .logo img:visited {
+  width: 100%;
+  transition: opacity .5s;
+}
+
+.logo img:hover {
+  opacity: .6;
+}
+
+
+/********** Error *************************************************************/
+
+.error {
+  position: fixed;
+  width: 100%;
+  top: 33%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.error h1 {
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  font-size: 5em;
+  color: #aaa;
+  text-align: center;
+  letter-spacing: .04em;
+  margin-top: 0em;
+  margin-bottom: 10vh;
+}
+
+.error p {
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+  font-size: 1.2em;
+  color: #aaa;
+  text-align: center;
+  line-height: 1.5em;
+  letter-spacing: .01em;
+  margin-top: 0;
+  margin-bottom: 2vh;
+}
+
+#es-error {
+  color: #ccc;
+}
+
+
+/******************************************************************************
+ ********** 320 ***************************************************************/
+
+@media (min-width: 320px) {
+  body {
+    font-size: calc(14px + (16 - 14) * (100vw - 320px) / (375 - 320));
+  }
+
+  .content {
+    width: calc(100vw - 40px);
+    margin: 0 auto;
+    padding: 0 10px
+  }
+
+}
+
+
+/******************************************************************************
+ ********* 375 ****************************************************************/
+
+@media (min-width: 375px) {
+  body {
+    font-size: 16px;
+  }
+
+}
+
+
+/******************************************************************************
+ ********* 460 ****************************************************************/
+
+@media (min-width: 460px) {
+  body {
+    font-size: calc(16px + (20 - 16) * (100vw - 460px) / (1200 - 460));
+  }
+
+  .content {
+    width: calc(420px + (680 - 420) * (100vw - 460px) / (760 - 460));
+  }
+
+}
+
+
+/******************************************************************************
+ ********* 760 ****************************************************************/
+
+@media (min-width: 760px) {
+  .content {
+    width: calc(680px + (840 - 680) * (100vw - 760px) / (920 - 760));
+  }
+
+  /********** Left ************************************************************/
+
+  #left {
+    position: fixed;
+    height: calc(100vh - 60px);
+    left: 40px;
+  }
+
+}
+
+
+/******************************************************************************
+ ********** 920 ***************************************************************/
+
+@media (min-width: 920px) {
+  .content {
+    width: 840px;
+  }
+
+    /********** Left ************************************************************/
+
+    #left {
+      left: calc((100vw - 840px) / 2);
+    }
+
+}
+
+
+/******************************************************************************
+  ********** 1200 *************************************************************/
+
+@media (min-width: 1200px) {
+  body {
+    font-size: 20px;
+  }
+
+  .content {
+    width: 1120px;
+  }
+
+  /********** Left ************************************************************/
+
+  #left {
+    left: calc((100vw - 1120px) / 2);
+  }
+
+}

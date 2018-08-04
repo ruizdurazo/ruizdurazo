@@ -141,7 +141,7 @@ h1 {
 }
 
 h1 i {
-  font-weight: 900i;
+  font-weight: 700i;
 }
 
 h2 {
@@ -218,11 +218,22 @@ u {
 }
 
 .expertise img {
-  margin-top: 20px;
+  margin-top: 30px;
   margin-bottom: 10px;
   width: 64px;
   height: 64px;
 }
+
+  .expertise b {
+    padding: 4px;
+    margin-right: 4px;
+    font-family: Roboto Mono, sans-serif;
+    font-size: .72em;
+    font-weight: 700;
+    color: #404040;
+    background-color: #eee;
+    border-radius: 4px;
+  }
 
 .contact {
   min-height: 100vh;
@@ -255,39 +266,6 @@ u {
 }
 
 
-/********** Error *************************************************************/
-
-.error {
-  position: fixed;
-  width: 100%;
-  top: 33%;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.error h1 {
-  font-family: Roboto, sans-serif;
-  font-weight: 400;
-  font-size: 5em;
-  color: #aaa;
-  text-align: center;
-  margin-bottom: 10vh;
-}
-
-.error p {
-  font-family: Roboto, sans-serif;
-  font-weight: 500;
-  font-size: 1.2em;
-  color: #aaa;
-  text-align: center;
-  margin-bottom: 2vh;
-}
-
-#es-error {
-  color: #ccc;
-}
-
-
 
 /******************************************************************************
  ********** 320 ***************************************************************/
@@ -308,6 +286,13 @@ u {
   .social-media-icons li {
     width: calc(24px + (28 - 24) * (100vw - 320px) / (760 - 320));
     height: calc(24px + (28 - 24) * (100vw - 320px) / (760 - 320));
+  }
+
+  /********** Right ***********************************************************/
+
+  .expertise img {
+    width: calc(64px + (80 - 64) * (100vw - 320px) / (1200 - 320));
+    height: calc(64px + (80 - 64) * (100vw - 320px) / (1200 - 320));
   }
 
 }
@@ -467,5 +452,13 @@ u {
   .expertise li {
     display: inline-grid;
   }
+
+  .expertise img {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: 80px;
+    height: 80px;
+  }
+
 
 }
