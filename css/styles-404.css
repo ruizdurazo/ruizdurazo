@@ -47,7 +47,9 @@ body {
   display: flex;
 }
 
-.logo img, .logo img:active, .logo img:visited {
+.logo img,
+.logo img:active,
+.logo img:visited {
   width: 100%;
   transition: opacity .5s;
 }
@@ -165,11 +167,11 @@ body {
     width: 840px;
   }
 
-    /********** Left ************************************************************/
+  /********** Left ************************************************************/
 
-    #left {
-      left: calc((100vw - 840px) / 2);
-    }
+  #left {
+    left: calc((100vw - 840px) / 2);
+  }
 
 }
 

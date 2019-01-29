@@ -10,10 +10,10 @@
   <title>Data Scientist, Designer, Developer — Enrique Ruiz Durazo</title>
   <meta name="description" content="Using data, design, and technology to understand problems and tell stories.">
 
-  <link rel="apple-touch-icon" sizes="180x180" href="https://ruizdurazo.com/images/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="https://ruizdurazo.com/images/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="https://ruizdurazo.com/images/favicon-16x16.png">
-  <link rel="mask-icon" href="https://ruizdurazo.com/images/favicon.svg" color="#202020">
+  <link rel="apple-touch-icon" sizes="180x180" href="./images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16x16.png">
+  <link rel="mask-icon" href="./images/favicon.svg" color="#202020">
   <meta name="theme-color" content="#ffffff">
 
   <meta name="twitter:card" content="summary">
@@ -30,7 +30,7 @@
   <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet'>
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:700" rel="stylesheet">
   <link href='https://fonts.googleapis.com/css?family=Karla:400' rel='stylesheet'>
-  <link rel="stylesheet" href="https://ruizdurazo.com/css/styles.css">
+  <link rel="stylesheet" href="./css/styles.css">
   <script type="application/ld+json">
     {
       "@context": "http://schema.org",
@@ -49,7 +49,10 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-123151773-1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments)}
+
+    function gtag() {
+      dataLayer.push(arguments)
+    }
     gtag('js', new Date())
     gtag('config', 'UA-123151773-1')
   </script>
@@ -61,24 +64,31 @@
   <div class="content">
 
     <div class="panel" id="left">
-      <div class="left">
+      <div class="left" id="lefty">
 
         <div class="logo">
-          <a href="https://ruizdurazo.com"><img src="https://ruizdurazo.com/images/ruizdurazo-logo.svg" alt="Enrique Ruiz Durazo" draggable="false"></a>
+          <a href="https://ruizdurazo.com"><img src="./images/ruizdurazo-logo.svg" alt="Enrique Ruiz Durazo" draggable="false"></a>
         </div>
 
-        <div class="social-media">
-          <ul class="social-media-icons">
-            <li><a href="https://twitter.com/ruizdurazo" target="_blank" title="Twitter"><img src="https://ruizdurazo.com/images/twitter-icon.svg" alt="Twitter" draggable="false">Twitter</a></li>
-            <li><a href="https://github.com/ruizdurazo" target="_blank" title="GitHub"><img src="https://ruizdurazo.com/images/github-icon.svg" alt="GitHub" draggable="false">GitHub</a></li>
-            <li><a href="https://instagram.com/ruizdurazo" target="_blank" title="Instagram"><img src="https://ruizdurazo.com/images/instagram-icon.svg" alt="Instagram" draggable="false">Instagram</a></li>
-            <!-- <li><a href="https://medium.com/@ruizdurazo" target="_blank" title="Medium"><img src="https://ruizdurazo.com/images/medium-icon.svg" alt="Medium" draggable="false">Medium</a></li> -->
-          </ul>
+        <div class="profile">
+          <div class="profile-pic">
+            <img src="./images/profile-pic.jpeg" alt="Enrique Ruiz Durazo - Profile picture" draggable="false">
+          </div>
+
+          <div class="social-media">
+            <ul class="social-media-links">
+              <li><a href="https://twitter.com/ruizdurazo" target="_blank"><img src="./images/twitter-icon.svg" alt="Twitter"
+                    draggable="false"><span>Twitter</span></a></li>
+              <li><a href="https://github.com/ruizdurazo" target="_blank"><img src="./images/github-icon.svg" alt="GitHub"
+                    draggable="false"><span>GitHub</span></a></li>
+              <li><a href="https://instagram.com/ruizdurazo" target="_blank"><img src="./images/instagram-icon.svg" alt="Instagram"
+                    draggable="false"><span>Instagram</span></a></li>
+              <!-- <li><a href="https://medium.com/@ruizdurazo" target="_blank"><img src="./images/medium-icon.svg" alt="Medium"
+                    draggable="false"><span>Medium</span></a></li> -->
+            </ul>
+          </div>
         </div>
 
-        <div class="lang">
-          <p><a href="https://ruizdurazo.com/es">Español</a></p>
-        </div>
 
       </div>
     </div>
@@ -86,24 +96,60 @@
     <div class="panel" id="right">
       <div class="right">
 
-        <div class="greeting">
-          <h1>Hello.<br><a id="slideshow-anim" style="opacity: 1;"> I'm <u>Enrique</u>.</a></h1>
-          <p>I studied architecture, but then I learned to code.</p>
-          <p>I try to understand problems and tell stories through data, design, and technology.</p>
-          <a class="learn-more" href="#expertise">Learn More</a>
+        <div class="lang">
+          <a href="https://ruizdurazo.com/es">Español</a>
         </div>
 
 
-        <div class="expertise" id="expertise">
+        <div class="greeting" id="greeting">
+          <h1>Hello.<br><a id="slideshow-anim" style="opacity: 1;"> I'm <u>Enrique</u>.</a></h1>
+          <p>I studied architecture, but then I learned to code.</p>
+          <p>I try to understand problems and tell stories through data, design, and technology.</p>
+          <a class="learn-more" href="#work">Learn More</a>
+        </div>
 
+
+        <div class="work" id="work">
           <div class="sep"></div>
+          <h2>Work</h2>
+          <p>In progress...</p>
 
+        </div>
+
+        <div class="expertise" id="expertise">
+          <div class="sep"></div>
           <h2>Expertise</h2>
+          <p>ce. dfgdf gdfg dfgdgf gd</p>
           <ul>
+            <li>python</li>
+            <li>pandas</li>
+            <li>scikit-learn</li>
+            <li>xgboost</li>
+            <li>matplotlib</li>
+            <li>seaborn</li>
+            <li>altair</li>
+            <li>geopandas</li>
+            <li>pysal</li>
+            <li>qgis</li>
+            <li>mapbox</li>
+            <li>html</li>
+            <li>css</li>
+            <li>javascript</li>
+            <li>node</li>
+            <li>express</li>
+            <li>serverless</li>
+            <li>react</li>
+            <li>aws</li>
+            <li>adobe-cc</li>
+          </ul>
+
+          <!-- <ul>
             <li>
-              <img src="https://ruizdurazo.com/images/data_science.png" alt="Data Science" draggable="false">
+              <img src="./images/data_science.png" alt="Data Science" draggable="false">
               <h4>Data Science</h4>
-              <p>Data can answer questions, but it can’t speak for itself. Processing, analyzing, and building Machine Learning models can help data become actionable and intelligible.</p>
+              <p>Data can answer questions, but it can’t speak for itself. Processing, analyzing, and building
+                Machine
+                Learning models can help data become actionable and intelligible.</p>
               <p>
                 <b>python</b>
                 <b>jupyter</b>
@@ -114,31 +160,28 @@
               </p>
             </li>
             <li>
-              <img src="https://ruizdurazo.com/images/info_design.png" alt="Information Design" draggable="false">
+              <img src="./images/info_design.png" alt="Information Design" draggable="false">
               <h4>Design</h4>
-              <p>Design isn’t only about how things look. It’s about how things work, and what they want to say. Design is communication. Communicating data visually can more effectively convey it’s structure, meaning, and importance.</p>
+              <p>Design isn’t only about how things look. It’s about how things work, and what they want to say.
+                Design
+                is communication. Communicating data visually can more effectively convey it’s structure, meaning,
+                and
+                importance.</p>
               <p>
                 <b>matplotlib</b>
                 <b>seaborn</b>
                 <b>altair</b>
-                <b>html</b>
-                <b>css</b>
-                <b>javascript</b>
-                <b>adobe-cc</b>
               </p>
             </li>
             <li>
-              <img src="https://ruizdurazo.com/images/geo_data.png" alt="Geospatial Data" draggable="false">
+              <img src="./images/geo_data.png" alt="Geospatial Data" draggable="false">
               <h4>Maps</h4>
-              <p>Maps are special. They're spatial. Maps can show where things are and how they change, helping pinpoint trends, risks, and opportunities.</p>
+              <p>Maps are special. They're spatial. Maps can show where things are and how they change, helping
+                pinpoint trends, risks, and opportunities.</p>
               <p>
-                <b>mapbox</b>
-                <b>geopandas</b>
-                <b>pysal</b>
-                <b>qgis</b>
               </p>
             </li>
-          </ul>
+          </ul> -->
 
         </div>
 
@@ -161,7 +204,8 @@
 
   </div>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
   <script>
     var words = [
       " I'm <u>Enrique</u>.",
@@ -170,7 +214,7 @@
       " I'm a <u>developer</u>."
     ]
   </script>
-  <script src="https://ruizdurazo.com/js/main.js"></script>
+  <script src="./js/main.js"></script>
 
 </body>
 
