@@ -43,7 +43,11 @@ body {
   height: 100%;
 }
 
-
+a {
+  color: #202020;
+  text-decoration: none;
+  outline: none;
+}
 
 /* scroll hack */
 /* #container1{
@@ -302,7 +306,7 @@ u {
   margin: 0 0 10em 0;
 }
 
-.expertise ul {
+#skills {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -322,19 +326,27 @@ u {
   height: 64px;
 } */
 
-.expertise li {
+#skills li {
   display: inline-block;
-  padding: 4px 8px;
+  padding: 6px 18px;
   margin: 0 .5em 1em 0;
   font-family: Roboto Mono, sans-serif;
   font-size: .72em;
   font-weight: 700;
   color: #404040;
-  background-color: #eee;
-  border-radius: 4px;
+  /* background-color: #eee; */
+  border-color: #ddd;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 40px;
+  transition: all .2s;
 }
 
-
+#skills li:hover {
+  cursor: pointer;
+  background-color: #fafafa;
+  border-color: #a0a0a0;
+}
 
 
 
@@ -375,7 +387,7 @@ u {
   bottom: 30px;
 }
 
-.credits p {
+.credits span {
   color: #a0a0a0;
   margin: 0;
 }

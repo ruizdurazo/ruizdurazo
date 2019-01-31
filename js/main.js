@@ -1,6 +1,6 @@
 /*
- * Enrique Ruiz Durazo.
- * 2018
+ * Enrique Ruiz Durazo
+ * 2019
  */
 
 var i = 0
@@ -17,7 +17,7 @@ $(document).ready(function() {
   setInterval(function() {
     num++
     word_element.fadeOut(anim_duration, function() {
-      word_element.html(words[num % word_count]).fadeIn(anim_duration);
+      word_element.html(words[num % word_count]).fadeIn(anim_duration)
     })
   }, anim_delay)
 })
