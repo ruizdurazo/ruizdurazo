@@ -3,12 +3,12 @@
  * 2019
  */
 
-html {
+* {
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: Roboto, sans-serif;
+  font-family: Roboto, Arial, sans-serif;
   font-size: 14px;
   color: #202020;
   padding: 0;
@@ -61,7 +61,7 @@ body {
 
 /********** Error *************************************************************/
 
-.error {
+#error {
   position: fixed;
   width: 100%;
   top: 33%;
@@ -69,8 +69,8 @@ body {
   transform: translateX(-50%);
 }
 
-.error h1 {
-  font-family: Roboto, sans-serif;
+#error div {
+  /* font-family: Roboto, Arial, sans-serif; */
   font-weight: 400;
   font-size: 5em;
   color: #aaa;
@@ -80,21 +80,19 @@ body {
   margin-bottom: 10vh;
 }
 
-.error p {
-  font-family: Roboto, sans-serif;
+#error span {
+  /* font-family: Roboto, Arial, sans-serif; */
+  display: block;
   font-weight: 500;
   font-size: 1.2em;
   color: #aaa;
   text-align: center;
   line-height: 1.5em;
   letter-spacing: .01em;
-  margin-top: 0;
-  margin-bottom: 2vh;
+  margin: 0;
 }
 
-#es-error {
-  color: #ccc;
-}
+
 
 
 /******************************************************************************
