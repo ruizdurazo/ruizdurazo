@@ -3,6 +3,7 @@
  * 2019
  */
 
+ 
  /* Fonts */
  @font-face {
   font-family: 'Charter';
@@ -36,7 +37,8 @@
 :root {
   --font-inter: 'Inter', sans-serif;
   --font-charter: 'Charter', serif;
-  --max-width: 1120px;
+  --max-width: 1160px;
+  --min-width: 320px;
 }
 
 /* Defaults */
@@ -44,7 +46,7 @@
   scroll-behavior: smooth;
   font-family: var(--font-inter);
   font-size: 20px;
-  color: #202020;
+  color: #aaa;
   padding: 0;
   margin: 0;
   background-color: #fff;
@@ -66,39 +68,38 @@
 }
 
 
-
-
-
-
-
-
-
-
-.content {
-  position: relative;
-  width: 280px;
-  margin: 0;
-  padding: 0 20px;
-  top: 30px;
+/* Site */
+.site {
+  margin: 0 auto;
+  max-width: var(--max-width);
 }
 
-
-/********** Left **************************************************************/
-
-#left {
-  position: relative;
-  width: 240px;
+/* Navbar */
+.navbar {
+  position: fixed;
+  max-width: var(--max-width);
+  width: 100%;
+  z-index: 1;
 }
 
+.navbar .elements {
+  width: calc(100% - 40px);
+  height: 5em;
+  margin: 0 auto;
+}
+
+/* Logo */
 .logo {
-  height: 24px;
-  display: flex;
+  position: absolute;
+  margin: 39px 0;
+  overflow: hidden;
+  height: 22px;
 }
 
 .logo img,
 .logo img:active,
 .logo img:visited {
-  width: 100%;
+  width: 220px;
   transition: opacity .5s;
 }
 
@@ -106,138 +107,60 @@
   opacity: .6;
 }
 
+/* Languages */
 
-/********** Error *************************************************************/
 
+
+/* Content */
+#content {
+  margin: 0 20px;
+  width: calc(100% - 40px);
+  display: grid;
+  grid-gap: 0;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-areas: 
+    'error';
+}
+
+
+/* Error */
 #error {
-  position: fixed;
-  width: 100%;
+  grid-area: error;
+  position: absolute;
   top: 33%;
   left: 50%;
   transform: translateX(-50%);
 }
 
 #error div {
-  /* font-family: Roboto, Arial, sans-serif; */
-  font-weight: 400;
+  display: inline-block;
   font-size: 5em;
-  color: #aaa;
   text-align: center;
-  letter-spacing: .04em;
-  margin-top: 0em;
-  margin-bottom: 10vh;
+  letter-spacing: .05em;
+  margin-bottom: .1em;
+  width: 100%;
 }
 
 #error span {
-  /* font-family: Roboto, Arial, sans-serif; */
-  display: block;
-  font-weight: 500;
+  display: inline-block;
   font-size: 1.2em;
-  color: #aaa;
   text-align: center;
-  line-height: 1.5em;
-  letter-spacing: .01em;
-  margin: 0;
+  width: 100%;
 }
 
 
 
 
-/******************************************************************************
- ********** 320 ***************************************************************/
-
-@media (min-width: 320px) {
-  body {
-    font-size: calc(14px + (16 - 14) * (100vw - 320px) / (375 - 320));
-  }
-
-  .content {
-    width: calc(100vw - 40px);
-    margin: 0 auto;
-    padding: 0 10px
-  }
-
-}
-
-
-/******************************************************************************
- ********* 375 ****************************************************************/
-
-@media (min-width: 375px) {
-  body {
+/* 320px */
+@media (max-width: 320px) {
+  * {
     font-size: 16px;
   }
-
 }
 
-
-/******************************************************************************
- ********* 460 ****************************************************************/
-
-@media (min-width: 460px) {
-  body {
-    font-size: calc(16px + (20 - 16) * (100vw - 460px) / (1200 - 460));
+/* 768px */
+@media (max-width: 768px) {
+  * {
+    font-size: calc(16px + (20 - 16) * (100vw - 320px) / (768 - 320));
   }
-
-  .content {
-    width: calc(420px + (680 - 420) * (100vw - 460px) / (760 - 460));
-  }
-
-}
-
-
-/******************************************************************************
- ********* 760 ****************************************************************/
-
-@media (min-width: 760px) {
-  .content {
-    width: calc(680px + (840 - 680) * (100vw - 760px) / (920 - 760));
-  }
-
-  /********** Left ************************************************************/
-
-  #left {
-    position: fixed;
-    height: calc(100vh - 60px);
-    left: 40px;
-  }
-
-}
-
-
-/******************************************************************************
- ********** 920 ***************************************************************/
-
-@media (min-width: 920px) {
-  .content {
-    width: 840px;
-  }
-
-  /********** Left ************************************************************/
-
-  #left {
-    left: calc((100vw - 840px) / 2);
-  }
-
-}
-
-
-/******************************************************************************
-  ********** 1200 *************************************************************/
-
-@media (min-width: 1200px) {
-  body {
-    font-size: 20px;
-  }
-
-  .content {
-    width: 1120px;
-  }
-
-  /********** Left ************************************************************/
-
-  #left {
-    left: calc((100vw - 1120px) / 2);
-  }
-
 }
