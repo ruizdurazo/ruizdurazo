@@ -1,34 +1,41 @@
-/*
+/* 
  * Enrique Ruiz Durazo
  * 2019
  */
 
- 
+
  /* Fonts */
  @font-face {
   font-family: 'Charter';
-  src: url('fonts/charter-bold.woff') format('woff');
+  src: url('../assets/fonts/charter-bold.woff') format('woff');
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Charter';
-  src: url('fonts/charter-regular.woff') format('woff');
+  src: url('../assets/fonts/charter-regular.woff') format('woff');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Inter';
-  src: url('fonts/inter-bold.woff');
+  src: url('../assets/fonts/inter-bold.woff');
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Inter';
-  src: url('fonts/inter-regular.woff') format('woff');
+  src: url('../assets/fonts/inter-medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../assets/fonts/inter-regular.woff') format('woff');
   font-weight: 400;
   font-style: normal;
 }
@@ -37,19 +44,30 @@
 :root {
   --font-inter: 'Inter', sans-serif;
   --font-charter: 'Charter', serif;
-  --max-width: 1160px;
+  --font-size: 20px;
+  --max-font-size: 20;
+  --min-font-size: 16;
+  --max-width: 1200px;
   --min-width: 320px;
+  --grid-unit: 112px;
+  --offset: 80;
+  /* Colors */
+  --black: #202020;
+  --blue: #0f4fff;
+  --date: #999;
+  --description: #808080;
+  --error: #aaa;
 }
 
 /* Defaults */
 * {
   scroll-behavior: smooth;
   font-family: var(--font-inter);
-  font-size: 20px;
-  color: #aaa;
+  font-size: var(--font-size);
+  color: var(--black);
   padding: 0;
   margin: 0;
-  background-color: #fff;
+  background-color: none;
   text-decoration: none;
   outline: none;
   list-style: none;
@@ -59,12 +77,12 @@
 /* Selections */
 ::selection {
   color: #fff;
-  background: #202020;
+  background: var(--black);
 }
 
 ::-moz-selection {
   color: #fff;
-  background: #202020;
+  background: var(--black);
 }
 
 
@@ -72,6 +90,7 @@
 .site {
   margin: 0 auto;
   max-width: var(--max-width);
+  min-width: var(--min-width);
 }
 
 /* Navbar */
@@ -80,11 +99,12 @@
   max-width: var(--max-width);
   width: 100%;
   z-index: 1;
+  background-color: #fff;
 }
 
 .navbar .elements {
-  width: calc(100% - 40px);
-  height: 5em;
+  width: calc(100% - (1px * var(--offset)));
+  height: calc(var(--font-size) * 5);
   margin: 0 auto;
 }
 
@@ -114,7 +134,7 @@
 /* Content */
 #content {
   margin: 0 20px;
-  width: calc(100% - 40px);
+  width: calc(100% - (1px * var(--offset)));
   display: grid;
   grid-gap: 0;
   grid-template-columns: repeat(1, 1fr);
@@ -127,40 +147,63 @@
 #error {
   grid-area: error;
   position: absolute;
-  top: 33%;
+  top: 25%;
   left: 50%;
   transform: translateX(-50%);
 }
 
 #error div {
   display: inline-block;
+  margin-bottom: .25em;
+  width: 100%;
+  color: var(--error);
   font-size: 5em;
   text-align: center;
   letter-spacing: .05em;
-  margin-bottom: .1em;
-  width: 100%;
 }
 
 #error span {
   display: inline-block;
+  width: 100%;
+  color: var(--error);
   font-size: 1.2em;
   text-align: center;
-  width: 100%;
 }
 
 
 
 
-/* 320px */
-@media (max-width: 320px) {
-  * {
-    font-size: 16px;
+
+
+/* 1200px */
+@media (max-width: 1200px) {
+  #content {
+    max-width: calc(var(--grid-unit) * 8);
+  } 
+}
+
+  /* 768px */
+@media (max-width: 768px) {
+  :root {
+    --font-size: calc((1px * var(--min-font-size)) + (var(--max-font-size) - var(--min-font-size)) * (100vw - 320px) / (768 - 320));
+  }
+
+  #content {
+    width: calc(100% - ((1px * var(--offset) / 2) + (80 - 40) * (100vw - 360px) / (768 - 360)));
+  }
+  
+  .navbar .elements {
+    width: calc(100% - ((1px * var(--offset) / 2) + (80 - 40) * (100vw - 360px) / (768 - 360)));
   }
 }
 
-/* 768px */
-@media (max-width: 768px) {
-  * {
-    font-size: calc(16px + (20 - 16) * (100vw - 320px) / (768 - 320));
+/* 360px */
+@media (max-width: 360px) {
+  #content {
+    width: calc(100% - (1px * var(--offset) / 2));
+  }
+
+  .navbar .elements {
+    width: calc(100% - (1px * var(--offset) / 2));
   }
 }
