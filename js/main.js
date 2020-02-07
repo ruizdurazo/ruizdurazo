@@ -8,7 +8,7 @@ var word_count = words.length
 var word_element = $('#slideshow-anim')
 
 // Animation durations
-var anim_delay = 4000 //ms
+var anim_delay = 3500 //ms
 var anim_duration = 500 //ms
 
 // Counter
