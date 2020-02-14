@@ -1,175 +1,365 @@
 <!DOCTYPE html>
 
 <html lang="en" dir="ltr" prefix="og: http://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
+    <title>Enrique Ruiz Durazo — Developer / Designer</title>
+    <meta name="description" content="Making things using code, data, and design." />
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png" />
+    <link rel="mask-icon" href="/assets/images/favicon.svg" color="#202020" />
+    <meta name="theme-color" content="#ffffff" />
 
-  <title>Enrique Ruiz Durazo — Data Scientist, Designer, Developer</title>
-  <meta name="description" content="Using data, design, and technology to understand problems and tell stories.">
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@ruizdurazo" />
+    <meta name="twitter:title" content="Enrique Ruiz Durazo" />
+    <meta name="twitter:description" content="Making things using code, data, and design." />
+    <meta name="twitter:image" content="https://ruizdurazo.com/assets/images/card.png" />
 
-  <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon-16x16.png">
-  <link rel="mask-icon" href="./assets/images/favicon.svg" color="#202020">
-  <meta name="theme-color" content="#ffffff">
+    <meta property="og:url" content="https://ruizdurazo.com/" />
+    <meta property="og:title" content="Enrique Ruiz Durazo" />
+    <meta property="og:description" content="Making things using code, data, and design." />
+    <meta property="og:image" content="https://ruizdurazo.com/assets/images/card.png" />
 
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:site" content="@ruizdurazo">
-  <meta name="twitter:title" content="Enrique Ruiz Durazo">
-  <meta name="twitter:description" content="Using data, design, and technology to understand problems and tell stories.">
-  <meta name="twitter:image" content="https://ruizdurazo.com/assets/images/card.png">
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/styles-home.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "Person",
+        "name": "Enrique Ruiz Durazo",
+        "url": "https://ruizdurazo.com",
+        "email": "enrique@ruizdurazo.com",
+        "sameAs": ["https://twitter.com/ruizdurazo", "https://github.com/ruizdurazo", "https://instagram.com/ruizdurazo"]
+      }
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-123151773-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'UA-123151773-1')
+    </script>
+  </head>
 
-  <meta property="og:url" content="https://ruizdurazo.com/">
-  <meta property="og:title" content="Enrique Ruiz Durazo">
-  <meta property="og:description" content="Using data, design, and technology to understand problems and tell stories.">
-  <meta property="og:image" content="https://ruizdurazo.com/assets/images/card.png">
-
-  <link rel="stylesheet" href="./css/styles.css">
-  <script type="application/ld+json">
-		{
-			"@context": "http://schema.org",
-			"@type": "Person",
-			"name": "Enrique Ruiz Durazo",
-			"url": "https://ruizdurazo.com",
-			"email": "enrique@ruizdurazo.com",
-			"sameAs": [
-				"https://twitter.com/ruizdurazo",
-				"https://github.com/ruizdurazo",
-				"https://instagram.com/ruizdurazo"
-			]
-		}
-	</script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-123151773-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || []
-    function gtag() { dataLayer.push(arguments) }
-    gtag('js', new Date())
-    gtag('config', 'UA-123151773-1')
-  </script>
-
-</head>
-
-<body>
-
-  <div class="site">
-
-    <div class="navbar">
-      <div class="elements">
-        <div class="logo">
-          <a href="https://ruizdurazo.com/"><img src="./assets/images/ruizdurazo-logo.svg" alt="Enrique Ruiz Durazo" draggable="false"></a>
+  <body>
+    <div id="site" class="site">
+      <!-- Navbar -->
+      <div id="navbar" class="navbar">
+        <div class="elements">
+          <div id="logo" class="logo">
+            <a href="/">
+              <img id="logo-svg" src="/assets/images/logo-ruizdurazo.svg" alt="Enrique Ruiz Durazo" draggable="false" />
+            </a>
+          </div>
+          <div id="menu" class="menu">
+            <img id="menu-svg" src="/assets/images/icon-menu.svg" alt="Menu" draggable="false" />
+          </div>
         </div>
-        <!-- <div class="langs"></div> -->
+        <div id="menu-overlay"></div>
       </div>
-    </div>
-
-    <div class="content" id="content">
-
-      <section class="hero" id="hero">
-        <h1>Hello. <img src="./assets/images/hello.png" alt="Hello" id="hello" draggable="false"><br><a id="slideshow-anim" style="opacity: 1;"> I'm <u>Enrique</u>.</a></h1>
-        <!-- <a class="learn-more" href="#blog">Learn More</a> -->
-      </section>
-
-      <!-- <section class="highlights" id="highlights">
-        <div class="sep"></div>
-        <h2>Highlights</h2>
-        <div class="cards">
-          <div class="card" id="one">
-            <a href="#">
-              <img src="./assets/images/name.jpg" alt="">
-              <span>Figure-<br>Ground</span>
-            </a>
+      <!-- Content -->
+      <div id="content" class="content">
+        <!-- Section - Hero -->
+        <section id="hero" class="hero">
+          <h1>
+            Hello.
+            <img src="/assets/images/hello.png" alt="Hello" id="hello" draggable="false" /><br /><a id="slideshow-anim" style="opacity: 1;"> I'm <u>Enrique</u>.</a>
+          </h1>
+          <a id="learn-more" class="learn-more" href="#blog">Learn More</a>
+        </section>
+        <!-- Section - Highlights -->
+        <!-- <section class="highlights" id="highlights" style="display: none;"> -->
+        <!-- <hr class="sep" />
+          <h2>Highlights</h2>
+          <div class="cards">
+            <div class="card" id="one">
+              <a href="#">
+                <img src="/assets/images/name.jpg" alt="" />
+                <span>Figure-<br />Ground</span>
+              </a>
+            </div>
+            <div class="card" id="two">
+              <a href="#">
+                <img src="/assets/images/name.jpg" alt="" />
+                <span>Pixels</span>
+              </a>
+            </div>
+            <div class="card" id="three">
+              <a href="#">
+                <img src="/assets/images/name.jpg" alt="" />
+                <span>Markets</span>
+              </a>
+            </div>
+            <div class="card" id="four">
+              <a href="#">
+                <img src="/assets/images/name.jpg" alt="" />
+                <span>Elections</span>
+              </a>
+            </div>
+            <div class="card" id="five">
+              <a href="#">
+                <img src="/assets/images/name.jpg" alt="" />
+                <span>Land Use</span>
+              </a>
+            </div>
+          </div> -->
+        <!-- </section> -->
+        <!-- Section - Blog -->
+        <section id="blog" class="blog">
+          <hr class="sep" />
+          <h2>Blog</h2>
+          <div id="blog-posts" class="blog-posts">
+            <!-- <div class="blog-post">
+              <hr class="sep sep-blog" />
+              <a href="#" class="media-post">
+                <img alt="" />
+                <small class="date">YYYY MONTH DD</small>
+                <div class="text">
+                  <span class="title">Title</span>
+                  <span class="description">Description.</span>
+                </div>
+              </a>
+            </div> -->
+            <!-- <div class="blog-post">
+              <hr class="sep sep-blog" />
+              <a href="#" class="text-post">
+                <small class="date">YYYY MONTH DD</small>
+                <div class="text">
+                  <span class="title">Title</span>
+                </div>
+              </a>
+            </div> -->
           </div>
-          <div class="card" id="two">
-            <a href="#">
-              <img src="./assets/images/name.jpg" alt="">
-              <span>Pixels</span>
-            </a>
+        </section>
+        <!-- Section - Contact -->
+        <section id="contact" class="contact">
+          <hr class="sep" />
+          <h2>Get in touch</h2>
+          <div class="social-media">
+            <ul class="social-media-links">
+              <li id="mail">
+                <a href="mailto:enrique@ruizdurazo.com" target="_blank"><img src="/assets/images/icon-mail.svg" alt="Email" draggable="false" /><span>Email</span></a>
+              </li>
+              <li id="twitter">
+                <a href="https://twitter.com/ruizdurazo" target="_blank"><img src="/assets/images/icon-twitter.svg" alt="Twitter" draggable="false" /><span>Twitter</span></a>
+              </li>
+              <li id="github">
+                <a href="https://github.com/ruizdurazo" target="_blank"><img src="/assets/images/icon-github.svg" alt="GitHub" draggable="false" /><span>GitHub</span></a>
+              </li>
+              <!-- <li id="linkedin">
+                <a href="/lol"><img src="/assets/images/icon-lol.svg" alt="LinkedIn" draggable="false" /><span>LinkedIn</span></a>
+              </li> -->
+            </ul>
           </div>
-          <div class="card" id="three">
-            <a href="#">
-              <img src="./assets/images/name.jpg" alt="">
-              <span>Markets</span>
-            </a>
-          </div>
-          <div class="card" id="four">
-            <a href="#">
-              <img src="./assets/images/name.jpg" alt="">
-              <span>Elections</span>
-            </a>
-          </div>
-          <div class="card" id="five">
-            <a href="#">
-              <img src="./assets/images/name.jpg" alt="">
-              <span>Land Use</span>
-            </a>
-          </div>
-        </div>
-      </section> -->
-
-      <!-- <section class="blog" id="blog">
-        <div class="sep"></div>
-        <h2>Blog</h2>
-        <div class="blog-posts">
-
-          <div class="blog-post" id="mexico-pixels">
-            <div class="sep sep-blog"></div>
-            <a href="#" class="media-post">
-              <img src="./assets/images/name.jpg" alt="">
-              <span class="date">DATE</span>
-              <div class="text">
-                <span class="title">Title</span>
-                <span class="description">Description.</span>
-              </div>
-            </a>
-          </div>
-
-          <div class="blog-post" id="who-am-i">
-            <div class="sep sep-blog"></div>
-            <a href="#" class="text-post">
-              <span class="date">DATE</span>
-              <div class="text">
-                <span class="title">Title</span>
-              </div>
-            </a>
-          </div>
-
-        </div>
-      </section> -->
-
-      <section class="contact" id="contact">
-        <div class="sep"></div>
-        <h2>Get in touch</h2>
-        <div class="social-media">
-          <ul class="social-media-links">
-            <li id="mail"><a href="mailto:enrique.ruizdurazo@gmail.com" target="_blank"><img src="./assets/images/mail-icon.svg" alt="Email" draggable="false"><span>Email</span></a></li>
-            <li id="twitter"><a href="https://twitter.com/ruizdurazo" target="_blank"><img src="./assets/images/twitter-icon.svg" alt="Twitter" draggable="false"><span>Twitter</span></a></li>
-            <li id="github"><a href="https://github.com/ruizdurazo" target="_blank"><img src="./assets/images/github-icon.svg" alt="GitHub" draggable="false"><span>GitHub</span></a></li>
-          </ul>
-        </div>
-      </section>
-
-      <footer class="footer" id="footer">
-        <span id="copyright">© 2019 Enrique Ruiz Durazo</span>
-        <a href="https://github.com/ruizdurazo/ruizdurazo" target="_blank" id="source">Source ↗</a>
+        </section>
+      </div>
+      <!-- Footer -->
+      <footer id="footer" class="footer">
+        <span id="copyright">© Enrique Ruiz Durazo</span>
+        <a id="source" href="https://github.com/ruizdurazo/ruizdurazo" target="_blank">Source &nearr;</a>
       </footer>
-
     </div>
-  </div>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-  <script>
-    var words = [
-      "I'm <u>Enrique</u>.",
-      "I'm a <u>data scientist</u>.",
-      "I'm a <u>designer</u>.",
-      "I'm a <u>developer</u>."
-    ]
-  </script>
-  <script src="./js/main.js"></script>
+    <script src="/js/navbar.js"></script>
+    <!-- <script src="/js/blog-posts.js"></script> -->
+    <script>
+      // Date format options
+      const date_options = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      }
 
-</body>
+      // document.getElementById('learn-more').addEventListener('click', (event) =>{
+      //   console.log(event.x)
+      //   console.log(event.y)
+      //   let more = document.createElement('div').setAttribute()
+      //   document.getElementById('site')
+      // })
 
+      if (posts) {
+        // document.getElementById('blog').setAttribute('style', 'display: auto;')
+        // document.getElementById('blog').innerHTML +=
+        //   '<hr class="sep" />' +
+        //   '<h2>Blog</h2>' +
+        //   '<div id="blog-posts" class="blog-posts">' +
+        //   <!-- <div class="blog-post">
+        //   <hr class="sep sep-blog">
+        //   <a href="#" class="media-post">
+        //     <img src="/assets/images/name.jpg" alt="">
+        //     <small class="date">DATE</small>
+        //     <div class="text">
+        //       <span class="title">Title</span>
+        //       <span class="description">Description.</span>
+        //     </div>
+        //   </a>
+        // </div> -->
+        //   <!-- <div class="blog-post">
+        //   <hr class="sep sep-blog">
+        //   <a href="#" class="text-post">
+        //     <small class="date">DATE</small>
+        //     <div class="text">
+        //       <span class="title">Title</span>
+        //     </div>
+        //   </a>
+        // </div> -->
+        // '</div>' +
+
+        posts.forEach(post => {
+          fetch('/blog/' + post.folder + '/index.md')
+            .then(response => response.text())
+            .then(text => {
+              // Clear blogPost object
+              let blogPost = {}
+
+              // Check if document has 'meta'
+              if (text.startsWith('---')) {
+                let m = /---[^]*?---/
+                let meta = text.match(m)
+                if (meta) {
+                  // If meta found, split on new lines
+                  let me = meta[0].trim().split('\n')
+                  me.shift()
+                  me.pop()
+                  // Iterate through meta properties
+                  me.forEach(prop => {
+                    if (prop.startsWith('title:')) {
+                      // Title
+                      blogPost.title = prop.split(':')[1].trim()
+                    } else if (prop.startsWith('date:')) {
+                      // Date
+                      blogPost.date = new Date(prop.split(':')[1].trim())
+                    } else if (prop.startsWith('description_short:')) {
+                      // Short Description
+                      blogPost.description_short = prop.split(':')[1].trim()
+                    } else if (prop.startsWith('description_long:')) {
+                      // Long Description
+                      blogPost.description_long = prop.split(':')[1].trim()
+                    } else if (prop.startsWith('image:')) {
+                      // Image
+                      blogPost.image = prop.split(':')[1].trim()
+                    } else if (prop.startsWith('image_alt:')) {
+                      // Image alt
+                      blogPost.image_alt = prop.split(':')[1].trim()
+                    } else if (prop.startsWith('highlight:')) {
+                      // Highlight
+                      blogPost.highlight = prop.split(':')[1].trim()
+                    } else if (prop.startsWith('author_name:')) {
+                      // Author Name
+                      blogPost.author_name = prop.split(':')[1].trim()
+                    } else if (prop.startsWith('author_email:')) {
+                      // Author Email
+                      blogPost.author_email = prop.split(':')[1].trim()
+                    } else if (prop.startsWith('author_twitter:')) {
+                      // Author Twitter
+                      blogPost.author_twitter = prop.split(':')[1].trim()
+                    }
+                  })
+
+                  // Once 'blogPost' props are found, create html elements...
+                  if (blogPost.image) {
+                    // Media post
+                    document.getElementById('blog-posts').innerHTML +=
+                      '<div class="blog-post" id="' +
+                      post.folder +
+                      '">' +
+                      // '<hr class="sep sep-blog">' +
+                      '<a href="/blog/' +
+                      post.folder +
+                      '" class="media-post">' +
+                      // '<img src="/blog/' + post + '/assets/images/' + blogPost.image + '" alt="' + blogPost.image_alt + '">' +
+                      '<img src="' +
+                      blogPost.image +
+                      '" alt="' +
+                      blogPost.image_alt +
+                      '">' +
+                      // '<hr class="sep sep-blog">' +
+                      '<small class="date">' +
+                      blogPost.date.getFullYear() +
+                      ' ' +
+                      new Intl.DateTimeFormat('en-US', { month: 'long' }).format(blogPost.date).toUpperCase() +
+                      ' ' +
+                      blogPost.date.getDate() +
+                      ' ' +
+                      '</small>' +
+                      '<div class="text">' +
+                      '<span class="title">' +
+                      blogPost.title +
+                      '</span>' +
+                      '<span class="description">' +
+                      blogPost.description_short +
+                      '</span>' +
+                      '</div>' +
+                      '</a>' +
+                      '</div>'
+                    //     <img src="/assets/images/name.jpg" alt="">
+                  } else {
+                    // Text post
+                    document.getElementById('blog-posts').innerHTML +=
+                      '<div class="blog-post" id="' +
+                      post.folder +
+                      '">' +
+                      '<hr class="sep-blog">' +
+                      '<a href="/blog/' +
+                      post.folder +
+                      '" class="text-post">' +
+                      // '<small class="date">' + Intl.DateTimeFormat('en-US', date_options).format(blogPost.date) + '</small>' +
+                      // '<hr class="sep-blog">' +
+                      '<small class="date">' +
+                      new Date(blogPost.date).getFullYear() +
+                      ' ' +
+                      new Intl.DateTimeFormat('en-US', { month: 'long' }).format(blogPost.date).toUpperCase() +
+                      ' ' +
+                      new Date(blogPost.date).getDate() +
+                      ' ' +
+                      '</small>' +
+                      '<div class="text">' +
+                      '<span class="title">' +
+                      blogPost.title +
+                      '</span>' +
+                      '</div>' +
+                      '</a>' +
+                      '</div>'
+                  }
+                }
+              }
+            })
+        })
+      }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script>
+      var yyyy = new Date()
+      document.getElementById('copyright').innerHTML = '© ' + yyyy.getFullYear() + ' Enrique Ruiz Durazo'
+
+      // List of strings to cycle through
+      const words = ["I'm <u>Enrique</u>.", 'I write <u>code</u>.', 'I analyze <u>data</u>.', 'I <u>design</u> stuff.']
+
+      // Get location to render, number of words
+      const word_element = $('#slideshow-anim')
+      let word_count = words.length
+
+      // Animation settings
+      let anim_delay = 3500 //ms
+      let anim_duration = 500 //ms
+      let num = 0 // counter
+
+      // Animation function
+      $(document).ready(function() {
+        setInterval(function() {
+          num++
+          word_element.fadeOut(anim_duration, function() {
+            word_element.html(words[num % word_count]).fadeIn(anim_duration)
+          })
+        }, anim_delay)
+      })
+    </script>
+  </body>
 </html>
