@@ -1,0 +1,436 @@
+/* 
+ * Enrique Ruiz Durazo
+ * 2019
+ */
+
+/* Content */
+#content {
+  margin: 0 auto;
+  padding-top: calc(var(--font-size) * 5);
+  /* max-width: var(--max-width); */
+  max-width: var(--max-width-in);
+  width: calc(100% - (1px * var(--offset)));
+  display: grid;
+  grid-gap: 0;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-areas:
+    '. hero hero hero hero hero hero hero hero.'
+    '. highlights highlights highlights highlights highlights highlights highlights highlights .'
+    '. blog blog blog blog blog blog blog blog .'
+    '. contact contact contact contact contact contact contact contact .';
+}
+
+/* Hero */
+#hero {
+  grid-area: hero;
+  padding-top: calc(var(--font-size) * 6);
+}
+
+/* Title */
+h1,
+#slideshow-anim,
+#slideshow-anim u {
+  font-size: calc(var(--font-size) * 3.2);
+  /* margin-bottom: 1.5em; */
+  margin-bottom: calc(var(--font-size) * 4.8);
+  letter-spacing: 0.01em;
+}
+
+/* Hello Hand Wave Emoji */
+#hello {
+  display: inline-block;
+  height: calc(var(--font-size) * 3);
+}
+
+#slideshow-anim u {
+  border-bottom: solid 6px var(--blue);
+}
+
+/* Learn More */
+.learn-more,
+.learn-more:active,
+.learn-more:visited {
+  display: inline-block;
+  color: var(--blue);
+  font-size: calc(var(--font-size) * 1.1);
+  margin: 0.5em 0 2.5em 0;
+  letter-spacing: 0.02em;
+  padding-bottom: 3px;
+  transition: all 0.5s;
+  border-bottom: solid 3px transparent;
+}
+
+.learn-more:hover {
+  border-bottom: solid 3px var(--blue);
+}
+
+#more {
+  transition: all .5s;
+}
+
+
+/* Separator */
+.sep,
+.sep-blog {
+  display: inline-block;
+  width: 100%;
+  background-color: var(--_d);
+}
+
+.sep {
+  height: 2px;
+  margin: 0 0 calc(var(--font-size) * 2) 0;
+}
+
+.sep-blog {
+  height: 1px;
+  margin: 0 0 calc(var(--font-size) * 1) 0;
+  transition: all 0.2s ease;
+}
+
+/* Section Titles */
+h2 {
+  /* font-size: 1.8em; */
+  font-size: calc(var(--font-size) * 1.8);
+  margin-bottom: 1.5em;
+}
+
+/* Normal Text */
+p {
+  font-family: var(--font-text);
+  font-size: 1em;
+  line-height: 1.5em;
+  margin-bottom: 1em;
+}
+
+/* Highlights */
+#highlights {
+  grid-area: highlights;
+  padding-top: 100px;
+  /* margin-top: 100px; */
+}
+
+/* Cards Grid */
+.cards {
+  display: grid;
+  margin-bottom: 4em;
+  grid-gap: 0;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+/* Individual Cards */
+.card {
+  display: inline-block;
+  height: calc((896px / 5 - 10px) * 2);
+  margin: 10px 10px 10px 10px;
+  border-radius: 1px;
+  box-shadow: 0 5px 20px -5px #aaaaaa;
+  /* box-shadow: rgba(0, 0, 0, 0.3) 0px 30px 60px -10px, rgba(0, 0, 0, 0.33) 0px 18px 36px -18px; */
+  transition: all 0.3s ease;
+}
+
+#one {
+  grid-column: 1;
+  background-color: white;
+}
+
+#two {
+  grid-column: 2;
+  background-color: grey;
+}
+
+#three {
+  grid-column: 3;
+  background-color: black;
+}
+
+#four {
+  grid-column: 4;
+}
+
+#five {
+  grid-column: 5;
+}
+
+#one:hover,
+#two:hover,
+#three:hover,
+#four:hover,
+#five:hover {
+  box-shadow: 0 20px 30px -10px #cccccc;
+  /* box-shadow: 0 50px 80px -20px rgba(0,0,0,0.27), 0 30px 50px -30px rgba(0,0,0,0.3); */
+  transform: translateY(-1px) scale(1.03, 1.03);
+}
+
+.card a {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.card a img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* .card .test {
+  width: 100%;
+  height: 100%;
+  background-color: #202020;
+} */
+
+.card a span {
+  position: absolute;
+  display: inline-block;
+  top: 190px;
+  left: 0px;
+  text-align: center;
+  width: 100%;
+  transition: all 0.2s;
+  letter-spacing: 0.04em;
+  font-size: 1.05em;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* Blog */
+#blog {
+  grid-area: blog;
+  padding-top: calc(var(--font-size) * 5);
+}
+
+/* .blog-posts {
+  margin-bottom: 5em;
+} */
+
+.blog-post {
+  margin-bottom: 1.6em;
+}
+
+.blog-post a {
+  display: block;
+  position: relative;
+}
+
+.blog-post img {
+  position: absolute;
+  display: inline-block;
+  right: 0;
+  margin-top: 0.1em;
+  width: calc(var(--grid-unit) * 2);
+  height: calc(var(--grid-unit) * 2 / 16 * 9);
+  object-fit: cover;
+  transition: all 0.2s ease;
+  box-shadow: 0 5px 15px #ccc;
+}
+
+.blog-post a:hover img {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 30px #ccc;
+}
+
+.blog-post span,
+.blog-post small {
+  display: block;
+}
+
+.date {
+  position: absolute;
+  font-size: calc(var(--font-size) * .65);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--text-date);
+  width: calc(var(--grid-unit) * 2);
+}
+
+.text {
+  position: absolute;
+  left: var(--grid-unit-2);
+  width: calc(var(--grid-unit) * 3.5);
+}
+
+.title {
+  font-size: var(--font-size);
+  font-weight: 700;
+  margin-bottom: calc(var(--font-size) * .2);
+  transition: all 0.2s ease;
+}
+
+.blog-post a:hover .title {
+  color: var(--blue);
+}
+
+.description {
+  font-family: var(--font-text);
+  font-size: var(--font-size);
+  color: var(--text-description-small);
+  width: var(--grid-unit-3);
+}
+
+.media-post {
+  top: -5px;
+  height: calc((var(--grid-unit) * 2 / 16 * 9) + 0.1em);
+}
+
+.text-post {
+  top: -5px;
+  height: calc(var(--font-size) * 1.2);
+}
+
+/* Contact */
+#contact {
+  grid-area: contact;
+  padding-top: var(--font-size-5);
+}
+
+.social-media-links {
+  margin: 4em auto;
+  display: grid;
+  grid-gap: 0;
+  grid-template-columns: repeat(auto-fit, minmax(var(--grid-unit-2), 1fr));
+}
+
+.social-media-links li {
+  margin: var(--font-size);
+  height: calc(var(--font-size) * 1.6);
+}
+
+.social-media-links li img {
+  height: 100%;
+  margin-right: 0.8em;
+}
+
+.social-media-links li a,
+.social-media-links li a:active,
+.social-media-links li a:visited {
+  position: relative;
+}
+
+.social-media-links li a span {
+  position: absolute;
+  font-size: var(--font-size);
+  top: -0.5em;
+  padding-bottom: 0.1em;
+  border-bottom: solid 3px transparent;
+  transition: all 0.5s;
+}
+
+.social-media-links li a:hover span {
+  border-bottom: solid 3px var(--black);
+}
+
+/* 1200px */
+@media (max-width: 1200px) {
+  #content {
+    max-width: calc(var(--grid-unit) * 8);
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-areas:
+      'hero hero hero hero hero hero hero hero'
+      /* 'highlights highlights highlights highlights highlights highlights highlights highlights' */
+      'blog blog blog blog blog blog blog blog'
+      'contact contact contact contact contact contact contact contact';
+  }
+}
+
+/* 976px */
+@media (max-width: 976px) {
+  .date {
+    width: calc(var(--grid-unit) * 3.5);
+  }
+
+  .text {
+    left: 0;
+    top: 1.3em;
+  }
+
+  .text-post {
+    height: 2.5em;
+  }
+}
+
+/* 768px */
+@media (max-width: 768px) {
+  #content {
+    width: calc(100% - ((1px * var(--offset) / 2) + (80 - 40) * (100vw - 360px) / (768 - 360)));
+  }
+
+  h1,
+  #slideshow-anim,
+  #slideshow-anim u {
+    font-size: calc((2.2px * var(--min-font-size)) + (60 - 35.2) * (100vw - 320px) / (768 - 320));
+  }
+
+  #hello {
+    height: calc((2.2px * var(--min-font-size)) + (60 - 35.2) * (100vw - 320px) / (768 - 320));
+  }
+
+  #slideshow-anim u {
+    border-bottom: solid calc(4px + (6 - 4) * (100vw - 320px) / (768 - 320)) var(--blue);
+  }
+
+  h2 {
+    font-size: calc((1.6px * var(--min-font-size)) + (36 - 25.6) * (100vw - 320px) / (768 - 320));
+  }
+
+  .date {
+    font-size: calc((0.8px * var(--min-font-size)) + (13 - 12.8) * (100vw - 320px) / (768 - 320));
+  }
+
+  .social-media-links {
+    width: calc(100% - 0.8em);
+  }
+}
+
+/* 712px */
+@media (max-width: 712px) {
+  .blog-post img {
+    position: relative;
+    margin-top: 0.25em;
+    margin-bottom: 1.15em;
+    width: calc(var(--grid-unit) * 2.5);
+    height: calc(var(--grid-unit) * 2.5 / 16 * 9);
+  }
+
+  .blog-post a:hover img {
+    transform: translateY(-1px);
+  }
+
+  .date {
+    position: relative;
+    top: auto;
+    width: 100%;
+    max-width: var(--grid-unit-3);
+  }
+
+  .text {
+    position: relative;
+    top: auto;
+    margin-top: 0.5em;
+    width: 100%;
+  }
+
+  .title {
+    margin-bottom: 0.3em;
+  }
+
+  .description {
+    max-width: var(--grid-unit-4);
+  }
+
+  .media-post {
+    height: auto;
+  }
+
+  .text-post {
+    height: auto;
+  }
+}
+
+/* 360px */
+@media (max-width: 360px) {
+  #content {
+    width: calc(100% - (1px * var(--offset) / 2));
+  }
+}
