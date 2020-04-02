@@ -1,6 +1,6 @@
 /* 
  * Enrique Ruiz Durazo
- * 2019
+ * 2019-2020
  */
 
 /* Fonts */
@@ -47,20 +47,27 @@
   --font-size: 20px;
   --max-font-size: 20;
   --min-font-size: 16;
+  --font-size-1_2: calc(var(--font-size) * 1.2);
   --font-size-1_5: calc(var(--font-size) * 1.5);
   --font-size-2: calc(var(--font-size) * 2);
+  --font-size-3: calc(var(--font-size) * 3);
+  --font-size-4: calc(var(--font-size) * 4);
   --font-size-5: calc(var(--font-size) * 5);
+  --font-size-6: calc(var(--font-size) * 6);
   /* --max-width: 1200px; */
   --max-width: 1424px;
   /* --max-width-in: 1200px; */
-  --max-width-in: 1120px;
+  --max-width-content: 1120px;
   --min-width: 320px;
+  --min-width-navbar_footer: 280px;
   --grid-unit: 112px;
   --grid-unit-2: calc(var(--grid-unit) * 2);
   --grid-unit-3: calc(var(--grid-unit) * 3);
   --grid-unit-4: calc(var(--grid-unit) * 4);
   --grid-unit-5: calc(var(--grid-unit) * 5);
   --grid-unit-6: calc(var(--grid-unit) * 6);
+  --grid-unit-7: calc(var(--grid-unit) * 7);
+  --grid-unit-8: calc(var(--grid-unit) * 8);
   --offset: 80;
   /* Colors */
   --selection: #00000020;
@@ -69,10 +76,11 @@
   --text: #404040;
   --text-date: #999;
   --text-description: #808080;
-  --text-description-small: #404040;
+  --text-description-small: #606060;
   --text-img_caption: #808080;
   --text-blockquote: #606060;
   --text-footer: #ccc;
+  --text-error_404: #999;
   --_20: #202022;
   --_40: #404040;
   --_60: #606060;
@@ -98,6 +106,8 @@
   list-style-type: none;
   letter-spacing: 0.01em;
   border: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* Selection */
@@ -126,11 +136,9 @@
   background-color: #fff;
 }
 
-.navbar .elements {
+.navbar--elements {
   display: flex;
   justify-content: space-between;
-  max-width: var(--max-width);
-  min-width: var(--min-width);
   width: calc(100% - (1px * var(--offset)));
   height: calc(var(--font-size) * 5);
   margin: 0 auto;
@@ -143,14 +151,14 @@
   overflow: hidden;
 }
 
-.logo img,
-.logo img:active,
-.logo img:visited {
+.logo a img {
   width: 220px;
+  height: auto;
   transition: all 0.5s;
 }
 
-.logo img:hover {
+.logo a:hover img,
+.logo a:focus img {
   opacity: 0.6;
 }
 
@@ -161,36 +169,40 @@
   overflow: hidden;
 }
 
-.menu img,
-.menu img:active,
-.menu img:visited {
+.menu button {
+  background-color: #fff0;
+}
+
+.menu button img,
+.menu button:active img {
   width: 48px;
+  height: auto;
   padding: 6px;
   transition: all 0.5s;
 }
 
-.menu img:hover {
+.menu button:hover img,
+.menu button:focus img {
   cursor: pointer;
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
+/* Menu - Overlay */
 #menu-overlay {
-  /* dis */
   position: fixed;
   overflow: hidden;
   width: 100%;
   height: 100vh;
   max-height: 0;
   z-index: -1;
-  top: calc(var(--font-size) * 5);
+  top: var(--font-size-5);
   left: 0;
   right: 0;
-  /* display: none; */
   background-color: #fff;
-  /* background-color: red; */
   transition: all 0.3s ease-out;
 }
 
+/* List of languages */
 .lang-list {
   margin-top: 10vh;
   display: flex;
@@ -203,6 +215,7 @@
   margin: 5vh auto;
   text-align: center;
   letter-spacing: 0.02em;
+  /*  */
   font-size: calc(var(--font-size) * 1.8);
   transition: all 0.2s;
   text-decoration: line-through;
@@ -210,7 +223,9 @@
 }
 
 .lang:hover,
-.lang:hover .lang-redirect {
+.lang:focus,
+.lang:hover .lang-redirect,
+.lang:focus .lang-redirect {
   color: var(--blue);
 }
 
@@ -221,6 +236,7 @@
 }
 
 .lang-arrow {
+  /*  */
   font-size: calc(var(--font-size) * 1.8);
   display: inline-block;
   opacity: 0;
@@ -235,53 +251,100 @@
 
 /* Footer */
 .footer {
-  position: relative;
-  max-width: var(--max-width);
-  min-width: var(--min-width);
+  display: flex;
+  justify-content: space-between;
   width: calc(100% - (1px * var(--offset)));
+  /*  */
   height: 1.2em;
+  /*  */
   margin: 2.4em auto;
 }
 
 .footer #copyright,
 .footer #source {
-  display: inline-block;
-  position: absolute;
-  top: 0;
   color: var(--text-footer);
+  /*  */
   font-size: calc(var(--font-size) * 0.8);
   letter-spacing: 0.05em;
   height: var(--font-size);
 }
 
 .footer #source {
-  right: 0;
   padding-bottom: 2px;
   border-bottom: solid 2px transparent;
   transition: all 0.2s;
 }
 
-.footer #source:hover {
+.footer #source:hover,
+.footer #source:focus {
   color: var(--_80);
   border-bottom: solid 2px var(--_80);
 }
 
 /* 768px */
-@media (max-width: 768px) {
+@media only screen and (max-width: 768px) {
   :root {
-    --font-size: calc((1px * var(--min-font-size)) + (var(--max-font-size) - var(--min-font-size)) * (100vw - 320px) / (768 - 320));
+    --font-size: calc((1px * var(--min-font-size)) + (var(--max-font-size) - var(--min-font-size)) * (100vw - 360px) / (768 - 360));
   }
 
-  .navbar .elements,
+  .navbar--elements,
   .footer {
-    width: calc(100% - ((1px * var(--offset) / 2) + (80 - 40) * (100vw - 360px) / (768 - 360)));
+    width: calc(100% - ((1px * var(--offset) / 2) + (var(--offset) - var(--offset) / 2) * (100vw - 360px) / (768 - 360)));
+  }
+
+  /* Logo */
+  .logo {
+    margin: calc((1px * 30) + (39 - 30) * (100vw - 360px) / (768 - 360)) 0;
+    height: calc((1px * 20) + (22 - 20) * (100vw - 360px) / (768 - 360));
+  }
+
+  .logo a img {
+    width: calc((1px * 200) + (220 - 200) * (100vw - 360px) / (768 - 360));
+  }
+
+  /* Menu */
+  .menu {
+    margin: calc((1px * 13) + (20 - 13) * (100vw - 360px) / (768 - 360)) 0;
+    height: calc((1px * 54) + (60 - 54) * (100vw - 360px) / (768 - 360));
+  }
+
+  .menu button img,
+  .menu button:active img {
+    width: calc((1px * 44) + (48 - 44) * (100vw - 360px) / (768 - 360));
+    padding: calc((1px * 5) + (6 - 5) * (100vw - 360px) / (768 - 360));
   }
 }
 
 /* 360px */
-@media (max-width: 360px) {
-  .navbar .elements,
+@media only screen and (max-width: 360px) {
+  :root {
+    --font-size: calc(1px * var(--min-font-size));
+  }
+
+  .navbar--elements,
   .footer {
     width: calc(100% - (1px * var(--offset) / 2));
+  }
+
+  /* Logo */
+  .logo {
+    margin: 30px 0;
+    height: 20px;
+  }
+
+  .logo a img {
+    width: 200px;
+  }
+
+  /* Menu */
+  .menu {
+    margin: 13px 0;
+    height: 54px;
+  }
+
+  .menu button img,
+  .menu button:active img {
+    width: 44px;
+    padding: 5px;
   }
 }

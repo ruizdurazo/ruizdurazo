@@ -1,20 +1,18 @@
 /* 
  * Enrique Ruiz Durazo
- * 2019
+ * 2019-2020
  */
-
 
 /* Content */
 #content {
-  margin: 0 20px;
+  max-width: var(--max-width-content);
   width: calc(100% - (1px * var(--offset)));
+  margin: 0 auto;
   display: grid;
   grid-gap: 0;
   grid-template-columns: repeat(1, 1fr);
-  grid-template-areas: 
-    'error';
+  grid-template-areas: 'error';
 }
-
 
 /* Error */
 #error {
@@ -26,35 +24,29 @@
 }
 
 #error div {
-  display: inline-block;
-  margin-bottom: .25em;
-  width: 100%;
-  color: var(--error);
-  font-size: 5em;
+  /*  */
+  margin-bottom: 0.25em;
+  color: var(--text-error_404);
+  font-size: var(--font-size-5);
   text-align: center;
-  letter-spacing: .05em;
+  letter-spacing: 0.05em;
 }
 
 #error span {
-  display: inline-block;
-  width: 100%;
-  color: var(--error);
-  font-size: 1.2em;
+  display: block;
+  color: var(--text-error_404);
+  font-size: var(--font-size-1_2);
   text-align: center;
 }
-
-
-
-
 
 /* 1200px */
 @media (max-width: 1200px) {
   #content {
-    max-width: calc(var(--grid-unit) * 8);
-  } 
+    max-width: var(--grid-unit-8);
+  }
 }
 
-  /* 768px */
+/* 768px */
 @media (max-width: 768px) {
   #content {
     width: calc(100% - ((1px * var(--offset) / 2) + (80 - 40) * (100vw - 360px) / (768 - 360)));
