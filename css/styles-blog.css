@@ -1,16 +1,9 @@
 /* 
  * Enrique Ruiz Durazo
- * 2019
+ * 2019-2020
  */
 
 /* Fonts */
-@font-face {
-  font-family: 'Inter';
-  src: url('../assets/fonts/inter-extrabold.woff') format('woff');
-  font-weight: 800;
-  font-style: normal;
-}
-
 @font-face {
   font-family: 'Inter';
   src: url('../assets/fonts/inter-extrabold.woff') format('woff');
@@ -43,7 +36,7 @@
 #content {
   margin: 0 auto;
   padding: calc(var(--font-size) * 5) 0;
-  max-width: var(--max-width-in);
+  max-width: var(--max-width-content);
   width: calc(100% - (1px * var(--offset)));
   display: grid;
   grid-gap: 0;
@@ -70,10 +63,10 @@
   color: var(--text-date);
   /* color: #aaa; */
   text-transform: uppercase;
-  letter-spacing: .04em;
+  letter-spacing: 0.04em;
 }
 
-#ttr::before{
+#ttr::before {
   content: '• ';
   padding: 0 4px;
 }
@@ -100,7 +93,7 @@ h1 {
 }
 
 /* Blog Post / Article Content */
-.blog-post {
+#blog-post {
   grid-area: blog;
 }
 
@@ -330,7 +323,10 @@ em {
 }
 
 del {
-  text-decoration: line-through var(--text);
+  /* -webkit-text-decoration-line: line-through; */
+  text-decoration: line-through;
+  /* -webkit-text-decoration-color: var(--text); */
+  color: var(--text);
 }
 
 ins {
@@ -436,7 +432,7 @@ br {
 } */
 
 /* 1200px */
-@media (max-width: 1200px) {
+@media only screen and (max-width: 1200px) {
   #content {
     max-width: calc(var(--grid-unit) * 8);
     grid-template-columns: repeat(8, 1fr);
@@ -449,7 +445,7 @@ br {
 }
 
 /* 976px */
-@media (max-width: 976px) {
+@media only screen and (max-width: 976px) {
   #content {
     max-width: calc(var(--grid-unit) * 6);
     grid-template-columns: repeat(6, 1fr);
@@ -462,17 +458,19 @@ br {
 }
 
 /* 768px */
-@media (max-width: 768px) {
+@media only screen and (max-width: 768px) {
+  #content {
+    width: calc(100% - ((1px * var(--offset) / 2) + (var(--offset) - var(--offset) / 2) * (100vw - 360px) / (768 - 360)));
+  }
 }
 
-/* 712px */
-@media (max-width: 712px) {
-}
-
-/* 560px */
-@media (max-width: 560px) {
+/* 672px */
+@media only screen and (max-width: 672px) {
 }
 
 /* 360px */
-@media (max-width: 360px) {
+@media only screen and (max-width: 360px) {
+  #content {
+    width: calc(100% - (1px * var(--offset) / 2));
+  }
 }

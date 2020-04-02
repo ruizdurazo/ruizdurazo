@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Enrique Ruiz Durazo — Error 404: Page not found</title>
+    <title>Enrique Ruiz Durazo</title>
     <meta name="description" content="Making things using code, data, and design." />
 
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
@@ -26,7 +26,9 @@
     <meta property="og:image" content="https://ruizdurazo.com/assets/images/card.png" />
 
     <link rel="stylesheet" href="/css/styles.css" />
-    <link rel="stylesheet" href="/css/styles-404.css" />
+    <link rel="stylesheet" href="/css/styles-blog.css" />
+    <link rel="stylesheet" href="/css/highlightjs-github-gist.css" />
+    <script src="/js/highlightjs.pack.js"></script>
     <script type="application/ld+json">
       {
         "@context": "http://schema.org",
@@ -46,13 +48,14 @@
       gtag('js', new Date())
       gtag('config', 'UA-123151773-1')
     </script>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   </head>
 
   <body>
     <div id="site" class="site">
       <!-- Navbar -->
-      <div id="navbar" class="navbar">
-        <div class="elements">
+      <nav id="navbar" class="navbar">
+        <div class="navbar--elements">
           <div id="logo" class="logo">
             <a href="/">
               <img id="logo-svg" src="/assets/images/logo-ruizdurazo.svg" alt="Enrique Ruiz Durazo" draggable="false" />
@@ -65,20 +68,32 @@
           </div>
         </div>
         <div id="menu-overlay"></div>
-      </div>
-      <!-- 404 -->
+      </nav>
+
+      <!-- Content -->
       <div id="content" class="content">
-        <div id="error" class="error">
-          <div>(ಠ_ಠ)</div>
-          <span>This page doesn't exist!</span>
-        </div>
+        <!-- Header -->
+        <header id="header" class="header">
+          <div id="date-ttr">
+            <small id="date"></small>
+          </div>
+          <h1 id="title"></h1>
+          <span id="description"></span>
+        </header>
+
+        <!-- Article -->
+        <article id="blog-post" class="blog-post"></article>
+
+        <!-- Further Reading -->
+        <section id="further-reading" class="further-reading"></section>
       </div>
+
+      <!-- Footer -->
+      <footer id="footer" class="footer"></footer>
     </div>
+
     <!-- Scripts -->
     <script src="/js/navbar.js"></script>
-    <script>
-      var yyyy = new Date()
-      document.getElementById('copyright').innerHTML = '© ' + yyyy.getFullYear() + ' Enrique Ruiz Durazo'
-    </script>
+    <script src="/js/scrolldown.js"></script>
   </body>
 </html>
