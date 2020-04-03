@@ -235,7 +235,8 @@
         // '</div>' +
 
         posts.forEach(post => {
-          fetch('/blog/' + post.folder + '/index.md')
+          // fetch('/blog/' + post.folder + '/index.md') :(
+          fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/blog/' + post.folder + '/index.md')
             .then(response => response.text())
             .then(text => {
               // Clear blogPost object
@@ -359,6 +360,10 @@
     </script>
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script>
+
+// https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/
+
+
       var yyyy = new Date()
       document.getElementById('copyright').innerHTML = '© ' + yyyy.getFullYear() + ' Enrique Ruiz Durazo'
 
