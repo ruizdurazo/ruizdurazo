@@ -31,7 +31,7 @@ let url = document.location.pathname
 if (url.endsWith('index.html')) {
   url = url.slice(0, -10)
 }
-fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/' + url + 'index.md')
+fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + 'index.md')
   .then(response => response.text())
   .then(text => {
     // First fetch the document, and extract the text lines
