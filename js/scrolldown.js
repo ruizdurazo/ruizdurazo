@@ -28,7 +28,7 @@ pipe = (...fns) => x => fns.reduce((v, f) => f(v), x)
 // Fetch the Markdown document and parse it
 // fetch('index.md') // :(
 let url = document.location.pathname
-url = url.slice(-10)
+url = url.slice(0, -10)
 fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/' + url + 'index.md')
   .then(response => response.text())
   .then(text => {
