@@ -73,7 +73,7 @@
         <section id="hero" class="hero">
           <h1>
             Hello.
-            <img src="/assets/images/hello.png" alt="Waving hand." id="hello" draggable="false" /><br /><a id="slideshow-anim" style="opacity: 1;"> I'm <u>Enrique</u>.</a>
+            <img src="/assets/images/hello2.png" id="hello" draggable="false" /><br /><a id="slideshow-anim" style="opacity: 1;"> I'm <u>Enrique</u>.</a>
           </h1>
           <button id="learn-more" class="learn-more">Learn More</button>
         </section>
@@ -201,7 +201,7 @@
       const date_options = {
         year: 'numeric',
         month: 'long',
-        day: 'numeric'
+        day: 'numeric',
       }
 
       if (posts) {
@@ -234,11 +234,11 @@
         // </div> -->
         // '</div>' +
 
-        posts.forEach(post => {
+        posts.forEach((post) => {
           // fetch('/blog/' + post.folder + '/index.md') :(
           fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/blog/' + post.folder + '/index.md')
-            .then(response => response.text())
-            .then(text => {
+            .then((response) => response.text())
+            .then((text) => {
               // Clear blogPost object
               let blogPost = {}
 
@@ -252,7 +252,7 @@
                   me.shift()
                   me.pop()
                   // Iterate through meta properties
-                  me.forEach(prop => {
+                  me.forEach((prop) => {
                     if (prop.startsWith('title:')) {
                       // Title
                       blogPost.title = prop.split(':')[1].trim()
@@ -360,9 +360,7 @@
     </script>
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script>
-
-// https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/
-
+      // https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/
 
       var yyyy = new Date()
       document.getElementById('copyright').innerHTML = '© ' + yyyy.getFullYear() + ' Enrique Ruiz Durazo'
@@ -407,14 +405,14 @@
         {
           text:
             '<p><a href="https://en.wikipedia.org/wiki/Big_Five_personality_traits" target="_blank">Big</a> <a href="https://projects.fivethirtyeight.com/personality-quiz/" target="_blank">Five</a></p><p title="Openness">O ~85% •••••••••-</p><p title="Conscientiousness">C ~70% •••••••---</p><p title="Extroversion">E ~25% •••-------</p><p title="Agreeableness">A ~50% •••••-----</p><p title="Neuroticism">N ~15% ••--------</p>',
-          bgColor: 'blue'
+          bgColor: 'blue',
         },
         {
           text:
             '<p><a href="https://www.16personalities.com/istj-personality" target="_blank">16 personalities</a></p><p title="Introverted">I ~80% ••••••••--</p><p title="Observant">S ~60% ••••••----</p><p title="Thinking">T ~50% •••••-----</p><p title="Judging">J ~50% •••••-----</p><p title="Assertive">A ~90% •••••••••-</p>',
-          bgColor: 'blue'
+          bgColor: 'blue',
         },
-        { text: '<p><a href="https://twitter.com/ruizdurazo" target="_blank">Twitter</a>.</p><p><a href="https://github.com/ruizdurazo" target="_blank">GitHub</a>.</p>', bgColor: 'white' }
+        { text: '<p><a href="https://twitter.com/ruizdurazo" target="_blank">Twitter</a>.</p><p><a href="https://github.com/ruizdurazo" target="_blank">GitHub</a>.</p>', bgColor: 'white' },
       ]
 
       // Slideshow helpers
@@ -527,7 +525,7 @@
       // keystrokes
       document.addEventListener(
         'keydown',
-        event => {
+        (event) => {
           // left
           if (event.keyCode === 37 || event.code === 'ArrowLeft') {
             back()
@@ -545,7 +543,7 @@
       )
 
       // `Learn more` button
-      document.getElementById('learn-more').addEventListener('click', event => {
+      document.getElementById('learn-more').addEventListener('click', (event) => {
         // <div id="more--bg">
         //   <div id="more--fg"></div>
         // </div>
@@ -688,7 +686,7 @@
 
           more.setAttribute('style', 'width: 100%; height: 100%; opacity: 1;')
 
-          document.getElementById('more--close').addEventListener('click', event => {
+          document.getElementById('more--close').addEventListener('click', (event) => {
             // Change button state
             document.getElementById('more--close').blur()
             // Disable site overflow
