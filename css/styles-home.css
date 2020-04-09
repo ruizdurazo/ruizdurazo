@@ -33,6 +33,10 @@
 }
 
 /* H1 Title */
+/* h1 {
+  position: relative;
+} */
+
 h1,
 #slideshow-anim,
 #slideshow-anim u {
@@ -43,12 +47,16 @@ h1,
   margin-bottom: calc(var(--font-size) * 1.6);
   /*  */
   height: 3.6em;
+  /* line-height: 125%; */
 }
 
 /* Hello - Hand Wave Emoji */
 #hello {
+  /* position: absolute; */
+  /* top: 4px; */
   display: inline-block;
   height: calc(var(--font-size) * 3.2);
+  /* margin: 0 5px; */
 }
 
 #slideshow-anim u {
