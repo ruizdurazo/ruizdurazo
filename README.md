@@ -1,7 +1,5 @@
-# ruizdurazo.com
+# Hello. :v:
 
-Source code for my personal website.
+I'm Enrique. I'm a web developer and designer.
 
-- Static
-- Responsive
-- Hand-crafted
+P.S. This repo hosts the source code for [my personal website](https://ruizdurazo.com).
