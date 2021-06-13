@@ -1,6 +1,6 @@
 /* 
  * Enrique Ruiz Durazo
- * 2019-2020
+ * 2019-2021
  */
 
 /* Fonts */
@@ -49,6 +49,7 @@
   --min-font-size: 16;
   --font-size-1_2: calc(var(--font-size) * 1.2);
   --font-size-1_5: calc(var(--font-size) * 1.5);
+  --font-size-1_8: calc(var(--font-size) * 1.8);
   --font-size-2: calc(var(--font-size) * 2);
   --font-size-3: calc(var(--font-size) * 3);
   --font-size-4: calc(var(--font-size) * 4);
@@ -148,7 +149,7 @@
 .logo {
   margin: 39px 0;
   height: 22px;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .logo a img {
@@ -166,7 +167,7 @@
 .menu {
   margin: 20px 0;
   height: 60px;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .menu button {
@@ -284,39 +285,49 @@
 /* 768px */
 @media only screen and (max-width: 768px) {
   :root {
-    --font-size: calc((1px * var(--min-font-size)) + (var(--max-font-size) - var(--min-font-size)) * (100vw - 360px) / (768 - 360));
+    --font-size: calc(
+      (1px * var(--min-font-size)) +
+        (var(--max-font-size) - var(--min-font-size)) * (100vw - 420px) /
+        (768 - 420)
+    );
   }
 
   .navbar--elements,
   .footer {
-    width: calc(100% - ((1px * var(--offset) / 2) + (var(--offset) - var(--offset) / 2) * (100vw - 360px) / (768 - 360)));
+    width: calc(
+      100% -
+        (
+          (1px * var(--offset) / 2) + (var(--offset) - var(--offset) / 2) *
+            (100vw - 420px) / (768 - 420)
+        )
+    );
   }
 
   /* Logo */
   .logo {
-    margin: calc((1px * 30) + (39 - 30) * (100vw - 360px) / (768 - 360)) 0;
-    height: calc((1px * 20) + (22 - 20) * (100vw - 360px) / (768 - 360));
+    margin: calc((1px * 30) + (39 - 30) * (100vw - 420px) / (768 - 420)) 0;
+    height: calc((1px * 20) + (22 - 20) * (100vw - 420px) / (768 - 420));
   }
 
   .logo a img {
-    width: calc((1px * 200) + (220 - 200) * (100vw - 360px) / (768 - 360));
+    width: calc((1px * 200) + (220 - 200) * (100vw - 420px) / (768 - 420));
   }
 
   /* Menu */
   .menu {
-    margin: calc((1px * 13) + (20 - 13) * (100vw - 360px) / (768 - 360)) 0;
-    height: calc((1px * 54) + (60 - 54) * (100vw - 360px) / (768 - 360));
+    margin: calc((1px * 13) + (20 - 13) * (100vw - 420px) / (768 - 420)) 0;
+    height: calc((1px * 54) + (60 - 54) * (100vw - 420px) / (768 - 420));
   }
 
   .menu button img,
   .menu button:active img {
-    width: calc((1px * 44) + (48 - 44) * (100vw - 360px) / (768 - 360));
-    padding: calc((1px * 5) + (6 - 5) * (100vw - 360px) / (768 - 360));
+    width: calc((1px * 40) + (48 - 40) * (100vw - 420px) / (768 - 420));
+    padding: calc((1px * 4) + (6 - 4) * (100vw - 420px) / (768 - 420));
   }
 }
 
-/* 360px */
-@media only screen and (max-width: 360px) {
+/* 420px */
+@media only screen and (max-width: 420px) {
   :root {
     --font-size: calc(1px * var(--min-font-size));
   }
@@ -344,7 +355,7 @@
 
   .menu button img,
   .menu button:active img {
-    width: 44px;
-    padding: 5px;
+    width: 40px;
+    padding: 4px;
   }
 }

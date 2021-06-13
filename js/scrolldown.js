@@ -1,6 +1,6 @@
 /*
  * Enrique Ruiz Durazo
- * 2020
+ * 2021
  */
 
 // Markdown document, an array of lines (strings)
@@ -19,11 +19,14 @@ blogPostData.word_count = 0
 const date_options = {
   year: 'numeric',
   month: 'long',
-  day: 'numeric'
+  day: 'numeric',
 }
 
 // Helper for piping functions
-pipe = (...fns) => x => fns.reduce((v, f) => f(v), x)
+pipe =
+  (...fns) =>
+  (x) =>
+    fns.reduce((v, f) => f(v), x)
 
 // Fetch the Markdown document and parse it
 // fetch('index.md') // :(
@@ -31,9 +34,13 @@ let url = document.location.pathname
 if (url.endsWith('index.html')) {
   url = url.slice(0, -10)
 }
-fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + 'index.md')
-  .then(response => response.text())
-  .then(text => {
+fetch(
+  'https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' +
+    url +
+    'index.md'
+)
+  .then((response) => response.text())
+  .then((text) => {
     // First fetch the document, and extract the text lines
     // Detect the head or metadata
     // "Decapitate"
@@ -51,7 +58,7 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
         metadata.shift()
         metadata.pop()
         // Iterate through meta properties
-        metadata.forEach(prop => {
+        metadata.forEach((prop) => {
           if (prop.startsWith('title:')) {
             // Page Title
             blogPostData.title = prop.split(':')[1].trim()
@@ -63,15 +70,23 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
             // document.getElementById('date').innerHTML = Intl.DateTimeFormat('en-US', date_options).format(blogPostData.date)
             // document.getElementById('date').innerHTML = blogPostData.date.getFullYear() + ' ' + Intl.DateTimeFormat('en-US', { month: 'long' }).format(blogPostData.date).toUpperCase() + ' ' + blogPostData.date.getDate()
             document.getElementById('date').innerHTML =
-              blogPostData.date.getFullYear() + ' ' + Intl.DateTimeFormat('en-US', { month: 'long' }).format(blogPostData.date) + ' ' + blogPostData.date.getDate()
+              blogPostData.date.getFullYear() +
+              ' ' +
+              Intl.DateTimeFormat('en-US', { month: 'long' }).format(
+                blogPostData.date
+              ) +
+              ' ' +
+              blogPostData.date.getDate()
           } else if (prop.startsWith('description_short:')) {
             // Short Description
             blogPostData.description_short = prop.split(':')[1].trim()
-            document.getElementsByName('description')[0].content = blogPostData.description_short
+            document.getElementsByName('description')[0].content =
+              blogPostData.description_short
           } else if (prop.startsWith('description_long:')) {
             // Long Description
             blogPostData.description_long = prop.split(':')[1].trim()
-            document.getElementById('description').innerHTML = blogPostData.description_long
+            document.getElementById('description').innerHTML =
+              blogPostData.description_long
           } else if (prop.startsWith('author_name:')) {
             // Author Name
             blogPostData.author_name = prop.split(':')[1].trim()
@@ -109,11 +124,23 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
         .trim()
         .toLowerCase()
         .replace(' ', '-')
-      return '<h' + level + ' id="' + id + '" class="h' + level + '">' + element.slice(level + 1).trim() + '</h' + level + '>'
+      return (
+        '<h' +
+        level +
+        ' id="' +
+        id +
+        '" class="h' +
+        level +
+        '">' +
+        element.slice(level + 1).trim() +
+        '</h' +
+        level +
+        '>'
+      )
     }
 
     // Blockquotes
-    blockquote = element => {
+    blockquote = (element) => {
       // nesting?
       // normal blockquotes, nesting, lists inside
       //
@@ -127,7 +154,10 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
       // > > sfd
       //
       let out
-      if (previousElement.state === 'open' && previousElement.type === 'blockquote') {
+      if (
+        previousElement.state === 'open' &&
+        previousElement.type === 'blockquote'
+      ) {
         // if there something started, check if nesting
         // if (element.slice(1).trim() === 'quote') {
         // start nested quote
@@ -139,7 +169,10 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
         // out = p(element.slice(1).trim()) + '\n'
         // console.log('boop')
         // }
-      } else if (previousElement.state === 'open' && previousElement.type === 'blockquote-quote') {
+      } else if (
+        previousElement.state === 'open' &&
+        previousElement.type === 'blockquote-quote'
+      ) {
         // continue quote
         if (element.slice(1).trim() === 'byline') {
           // end the quote body with "
@@ -149,7 +182,10 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
           // continue the quote body
           out = p(element.slice(1).trim())
         }
-      } else if (previousElement.state === 'open' && previousElement.type === 'blockquote-byline') {
+      } else if (
+        previousElement.state === 'open' &&
+        previousElement.type === 'blockquote-byline'
+      ) {
         // finish blockquote by adding author byline
         // p(element)
         out = '<span class="byline">— ' + p(element.slice(1).trim()) + '</span>'
@@ -162,7 +198,10 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
           previousElement.state = 'open'
         } else {
           // start default
-          out = '<blockquote class="blockquote"><p>' + p(element.slice(1).trim()) + '</p>'
+          out =
+            '<blockquote class="blockquote"><p>' +
+            p(element.slice(1).trim()) +
+            '</p>'
           previousElement.type = 'blockquote'
           previousElement.state = 'open'
         }
@@ -173,7 +212,7 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
     }
 
     // Code Blocks
-    pre = element => {
+    pre = (element) => {
       // ...
       let out
       if (previousElement.state === 'open' && previousElement.type === 'pre') {
@@ -187,7 +226,10 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
           // need to escape <> for html elements,
           // add to 'line' class for css numbering counter to work,
           // and have new lines at the end for syntax highlighting
-          out = '<span class="line">' + element.replace(/\</g, '&lt;').replace(/\>/g, '&gt;') + '\n</span>'
+          out =
+            '<span class="line">' +
+            element.replace(/\</g, '&lt;').replace(/\>/g, '&gt;') +
+            '\n</span>'
         }
       } else if (previousElement.state === 'closed') {
         if (element.startsWith('```') && element.slice(3).trim().length > 0) {
@@ -206,7 +248,7 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
     }
 
     // Unordered lists
-    ul = element => {
+    ul = (element) => {
       // nesting?
       let out
       if (previousElement.state === 'open' && previousElement.type === 'ul') {
@@ -222,15 +264,21 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
     }
 
     // Ordered lists
-    ol = element => {
+    ol = (element) => {
       // nesting?
       let out
       if (previousElement.state === 'open' && previousElement.type === 'ol') {
         // continue
-        out = '<li>' + p(element.slice(element.match(/^\d+\. /)[0].length).trim()) + '</li>'
+        out =
+          '<li>' +
+          p(element.slice(element.match(/^\d+\. /)[0].length).trim()) +
+          '</li>'
       } else if (previousElement.state === 'closed') {
         // start
-        out = '<ol class="ol"><li>' + p(element.slice(element.match(/^\d+\. /)[0].length).trim()) + '</li>'
+        out =
+          '<ol class="ol"><li>' +
+          p(element.slice(element.match(/^\d+\. /)[0].length).trim()) +
+          '</li>'
         previousElement.type = 'ol'
         previousElement.state = 'open'
       }
@@ -270,7 +318,14 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
             let img_src = img_src_capt[0]
             let img_capt = img_src_capt[1].slice(0, -1)
             wordCounter(img_capt) // Count words
-            out = '<div class="img-size-m"><img class="img" src="' + img_src + '" alt="' + img_alt + '" draggable="false"><small class="img-caption">' + img_capt + '</small></div>'
+            out =
+              '<div class="img-size-m"><img class="img" src="' +
+              img_src +
+              '" alt="' +
+              img_alt +
+              '" draggable="false"><small class="img-caption">' +
+              img_capt +
+              '</small></div>'
           }
         } else if (img_src_capt.endsWith("'")) {
           // ![Alt text](https://example.com/pic.jpg 'Caption')
@@ -279,11 +334,23 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
             let img_src = img_src_capt[0]
             let img_capt = img_src_capt[1].slice(0, -1)
             wordCounter(img_capt) // Count words
-            out = '<div class="img-size-m"><img class="img" src="' + img_src + '" alt="' + img_alt + '" draggable="false"><small class="img-caption">' + img_capt + '</small></div>'
+            out =
+              '<div class="img-size-m"><img class="img" src="' +
+              img_src +
+              '" alt="' +
+              img_alt +
+              '" draggable="false"><small class="img-caption">' +
+              img_capt +
+              '</small></div>'
           }
         } else {
           let img_src = img_src_capt
-          out = '<div> class="img-size-m"<img class="img" src="' + img_src + '" alt="' + img_alt + '" draggable="false"></div>'
+          out =
+            '<div> class="img-size-m"<img class="img" src="' +
+            img_src +
+            '" alt="' +
+            img_alt +
+            '" draggable="false"></div>'
         }
       } else if (syntax_style == 'scrolldown') {
         // Scrolldown syntax
@@ -324,7 +391,7 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
         let img_width
         let img_height
         if (img_sizing.length === 2) {
-          img_sizing.forEach(part => {
+          img_sizing.forEach((part) => {
             if (part.trim().startsWith('size:')) {
               // Sizing
               part = part.split(':')[1].trim().toLowerCase()
@@ -337,7 +404,11 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
               // Aspect
               part = part.split(':')[1].trim()
               let img_aspect = part.split('x')
-              if (img_aspect.length === 2 && Number(img_aspect[0]) > 0 && Number(img_aspect[1]) > 0) {
+              if (
+                img_aspect.length === 2 &&
+                Number(img_aspect[0]) > 0 &&
+                Number(img_aspect[1]) > 0
+              ) {
                 img_width = Number(img_aspect[0])
                 img_height = Number(img_aspect[1])
               } else {
@@ -345,7 +416,20 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
               }
             }
           })
-          out = '<div class="img-size-' + img_size + '"><img class="img" src="' + img_src + '" alt="' + img_alt + '" draggable="false" loading="lazy" width="' + img_width + '" height="' + img_height + '"><small class="img-caption">' + img_capt + '</small></div>'
+          out =
+            '<div class="img-size-' +
+            img_size +
+            '"><img class="img" src="' +
+            img_src +
+            '" alt="' +
+            img_alt +
+            '" draggable="false" loading="lazy" width="' +
+            img_width +
+            '" height="' +
+            img_height +
+            '"><small class="img-caption">' +
+            img_capt +
+            '</small></div>'
         } else {
           out = img(element, 'default')
         }
@@ -356,14 +440,14 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
     }
 
     // Anchors
-    a = element => {
+    a = (element) => {
       // Check for pattern
       // If it exists, create external links and anchor links
       // Important to detect <em> and <strong> elements if url had underscores
       let out
       let match = element.match(/\[[^]*?\)/g)
       if (match) {
-        match.forEach(i => {
+        match.forEach((i) => {
           let a_element
           // Turn string => "[text](link "title")"
           // Into array => ["text", "link 'title'"]
@@ -381,7 +465,14 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
             if (a_href_title.length > 1) {
               let a_href = a_href_title[0]
               let a_title = a_href_title[1].slice(0, -1)
-              let a_element = '<a href="' + a_href + '" title="' + a_title + '" class="pa" target="_blank">' + a_text + '</a>'
+              let a_element =
+                '<a href="' +
+                a_href +
+                '" title="' +
+                a_title +
+                '" class="pa" target="_blank">' +
+                a_text +
+                '</a>'
               element = element.replace(i, a_element)
               out = element
             }
@@ -391,16 +482,29 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
             if (a_href_title.length > 1) {
               let a_href = a_href_title[0]
               let a_title = a_href_title[1].slice(0, -1)
-              let a_element = '<a href="' + a_href + '" title="' + a_title + '" class="pa" target="_blank">' + a_text + '</a>'
+              let a_element =
+                '<a href="' +
+                a_href +
+                '" title="' +
+                a_title +
+                '" class="pa" target="_blank">' +
+                a_text +
+                '</a>'
               element = element.replace(i, a_element)
               out = element
             }
           } else {
             let a_href = a_components[1].trim()
             if (a_href.startsWith('#')) {
-              a_element = '<a href="' + a_href + '" class="pa">' + a_text + '</a>'
+              a_element =
+                '<a href="' + a_href + '" class="pa">' + a_text + '</a>'
             } else {
-              a_element = '<a href="' + a_href + '" class="pa" target="_blank">' + a_text + '</a>'
+              a_element =
+                '<a href="' +
+                a_href +
+                '" class="pa" target="_blank">' +
+                a_text +
+                '</a>'
             }
             element = element.replace(i, a_element)
             out = element
@@ -429,18 +533,15 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
     // }
 
     // Code
-    code = element => {
+    code = (element) => {
       //
       let out
       let match = element.match(/\u0060[^]*?\u0060/g)
       if (match) {
-        match.forEach(i => {
+        match.forEach((i) => {
           let code_element =
             '<code class="code">' +
-            i
-              .slice(1, -1)
-              .replace(/\</g, '&lt;')
-              .replace(/\>/g, '&gt;') +
+            i.slice(1, -1).replace(/\</g, '&lt;').replace(/\>/g, '&gt;') +
             '</code>'
           element = element.replace(i, code_element)
           out = element
@@ -452,7 +553,7 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
     }
 
     // Bold
-    strong = element => {
+    strong = (element) => {
       // Check for one of two patterns
       // If they exist, apply emphasis to all elements
       let out
@@ -460,24 +561,24 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
       let match2 = element.match(/__[^]*?__/g)
       if (match1 || match2) {
         if (match1 && match2) {
-          match1.forEach(i => {
+          match1.forEach((i) => {
             let strong_element = '<strong>' + i.slice(2, -2) + '</strong>'
             element = element.replace(i, strong_element)
             out = element
           })
-          match2.forEach(i => {
+          match2.forEach((i) => {
             let strong_element = '<strong>' + i.slice(2, -2) + '</strong>'
             element = element.replace(i, strong_element)
             out = element
           })
         } else if (match1) {
-          match1.forEach(i => {
+          match1.forEach((i) => {
             let strong_element = '<strong>' + i.slice(2, -2) + '</strong>'
             element = element.replace(i, strong_element)
             out = element
           })
         } else if (match2) {
-          match2.forEach(i => {
+          match2.forEach((i) => {
             let strong_element = '<strong>' + i.slice(2, -2) + '</strong>'
             element = element.replace(i, strong_element)
             out = element
@@ -490,7 +591,7 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
     }
 
     // Italic
-    em = element => {
+    em = (element) => {
       // Check for one of two patterns
       // If they exist, apply emphasis to all elements
       let out
@@ -498,24 +599,24 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
       let match2 = element.match(/_[^]*?_/g)
       if (match1 || match2) {
         if (match1 && match2) {
-          match1.forEach(i => {
+          match1.forEach((i) => {
             let em_element = '<em>' + i.slice(1, -1) + '</em>'
             element = element.replace(i, em_element)
             out = element
           })
-          match2.forEach(i => {
+          match2.forEach((i) => {
             let em_element = '<em>' + i.slice(1, -1) + '</em>'
             element = element.replace(i, em_element)
             out = element
           })
         } else if (match1) {
-          match1.forEach(i => {
+          match1.forEach((i) => {
             let em_element = '<em>' + i.slice(1, -1) + '</em>'
             element = element.replace(i, em_element)
             out = element
           })
         } else if (match2) {
-          match2.forEach(i => {
+          match2.forEach((i) => {
             let em_element = '<em>' + i.slice(1, -1) + '</em>'
             element = element.replace(i, em_element)
             out = element
@@ -528,13 +629,13 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
     }
 
     // Strikethrough
-    del = element => {
+    del = (element) => {
       // Check for pattern
       // If it exists, apply emphasis to all elements
       let out
       let match = element.match(/~~[^]*?~~/g)
       if (match) {
-        match.forEach(i => {
+        match.forEach((i) => {
           let del_element = '<del>' + i.slice(2, -2) + '</del>'
           element = element.replace(i, del_element)
           out = element
@@ -546,13 +647,13 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
     }
 
     // Underline
-    ins = element => {
+    ins = (element) => {
       // Check for pattern
       // If it exists, apply emphasis to all elements
       let out
       let match = element.match(/\+\+[^]*?\+\+/g)
       if (match) {
-        match.forEach(i => {
+        match.forEach((i) => {
           let ins_element = '<ins>' + i.slice(2, -2) + '</ins>'
           element = element.replace(i, ins_element)
           out = element
@@ -564,13 +665,13 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
     }
 
     // Highlight
-    mark = element => {
+    mark = (element) => {
       // Check for pattern
       // If it exists, apply emphasis to all elements
       let out
       let match = element.match(/==[^]*?==/g)
       if (match) {
-        match.forEach(i => {
+        match.forEach((i) => {
           let mark_element = '<mark>' + i.slice(2, -2) + '</mark>'
           element = element.replace(i, mark_element)
           out = element
@@ -582,13 +683,13 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
     }
 
     // Superscript
-    sup = element => {
+    sup = (element) => {
       // Check for pattern
       // If it exists, apply emphasis to all elements
       let out
       let match = element.match(/\^[^]*?\^/g)
       if (match) {
-        match.forEach(i => {
+        match.forEach((i) => {
           let sup_element = '<sup>' + i.slice(1, -1) + '</sup>'
           element = element.replace(i, sup_element)
           out = element
@@ -600,13 +701,13 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
     }
 
     // Subscript
-    sub = element => {
+    sub = (element) => {
       // Check for pattern
       // If it exists, apply emphasis to all elements
       let out
       let match = element.match(/~[^]*?~/g)
       if (match) {
-        match.forEach(i => {
+        match.forEach((i) => {
           let sub_element = '<sub>' + i.slice(1, -1) + '</sub>'
           element = element.replace(i, sub_element)
           out = element
@@ -618,11 +719,15 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
     }
 
     // Text
-    p = element => {
+    p = (element) => {
       if (blogPostData.word_count === 0) {
         // Count words
         wordCounter(element)
-        return '<p style="margin-top: calc(var(--font-size) * 5);">' + pipe(code, strong, em, a, del, ins, mark, sup, sub)(element) + '</p>'
+        return (
+          '<p style="margin-top: calc(var(--font-size) * 5);">' +
+          pipe(code, strong, em, a, del, ins, mark, sup, sub)(element) +
+          '</p>'
+        )
       }
       // Count words
       wordCounter(element)
@@ -631,29 +736,47 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
     }
 
     // Newlines
-    newline = element => {
+    newline = (element) => {
       let out
-      if (previousElement.state === 'open' && previousElement.type === 'blockquote') {
+      if (
+        previousElement.state === 'open' &&
+        previousElement.type === 'blockquote'
+      ) {
         out = '</blockquote>'
         previousElement.type = 'none'
         previousElement.state = 'closed'
-      } else if (previousElement.state === 'open' && previousElement.type === 'blockquote-quote') {
+      } else if (
+        previousElement.state === 'open' &&
+        previousElement.type === 'blockquote-quote'
+      ) {
         out = '</blockquote>'
         previousElement.type = 'none'
         previousElement.state = 'closed'
-      } else if (previousElement.state === 'open' && previousElement.type === 'blockquote-byline') {
+      } else if (
+        previousElement.state === 'open' &&
+        previousElement.type === 'blockquote-byline'
+      ) {
         out = '</blockquote>'
         previousElement.type = 'none'
         previousElement.state = 'closed'
-      } else if (previousElement.state === 'open' && previousElement.type === 'ul') {
+      } else if (
+        previousElement.state === 'open' &&
+        previousElement.type === 'ul'
+      ) {
         out = '</ul>'
         previousElement.type = 'none'
         previousElement.state = 'closed'
-      } else if (previousElement.state === 'open' && previousElement.type === 'ol') {
+      } else if (
+        previousElement.state === 'open' &&
+        previousElement.type === 'ol'
+      ) {
         out = '</ol>'
         previousElement.type = 'none'
         previousElement.state = 'closed'
-      } else if (previousElement.state === 'open' && previousElement.type === 'pre') {
+      } else if (
+        previousElement.state === 'open' &&
+        previousElement.type === 'pre'
+      ) {
         out = '<span class="line"></span>'
       } else {
         out = element
@@ -666,7 +789,7 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
     // 6m13s
     function wordCounter(element) {
       let words = element.split(/\s+/)
-      words.forEach(word => {
+      words.forEach((word) => {
         blogPostData.word_count += 1
       })
     }
@@ -677,7 +800,7 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
     // Update blog post article object, declare helper
     blogPostArticle = document.getElementById('blog-post').innerHTML
     // Then, begin parsing line by line
-    md.forEach(element => {
+    md.forEach((element) => {
       if (element.trim() === '') {
         // If the element is an empty newline...
         blogPostArticle += newline(element)
@@ -696,19 +819,34 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
       } else if (element.startsWith('###### ')) {
         // Section Heading 6
         blogPostArticle += h(element, 6)
-      } else if (element.startsWith('-') && ''.concat(...new Set(element.replace(/\s/g, ''))).length === 1 && element.replace(/\s/g, '').length >= 3) {
+      } else if (
+        element.startsWith('-') &&
+        ''.concat(...new Set(element.replace(/\s/g, ''))).length === 1 &&
+        element.replace(/\s/g, '').length >= 3
+      ) {
         // Hyphens
         blogPostArticle += '<hr>'
-      } else if (element.startsWith('*') && ''.concat(...new Set(element.replace(/\s/g, ''))).length === 1 && element.replace(/\s/g, '').length >= 3) {
+      } else if (
+        element.startsWith('*') &&
+        ''.concat(...new Set(element.replace(/\s/g, ''))).length === 1 &&
+        element.replace(/\s/g, '').length >= 3
+      ) {
         // Asterisks
         blogPostArticle += '<hr>'
-      } else if (element.startsWith('_') && ''.concat(...new Set(element.replace(/\s/g, ''))).length === 1 && element.replace(/\s/g, '').length >= 3) {
+      } else if (
+        element.startsWith('_') &&
+        ''.concat(...new Set(element.replace(/\s/g, ''))).length === 1 &&
+        element.replace(/\s/g, '').length >= 3
+      ) {
         // Underscores
         blogPostArticle += '<hr>'
       } else if (element.startsWith('>')) {
         // Blockquotes
         blogPostArticle += blockquote(element)
-      } else if (element.startsWith('```') || (previousElement.type === 'pre' && previousElement.state === 'open')) {
+      } else if (
+        element.startsWith('```') ||
+        (previousElement.type === 'pre' && previousElement.state === 'open')
+      ) {
         // Code Blocks
         blogPostArticle += pre(element)
       } else if (element.startsWith('- ') || element.startsWith('* ')) {
@@ -717,7 +855,10 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
       } else if (element.match(/^\d+\. /)) {
         // Ordered lists
         blogPostArticle += ol(element)
-      } else if (element.startsWith('![') && element.match(/\!\[[^]*?\)\[[^]*?\]/g)) {
+      } else if (
+        element.startsWith('![') &&
+        element.match(/\!\[[^]*?\)\[[^]*?\]/g)
+      ) {
         // Images (Scrolldown syntax)
         blogPostArticle += img(element, 'scrolldown')
       } else if (element.startsWith('![') && element.match(/\!\[[^]*?\)/g)) {
@@ -729,12 +870,14 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
       } else if (element) {
         // If the element contains text...
         blogPostArticle += '<p>' + p(element) + '</p>'
-        
       }
     })
 
     // Add Time-To-Read
-    document.getElementById('date-ttr').innerHTML += '<small id="ttr">' + String(Math.round(blogPostData.word_count / 250)) + ' minute read</small>'
+    document.getElementById('date-ttr').innerHTML +=
+      '<small id="ttr">' +
+      String(Math.round(blogPostData.word_count / 250)) +
+      ' minute read</small>'
 
     // Finally, push parsed Scrolldown to DOM
     document.getElementById('blog-post').innerHTML += blogPostArticle
@@ -762,7 +905,12 @@ fetch('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' + url + '
     // Footer
     let yyyy = new Date()
     document.getElementById('footer').innerHTML +=
-      '<span id="copyright">' + '© ' + yyyy.getFullYear() + ' Enrique Ruiz Durazo' + '</span>' + '<a href="https://github.com/ruizdurazo/ruizdurazo" target="_blank" id="source">Source &nearr;</a>'
+      '<span id="copyright">' +
+      '© ' +
+      yyyy.getFullYear() +
+      ' Enrique Ruiz Durazo' +
+      '</span>' +
+      '<a href="https://github.com/ruizdurazo/ruizdurazo" target="_blank" id="source">Source &nearr;</a>'
 
     // Redirect if there is an anchor in the url.
     // HTML doc is empty on load, so this must take place once content is generated.

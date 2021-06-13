@@ -2,8 +2,8 @@
 const posts = [
   {
     folder: 'hello-universe',
-    thumbnail: false
-  }
+    thumbnail: false,
+  },
   // {
   //   folder:'blog-post-example',
   //   thumbnail: false

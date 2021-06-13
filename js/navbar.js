@@ -1,13 +1,15 @@
 /*
  * Enrique Ruiz Durazo
- * 2020
+ * 2021
  */
 
 let menuSVG = document.getElementById('menu-svg')
-document.getElementById('menu-button').addEventListener('click', event => {
+document.getElementById('menu-button').addEventListener('click', (event) => {
   if (menuSVG.alt === 'Menu') {
     document.getElementById('menu-button').blur()
-    document.getElementById('menu-overlay').setAttribute('style', 'max-height: 100vh;')
+    document
+      .getElementById('menu-overlay')
+      .setAttribute('style', 'max-height: 100vh;')
     document.getElementById('menu-overlay').innerHTML =
       '<div class="lang-list">' +
       '<a class="lang lang-current" href="/">English</a>' +
@@ -18,7 +20,9 @@ document.getElementById('menu-button').addEventListener('click', event => {
     menuSVG.alt = 'Close'
   } else {
     document.getElementById('menu-button').blur()
-    document.getElementById('menu-overlay').setAttribute('style', 'max-height: 0;')
+    document
+      .getElementById('menu-overlay')
+      .setAttribute('style', 'max-height: 0;')
     document.getElementById('menu-overlay').innerHTML = ''
     menuSVG.src = '/assets/images/icon-menu.svg'
     menuSVG.alt = 'Menu'
@@ -27,7 +31,7 @@ document.getElementById('menu-button').addEventListener('click', event => {
 
 document.addEventListener(
   'keydown',
-  event => {
+  (event) => {
     if (event.keyCode === 27) {
       if (document.getElementById('menu-svg').alt === 'Close') {
         document.getElementById('menu-button').click()

@@ -1,6 +1,6 @@
 /* 
  * Enrique Ruiz Durazo
- * 2019-2020
+ * 2019-2021
  */
 
 /* Fonts */
@@ -72,6 +72,7 @@ h1,
   color: var(--blue);
   /*  */
   font-size: calc(var(--font-size) * 1.1);
+  font-weight: 500;
   /*  */
   margin: 0.5em 0 2.5em 0;
   letter-spacing: 0.02em;
@@ -148,13 +149,17 @@ h1,
 #more--logo,
 #more--close {
   background-color: #fff0;
-  overflow: hidden;
+  /* overflow: hidden; */
   display: block;
   text-align: center;
   transition: opacity 0.5s;
 }
 
 /* Logo */
+#more--logo {
+  height: 22px;
+}
+
 #more--logo svg {
   width: 220px;
   height: auto;
@@ -162,6 +167,7 @@ h1,
 
 /* Close */
 #more--close svg {
+  display: block;
   width: 48px;
   height: auto;
   padding: 6px;
@@ -175,12 +181,17 @@ h1,
 }
 
 #more--logo:hover,
-#more--logo:focus,
-#more--close:hover,
-#more--close:focus {
+#more--close:hover {
   cursor: pointer;
   opacity: 0.6;
 }
+
+/* #more--logo:focus,
+#more--logo:focus-within,
+#more--close:focus,
+#more--close:focus-within {
+  box-shadow: 0 0 0 4px red;
+} */
 
 /* Text */
 #more--text {
@@ -188,8 +199,8 @@ h1,
   flex-direction: column;
   height: 100%;
   min-height: 20em;
-  /* max-height: calc(90vh - 100px); */
-  max-height: calc(80vh - 100px);
+  max-height: calc(90vh - 100px);
+  /* max-height: calc(80vh - 100px); */
   text-align: center;
   align-items: center;
   justify-content: center;
@@ -220,42 +231,50 @@ h1,
   border-bottom: 4px solid currentColor;
 }
 
+.more--bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /* max-width: ; */
+}
+
 /* Back / Next */
 #more--back,
 #more--back:active,
 #more--next,
 #more--next:active {
-  position: fixed;
+  /* position: fixed; */
   background-color: #fff0;
-  transform: translate(0, -50%);
+  /* transform: translate(0, -50%); */
   /* top: 50vh; */
-  top: 45vh;
+  /* top: 45vh; */
+  height: 60px;
   transition: opacity 0.5s;
 }
 
 #more--back:hover,
-#more--back:focus,
-#more--next:hover,
-#more--next:focus {
+#more--next:hover {
   cursor: pointer;
-  opacity: 0.6;
+  /* opacity: 0.6; */
 }
 
-#more--back {
-  /* left: 20px; */
+/* #more--back {
+  left: 20px;
   left: 32px;
-}
+} */
 
-#more--next {
-  /* right: 20px; */
+/* #more--next {
+  right: 20px;
   right: 32px;
-}
+} */
 
 #more--back svg,
 #more--next svg {
   width: 48px;
-  height: 48px;
+  height: auto;
   padding: 6px;
+  display: block;
 }
 
 /* Count */
@@ -266,10 +285,12 @@ h1,
 }
 
 #more--count {
-  display: block;
+  /* display: block; */
   font-weight: 600;
   text-align: center;
-  margin-top: 10vh;
+  margin: 0 20px;
+  width: 100px;
+  /* margin-top: 10vh; */
 }
 
 #more--slash {
@@ -552,30 +573,61 @@ p {
 /* 768px */
 @media only screen and (max-width: 768px) {
   #content {
-    width: calc(100% - ((1px * var(--offset) / 2) + (var(--offset) - var(--offset) / 2) * (100vw - 360px) / (768 - 360)));
+    width: calc(
+      100% -
+        (
+          (1px * var(--offset) / 2) + (var(--offset) - var(--offset) / 2) *
+            (100vw - 420px) / (768 - 420)
+        )
+    );
   }
 
   h1,
   #slideshow-anim,
   #slideshow-anim u {
-    font-size: calc((2.2px * var(--min-font-size)) + (64 - 35.2) * (100vw - 360px) / (768 - 360));
+    font-size: calc(
+      (2.2px * var(--min-font-size)) + (64 - 35.2) * (100vw - 420px) /
+        (768 - 420)
+    );
   }
 
   #hello {
-    height: calc((2.2px * var(--min-font-size)) + (64 - 35.2) * (100vw - 360px) / (768 - 360));
+    height: calc(
+      (2.2px * var(--min-font-size)) + (64 - 35.2) * (100vw - 420px) /
+        (768 - 420)
+    );
   }
 
   #slideshow-anim u {
-    border-bottom: solid calc(4px + (6 - 4) * (100vw - 360px) / (768 - 360)) var(--blue);
+    border-bottom: solid calc(4px + (6 - 4) * (100vw - 420px) / (768 - 420))
+      var(--blue);
   }
 
   /* Learn more */
+  #more--close svg {
+    width: calc((1px * 40) + (48 - 40) * (100vw - 420px) / (768 - 420));
+  }
+
   #more--text {
     max-height: calc(90vh - 100px);
   }
 
+  #more--text p,
+  #more--text a {
+    font-size: calc(
+      (1.8px * var(--min-font-size)) + (40 - 28.8) * (100vw - 420px) /
+        (768 - 420)
+    );
+  }
+
   .more--navbar--elements {
-    width: calc(100% - ((1px * var(--offset) / 2) + (var(--offset) - var(--offset) / 2) * (100vw - 360px) / (768 - 360)));
+    width: calc(
+      100% -
+        (
+          (1px * var(--offset) / 2) + (var(--offset) - var(--offset) / 2) *
+            (100vw - 420px) / (768 - 420)
+        )
+    );
   }
 
   /* Back / Next */
@@ -583,11 +635,16 @@ p {
   #more--back:active,
   #more--next,
   #more--next:active {
-    position: fixed;
+    /* position: fixed; */
     background-color: #fff0;
-    transform: translate(0, 0);
-    top: calc(90vh - 8px);
+    /* transform: translate(0, 0); */
+    /* top: calc(90vh - 8px); */
     transition: opacity 0.5s;
+  }
+
+  #more--back svg,
+  #more--next svg {
+    width: calc((1px * 40) + (48 - 40) * (100vw - 420px) / (768 - 420));
   }
 
   /* Count */
@@ -597,19 +654,30 @@ p {
 
   /* sections */
   .section--title {
-    font-size: calc((1.6px * var(--min-font-size)) + (36 - 25.6) * (100vw - 360px) / (768 - 360));
+    font-size: calc(
+      (1.6px * var(--min-font-size)) + (36 - 25.6) * (100vw - 420px) /
+        (768 - 420)
+    );
   }
 
   .blog-post .date {
-    font-size: calc((0.8px * var(--min-font-size)) + (13 - 12.8) * (100vw - 360px) / (768 - 360));
+    font-size: calc(
+      (0.8px * var(--min-font-size)) + (13 - 12.8) * (100vw - 420px) /
+        (768 - 420)
+    );
   }
 
   .blog-post .title {
-    font-size: calc((0.95px * var(--min-font-size)) + (18 - 15.2) * (100vw - 360px) / (768 - 360));
+    font-size: calc(
+      (0.95px * var(--min-font-size)) + (18 - 15.2) * (100vw - 420px) /
+        (768 - 420)
+    );
   }
 
   .blog-post .description {
-    font-size: calc((1px * var(--min-font-size)) + (19 - 16) * (100vw - 360px) / (768 - 360));
+    font-size: calc(
+      (1px * var(--min-font-size)) + (19 - 16) * (100vw - 420px) / (768 - 420)
+    );
   }
 }
 
@@ -627,28 +695,41 @@ p {
   }
 }
 
-/* 360px */
-@media only screen and (max-width: 360px) {
+/* 420px */
+@media only screen and (max-width: 420px) {
   #content {
     width: calc(100% - (1px * var(--offset) / 2));
   }
 
-  
   h1,
   #slideshow-anim,
   #slideshow-anim u {
     font-size: calc(2.2px * var(--min-font-size));
   }
-  
+
   #hello {
     height: calc(2.2px * var(--min-font-size));
   }
-  
+
   #slideshow-anim u {
     border-bottom: solid 4px var(--blue);
   }
-  
+
   /* Learn more */
+  #more--text p,
+  #more--text a {
+    font-size: var(--font-size-1_8);
+  }
+
+  #more--close svg {
+    width: 40px;
+  }
+
+  #more--back svg,
+  #more--next svg {
+    width: 40px;
+  }
+
   .more--navbar--elements {
     width: calc(100% - (1px * var(--offset) / 2));
   }
