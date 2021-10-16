@@ -266,7 +266,7 @@
   color: var(--text-footer);
   /*  */
   font-size: calc(var(--font-size) * 0.8);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.02em;
   height: var(--font-size);
 }
 
