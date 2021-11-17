@@ -35,13 +35,14 @@ if (url.endsWith('index.html')) {
   url = url.slice(0, -10)
 }
 // Local
-fetch('index.md')
-  // Prod
-  // fetch(
-  //   'https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' +
-  //     url +
-  //     'index.md'
-  // )
+// fetch('index.md')
+
+// Prod
+fetch(
+  'https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' +
+    url +
+    'index.md'
+)
   .then((response) => response.text())
   .then((text) => {
     // First fetch the document, and extract the text lines

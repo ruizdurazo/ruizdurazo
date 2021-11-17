@@ -365,13 +365,14 @@
 
         notes.forEach((note) => {
           // Local
-          fetch('/notes/' + note.folder + '/index.md')
-            // Prod
-            // fetch(
-            //   'https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/notes/' +
-            //     note.folder +
-            //     '/index.md'
-            // )
+          // fetch('/notes/' + note.folder + '/index.md')
+
+          // Prod
+          fetch(
+            'https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/notes/' +
+              note.folder +
+              '/index.md'
+          )
             .then((response) => response.text())
             .then((text) => {
               // Clear note object
