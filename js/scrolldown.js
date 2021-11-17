@@ -6,14 +6,15 @@
 // Markdown document, an array of lines (strings)
 let md = []
 
-// Blog post objects and helpers
-let blogPostData = {}
-let blogPostArticle = {}
+// Note objects and helpers
+let noteData = {}
+let noteArticle = {}
 let sectionHeadings = []
 let previousElement = {}
+previousElement.lang = ''
 previousElement.type = 'none'
 previousElement.state = 'closed'
-blogPostData.word_count = 0
+noteData.word_count = 0
 
 // Date settings
 const date_options = {
@@ -29,26 +30,28 @@ pipe =
     fns.reduce((v, f) => f(v), x)
 
 // Fetch the Markdown document and parse it
-// fetch('index.md') // :(
 let url = document.location.pathname
 if (url.endsWith('index.html')) {
   url = url.slice(0, -10)
 }
-fetch(
-  'https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' +
-    url +
-    'index.md'
-)
+// Local
+fetch('index.md')
+  // Prod
+  // fetch(
+  //   'https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' +
+  //     url +
+  //     'index.md'
+  // )
   .then((response) => response.text())
   .then((text) => {
     // First fetch the document, and extract the text lines
     // Detect the head or metadata
     // "Decapitate"
-    // Parse head, get attributes, and create blog post header
+    // Parse head, get attributes, and create note post header
     // Parse document body, line by line, and create article content
 
     // Head / Metadata
-    // Check if Markdown document has blog post metadata
+    // Check if Markdown document has note post metadata
     if (text.startsWith('---')) {
       let metadataPattern = /---[^]*?---/
       let metadataBlock = text.match(metadataPattern)
@@ -61,41 +64,41 @@ fetch(
         metadata.forEach((prop) => {
           if (prop.startsWith('title:')) {
             // Page Title
-            blogPostData.title = prop.split(':')[1].trim()
-            document.title = blogPostData.title + ' — Enrique Ruiz Durazo'
-            document.getElementById('title').innerHTML = blogPostData.title
+            noteData.title = prop.split(':')[1].trim()
+            document.title = noteData.title + ' — Enrique Ruiz Durazo'
+            document.getElementById('title').innerHTML = noteData.title
           } else if (prop.startsWith('date:')) {
             // Date
-            blogPostData.date = new Date(prop.split(':')[1].trim())
-            // document.getElementById('date').innerHTML = Intl.DateTimeFormat('en-US', date_options).format(blogPostData.date)
-            // document.getElementById('date').innerHTML = blogPostData.date.getFullYear() + ' ' + Intl.DateTimeFormat('en-US', { month: 'long' }).format(blogPostData.date).toUpperCase() + ' ' + blogPostData.date.getDate()
+            noteData.date = new Date(prop.split(':')[1].trim())
+            // document.getElementById('date').innerHTML = Intl.DateTimeFormat('en-US', date_options).format(noteData.date)
+            // document.getElementById('date').innerHTML = noteData.date.getFullYear() + ' ' + Intl.DateTimeFormat('en-US', { month: 'long' }).format(noteData.date).toUpperCase() + ' ' + noteData.date.getDate()
             document.getElementById('date').innerHTML =
-              blogPostData.date.getFullYear() +
+              noteData.date.getFullYear() +
               ' ' +
               Intl.DateTimeFormat('en-US', { month: 'long' }).format(
-                blogPostData.date
+                noteData.date
               ) +
               ' ' +
-              blogPostData.date.getDate()
+              noteData.date.getDate()
           } else if (prop.startsWith('description_short:')) {
             // Short Description
-            blogPostData.description_short = prop.split(':')[1].trim()
+            noteData.description_short = prop.split(':')[1].trim()
             document.getElementsByName('description')[0].content =
-              blogPostData.description_short
+              noteData.description_short
           } else if (prop.startsWith('description_long:')) {
             // Long Description
-            blogPostData.description_long = prop.split(':')[1].trim()
+            noteData.description_long = prop.split(':')[1].trim()
             document.getElementById('description').innerHTML =
-              blogPostData.description_long
+              noteData.description_long
           } else if (prop.startsWith('author_name:')) {
             // Author Name
-            blogPostData.author_name = prop.split(':')[1].trim()
+            noteData.author_name = prop.split(':')[1].trim()
           } else if (prop.startsWith('author_email:')) {
             // Author Email
-            blogPostData.author_email = prop.split(':')[1].trim()
+            noteData.author_email = prop.split(':')[1].trim()
           } else if (prop.startsWith('author_twitter:')) {
             // Author Twitter
-            blogPostData.author_twitter = prop.split(':')[1].trim()
+            noteData.author_twitter = prop.split(':')[1].trim()
           }
         })
         // Remove metadata block from original document
@@ -219,6 +222,7 @@ fetch(
         if (element.trim() === '```') {
           // close
           out = '</code></pre>'
+          previousElement.lang = ''
           previousElement.type = 'none'
           previousElement.state = 'closed'
         } else {
@@ -226,20 +230,38 @@ fetch(
           // need to escape <> for html elements,
           // add to 'line' class for css numbering counter to work,
           // and have new lines at the end for syntax highlighting
-          out =
-            '<span class="line">' +
-            element.replace(/\</g, '&lt;').replace(/\>/g, '&gt;') +
-            '\n</span>'
+
+          if (previousElement.lang !== '') {
+            // original
+            // out =
+            //   '<span class="line">' +
+            //   element.replace(/\</g, '&lt;').replace(/\>/g, '&gt;') +
+            //   '\n</span>'
+
+            // new
+            // console.log(previousElement.lang)
+            out =
+              '<span class="line">' +
+              '<span>' +
+              hljs.highlight(element, { language: previousElement.lang })
+                .value +
+              '</span>' +
+              '</span>'
+          }
         }
       } else if (previousElement.state === 'closed') {
         if (element.startsWith('```') && element.slice(3).trim().length > 0) {
+          previousElement.lang = element.slice(3).trim()
           // start syntax highlighting
-          out = '<pre><code class="lang-' + element.slice(3).trim() + '">'
+          // out = '<pre><code>'
+          // out = '<pre><code class="lang-' + element.slice(3).trim() + '">'
+          out = '<pre><code class="language-' + previousElement.lang + '">'
           previousElement.type = 'pre'
           previousElement.state = 'open'
         } else {
           // start plain text
           out = '<pre><code class="nohighlight">'
+          previousElement.lang = ''
           previousElement.type = 'pre'
           previousElement.state = 'open'
         }
@@ -720,7 +742,7 @@ fetch(
 
     // Text
     p = (element) => {
-      if (blogPostData.word_count === 0) {
+      if (noteData.word_count === 0) {
         // Count words
         wordCounter(element)
         return (
@@ -790,97 +812,97 @@ fetch(
     function wordCounter(element) {
       let words = element.split(/\s+/)
       words.forEach((word) => {
-        blogPostData.word_count += 1
+        noteData.word_count += 1
       })
     }
 
     // Parse Body / Article Content
     // First, split Markdown document's body content into lines
     md = text.split('\n')
-    // Update blog post article object, declare helper
-    blogPostArticle = document.getElementById('blog-post').innerHTML
+    // Update note post article object, declare helper
+    noteArticle = document.getElementById('note').innerHTML
     // Then, begin parsing line by line
     md.forEach((element) => {
       if (element.trim() === '') {
         // If the element is an empty newline...
-        blogPostArticle += newline(element)
+        noteArticle += newline(element)
       } else if (element.startsWith('## ')) {
         // Section Heading 2
-        blogPostArticle += h(element, 2)
+        noteArticle += h(element, 2)
       } else if (element.startsWith('### ')) {
         // Section Heading 3
-        blogPostArticle += h(element, 3)
+        noteArticle += h(element, 3)
       } else if (element.startsWith('#### ')) {
         // Section Heading 4
-        blogPostArticle += h(element, 4)
+        noteArticle += h(element, 4)
       } else if (element.startsWith('##### ')) {
         // Section Heading 5
-        blogPostArticle += h(element, 5)
+        noteArticle += h(element, 5)
       } else if (element.startsWith('###### ')) {
         // Section Heading 6
-        blogPostArticle += h(element, 6)
+        noteArticle += h(element, 6)
       } else if (
         element.startsWith('-') &&
         ''.concat(...new Set(element.replace(/\s/g, ''))).length === 1 &&
         element.replace(/\s/g, '').length >= 3
       ) {
         // Hyphens
-        blogPostArticle += '<hr>'
+        noteArticle += '<hr>'
       } else if (
         element.startsWith('*') &&
         ''.concat(...new Set(element.replace(/\s/g, ''))).length === 1 &&
         element.replace(/\s/g, '').length >= 3
       ) {
         // Asterisks
-        blogPostArticle += '<hr>'
+        noteArticle += '<hr>'
       } else if (
         element.startsWith('_') &&
         ''.concat(...new Set(element.replace(/\s/g, ''))).length === 1 &&
         element.replace(/\s/g, '').length >= 3
       ) {
         // Underscores
-        blogPostArticle += '<hr>'
+        noteArticle += '<hr>'
       } else if (element.startsWith('>')) {
         // Blockquotes
-        blogPostArticle += blockquote(element)
+        noteArticle += blockquote(element)
       } else if (
         element.startsWith('```') ||
         (previousElement.type === 'pre' && previousElement.state === 'open')
       ) {
         // Code Blocks
-        blogPostArticle += pre(element)
+        noteArticle += pre(element)
       } else if (element.startsWith('- ') || element.startsWith('* ')) {
         // Unordered lists
-        blogPostArticle += ul(element)
+        noteArticle += ul(element)
       } else if (element.match(/^\d+\. /)) {
         // Ordered lists
-        blogPostArticle += ol(element)
+        noteArticle += ol(element)
       } else if (
         element.startsWith('![') &&
         element.match(/\!\[[^]*?\)\[[^]*?\]/g)
       ) {
         // Images (Scrolldown syntax)
-        blogPostArticle += img(element, 'scrolldown')
+        noteArticle += img(element, 'scrolldown')
       } else if (element.startsWith('![') && element.match(/\!\[[^]*?\)/g)) {
         // Images (Default syntax)
-        blogPostArticle += img(element, 'default')
+        noteArticle += img(element, 'default')
       } else if (element.trim().startsWith('<')) {
         // If the element contains plain html... iffy
-        blogPostArticle += element
+        noteArticle += element
       } else if (element) {
         // If the element contains text...
-        blogPostArticle += '<p>' + p(element) + '</p>'
+        noteArticle += '<p>' + p(element) + '</p>'
       }
     })
 
     // Add Time-To-Read
-    document.getElementById('date-ttr').innerHTML +=
-      '<small id="ttr">' +
-      String(Math.round(blogPostData.word_count / 250)) +
-      ' minute read</small>'
+    // document.getElementById('date-ttr').innerHTML +=
+    //   '<small id="ttr">' +
+    //   String(Math.round(noteData.word_count / 250)) +
+    //   ' minute read</small>'
 
     // Finally, push parsed Scrolldown to DOM
-    document.getElementById('blog-post').innerHTML += blogPostArticle
+    document.getElementById('note').innerHTML += noteArticle
 
     // Credits
     // document.getElementById('credits').innerHTML += ''
@@ -896,11 +918,108 @@ fetch(
     // author_twitter: ruizdurazo
     // twitter_url = 'https://twitter.com/' + author_twitter
 
-    // Notes
+    // Notes / references / links?
     // ...
 
     // Further Reading
-    // ...
+    notes
+      .sort((a, b) => (a.date > b.date ? 1 : b.date > a.date ? -1 : 0))
+      .reverse()
+
+    let back
+    let next
+    let furtherBack
+    let furtherNext
+    notes.map((note, index) => {
+      // Check until you find the article, then takes indexes +1 and -1
+      if (note.folder === window.location.pathname.slice(7, -1)) {
+        next = index - 1
+        back = index + 1
+      }
+    })
+    // Use -1 as flag to show 'home' card
+    if (back >= notes.length) {
+      back = -1
+    }
+    // console.log(back, next)
+    if (back === -1) {
+      furtherBack = `<a href="/" class="further further--back">
+      <div class="further__arrow further__arrow--back">
+        <img src="/assets/images/icon-arrow_left.svg" alt="" />
+      </div>
+      <div class="further__text">
+        <div class="title">Home</div>
+      </div>
+      <div class="further__arrow further__arrow--next">
+        <img src="/assets/images/icon-arrow_right.svg" alt="" />
+      </div>
+    </a>
+`
+    } else {
+      furtherBack =
+        `<a href="/notes/` +
+        notes[back].folder +
+        `" class="further further--back">
+      <div class="further__arrow further__arrow--back">
+        <img src="/assets/images/icon-arrow_left.svg" alt="" />
+      </div>
+      <div class="further__text">
+        <div class="label">PREVIOUS</div>
+        <div class="title">` +
+        notes[back].title +
+        `</div>
+        <div class="description">
+          ` +
+        notes[back].description +
+        `
+        </div>
+      </div>
+      <div class="further__arrow further__arrow--next">
+        <img src="/assets/images/icon-arrow_right.svg" alt="" />
+      </div>
+    </a>
+`
+    }
+    if (next === -1) {
+      furtherNext = `<a href="/" class="further further--next">
+      <div class="further__arrow further__arrow--back">
+        <img src="/assets/images/icon-arrow_left.svg" alt="" />
+      </div>
+      <div class="further__text">
+        <div class="title">Home</div>
+      </div>
+      <div class="further__arrow further__arrow--next">
+        <img src="/assets/images/icon-arrow_right.svg" alt="" />
+      </div>
+    </a>
+`
+    } else {
+      furtherNext =
+        `<a href="/notes/` +
+        notes[next].folder +
+        `" class="further further--next">
+      <div class="further__arrow further__arrow--back">
+        <img src="/assets/images/icon-arrow_left.svg" alt="" />
+      </div>
+      <div class="further__text">
+        <div class="label">NEXT</div>
+        <div class="title">` +
+        notes[next].title +
+        `</div>
+        <div class="description">
+          ` +
+        notes[next].description +
+        `
+        </div>
+      </div>
+      <div class="further__arrow further__arrow--next">
+        <img src="/assets/images/icon-arrow_right.svg" alt="" />
+      </div>
+    </a>`
+    }
+    const furtherReading = furtherNext + furtherBack
+
+    document.getElementById('further-reading').innerHTML += furtherReading
 
     // Footer
     let yyyy = new Date()
@@ -919,5 +1038,8 @@ fetch(
     }
 
     // Highlight.js for syntax highlighting in code blocks
-    hljs.initHighlighting()
+    // hljs.initHighlighting()
+    // hljs.configure({ classPrefix: 'line ' })
+    // hljs.configure({ cssSelector: 'pre code line' })
+    // hljs.highlight()
   })

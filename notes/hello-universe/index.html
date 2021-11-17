@@ -6,29 +6,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Enrique Ruiz Durazo</title>
-    <meta name="description" content="Making things using code, data, and design." />
+    <meta
+      name="description"
+      content="Making things using code, data, and design."
+    />
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/images/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/images/favicon-16x16.png"
+    />
     <link rel="mask-icon" href="/assets/images/favicon.svg" color="#202020" />
     <meta name="theme-color" content="#ffffff" />
 
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@ruizdurazo" />
     <meta name="twitter:title" content="Enrique Ruiz Durazo" />
-    <meta name="twitter:description" content="Making things using code, data, and design." />
-    <meta name="twitter:image" content="https://ruizdurazo.com/assets/images/card.png" />
+    <meta
+      name="twitter:description"
+      content="Making things using code, data, and design."
+    />
+    <meta
+      name="twitter:image"
+      content="https://ruizdurazo.com/assets/images/card.png"
+    />
 
     <meta property="og:url" content="https://ruizdurazo.com/" />
     <meta property="og:title" content="Enrique Ruiz Durazo" />
-    <meta property="og:description" content="Making things using code, data, and design." />
-    <meta property="og:image" content="https://ruizdurazo.com/assets/images/card.png" />
+    <meta
+      property="og:description"
+      content="Making things using code, data, and design."
+    />
+    <meta
+      property="og:image"
+      content="https://ruizdurazo.com/assets/images/card.png"
+    />
 
     <link rel="stylesheet" href="/css/styles.css" />
-    <link rel="stylesheet" href="/css/styles-blog.css" />
-    <link rel="stylesheet" href="/css/highlightjs-github-gist.css" />
-    <script src="/js/highlightjs.pack.js"></script>
+    <link rel="stylesheet" href="/css/styles-note.css" />
+    <link rel="stylesheet" href="/css/highlightjs-github-light.css" />
+    <script src="/js/highlight.min.js"></script>
     <script type="application/ld+json">
       {
         "@context": "http://schema.org",
@@ -36,10 +65,16 @@
         "name": "Enrique Ruiz Durazo",
         "url": "https://ruizdurazo.com",
         "email": "enrique@ruizdurazo.com",
-        "sameAs": ["https://twitter.com/ruizdurazo", "https://github.com/ruizdurazo"]
+        "sameAs": [
+          "https://twitter.com/ruizdurazo",
+          "https://github.com/ruizdurazo"
+        ]
       }
     </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-123151773-1"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-123151773-1"
+    ></script>
     <script>
       window.dataLayer = window.dataLayer || []
       function gtag() {
@@ -48,7 +83,11 @@
       gtag('js', new Date())
       gtag('config', 'UA-123151773-1')
     </script>
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script
+      async
+      src="https://platform.twitter.com/widgets.js"
+      charset="utf-8"
+    ></script>
   </head>
 
   <body>
@@ -58,12 +97,22 @@
         <div class="navbar--elements">
           <div id="logo" class="logo">
             <a href="/">
-              <img id="logo-svg" src="/assets/images/logo-ruizdurazo.svg" alt="Enrique Ruiz Durazo" draggable="false" />
+              <img
+                id="logo-svg"
+                src="/assets/images/logo-ruizdurazo.svg"
+                alt="Enrique Ruiz Durazo"
+                draggable="false"
+              />
             </a>
           </div>
           <div class="menu" id="menu">
             <button id="menu-button">
-              <img id="menu-svg" src="/assets/images/icon-menu.svg" alt="Menu" draggable="false" />
+              <img
+                id="menu-svg"
+                src="/assets/images/icon-menu.svg"
+                alt="Menu"
+                draggable="false"
+              />
             </button>
           </div>
         </div>
@@ -82,7 +131,7 @@
         </header>
 
         <!-- Article -->
-        <article id="blog-post" class="blog-post"></article>
+        <article id="note" class="note"></article>
 
         <!-- Further Reading -->
         <section id="further-reading" class="further-reading"></section>
@@ -94,6 +143,7 @@
 
     <!-- Scripts -->
     <script src="/js/navbar.js"></script>
+    <script src="/js/notes.js"></script>
     <script src="/js/scrolldown.js"></script>
   </body>
 </html>

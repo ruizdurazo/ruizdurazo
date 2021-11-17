@@ -55,20 +55,8 @@
     />
 
     <link rel="stylesheet" href="/css/styles.css" />
-    <link rel="stylesheet" href="/css/styles-blog.css" />
-    <style>
-      /* Remove bullets */
-      .ul,
-      .ul li {
-        list-style: none;
-      }
+    <link rel="stylesheet" href="/css/styles-note.css" />
 
-      /* Nope - Emoji */
-      #nope {
-        display: inline-block;
-        height: calc(var(--font-size) * 3.6);
-      }
-    </style>
     <script type="application/ld+json">
       {
         "@context": "http://schema.org",
@@ -129,11 +117,12 @@
         </div>
         <div id="menu-overlay"></div>
       </nav>
+
       <!-- LOL -->
       <div id="content" class="content">
         <!-- Header -->
-        <header id="header" class="header">
-          <h1 id="title" style="margin-top: calc(var(--font-size) * 2.5)">
+        <header id="header" class="header header--lol">
+          <h1 id="title">
             Nope
             <img
               src="/assets/images/nope.png"
@@ -143,9 +132,10 @@
             />
           </h1>
         </header>
+
         <!-- Article -->
-        <article id="blog-post" class="blog-post">
-          <p style="margin-top: calc(var(--font-size) * 5)">
+        <article id="note" class="note note--lol">
+          <p>
             LinkedIn? I mean,
             <a
               class="pa"
@@ -155,7 +145,7 @@
             >. But I don’t like to use it.
           </p>
           <p>Speaking of things I don’t like...</p>
-          <ul class="ul">
+          <ul class="ul ul--lol">
             <li><del>Facebook</del></li>
             <li><del>R</del></li>
             <li><del>Tableau</del></li>
@@ -177,7 +167,7 @@
             Here is a long list of things I really like, and where I draw
             inspiration from:
           </p>
-          <ul class="ul">
+          <ul class="ul ul--lol">
             <li>
               <a class="pa" href="https://twitter.com/" target="_blank"
                 >Twitter</a
@@ -192,6 +182,14 @@
               <a class="pa" href="https://www.figma.com/" target="_blank"
                 >Figma</a
               >
+              <img
+                src="/assets/images/design.jpg"
+                alt=""
+                width="680"
+                height="420"
+                class="img img--li"
+                draggable="false"
+              />
             </li>
             <li>
               <a class="pa" href="https://www.notion.so/" target="_blank"
@@ -204,7 +202,7 @@
               >
               🐍
             </li>
-            <li>JavaScript / TypeScript</li>
+            <li>JavaScript / TypeScript / Node</li>
             <li>
               <a class="pa" href="https://www.mapbox.com/" target="_blank"
                 >Mapbox</a
@@ -236,6 +234,14 @@
                 target="_blank"
                 >INSIDE</a
               >
+              <img
+                src="/assets/images/inside.jpg"
+                alt=""
+                width="680"
+                height="420"
+                class="img img--li"
+                draggable="false"
+              />
             </li>
             <li>
               <a
@@ -292,6 +298,14 @@
                 target="_blank"
                 >Shell</a
               >
+              <img
+                src="/assets/images/ghost_in_the_shell.jpg"
+                alt=""
+                width="680"
+                height="420"
+                class="img img--li"
+                draggable="false"
+              />
             </li>
             <li>
               <a
@@ -310,17 +324,25 @@
               >
             </li>
             <li>
-              <a class="pa" href="https://vimeo.com/77749860" target="_blank"
-                >Wes Anderson</a
-              >
-            </li>
-            <li>
               <a
                 class="pa"
                 href="https://en.wikipedia.org/wiki/2001:_A_Space_Odyssey_(film)"
                 target="_blank"
                 >Stanley Kubrick</a
               >
+            </li>
+            <li>
+              <a class="pa" href="https://vimeo.com/77749860" target="_blank"
+                >Wes Anderson</a
+              >
+              <img
+                src="/assets/images/moonrise_kingdom.jpg"
+                alt=""
+                width="680"
+                height="420"
+                class="img img--li"
+                draggable="false"
+              />
             </li>
             <li>
               <a
@@ -390,6 +412,14 @@
                 >Elon Musk</a
               >
               🚀🤖🧠📡🚗🔋👽
+              <img
+                src="/assets/images/spacex.jpg"
+                alt=""
+                width="680"
+                height="420"
+                class="img img--li"
+                draggable="false"
+              />
             </li>
             <li>
               <a
@@ -408,9 +438,21 @@
               >
             </li>
             <li>
-              <a class="pa" href="https://twitter.com/theallinpod" target="_blank"
+              <a
+                class="pa"
+                href="htps://twitter.com/harari_yuval"
+                target="_blank"
+                >Yuval Noah Harari</a
+              >
+            </li>
+            <li>
+              <a
+                class="pa"
+                href="https://twitter.com/theallinpod"
+                target="_blank"
                 >All-In Podcast</a
-              > 💧🐦
+              >
+              💧🐦
             </li>
             <li>
               <a
@@ -421,16 +463,10 @@
               >
             </li>
             <li>
-              <a
-                class="pa"
-                href="https://twitter.com/patrickc"
-                target="_blank"
+              <a class="pa" href="https://twitter.com/patrickc" target="_blank"
                 >Patrick</a
               >
-              <a
-                class="pa"
-                href="https://patrickcollison.com/"
-                target="_blank"
+              <a class="pa" href="https://patrickcollison.com/" target="_blank"
                 >Collison</a
               >
             </li>
@@ -466,6 +502,14 @@
                 target="_blank"
                 >Luis Barragán</a
               >
+              <img
+                src="/assets/images/cuadra_cristobal.jpg"
+                alt=""
+                width="680"
+                height="420"
+                class="img img--li"
+                draggable="false"
+              />
             </li>
             <li>
               <a class="pa" href="https://twitter.com/lisacrost" target="_blank"
@@ -511,17 +555,36 @@
             </li>
             <li>Mexican food 🌮</li>
           </ul>
-          <p>Have a nice day! ☀️</p>
+
+          <p>Have a nice day! 🌤️</p>
+
+          <hr />
+
           <p>
-            If you want to get in touch, reach out on
+            If you want to get in touch,
             <a class="pa" href="https://twitter.com/ruizdurazo" target="_blank"
-              >Twitter</a
-            >, or send me an
+              >reach out on Twitter</a
+            >, or
             <a class="pa" href="mailto:enrique@ruizdurazo.com" target="_blank"
-              >email</a
+              >send me an email</a
             >.
           </p>
         </article>
+
+        <!-- Further Reading -->
+        <section id="further-reading" class="further-reading">
+          <a href="/" class="further further--back">
+            <div class="further__arrow further__arrow--back">
+              <img src="/assets/images/icon-arrow_left.svg" alt="" />
+            </div>
+            <div class="further__text">
+              <div class="title">Home</div>
+            </div>
+            <div class="further__arrow further__arrow--next">
+              <img src="/assets/images/icon-arrow_right.svg" alt="" />
+            </div>
+          </a>
+        </section>
       </div>
 
       <!-- Footer -->

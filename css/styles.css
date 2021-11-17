@@ -4,46 +4,54 @@
  */
 
 /* Fonts */
-@font-face {
+/* @font-face {
   font-family: 'Charter';
-  src: url('../assets/fonts/charter-bold.woff') format('woff');
+  src: url('../assets/fonts/Charter-Bold.woff') format('woff');
   font-weight: 700;
   font-style: normal;
-}
+} */
 
-@font-face {
+/* @font-face {
   font-family: 'Charter';
-  src: url('../assets/fonts/charter-regular.woff') format('woff');
+  src: url('../assets/fonts/Charter-Regular.woff') format('woff');
   font-weight: 400;
   font-style: normal;
-}
+} */
 
 @font-face {
   font-family: 'Inter';
-  src: url('../assets/fonts/inter-bold.woff');
+  src: url('../assets/fonts/Inter-Bold.woff');
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Inter';
-  src: url('../assets/fonts/inter-medium.woff') format('woff');
+  src: url('../assets/fonts/Inter-SemiBold.woff');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../assets/fonts/Inter-Medium.woff') format('woff');
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Inter';
-  src: url('../assets/fonts/inter-regular.woff') format('woff');
+  src: url('../assets/fonts/Inter-Regular.woff') format('woff');
   font-weight: 400;
   font-style: normal;
 }
 
 /* Variables */
 :root {
-  --font-main: 'Inter', sans-serif;
-  --font-text: 'Charter', serif;
-  --font-code: 'Menlo', monospace;
+  --font-main: 'Inter', -apple-system, 'Helvetica Neue', Helvetica, Arial,
+    sans-serif;
+  --font-serif: 'Charter', serif;
+  --font-mono: 'Menlo', monospace;
   --font-size: 20px;
   --max-font-size: 20;
   --min-font-size: 16;
@@ -55,13 +63,15 @@
   --font-size-4: calc(var(--font-size) * 4);
   --font-size-5: calc(var(--font-size) * 5);
   --font-size-6: calc(var(--font-size) * 6);
-  /* --max-width: 1200px; */
-  --max-width: 1424px;
-  /* --max-width-in: 1200px; */
-  --max-width-content: 1120px;
-  --min-width: 320px;
-  --min-width-navbar_footer: 280px;
-  --grid-unit: 112px;
+  /*  */
+  --max-width: 1520px;
+  /* --max-width: 1440px; */
+  /* --max-width-content: 1200px; */
+  --max-width-home: 960px;
+  --max-width-note: 720px;
+  --min-width: 360px;
+  /*  */
+  --grid-unit: 120px;
   --grid-unit-2: calc(var(--grid-unit) * 2);
   --grid-unit-3: calc(var(--grid-unit) * 3);
   --grid-unit-4: calc(var(--grid-unit) * 4);
@@ -72,20 +82,23 @@
   --offset: 80;
   /* Colors */
   --selection: #00000020;
-  --black: #202020;
+  --black: #101010;
   --blue: #0f4fff;
-  --text: #404040;
-  --text-date: #999;
-  --text-description: #808080;
-  --text-description-small: #606060;
-  --text-img_caption: #808080;
-  --text-blockquote: #606060;
-  --text-footer: #ccc;
-  --text-error_404: #999;
-  --_20: #202022;
-  --_40: #404040;
-  --_60: #606060;
-  --_80: #808080;
+  --text: #303030;
+  --text-date: #909090;
+  --text-description: #707070;
+  --text-description-small: #505050;
+  /* --text-description: #505050;
+  --text-description-small: #505050; */
+  --text-img_caption: #707070;
+  --text-blockquote: #303030;
+  --text-footer: #aaa;
+  --text-error_404: #909090;
+  --_10: #101010;
+  --_30: #303030;
+  --_50: #505050;
+  --_70: #707070;
+  --_90: #909090;
   --_a: #aaa;
   --_b: #bbb;
   --_c: #ccc;
@@ -122,16 +135,12 @@
 
 /* Site */
 .site {
-  margin: 0 auto;
-  max-width: var(--max-width);
   min-width: var(--min-width);
 }
 
 /* Navbar */
 .navbar {
   position: fixed;
-  max-width: var(--max-width);
-  min-width: var(--min-width);
   width: 100%;
   z-index: 1;
   background-color: #fff;
@@ -140,7 +149,18 @@
 .navbar--elements {
   display: flex;
   justify-content: space-between;
-  width: calc(100% - (1px * var(--offset)));
+  /* max-width: var(--max-width); */
+  /* min-width: var(--min-width); */
+  width: min(
+    calc(1520px - (1px * var(--offset))),
+    calc(100% - (1px * var(--offset)))
+  );
+  /* width: min(
+    calc(1440px - (1px * var(--offset))),
+    calc(100% - (1px * var(--offset)))
+  ); */
+  /* width: min(100%, calc(1440px - (1px * var(--offset)))); */
+  /* width: calc(100% - 40px); */
   height: calc(var(--font-size) * 5);
   margin: 0 auto;
 }
@@ -252,20 +272,28 @@
 
 /* Footer */
 .footer {
+  /* max-width: var(--max-width); */
   display: flex;
   justify-content: space-between;
-  width: calc(100% - (1px * var(--offset)));
-  /*  */
+  width: min(
+    calc(1520px - (1px * var(--offset))),
+    calc(100% - (1px * var(--offset)))
+  );
+  /* width: min(
+    calc(1440px - (1px * var(--offset))),
+    calc(100% - (1px * var(--offset)))
+  ); */
+  /* width: calc(1440px - (1px * var(--offset))); */
   height: 1.2em;
-  /*  */
-  margin: 2.4em auto;
+  margin: 0 auto;
+  padding: 2.4em 0;
 }
 
 .footer #copyright,
 .footer #source {
   color: var(--text-footer);
-  /*  */
-  font-size: calc(var(--font-size) * 0.8);
+  /* font-size: calc(var(--font-size) * 0.8); */
+  font-size: calc(var(--min-font-size) * 1px);
   letter-spacing: 0.02em;
   height: var(--font-size);
 }
@@ -278,17 +306,30 @@
 
 .footer #source:hover,
 .footer #source:focus {
-  color: var(--_80);
-  border-bottom: solid 2px var(--_80);
+  color: var(--_70);
+  border-bottom: solid 2px var(--_70);
 }
 
-/* 768px */
+/* 1040px */
+@media only screen and (max-width: 1040px) {
+  .navbar--elements,
+  .footer {
+    width: calc(
+      100% -
+        (
+          (1px * var(--offset) * 0.75) + (var(--offset) - var(--offset) * 0.75) *
+            (100vw - 768px) / (1040 - 768)
+        )
+    );
+  }
+}
+
 @media only screen and (max-width: 768px) {
   :root {
     --font-size: calc(
       (1px * var(--min-font-size)) +
-        (var(--max-font-size) - var(--min-font-size)) * (100vw - 420px) /
-        (768 - 420)
+        (var(--max-font-size) - var(--min-font-size)) * (100vw - 480px) /
+        (768 - 480)
     );
   }
 
@@ -297,37 +338,38 @@
     width: calc(
       100% -
         (
-          (1px * var(--offset) / 2) + (var(--offset) - var(--offset) / 2) *
-            (100vw - 420px) / (768 - 420)
+          (1px * var(--offset) / 2) +
+            ((var(--offset) * 0.75) - var(--offset) / 2) * (100vw - 480px) /
+            (768 - 480)
         )
     );
   }
 
   /* Logo */
   .logo {
-    margin: calc((1px * 30) + (39 - 30) * (100vw - 420px) / (768 - 420)) 0;
-    height: calc((1px * 20) + (22 - 20) * (100vw - 420px) / (768 - 420));
+    margin: calc((1px * 30) + (39 - 30) * (100vw - 480px) / (768 - 480)) 0;
+    height: calc((1px * 20) + (22 - 20) * (100vw - 480px) / (768 - 480));
   }
 
   .logo a img {
-    width: calc((1px * 200) + (220 - 200) * (100vw - 420px) / (768 - 420));
+    width: calc((1px * 200) + (220 - 200) * (100vw - 480px) / (768 - 480));
   }
 
   /* Menu */
   .menu {
-    margin: calc((1px * 13) + (20 - 13) * (100vw - 420px) / (768 - 420)) 0;
-    height: calc((1px * 54) + (60 - 54) * (100vw - 420px) / (768 - 420));
+    margin: calc((1px * 13) + (20 - 13) * (100vw - 480px) / (768 - 480)) 0;
+    height: calc((1px * 54) + (60 - 54) * (100vw - 480px) / (768 - 480));
   }
 
   .menu button img,
   .menu button:active img {
-    width: calc((1px * 40) + (48 - 40) * (100vw - 420px) / (768 - 420));
-    padding: calc((1px * 4) + (6 - 4) * (100vw - 420px) / (768 - 420));
+    width: calc((1px * 40) + (48 - 40) * (100vw - 480px) / (768 - 480));
+    padding: calc((1px * 4) + (6 - 4) * (100vw - 480px) / (768 - 480));
   }
 }
 
-/* 420px */
-@media only screen and (max-width: 420px) {
+/* 480px */
+@media only screen and (max-width: 480px) {
   :root {
     --font-size: calc(1px * var(--min-font-size));
   }

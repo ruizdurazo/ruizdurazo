@@ -33,7 +33,7 @@ document.getElementById('menu-button').addEventListener('click', (event) => {
 document.addEventListener(
   'keydown',
   (event) => {
-    if (event.keyCode === 27) {
+    if (event.key === 'Escape') {
       if (document.getElementById('menu-svg').alt === 'Close') {
         document.getElementById('menu-button').click()
       }

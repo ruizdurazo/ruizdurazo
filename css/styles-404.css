@@ -5,7 +5,7 @@
 
 /* Content */
 #content {
-  max-width: var(--max-width-content);
+  max-width: var(--max-width-home);
   width: calc(100% - (1px * var(--offset)));
   margin: 0 auto;
   display: grid;

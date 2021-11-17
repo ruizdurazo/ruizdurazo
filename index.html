@@ -122,6 +122,7 @@
               src="/assets/images/hello2.png"
               id="hello"
               draggable="false"
+              alt="Hello"
             /><br /><a id="slideshow-anim" style="opacity: 1">
               I'm <u>Enrique</u></a
             >
@@ -167,14 +168,58 @@
           </div> -->
         <!-- </section> -->
 
-        <!-- Section - Blog -->
-        <section id="blog" class="blog">
+        <!-- Section - Summary -->
+        <section id="summary-section" class="summary-section">
           <hr class="sep" />
-          <h2 class="section--title">Blog</h2>
-          <div id="blog-posts" class="blog-posts">
-            <!-- <article class="blog-post">
-              <hr class="sep sep-blog" />
-              <a href="#" class="blog-post-thumbnail">
+          <div class="summary">
+            <div class="summary__text">
+              <h2 class="section--title">Summary</h2>
+              <p class="bold">Full-stack developer and designer.</p>
+              <p>
+                Nerding out about design, tech, real estate, housing, and
+                cities.
+              </p>
+              <p>Living in Zürich, Switzerland.</p>
+              <p>
+                Feel free to get in touch.
+                <a
+                  href="mailto:enrique@ruizdurazo.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="link"
+                  >Write me an email</a
+                >
+                or
+                <a
+                  href="https://twitter.com/ruizdurazo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="link"
+                  >say hi on Twitter</a
+                >.
+              </p>
+            </div>
+
+            <div class="summary__image">
+              <img
+                src="/assets/images/enrique.jpg"
+                draggable="false"
+                alt=""
+                width="330"
+                height="370"
+              />
+            </div>
+          </div>
+        </section>
+
+        <!-- Section - Notes -->
+        <section id="notes-section" class="notes-section">
+          <hr class="sep" />
+          <h2 class="section--title">Notes</h2>
+          <div id="notes" class="notes">
+            <!-- <article class="note">
+              <hr class="sep sep-note" />
+              <a href="#" class="note-thumbnail">
                 <img alt="" />
                 <div class="date-title-desc">
                   <small class="date">YYYY MONTH DD</small>
@@ -185,9 +230,9 @@
                 </div>
               </a>
             </article>
-            <article class="blog-post">
-              <hr class="sep sep-blog" />
-              <a href="#" class="blog-post-thumbnail">
+            <article class="note">
+              <hr class="sep sep-note" />
+              <a href="#" class="note-thumbnail">
                 <img alt="" />
                 <div class="date-title-desc">
                   <small class="date">YYYY MONTH DD</small>
@@ -198,9 +243,9 @@
                 </div>
               </a>
             </article>
-            <article class="blog-post">
-              <hr class="sep sep-blog" />
-              <a href="#" class="blog-post-default">
+            <article class="note">
+              <hr class="sep sep-note" />
+              <a href="#" class="note-default">
                 <div class="date-title-desc">
                   <small class="date">YYYY MONTH DD</small>
                   <div class="title-desc">
@@ -213,7 +258,7 @@
         </section>
 
         <!-- Section - Contact -->
-        <section id="contact" class="contact">
+        <section id="contact-section" class="contact-section">
           <hr class="sep" />
           <h2 class="section--title">Get in touch</h2>
           <div class="social-media">
@@ -273,9 +318,9 @@
 
     <!-- Scripts -->
     <script src="/js/navbar.js"></script>
-    <script src="/js/blog-posts.js"></script>
+    <script src="/js/notes.js"></script>
     <script>
-      // Blog posts parsing
+      // Notes parsing
 
       // Date format options
       const date_options = {
@@ -284,16 +329,20 @@
         day: 'numeric',
       }
 
-      if (posts) {
-        // add placeholder content awaiting blogPost data
+      notes
+        .sort((a, b) => (a.date > b.date ? 1 : b.date > a.date ? -1 : 0))
+        .reverse()
 
-        // document.getElementById('blog').setAttribute('style', 'display: auto;')
-        // document.getElementById('blog').innerHTML +=
+      if (notes) {
+        // add placeholder content awaiting note data
+
+        // document.getElementById('notes-section').setAttribute('style', 'display: auto;')
+        // document.getElementById('notes-section').innerHTML +=
         //   '<hr class="sep" />' +
-        //   '<h2>Blog</h2>' +
-        //   '<div id="blog-posts" class="blog-posts">' +
-        //   <!-- <div class="blog-post">
-        //   <hr class="sep sep-blog">
+        //   '<h2>Notes</h2>' +
+        //   '<div id="notes" class="notes">' +
+        //   <!-- <div class="note">
+        //   <hr class="sep sep-note">
         //   <a href="#" class="media-post">
         //     <img src="/assets/images/name.jpg" alt="">
         //     <small class="date">DATE</small>
@@ -303,8 +352,8 @@
         //     </div>
         //   </a>
         // </div> -->
-        //   <!-- <div class="blog-post">
-        //   <hr class="sep sep-blog">
+        //   <!-- <div class="note">
+        //   <hr class="sep sep-note">
         //   <a href="#" class="text-post">
         //     <small class="date">DATE</small>
         //     <div class="text">
@@ -314,17 +363,19 @@
         // </div> -->
         // '</div>' +
 
-        posts.forEach((post) => {
-          // fetch('/blog/' + post.folder + '/index.md') :(
-          fetch(
-            'https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/blog/' +
-              post.folder +
-              '/index.md'
-          )
+        notes.forEach((note) => {
+          // Local
+          fetch('/notes/' + note.folder + '/index.md')
+            // Prod
+            // fetch(
+            //   'https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/notes/' +
+            //     note.folder +
+            //     '/index.md'
+            // )
             .then((response) => response.text())
             .then((text) => {
-              // Clear blogPost object
-              let blogPost = {}
+              // Clear note object
+              let item = {}
 
               // Check if document has 'meta'
               if (text.startsWith('---')) {
@@ -339,101 +390,101 @@
                   me.forEach((prop) => {
                     if (prop.startsWith('title:')) {
                       // Title
-                      blogPost.title = prop.split(':')[1].trim()
+                      item.title = prop.split(':')[1].trim()
                     } else if (prop.startsWith('date:')) {
                       // Date
-                      blogPost.date = new Date(prop.split(':')[1].trim())
+                      item.date = new Date(prop.split(':')[1].trim())
                     } else if (prop.startsWith('description_short:')) {
                       // Short Description
-                      blogPost.description_short = prop.split(':')[1].trim()
+                      item.description_short = prop.split(':')[1].trim()
                     } else if (prop.startsWith('description_long:')) {
                       // Long Description
-                      blogPost.description_long = prop.split(':')[1].trim()
+                      item.description_long = prop.split(':')[1].trim()
                     } else if (prop.startsWith('image:')) {
                       // Image
-                      blogPost.image = prop.split(':')[1].trim()
+                      item.image = prop.split(':')[1].trim()
                     } else if (prop.startsWith('image_alt:')) {
                       // Image alt
-                      blogPost.image_alt = prop.split(':')[1].trim()
+                      item.image_alt = prop.split(':')[1].trim()
                     } else if (prop.startsWith('highlight:')) {
                       // Highlight
-                      blogPost.highlight = prop.split(':')[1].trim()
+                      item.highlight = prop.split(':')[1].trim()
                     } else if (prop.startsWith('author_name:')) {
                       // Author Name
-                      blogPost.author_name = prop.split(':')[1].trim()
+                      item.author_name = prop.split(':')[1].trim()
                     } else if (prop.startsWith('author_email:')) {
                       // Author Email
-                      blogPost.author_email = prop.split(':')[1].trim()
+                      item.author_email = prop.split(':')[1].trim()
                     } else if (prop.startsWith('author_twitter:')) {
                       // Author Twitter
-                      blogPost.author_twitter = prop.split(':')[1].trim()
+                      item.author_twitter = prop.split(':')[1].trim()
                     }
                   })
 
-                  // Once 'blogPost' props are found, create html elements...
-                  if (post.thumbnail) {
+                  // Once 'note' props are found, create html elements...
+                  if (note.thumbnail) {
                     // /!\ Must remove x child and place in x index to replace placeholder content
 
                     // Media post
-                    document.getElementById('blog-posts').innerHTML +=
-                      '<article class="blog-post" id="' +
-                      post.folder +
+                    document.getElementById('notes').innerHTML +=
+                      '<article class="note" id="' +
+                      note.folder +
                       '">' +
-                      // '<hr class="sep sep-blog">' +
-                      '<a href="/blog/' +
-                      post.folder +
+                      // '<hr class="sep sep-note">' +
+                      '<a href="/notes/' +
+                      note.folder +
                       '" class="media-post">' +
-                      // '<img src="/blog/' + post + '/assets/images/' + blogPost.image + '" alt="' + blogPost.image_alt + '">' +
+                      // '<img src="/note/' + note + '/assets/images/' + note.image + '" alt="' + note.image_alt + '">' +
                       '<img src="' +
-                      blogPost.image +
+                      item.image +
                       '" alt="' +
-                      blogPost.image_alt +
+                      item.image_alt +
                       '">' +
-                      // '<hr class="sep sep-blog">' +
+                      // '<hr class="sep sep-note">' +
                       '<small class="date">' +
-                      blogPost.date.getFullYear() +
+                      item.date.getFullYear() +
                       ' ' +
                       new Intl.DateTimeFormat('en-US', { month: 'long' })
-                        .format(blogPost.date)
+                        .format(item.date)
                         .toUpperCase() +
                       ' ' +
-                      blogPost.date.getDate() +
+                      item.date.getDate() +
                       ' ' +
                       '</small>' +
                       '<div class="text">' +
                       '<span class="title">' +
-                      blogPost.title +
+                      item.title +
                       '</span>' +
                       '<span class="description">' +
-                      blogPost.description_short +
+                      item.description_short +
                       '</span>' +
                       '</div>' +
                       '</a>' +
                       '</article>'
                   } else {
                     // Text post
-                    document.getElementById('blog-posts').innerHTML +=
-                      '<article class="blog-post" id="' +
-                      post.folder +
+                    document.getElementById('notes').innerHTML +=
+                      '<article class="note" id="' +
+                      note.folder +
                       '">' +
-                      '<hr class="sep-blog">' +
-                      '<a href="/blog/' +
-                      post.folder +
-                      '" class="blog-post-default">' +
+                      '<hr class="sep-note">' +
+                      '<a href="/notes/' +
+                      note.folder +
+                      '" class="note-default">' +
                       '<div class="date-title-desc">' +
                       '<small class="date">' +
-                      new Date(blogPost.date).getFullYear() +
+                      new Date(item.date).getFullYear() +
                       ' ' +
                       new Intl.DateTimeFormat('en-US', { month: 'long' })
-                        .format(blogPost.date)
+                        .format(item.date)
                         .toUpperCase() +
                       ' ' +
-                      new Date(blogPost.date).getDate() +
+                      new Date(item.date).getDate() +
                       ' ' +
                       '</small>' +
                       '<div class="title-desc">' +
                       '<span class="title">' +
-                      blogPost.title +
+                      item.title +
                       '</span>' +
                       '</div>' +
                       '</div>' +
@@ -641,16 +692,33 @@
         {
           text: `
             <p>
+              <a href="mailto:enrique@ruizdurazo.com" target="_blank"
+                >Email</a
+              >
+            </p>
+            <p>
               <a href="https://twitter.com/ruizdurazo" target="_blank"
                 >Twitter</a
               >
             </p>
             <p>
-              <a href="https://github.com/ruizdurazo" target="_blank">GitHub</a
+              <a href="https://github.com/ruizdurazo" target="_blank"
+                >GitHub</a
+              >
+            </p>
+            <p>
+              <a href="/lol"
+                >LinkedIn</a
               >
             </p>
           `,
           bgColor: 'white',
+        },
+        {
+          text: `
+          <p>OMG you clicked the button!</p>
+          `,
+          bgColor: 'black',
         },
       ]
 
@@ -813,13 +881,13 @@
         'keydown',
         (event) => {
           // left
-          if (event.keyCode === 37 || event.code === 'ArrowLeft') {
+          if (event.key === 'ArrowLeft') {
             back()
             // right
-          } else if (event.keyCode === 39 || event.code === 'ArrowRight') {
+          } else if (event.key === 'ArrowRight') {
             next()
             // escape
-          } else if (event.keyCode === 27 || event.code === 'Enter') {
+          } else if (event.key === 'Escape') {
             if (document.getElementById('more--close')) {
               document.getElementById('more--close').click()
             }
