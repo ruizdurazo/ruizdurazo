@@ -1038,9 +1038,49 @@ fetch(
       window.location.href = window.location.href
     }
 
-    // Highlight.js for syntax highlighting in code blocks
-    // hljs.initHighlighting()
-    // hljs.configure({ classPrefix: 'line ' })
-    // hljs.configure({ cssSelector: 'pre code line' })
-    // hljs.highlight()
+    // Dump: For extracting metadata
+    // if (text.startsWith('---')) {
+    //   let m = /---[^]*?---/
+    //   let meta = text.match(m)
+    //   if (meta) {
+    //     // If meta found, split on new lines
+    //     let me = meta[0].trim().split('\n')
+    //     me.shift()
+    //     me.pop()
+    //     // Iterate through meta properties
+    //     me.forEach((prop) => {
+    //       if (prop.startsWith('title:')) {
+    //         // Title
+    //         item.title = prop.split(':')[1].trim()
+    //       } else if (prop.startsWith('date:')) {
+    //         // Date
+    //         item.date = new Date(prop.split(':')[1].trim())
+    //       } else if (prop.startsWith('description_short:')) {
+    //         // Short Description
+    //         item.description_short = prop.split(':')[1].trim()
+    //       } else if (prop.startsWith('description_long:')) {
+    //         // Long Description
+    //         item.description_long = prop.split(':')[1].trim()
+    //       } else if (prop.startsWith('image:')) {
+    //         // Image
+    //         item.image = prop.split(':')[1].trim()
+    //       } else if (prop.startsWith('image_alt:')) {
+    //         // Image alt
+    //         item.image_alt = prop.split(':')[1].trim()
+    //       } else if (prop.startsWith('highlight:')) {
+    //         // Highlight
+    //         item.highlight = prop.split(':')[1].trim()
+    //       } else if (prop.startsWith('author_name:')) {
+    //         // Author Name
+    //         item.author_name = prop.split(':')[1].trim()
+    //       } else if (prop.startsWith('author_email:')) {
+    //         // Author Email
+    //         item.author_email = prop.split(':')[1].trim()
+    //       } else if (prop.startsWith('author_twitter:')) {
+    //         // Author Twitter
+    //         item.author_twitter = prop.split(':')[1].trim()
+    //       }
+    //     })
+    //   }
+    // }
   })

@@ -364,137 +364,75 @@
         // '</div>' +
 
         notes.forEach((note) => {
-          // Local
-          // fetch('/notes/' + note.folder + '/index.md')
-
-          // Prod
-          fetch(
-            'https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/notes/' +
+          // Create html elements for notes
+          // Either: 1) normal text post or 2) media post with thumbnail image
+          if (note.thumbnail) {
+            // Media post
+            document.getElementById('notes').innerHTML +=
+              '<article class="note" id="' +
               note.folder +
-              '/index.md'
-          )
-            .then((response) => response.text())
-            .then((text) => {
-              // Clear note object
-              let item = {}
-
-              // Check if document has 'meta'
-              if (text.startsWith('---')) {
-                let m = /---[^]*?---/
-                let meta = text.match(m)
-                if (meta) {
-                  // If meta found, split on new lines
-                  let me = meta[0].trim().split('\n')
-                  me.shift()
-                  me.pop()
-                  // Iterate through meta properties
-                  me.forEach((prop) => {
-                    if (prop.startsWith('title:')) {
-                      // Title
-                      item.title = prop.split(':')[1].trim()
-                    } else if (prop.startsWith('date:')) {
-                      // Date
-                      item.date = new Date(prop.split(':')[1].trim())
-                    } else if (prop.startsWith('description_short:')) {
-                      // Short Description
-                      item.description_short = prop.split(':')[1].trim()
-                    } else if (prop.startsWith('description_long:')) {
-                      // Long Description
-                      item.description_long = prop.split(':')[1].trim()
-                    } else if (prop.startsWith('image:')) {
-                      // Image
-                      item.image = prop.split(':')[1].trim()
-                    } else if (prop.startsWith('image_alt:')) {
-                      // Image alt
-                      item.image_alt = prop.split(':')[1].trim()
-                    } else if (prop.startsWith('highlight:')) {
-                      // Highlight
-                      item.highlight = prop.split(':')[1].trim()
-                    } else if (prop.startsWith('author_name:')) {
-                      // Author Name
-                      item.author_name = prop.split(':')[1].trim()
-                    } else if (prop.startsWith('author_email:')) {
-                      // Author Email
-                      item.author_email = prop.split(':')[1].trim()
-                    } else if (prop.startsWith('author_twitter:')) {
-                      // Author Twitter
-                      item.author_twitter = prop.split(':')[1].trim()
-                    }
-                  })
-
-                  // Once 'note' props are found, create html elements...
-                  if (note.thumbnail) {
-                    // /!\ Must remove x child and place in x index to replace placeholder content
-
-                    // Media post
-                    document.getElementById('notes').innerHTML +=
-                      '<article class="note" id="' +
-                      note.folder +
-                      '">' +
-                      // '<hr class="sep sep-note">' +
-                      '<a href="/notes/' +
-                      note.folder +
-                      '" class="media-post">' +
-                      // '<img src="/note/' + note + '/assets/images/' + note.image + '" alt="' + note.image_alt + '">' +
-                      '<img src="' +
-                      item.image +
-                      '" alt="' +
-                      item.image_alt +
-                      '">' +
-                      // '<hr class="sep sep-note">' +
-                      '<small class="date">' +
-                      item.date.getFullYear() +
-                      ' ' +
-                      new Intl.DateTimeFormat('en-US', { month: 'long' })
-                        .format(item.date)
-                        .toUpperCase() +
-                      ' ' +
-                      item.date.getDate() +
-                      ' ' +
-                      '</small>' +
-                      '<div class="text">' +
-                      '<span class="title">' +
-                      item.title +
-                      '</span>' +
-                      '<span class="description">' +
-                      item.description_short +
-                      '</span>' +
-                      '</div>' +
-                      '</a>' +
-                      '</article>'
-                  } else {
-                    // Text post
-                    document.getElementById('notes').innerHTML +=
-                      '<article class="note" id="' +
-                      note.folder +
-                      '">' +
-                      '<hr class="sep-note">' +
-                      '<a href="/notes/' +
-                      note.folder +
-                      '" class="note-default">' +
-                      '<div class="date-title-desc">' +
-                      '<small class="date">' +
-                      new Date(item.date).getFullYear() +
-                      ' ' +
-                      new Intl.DateTimeFormat('en-US', { month: 'long' })
-                        .format(item.date)
-                        .toUpperCase() +
-                      ' ' +
-                      new Date(item.date).getDate() +
-                      ' ' +
-                      '</small>' +
-                      '<div class="title-desc">' +
-                      '<span class="title">' +
-                      item.title +
-                      '</span>' +
-                      '</div>' +
-                      '</div>' +
-                      '</a>' +
-                      '</article>'
-                  }
-                }
-              }
-            })
+              '">' +
+              // '<hr class="sep sep-note">' +
+              '<a href="/notes/' +
+              note.folder +
+              '" class="media-post">' +
+              // '<img src="/note/' + note + '/assets/images/' + note.image + '" alt="' + note.image_alt + '">' +
+              '<img src="' +
+              note.thumbnailImage +
+              '" alt="' +
+              note.thumbnailImageAlt +
+              '">' +
+              // '<hr class="sep sep-note">' +
+              '<small class="date">' +
+              new Date(note.date).getFullYear() +
+              ' ' +
+              new Intl.DateTimeFormat('en-US', { month: 'long' })
+                .format(new Date(note.date))
+                .toUpperCase() +
+              ' ' +
+              new Date(note.date).getDate() +
+              ' ' +
+              '</small>' +
+              '<div class="text">' +
+              '<span class="title">' +
+              note.title +
+              '</span>' +
+              '<span class="description">' +
+              note.description +
+              '</span>' +
+              '</div>' +
+              '</a>' +
+              '</article>'
+          } else {
+            // Text post
+            document.getElementById('notes').innerHTML +=
+              '<article class="note" id="' +
+              note.folder +
+              '">' +
+              '<hr class="sep-note">' +
+              '<a href="/notes/' +
+              note.folder +
+              '" class="note-default">' +
+              '<div class="date-title-desc">' +
+              '<small class="date">' +
+              new Date(note.date).getFullYear() +
+              ' ' +
+              new Intl.DateTimeFormat('en-US', { month: 'long' })
+                .format(new Date(note.date))
+                .toUpperCase() +
+              ' ' +
+              new Date(note.date).getDate() +
+              ' ' +
+              '</small>' +
+              '<div class="title-desc">' +
+              '<span class="title">' +
+              note.title +
+              '</span>' +
+              '</div>' +
+              '</div>' +
+              '</a>' +
+              '</article>'
+          }
         })
       }
     </script>
