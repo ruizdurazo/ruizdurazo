@@ -78,8 +78,8 @@
 
 @font-face {
   font-family: 'Charter';
-  src: url('../assets/fonts/Charter-Regular.woff') format('woff'),
-    url('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/assets/fonts/Charter-Regular.woff')
+  src: url('../assets/fonts/charter-regular.woff') format('woff'),
+    url('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/assets/fonts/charter-regular.woff')
       format('woff');
   font-weight: 400;
   font-style: normal;
@@ -87,8 +87,8 @@
 
 @font-face {
   font-family: 'Menlo';
-  src: url('../assets/fonts/Menlo-Regular.woff') format('woff'),
-    url('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/assets/fonts/Menlo-Regular.woff')
+  src: url('../assets/fonts/menlo-regular.woff') format('woff'),
+    url('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/assets/fonts/menlo-regular.woff')
       format('woff');
   font-weight: 400;
   font-style: normal;
