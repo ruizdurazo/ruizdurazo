@@ -30,7 +30,7 @@ pipe =
     fns.reduce((v, f) => f(v), x)
 
 // Placeholder for fetch url
-let url = ''
+let url = document.location.href
 
 // Account for 'index.html'
 let pathname = document.location.pathname
