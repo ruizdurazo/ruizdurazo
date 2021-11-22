@@ -149,14 +149,17 @@ h1 {
   margin: 0 auto calc(var(--font-size) * 1) auto;
   padding-top: calc(var(--font-size) * 4);
   letter-spacing: 0;
+  scroll-margin-top: calc(var(--font-size) * 1);
 }
 
 .h2 {
-  font-size: calc(var(--font-size) * 1.5);
+  /* font-size: calc(var(--font-size) * 1.5); */
+  font-size: calc(var(--font-size) * 1.4);
 }
 
 .h3 {
-  font-size: calc(var(--font-size) * 1.25);
+  font-size: calc(var(--font-size) * 1.2);
+  /* font-size: calc(var(--font-size) * 1.25); */
 }
 
 .h4 {
@@ -509,7 +512,8 @@ br {
 /* Nope - Emoji */
 #nope {
   display: inline-block;
-  height: calc(var(--font-size) * 3.6);
+  /* height: calc(var(--font-size) * 3.6); */
+  height: calc(var(--font-size) * 3.45);
 }
 
 /* Further reading */
@@ -616,6 +620,9 @@ br {
   h1 {
     font-size: calc((60px) + (69 - 60) * (100vw - 768px) / (1040 - 768));
   }
+  #nope {
+    height: calc((60px) + (69 - 60) * (100vw - 768px) / (1040 - 768));
+  }
 }
 
 /* 780px */
@@ -700,7 +707,12 @@ br {
 
   h1 {
     font-size: calc(
-      (2px * var(--min-font-size)) + (60 - 32) * (100vw - 480px) / (768 - 480)
+      (2px * var(--min-font-size)) + (60 - 40) * (100vw - 480px) / (768 - 480)
+    );
+  }
+  #nope {
+    height: calc(
+      (2px * var(--min-font-size)) + (60 - 40) * (100vw - 480px) / (768 - 480)
     );
   }
 
@@ -816,7 +828,10 @@ br {
   }
 
   h1 {
-    font-size: calc(2px * var(--min-font-size));
+    font-size: calc(2.5px * var(--min-font-size));
+  }
+  #nope {
+    height: calc(2.5px * var(--min-font-size));
   }
 
   .h2,

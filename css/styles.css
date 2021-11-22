@@ -55,6 +55,7 @@
   --font-size: 20px;
   --max-font-size: 20;
   --min-font-size: 16;
+  /* --min-font-size: 16; */
   --font-size-1_2: calc(var(--font-size) * 1.2);
   --font-size-1_5: calc(var(--font-size) * 1.5);
   --font-size-1_8: calc(var(--font-size) * 1.8);
@@ -225,7 +226,7 @@
 
 /* List of languages */
 .lang-list {
-  margin-top: 10vh;
+  margin-top: 5vh;
   display: flex;
   flex-direction: column;
 }
@@ -233,7 +234,7 @@
 .lang {
   display: inline-block;
   position: relative;
-  margin: 5vh auto;
+  margin: 4vh auto;
   text-align: center;
   letter-spacing: 0.02em;
   /*  */
@@ -371,7 +372,8 @@
 /* 480px */
 @media only screen and (max-width: 480px) {
   :root {
-    --font-size: calc(1px * var(--min-font-size));
+    /* --font-size: calc(1px * var(--min-font-size)); */
+    --font-size: calc(1.125px * var(--min-font-size));
   }
 
   .navbar--elements,

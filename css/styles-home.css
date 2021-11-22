@@ -742,11 +742,14 @@ p {
   h1,
   #slideshow-anim,
   #slideshow-anim u {
-    font-size: calc(2.5px * var(--min-font-size));
+    /* font-size: calc(2.5px * var(--min-font-size)); */
+    font-size: calc(3px * var(--min-font-size));
   }
 
   #hello {
-    height: calc(2.2px * var(--min-font-size));
+    height: calc(3px * var(--min-font-size));
+    /* height: calc(2.5px * var(--min-font-size)); */
+    /* height: calc(2.2px * var(--min-font-size)); */
   }
 
   #slideshow-anim u {
