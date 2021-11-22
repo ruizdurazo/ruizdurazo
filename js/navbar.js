@@ -12,6 +12,7 @@ document.getElementById('menu-button').addEventListener('click', (event) => {
       .setAttribute('style', 'max-height: 100vh;')
     document.getElementById('menu-overlay').innerHTML =
       '<div class="lang-list">' +
+      '<a class="lang lang-current" href="/">Home</a>' +
       '<a class="lang lang-current" href="mailto:enrique@ruizdurazo.com" target="_blank">Email</a>' +
       '<a class="lang lang-current" href="https://twitter.com/ruizdurazo" target="_blank">Twitter</a>' +
       '<a class="lang lang-current" href="https://github.com/ruizdurazo" target="_blank">GitHub</a>' +
