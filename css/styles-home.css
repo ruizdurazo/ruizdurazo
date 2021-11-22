@@ -41,6 +41,48 @@ h1 span,
 
 /* Animations */
 /*  */
+@keyframes fade-in {
+  from {
+    /* visibility: hidden; */
+    opacity: 0;
+  }
+  /* 1% {
+    opacity: 0;
+  } */
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+    /* transform: translateY(0); */
+  }
+  /* 99% {
+    opacity: 0;
+    transform: translateY(-30%);
+  } */
+  to {
+    /* visibility: hidden; */
+    opacity: 0;
+    /* transform: translateY(-30%); */
+  }
+}
+
+#slideshow-anim {
+  opacity: 1;
+}
+
+#slideshow-anim.fade-out {
+  -webkit-animation: fade-out 0.5s ease-in-out both;
+  animation: fade-out 0.5s ease-in-out both;
+}
+
+#slideshow-anim.fade-in {
+  -webkit-animation: fade-in 0.5s ease-in-out both;
+  animation: fade-in 0.5s ease-in-out both;
+}
 
 /* Learn More */
 .learn-more,

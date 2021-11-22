@@ -131,9 +131,7 @@
               height="160"
             />
             <br />
-            <span id="slideshow-anim" style="opacity: 1">
-              I'm <u>Enrique</u></span
-            >
+            <span id="slideshow-anim">I'm <u>Enrique</u></span>
           </h1>
           <button id="learn-more" class="learn-more">Don't click here</button>
         </section>
@@ -462,11 +460,6 @@
         })
       }
     </script>
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.js"
-      integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-      crossorigin="anonymous"
-    ></script>
     <script>
       // https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/
 
@@ -483,27 +476,27 @@
       ]
 
       // Get location to render, number of words
-      const word_element = $('#slideshow-anim')
-      // const word_element = document.getElementById('#slideshow-anim')
+      const word_element = document.getElementById('slideshow-anim')
       let word_count = words.length
 
       // Animation settings
       let anim_delay = 3500 //ms
-      let anim_duration = 500 //ms // will be set in css
+      let anim_duration = 500 //ms
       let num = 0 // counter
 
       // Animation function
-      // document.addEventListener('DOMContentLoaded', function (event) {
-      //   do stuff
-      // })
-      $(document).ready(() => {
+      document.addEventListener('DOMContentLoaded', function (event) {
         setInterval(() => {
           num++
           // add outro class to current word
-          word_element.fadeOut(anim_duration, () => {
-            // replace innerhtml of word, add intro class to new word
-            word_element.html(words[num % word_count]).fadeIn(anim_duration)
-          })
+          word_element.classList.add('fade-out')
+          // replace innerhtml of word, add intro class to new word
+          setTimeout(() => {
+            word_element.classList.remove('fade-out')
+            word_element.innerHTML = words[num % word_count]
+            word_element.classList.add('fade-in')
+          }, anim_duration)
+          word_element.classList.remove('fade-in')
         }, anim_delay)
       })
 
