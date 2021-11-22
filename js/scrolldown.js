@@ -29,20 +29,24 @@ pipe =
   (x) =>
     fns.reduce((v, f) => f(v), x)
 
-// Fetch the Markdown document and parse it
-let url = document.location.pathname
-if (url.endsWith('index.html')) {
-  url = url.slice(0, -10)
-}
-// Local
-// fetch('index.md')
+// Placeholder for fetch url
+let url = ''
 
-// Prod
-fetch(
-  'https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master' +
-    url +
-    'index.md'
-)
+// Account for 'index.html'
+let pathname = document.location.pathname
+if (pathname.endsWith('index.html')) {
+  pathname = pathname.slice(0, -10)
+}
+
+// Account for 'local' vs 'prod'
+if (url.startsWith('https://ruizdurazo.com')) {
+  url = `https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master${pathname}index.md`
+} else {
+  url = `http://127.0.0.1:5500${pathname}index.md`
+}
+
+// Fetch the Markdown document and parse it
+fetch(url)
   .then((response) => response.text())
   .then((text) => {
     // First fetch the document, and extract the text lines
@@ -462,14 +466,43 @@ fetch(
       return out
     }
 
+    // Code
+    code = (element) => {
+      //
+      let out
+      let match = element.match(/\u0060[^]*?\u0060/g)
+      if (match) {
+        match.forEach((i) => {
+          let code_element =
+            '<code class="code">' +
+            i.slice(1, -1).replace(/\</g, '&lt;').replace(/\>/g, '&gt;') +
+            '</code>'
+          element = element.replace(i, code_element)
+          out = element
+        })
+      } else {
+        out = element
+      }
+      return out
+    }
+
     // Anchors
     a = (element) => {
       // Check for pattern
       // If it exists, create external links and anchor links
       // Important to detect <em> and <strong> elements if url had underscores
       let out
-      let match = element.match(/\[[^]*?\)/g)
+      // let match = element.match(/\[[^]*?\)/g)
+      // let match = element.match(/\[[^]\]\(*?\)/g)
+      // let match = element.match(/\[[^]\(*?\)/g)
+      let match = element.match(/\[[^]*?\](\([^]*?\))/g)
+      // let match = element.match(/\[([^\[]+)\](\(.*\))/gm)
+      // let match = element.match(/\[([^\[]+)\](\(.*\))/g)
+      // let match = element.match(
+      //   /(?<!\(\s*\S+)_([^_]+)_(?!\S+(?:\s+"[^"]")\s*\))/g
+      // )
       if (match) {
+        // console.log(match)
         match.forEach((i) => {
           let a_element
           // Turn string => "[text](link "title")"
@@ -554,26 +587,6 @@ fetch(
     //   }
     //   return out
     // }
-
-    // Code
-    code = (element) => {
-      //
-      let out
-      let match = element.match(/\u0060[^]*?\u0060/g)
-      if (match) {
-        match.forEach((i) => {
-          let code_element =
-            '<code class="code">' +
-            i.slice(1, -1).replace(/\</g, '&lt;').replace(/\>/g, '&gt;') +
-            '</code>'
-          element = element.replace(i, code_element)
-          out = element
-        })
-      } else {
-        out = element
-      }
-      return out
-    }
 
     // Bold
     strong = (element) => {
