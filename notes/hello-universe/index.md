@@ -140,7 +140,7 @@ Admittedly, it took _waaay_ longer to get up and running than anticipated. But a
 
 For now, it's ready. Ready for me to start writing.
 
-Enter this note.
+Enter this first post.
 
 It was my way of breaking the ice, and saying hello. 👋
 
@@ -154,4 +154,6 @@ print('Hello, Universe. ✌️')
 
 ---
 
-P.S. — On comments. I don’t like blog posts with comments. They make me cringe. So there will be no comments here. If you’d like to applaud me, shout at me, or just talk, do that on [Twitter](https://twitter.com/ruizdurazo) or send me an [email](mailto:enrique@ruizdurazo.com).
+P.S. — On comments. I don’t like blog posts with comments. They make me cringe. So there will be no comments here.
+
+If you’d like to applaud me, shout at me, or just talk, [DM me on Twitter](https://twitter.com/ruizdurazo) or [send me an email](mailto:enrique@ruizdurazo.com).

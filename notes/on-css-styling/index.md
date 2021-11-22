@@ -14,11 +14,9 @@ further_reading: true
 _:
 ---
 
-<!-- ## Snippets -->
-
 <!-- --- -->
 
-### CSS: Hide scrollbars
+## CSS: How to hide scrollbars
 
 ```scss
 .scroll {
@@ -35,7 +33,7 @@ _:
 
 <!-- --- -->
 
-### CSS: Sticky elements
+## CSS: How to create sticky elements: Sticky
 
 Be aware of the difference between `fixed` and `sticky`.
 
@@ -81,7 +79,20 @@ Also, `sticky` is tied directly to its parent container, and not some grandparen
 
 <!-- --- -->
 
-### CSS: Handling focus with :focus-visible
+## CSS: How to add scroll margings to elements: scroll-margin-top
+
+Usually, websites might have fixed navbars or other elements. When using anchors to scroll to a section of the page (using an href with a pound sign `#`), the navbar might overlap the element. This might be a problem especially if the element is a heading and it's hidden. You can account for this using `scroll-margin-top`.
+
+```css
+/* Add scroll margings */
+.some-element {
+  scroll-margin-top: 100px;
+}
+```
+
+<!-- --- -->
+
+## CSS: How to handle focus with :focus-visible
 
 Only show `:focus` ring with keyboard navigation, not with clicks or taps.
 
@@ -105,7 +116,7 @@ Only show `:focus` ring with keyboard navigation, not with clicks or taps.
 
 <!-- --- -->
 
-### CSS: Transitions and animations
+## CSS: How to do animations: Transition, Animation
 
 Not all CSS attributes can be animated (e.g. `background` can't, but `background-color` can, `width` can't, but `max-width` can).
 
@@ -150,7 +161,7 @@ It is less performant to animate **margins** and **paddings**.
 
 <!-- --- -->
 
-### CSS: Flexbox fill children's height to parent
+## CSS: How to fill a child's height to its parent: Flex stretch
 
 Use `align-items: stretch` to do this.
 
@@ -168,7 +179,7 @@ Use `align-items: stretch` to do this.
 
 <!-- --- -->
 
-### CSS: Add ellipsis for text overflows
+## CSS: How to add ellipsis for text overflows
 
 **Warning**: CSS ellipsis only works for a single line of text.
 
@@ -184,7 +195,7 @@ For multiple lines, JavaScript is needed.
 
 <!-- --- -->
 
-### HTML: Setting break points for words and lines
+## HTML: How to set break points for words and lines
 
 Three main options:
 
@@ -205,7 +216,7 @@ Three main options:
 
 <!-- --- -->
 
-### HTML: Ampersands (&)
+## HTML: Ampersands (&)
 
 Use `&amp;amp;` for adding an ampersand (&).
 
@@ -217,7 +228,7 @@ The ampersand is a special character in HTML.
 
 <!-- --- -->
 
-### HTML: Other special HTML characters
+## HTML: Other special HTML characters
 
 `"` is replaced with `&&shy;quot;`
 
@@ -230,3 +241,7 @@ And there are many other HTML codes that can be used:
 `©` is replaced with `&&shy;copy;`
 
 `↗` is replaced with `&&shy;nearr;`
+
+---
+
+If you’d like to get in touch, [DM me on Twitter](https://twitter.com/ruizdurazo) or [send me an email](mailto:enrique@ruizdurazo.com).

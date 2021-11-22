@@ -14,16 +14,19 @@ further_reading: true
 _:
 ---
 
-<!-- ## Snippets -->
-
 <!-- --- -->
 
-### JS: Ternary operators (If/else assignment on a single line)
+## JS: How to do if/else statements on a single line: Ternary operators
 
 ```js
-const someValue = 3
+// Ternary operators use a condition followed by a question mark (?),
+// and the two values separated by a colon (trueValue : falseValue)
 
-// Example: const result = (something that evaluates to a bool) ? trueValue : falseValue
+// Example in pseudocode:
+// const result = (something that evaluates to a bool) ? trueValue : falseValue
+
+// Real example:
+const someValue = 3
 const result = someValue > 5 ? 'Yes' : 'No'
 
 console.log(result)
@@ -32,7 +35,7 @@ console.log(result)
 
 <!-- --- -->
 
-### JS: Every, Some (check truthiness of items in an Array)
+## JS: How to check truthiness of items in an Array: Every, Some
 
 ```js
 const nums = [10, 20, 50]
@@ -51,14 +54,20 @@ console.log(resultEvery)
 
 <!-- --- -->
 
-### JS: Filter arrays based on some condition
+## JS: How to filter arrays based on some condition: Filter
 
-Filter is a method that arrays have. You provide a callback that will be executed for every item in the array. It can be an arrow function or a function define elsewhere, but it should obviously resolve to a boolean: true or false.
+Filter is a method that arrays have. You provide a callback that will be executed for every item in the array. It can be an arrow function or a function define elsewhere, but it should obviously resolve to a boolean: true or false. All elements that are false will be dropped in the resulting array.
 
 ```js
 // Array of objects
-const words = [{ word: 'spray' }, { word: 'juice' }, { word: 'boop' }]
+const words = [
+  //
+  { word: 'spray' },
+  { word: 'juice' },
+  { word: 'boop' },
+]
 
+// Filter items
 const result = words.filter((word) => word.word === 'boop')
 
 console.log(result)
@@ -67,7 +76,15 @@ console.log(result)
 
 ```js
 // Array of strings
-const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present']
+const words = [
+  //
+  'spray',
+  'limit',
+  'elite',
+  'exuberant',
+  'destruction',
+  'present',
+]
 
 const result = words.filter((word) => word.length > 6)
 
@@ -77,7 +94,7 @@ console.log(result)
 
 ```js
 // Array of numbers
-const nums = [10, 20, 50]
+const nums = [2, 5, 10, 20, 50]
 
 const result = nums.filter((num) => num > 16)
 
@@ -87,10 +104,10 @@ console.log(result)
 
 <!-- --- -->
 
-### JS: Strings with template literals ${}
+## JS: How to join strings with template literals: ${}
 
 ```js
-// Use ${} within backticks
+// Use dollar sign and curly brackets within backticks `${}`
 
 const foo = `string text ${someVariable} string text`
 
@@ -101,22 +118,76 @@ const baz = `Your total is: ${sum(a, b)}`
 
 <!-- --- -->
 
-### JS: Transforming items in an array without using for loops
+## JS: How to add items to or replace items in an Array or Object: Spread syntax
+
+```js
+// Ellipsis (...), and then add the data
+
+// Spread syntax for an array
+// A way to concatenate data:
+const items = [...someData, someItem, anotherItem]
+```
+
+```js
+// Spread syntax for an object
+// If the key already exists, it's value will be overwritten
+const otherItems = {
+  ...someData,
+  something: 'hello',
+  somethingElse: 10,
+}
+```
+
+<!-- --- -->
+
+## JS: How to extract items from an Array or Object in a single line: Destructuring
+
+Destructuring is a complex topic, but these are the basics:
+
+```js
+// Example array
+const foo = ['one', 'two', 'three']
+
+// Destructuring for an array
+// Extract one or more values (in order)
+const [red, yellow, green] = foo
+
+// Example object
+const user = {
+  id: 42,
+  isVerified: true,
+}
+```
+
+```js
+// Destructuring for an object
+// Extract one or more values (based on keys)
+const { id, isVerified } = user
+
+// Rename key to `somethingElse`
+const { id: somethingElse } = user
+```
+
+<!-- --- -->
+
+## JS: How to transform items in an array without using for loops: Map
 
 ```js
 // Instead of using a for loop or forEach(), use array mapping
+// map() takes a callback to apply to each item
 
-const items = [...someData]
+const items = [something, somethingElse, some]
 
 const itemsTransformed = items.map((item) => someMethod(item))
 ```
 
 <!-- --- -->
 
-### JS: Sorting a simple array
+## JS: How to sort simple arrays: Sort
 
 ```js
-// Sorting an array or strings or numbers
+// Sorting an array of strings
+// Default sort order is ascending
 
 const example = ['abc', 'xyz', 'sdf']
 
@@ -124,9 +195,18 @@ example.sort()
 // Expected output: Array ['abc', 'sdf', 'xyz']
 ```
 
+```js
+// Sorting an array of numbers
+
+const example = [10, 4, 25]
+
+example.sort()
+// Expected output: Array [4, 10, 25]
+```
+
 <!-- --- -->
 
-### JS: Sorting an array of objects
+## JS: How to sort an array of objects: Sort
 
 ```js
 // Instead of using a for loop or forEach(), use sort + a callback,
@@ -141,7 +221,7 @@ objs.sort((a, b) =>
 
 <!-- --- -->
 
-### JS: Sorting an object
+## JS: How to sort an object: Sort
 
 ```js
 // Instead of using a for loop or forEach(), use sort + a callback,
@@ -157,3 +237,17 @@ Object.keys(obj).sort(function (a, b) {
   return obj[a] - obj[b]
 })
 ```
+
+<!-- --- -->
+
+## JS: How to copy text to the clipboard
+
+```js
+// Copying something, for example, when clicking a button
+// Trigger this within the method you want:
+navigator.clipboard.writeText('some text you want to copy')
+```
+
+---
+
+If you’d like to get in touch, [DM me on Twitter](https://twitter.com/ruizdurazo) or [send me an email](mailto:enrique@ruizdurazo.com).

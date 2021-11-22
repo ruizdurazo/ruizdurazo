@@ -18,6 +18,15 @@ const notes = [
     title: 'On CSS / Styling',
     description: 'Snippets and tips on CSS, SCSS/Sass, and styling in general.',
   },
+  // {
+  //   folder: 'on-markdown',
+  //   thumbnail: false,
+  //   thumbnailImage: '',
+  //   thumbnailImageAlt: '',
+  //   date: '2020-05-14',
+  //   title: 'On Markdown',
+  //   description: 'A complete guide on Markdown syntax.',
+  // },
   {
     folder: 'hello-universe',
     thumbnail: false,
