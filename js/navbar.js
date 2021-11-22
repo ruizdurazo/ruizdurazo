@@ -20,6 +20,8 @@ document.getElementById('menu-button').addEventListener('click', (event) => {
       '</div>'
     menuSVG.src = '/assets/images/icon-close.svg'
     menuSVG.alt = 'Close'
+    menuSVG.width = '60'
+    menuSVG.height = '60'
   } else {
     document.getElementById('menu-button').blur()
     document
@@ -28,6 +30,8 @@ document.getElementById('menu-button').addEventListener('click', (event) => {
     document.getElementById('menu-overlay').innerHTML = ''
     menuSVG.src = '/assets/images/icon-menu.svg'
     menuSVG.alt = 'Menu'
+    menuSVG.width = '60'
+    menuSVG.height = '60'
   }
 })
 

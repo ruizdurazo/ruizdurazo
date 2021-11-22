@@ -95,6 +95,8 @@
                 src="/assets/images/logo-ruizdurazo.svg"
                 alt="Enrique Ruiz Durazo"
                 draggable="false"
+                width="300"
+                height="30"
               />
             </a>
           </div>
@@ -105,6 +107,8 @@
                 src="/assets/images/icon-menu.svg"
                 alt="Menu"
                 draggable="false"
+                width="60"
+                height="60"
               />
             </button>
           </div>
@@ -117,14 +121,18 @@
         <!-- Section - Hero -->
         <section id="hero" class="hero">
           <h1>
-            Hello
+            <span>Hello</span>
             <img
               src="/assets/images/hello2.png"
               id="hello"
               draggable="false"
               alt="Hello"
-            /><br /><a id="slideshow-anim" style="opacity: 1">
-              I'm <u>Enrique</u></a
+              width="160"
+              height="160"
+            />
+            <br />
+            <span id="slideshow-anim" style="opacity: 1">
+              I'm <u>Enrique</u></span
             >
           </h1>
           <button id="learn-more" class="learn-more">Don't click here</button>
@@ -264,29 +272,44 @@
           <div class="social-media">
             <ul class="social-media-links">
               <li id="mail">
-                <a href="mailto:enrique@ruizdurazo.com" target="_blank"
+                <a
+                  href="mailto:enrique@ruizdurazo.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   ><img
                     src="/assets/images/icon-mail.svg"
                     alt="Email"
                     draggable="false"
+                    width="32"
+                    height="32"
                   /><span>Email</span></a
                 >
               </li>
               <li id="twitter">
-                <a href="https://twitter.com/ruizdurazo" target="_blank"
+                <a
+                  href="https://twitter.com/ruizdurazo"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   ><img
                     src="/assets/images/icon-twitter.svg"
                     alt="Twitter"
                     draggable="false"
+                    width="32"
+                    height="32"
                   /><span>Twitter</span></a
                 >
               </li>
               <li id="github">
-                <a href="https://github.com/ruizdurazo" target="_blank"
+                <a
+                  href="https://github.com/ruizdurazo"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   ><img
                     src="/assets/images/icon-github.svg"
                     alt="GitHub"
                     draggable="false"
+                    width="32"
+                    height="32"
                   /><span>GitHub</span></a
                 >
               </li>
@@ -296,6 +319,8 @@
                     src="/assets/images/icon-lol.svg"
                     alt="LinkedIn"
                     draggable="false"
+                    width="32"
+                    height="32"
                   /><span>LinkedIn</span></a
                 >
               </li>
@@ -311,6 +336,7 @@
           id="source"
           href="https://github.com/ruizdurazo/ruizdurazo"
           target="_blank"
+          rel="noopener noreferrer"
           >Source &nearr;</a
         >
       </footer>
@@ -458,18 +484,24 @@
 
       // Get location to render, number of words
       const word_element = $('#slideshow-anim')
+      // const word_element = document.getElementById('#slideshow-anim')
       let word_count = words.length
 
       // Animation settings
       let anim_delay = 3500 //ms
-      let anim_duration = 500 //ms
+      let anim_duration = 500 //ms // will be set in css
       let num = 0 // counter
 
       // Animation function
+      // document.addEventListener('DOMContentLoaded', function (event) {
+      //   do stuff
+      // })
       $(document).ready(() => {
         setInterval(() => {
           num++
+          // add outro class to current word
           word_element.fadeOut(anim_duration, () => {
+            // replace innerhtml of word, add intro class to new word
             word_element.html(words[num % word_count]).fadeIn(anim_duration)
           })
         }, anim_delay)

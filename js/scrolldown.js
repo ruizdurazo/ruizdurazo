@@ -526,7 +526,7 @@ fetch(url)
                 a_href +
                 '" title="' +
                 a_title +
-                '" class="pa" target="_blank">' +
+                '" class="pa" target="_blank" rel="noopener noreferrer">' +
                 a_text +
                 '</a>'
               element = element.replace(i, a_element)
@@ -543,7 +543,7 @@ fetch(url)
                 a_href +
                 '" title="' +
                 a_title +
-                '" class="pa" target="_blank">' +
+                '" class="pa" target="_blank" rel="noopener noreferrer">' +
                 a_text +
                 '</a>'
               element = element.replace(i, a_element)
@@ -558,7 +558,7 @@ fetch(url)
               a_element =
                 '<a href="' +
                 a_href +
-                '" class="pa" target="_blank">' +
+                '" class="pa" target="_blank" rel="noopener noreferrer">' +
                 a_text +
                 '</a>'
             }
