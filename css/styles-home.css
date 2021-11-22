@@ -19,6 +19,7 @@
 
 /* H1 Title */
 h1,
+h1 span,
 #slideshow-anim,
 #slideshow-anim u {
   font-size: calc(var(--font-size) * 3.45);
@@ -29,12 +30,17 @@ h1,
 /* Hello - Hand Wave Emoji */
 #hello {
   display: inline-block;
+  width: auto;
+  /* width: calc(var(--font-size) * 3.45); */
   height: calc(var(--font-size) * 3.45);
 }
 
 #slideshow-anim u {
   border-bottom: solid 6px var(--blue);
 }
+
+/* Animations */
+/*  */
 
 /* Learn More */
 .learn-more,
@@ -566,6 +572,7 @@ p {
   }
 
   h1,
+  h1 span,
   #slideshow-anim,
   #slideshow-anim u {
     font-size: calc((60px) + (69 - 60) * (100vw - 768px) / (1040 - 768));
@@ -629,6 +636,7 @@ p {
   }
 
   h1,
+  h1 span,
   #slideshow-anim,
   #slideshow-anim u {
     font-size: calc(
@@ -637,6 +645,10 @@ p {
   }
 
   #hello {
+    /* width: calc(
+      (2.2px * var(--min-font-size)) + (69 - 35.2) * (100vw - 480px) /
+        (768 - 480)
+    ); */
     height: calc(
       (2.2px * var(--min-font-size)) + (69 - 35.2) * (100vw - 480px) /
         (768 - 480)
@@ -740,6 +752,7 @@ p {
   }
 
   h1,
+  h1 span,
   #slideshow-anim,
   #slideshow-anim u {
     /* font-size: calc(2.5px * var(--min-font-size)); */
@@ -747,6 +760,7 @@ p {
   }
 
   #hello {
+    /* width: calc(3px * var(--min-font-size)); */
     height: calc(3px * var(--min-font-size));
     /* height: calc(2.5px * var(--min-font-size)); */
     /* height: calc(2.2px * var(--min-font-size)); */
