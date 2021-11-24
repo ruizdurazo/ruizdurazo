@@ -147,7 +147,6 @@ h1 span,
 }
 
 .more--navbar {
-  /* max-width: var(--max-width); */
   width: 100%;
   z-index: 1;
   margin: 0 auto;
@@ -156,12 +155,9 @@ h1 span,
 .more--navbar--elements {
   display: flex;
   justify-content: space-between;
-  width: min(
-    calc(1520px - (1px * var(--offset))),
-    calc(100% - (1px * var(--offset)))
-  );
+  width: calc(100% - (1px * var(--offset)));
   /* width: min(
-    calc(1440px - (1px * var(--offset))),
+    calc(1520px - (1px * var(--offset))),
     calc(100% - (1px * var(--offset)))
   ); */
   height: calc(var(--font-size) * 5);
@@ -763,9 +759,13 @@ p {
 
   .note .title {
     font-size: calc(
-      (1.125px * var(--min-font-size)) + (19 - 18) * (100vw - 480px) /
+      (1.0625px * var(--min-font-size)) + (19 - 17) * (100vw - 480px) /
         (768 - 480)
     );
+    /* font-size: calc(
+      (1.125px * var(--min-font-size)) + (19 - 18) * (100vw - 480px) /
+        (768 - 480)
+    ); */
   }
 
   .note .description {
@@ -862,7 +862,8 @@ p {
   }
 
   .note .title {
-    font-size: calc(1.125px * var(--min-font-size));
+    font-size: calc(1.0625px * var(--min-font-size));
+    /* font-size: calc(1.125px * var(--min-font-size)); */
   }
 
   .note .description {

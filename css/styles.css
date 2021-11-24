@@ -160,18 +160,11 @@
 .navbar--elements {
   display: flex;
   justify-content: space-between;
-  /* max-width: var(--max-width); */
-  /* min-width: var(--min-width); */
-  width: min(
+  width: calc(100% - (1px * var(--offset)));
+  /* width: min(
     calc(1520px - (1px * var(--offset))),
     calc(100% - (1px * var(--offset)))
-  );
-  /* width: min(
-    calc(1440px - (1px * var(--offset))),
-    calc(100% - (1px * var(--offset)))
   ); */
-  /* width: min(100%, calc(1440px - (1px * var(--offset)))); */
-  /* width: calc(100% - 40px); */
   height: calc(var(--font-size) * 5);
   margin: 0 auto;
 }
@@ -180,7 +173,6 @@
 .logo {
   margin: 39px 0;
   height: 22px;
-  /* overflow: hidden; */
 }
 
 .logo a img {
@@ -198,7 +190,6 @@
 .menu {
   margin: 20px 0;
   height: 60px;
-  /* overflow: hidden; */
 }
 
 .menu button {
@@ -283,21 +274,20 @@
 
 /* Footer */
 .footer {
-  /* max-width: var(--max-width); */
   display: flex;
   justify-content: space-between;
-  width: min(
+  width: calc(100% - (1px * var(--offset)));
+  /* width: min(
     calc(1520px - (1px * var(--offset))),
     calc(100% - (1px * var(--offset)))
-  );
-  /* width: min(
-    calc(1440px - (1px * var(--offset))),
-    calc(100% - (1px * var(--offset)))
   ); */
-  /* width: calc(1440px - (1px * var(--offset))); */
-  height: 1.2em;
+  height: 1em;
+  /* height: 1.2em; */
   margin: 0 auto;
-  padding: 2.4em 0;
+  font-size: calc(var(--min-font-size) * 1px);
+  padding: 3em 0;
+  /* padding: 2.5em 0; */
+  /* padding: 2.4em 0; */
 }
 
 .footer #copyright,
@@ -306,7 +296,8 @@
   /* font-size: calc(var(--font-size) * 0.8); */
   font-size: calc(var(--min-font-size) * 1px);
   letter-spacing: 0.02em;
-  height: var(--font-size);
+  /* height: var(--font-size); */
+  height: calc(var(--min-font-size) * 1px);
 }
 
 .footer #source {
@@ -338,10 +329,13 @@
 @media only screen and (max-width: 768px) {
   :root {
     --font-size: calc(
+      17px + (var(--max-font-size) - 17) * (100vw - 480px) / (768 - 480)
+    );
+    /* --font-size: calc(
       (1px * var(--min-font-size)) +
         (var(--max-font-size) - var(--min-font-size)) * (100vw - 480px) /
         (768 - 480)
-    );
+    ); */
   }
 
   .navbar--elements,
@@ -382,8 +376,9 @@
 /* 480px */
 @media only screen and (max-width: 480px) {
   :root {
+    --font-size: calc(1.0625px * var(--min-font-size));
+    /* --font-size: calc(1.125px * var(--min-font-size)); */
     /* --font-size: calc(1px * var(--min-font-size)); */
-    --font-size: calc(1.125px * var(--min-font-size));
   }
 
   .navbar--elements,
