@@ -12,9 +12,13 @@
 
 /* Hero - Section */
 #hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   max-width: var(--max-width-home);
   margin: 0 auto;
-  padding-top: var(--font-size-6);
+  padding: var(--font-size-8) 0 var(--font-size-8);
+  min-height: calc(60vh - calc(var(--font-size-8) * 2));
 }
 
 /* H1 Title */
@@ -23,15 +27,13 @@ h1 span,
 #slideshow-anim,
 #slideshow-anim u {
   font-size: calc(var(--font-size) * 3.45);
-  margin-bottom: calc(var(--font-size) * 1.6);
-  height: 3.6em;
+  margin-bottom: var(--font-size-6);
 }
 
 /* Hello - Hand Wave Emoji */
 #hello {
   display: inline-block;
   width: auto;
-  /* width: calc(var(--font-size) * 3.45); */
   height: calc(var(--font-size) * 3.45);
 }
 
@@ -92,7 +94,7 @@ h1 span,
   color: var(--blue);
   font-size: calc(var(--font-size) * 1.1);
   font-weight: 500;
-  margin: 0.5em 0 2.5em 0;
+  margin: 0;
   letter-spacing: 0.02em;
   padding-bottom: 3px;
   transition: all 0.5s;
@@ -419,8 +421,7 @@ p {
 /* Section - Summary */
 #summary-section {
   max-width: var(--max-width-home);
-  margin: 0 auto;
-  padding-top: var(--font-size-5);
+  margin: 0 auto var(--font-size-5);
 }
 
 .summary {
@@ -472,8 +473,7 @@ p {
 /* Section - Notes */
 #notes-section {
   max-width: var(--max-width-home);
-  margin: 0 auto;
-  padding-top: var(--font-size-5);
+  margin: 0 auto var(--font-size-5);
 }
 
 .note {
@@ -521,10 +521,7 @@ p {
   letter-spacing: 0.05em;
   color: var(--text-date);
   width: var(--grid-unit-2);
-  /* line-height: 1.4em; */
   line-height: calc(var(--max-font-size) * 1.4px);
-  /* line-height: calc(var(--font-size) * 1.4); */
-  /* height: calc(var(--font-size) * 1.4); */
 }
 
 .note .title-desc {
@@ -535,10 +532,7 @@ p {
   font-size: calc(var(--font-size) * 0.95);
   font-weight: 700;
   transition: all 0.2s ease;
-  /* line-height: 1.4em; */
-  line-height: calc(var(--font-size) * 1.4);
   line-height: calc(var(--max-font-size) * 1.4px);
-  /* height: calc(var(--font-size) * 1.4); */
 }
 
 .note a:hover .title,
@@ -556,8 +550,7 @@ p {
 /* Section - Contact */
 #contact-section {
   max-width: var(--max-width-home);
-  margin: 0 auto;
-  padding-top: var(--font-size-5);
+  margin: 0 auto var(--font-size-5);
 }
 
 .social-media-links {
@@ -678,18 +671,13 @@ p {
   #slideshow-anim,
   #slideshow-anim u {
     font-size: calc(
-      (2.5px * var(--min-font-size)) + (60 - 40) * (100vw - 480px) / (768 - 480)
+      (3px * var(--min-font-size)) + (60 - 48) * (100vw - 480px) / (768 - 480)
     );
   }
 
   #hello {
-    /* width: calc(
-      (2.2px * var(--min-font-size)) + (69 - 35.2) * (100vw - 480px) /
-        (768 - 480)
-    ); */
     height: calc(
-      (2.2px * var(--min-font-size)) + (69 - 35.2) * (100vw - 480px) /
-        (768 - 480)
+      (3px * var(--min-font-size)) + (69 - 48) * (100vw - 480px) / (768 - 480)
     );
   }
 
@@ -797,15 +785,11 @@ p {
   h1 span,
   #slideshow-anim,
   #slideshow-anim u {
-    /* font-size: calc(2.5px * var(--min-font-size)); */
     font-size: calc(3px * var(--min-font-size));
   }
 
   #hello {
-    /* width: calc(3px * var(--min-font-size)); */
     height: calc(3px * var(--min-font-size));
-    /* height: calc(2.5px * var(--min-font-size)); */
-    /* height: calc(2.2px * var(--min-font-size)); */
   }
 
   #slideshow-anim u {
