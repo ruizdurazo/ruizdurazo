@@ -29,16 +29,16 @@ pipe =
   (x) =>
     fns.reduce((v, f) => f(v), x)
 
-// Placeholder for fetch url
-let url = document.location.href
-
 // Account for 'index.html'
 let pathname = document.location.pathname
 if (pathname.endsWith('index.html')) {
   pathname = pathname.slice(0, -10)
 }
 
-// Account for 'local' vs 'prod'
+// Helper for fetch url
+let url = document.location.href
+
+// Check for 'local' vs 'prod'
 if (url.startsWith('https://ruizdurazo.com')) {
   url = `https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master${pathname}index.md`
 } else {
