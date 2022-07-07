@@ -1,6 +1,6 @@
 ---
 title: On JavaScript / TypeScript
-date: 2021-11-15
+date: 2022-07-07
 description_short: Snippets and tips on JavaScript and TypeScript.
 description_long: Snippets and tips on JavaScript and TypeScript.
 image:
@@ -456,7 +456,7 @@ navigator.clipboard.writeText('some text you want to copy')
 
 <!-- --- -->
 
-## JS: How to copy text to the clipboard
+## JS: How to add decimals
 
 ⚠️ **Warning: 0.1 + 0.2 _does not equal_ 0.3!!**
 
