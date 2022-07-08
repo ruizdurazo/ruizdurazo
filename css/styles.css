@@ -94,7 +94,7 @@
   --grid-unit-8: calc(var(--grid-unit) * 8);
   --offset: 80;
   /* Colors */
-  --selection: #00000020;
+  --selection: #00000016;
   --black: #101010;
   --blue: #0f4fff;
   --text: #303030;

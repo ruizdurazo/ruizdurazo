@@ -444,7 +444,8 @@ pre span {
   /* color: #ddd; */
   font-size: calc(var(--font-size) * 0.8);
   /* light gray */
-  background-color: #fafafa;
+  background-color: #fcfcfc;
+  /* background-color: #fafafa; */
   /* light blue */
   /* background-color: #f8fafc; */
   /* dark */
@@ -461,7 +462,8 @@ pre {
   /* box-shadow: 0 10px 20px #e4e6e8; */
   /* box-shadow: 0 10px 20px #e4e6e880; */
   box-shadow: 0 10px 20px #e4e6e840;
-  border: 1px solid #e4e6e8;
+  /* border: 1px solid #e4e6e8; */
+  border: 1px solid #d5d8da;
   counter-reset: line;
   transition: color 0.2s, border 0.2s, box-shadow 0.2s;
   overflow: auto;
@@ -477,6 +479,13 @@ pre:hover {
 
 pre .line {
   display: block;
+  transition: background-color 0.2s;
+  background-color: none;
+}
+
+pre .line * {
+  transition: background-color 0.2s;
+  background-color: none;
 }
 
 pre .line:before {
@@ -494,14 +503,25 @@ pre .line:before {
 }
 
 pre .line:hover:before {
-  /* color: var(--blue); */
-  /* border-right: 3px solid var(--blue); */
-  color: #707070;
-  border-right: 3px solid #707070;
+  color: var(--blue);
+  border-right: 3px solid var(--blue);
+  /* color: #505050; */
+  /* border-right: 3px solid #505050; */
+  /* color: #909090; */
+  /* border-right: 3px solid #909090; */
+  /* color: #707070; */
+  /* border-right: 3px solid #707070; */
+}
+
+pre .line:hover * {
+  background-color: #e7f7ff;
+  /* background-color: #fddddd; */
+  /* background-color: #fdfadd; */
+  /* background-color: #faf4d4; */
 }
 
 pre .line > * {
-  padding: 0 20px 0 0;
+  margin: 0 20px 0 0;
 }
 
 .code {
