@@ -458,7 +458,7 @@ navigator.clipboard.writeText('some text you want to copy')
 
 ## JS: How to add decimals
 
-⚠️ **Warning: 0.1 + 0.2 _does not equal_ 0.3!!**
+**Warning**: 0.1 + 0.2 _does not equal_ 0.3!!
 
 ```js
 // Computers are wild
@@ -507,4 +507,4 @@ console.log(correct2)
 
 ---
 
-If you’d like to get in touch, [DM me on Twitter](https://twitter.com/ruizdurazo) or [send me an email](mailto:enrique@ruizdurazo.com).
+If you’d like to get in touch, [send me an email](mailto:enrique@ruizdurazo.com) or [dm me on Twitter](https://twitter.com/ruizdurazo).

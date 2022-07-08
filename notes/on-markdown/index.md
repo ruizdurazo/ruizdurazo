@@ -260,4 +260,4 @@ However, there are many other flavors of Markdown. If you want to learn more you
 
 ---
 
-Hope you found it useful. If you’d like to get in touch, [DM me on Twitter](https://twitter.com/ruizdurazo) or [send me an email](mailto:enrique@ruizdurazo.com).
+Hope you found it useful. If you’d like to get in touch, [send me an email](mailto:enrique@ruizdurazo.com) or [dm me on Twitter](https://twitter.com/ruizdurazo).

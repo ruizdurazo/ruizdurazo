@@ -156,4 +156,4 @@ print('Hello, Universe. ✌️')
 
 P.S. — On comments. I don’t like blog posts with comments. They make me cringe. So there will be no comments here.
 
-If you’d like to applaud me, shout at me, or just talk, [DM me on Twitter](https://twitter.com/ruizdurazo) or [send me an email](mailto:enrique@ruizdurazo.com).
+If you’d like to applaud me, shout at me, or just talk, [send me an email](mailto:enrique@ruizdurazo.com) or [dm me on Twitter](https://twitter.com/ruizdurazo).
