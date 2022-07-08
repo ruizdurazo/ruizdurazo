@@ -5,7 +5,7 @@ const notes = [
     thumbnail: false,
     thumbnailImage: '',
     thumbnailImageAlt: '',
-    date: '2021-11-15',
+    date: '2022-07-07',
     title: 'On JavaScript / TypeScript',
     description: 'Snippets and tips on JavaScript and TypeScript.',
   },
