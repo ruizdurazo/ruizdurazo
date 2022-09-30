@@ -202,15 +202,13 @@ h1 span,
 #more--logo:hover,
 #more--close:hover {
   cursor: pointer;
-  opacity: 0.6;
+  /* opacity: 0.6; */
 }
-
-/* #more--logo:focus,
-#more--logo:focus-within,
-#more--close:focus,
-#more--close:focus-within {
-  box-shadow: 0 0 0 4px red;
-} */
+#more--logo:focus-visible,
+#more--close:focus-visible {
+  border-radius: 4px;
+  box-shadow: 0 0 0 4px var(--blue);
+}
 
 /* Text */
 #more--text {
@@ -249,7 +247,7 @@ h1 span,
 }
 
 #more--text a:hover,
-#more--text a:focus {
+#more--text a:focus-visible {
   border-bottom: 4px solid currentColor;
 }
 
@@ -346,13 +344,13 @@ p {
   display: grid;
   margin-bottom: 4em;
   grid-gap: 0;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 } */
 
 /* Highlights - Individual Cards */
 /* .card {
   display: inline-block;
-  height: calc((896px / 5 - 10px) * 2);
+  height: calc((896px / 3 - 10px) * 2);
   margin: 10px 10px 10px 10px;
   border-radius: 1px;
   box-shadow: 0 5px 20px -5px #aaaaaa;
@@ -374,19 +372,10 @@ p {
   background-color: black;
 }
 
-#four {
-  grid-column: 4;
-}
-
-#five {
-  grid-column: 5;
-}
 
 #one:hover,
 #two:hover,
-#three:hover,
-#four:hover,
-#five:hover {
+#three:hover, {
   box-shadow: 0 20px 30px -10px #cccccc;
   transform: translateY(-1px) scale(1.03, 1.03);
 }
@@ -455,6 +444,10 @@ p {
   color: var(--blue);
   border-bottom: solid 2px var(--blue);
 }
+.summary__text .link:focus-visible {
+  border-radius: 4px;
+  box-shadow: 0 0 0 4px var(--blue);
+}
 
 .summary__image {
   display: flex;
@@ -499,7 +492,7 @@ p {
 }
 
 .note a:hover img,
-.note a:focus img {
+.note a:focus-visible img {
   transform: translateY(-1px);
   box-shadow: 0 10px 30px #ccc;
 }
@@ -536,7 +529,7 @@ p {
 }
 
 .note a:hover .title,
-.note a:focus .title {
+.note a:focus-visible .title {
   color: var(--blue);
 }
 
@@ -586,7 +579,7 @@ p {
 }
 
 .social-media-links li a:hover span,
-.social-media-links li a:focus span {
+.social-media-links li a:focus-visible span {
   border-bottom: solid 3px var(--black);
 }
 
@@ -785,11 +778,11 @@ p {
   h1 span,
   #slideshow-anim,
   #slideshow-anim u {
-    font-size: calc(3px * var(--min-font-size));
+    font-size: calc(2.5px * var(--min-font-size));
   }
 
   #hello {
-    height: calc(3px * var(--min-font-size));
+    height: calc(2.5px * var(--min-font-size));
   }
 
   #slideshow-anim u {

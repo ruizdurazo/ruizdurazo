@@ -19,38 +19,38 @@
 } */
 
 @font-face {
-  font-family: 'Inter';
-  src: url('../assets/fonts/Inter-Bold.woff'),
-    url('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/assets/fonts/Inter-Bold.woff');
+  font-family: "Inter";
+  src: url("../assets/fonts/Inter-Bold.woff"),
+    url("https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/assets/fonts/Inter-Bold.woff");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Inter';
-  src: url('../assets/fonts/Inter-SemiBold.woff'),
-    url('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/assets/fonts/Inter-SemiBold.woff');
+  font-family: "Inter";
+  src: url("../assets/fonts/Inter-SemiBold.woff"),
+    url("https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/assets/fonts/Inter-SemiBold.woff");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Inter';
-  src: url('../assets/fonts/Inter-Medium.woff') format('woff'),
-    url('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/assets/fonts/Inter-Medium.woff')
-      format('woff');
+  font-family: "Inter";
+  src: url("../assets/fonts/Inter-Medium.woff") format("woff"),
+    url("https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/assets/fonts/Inter-Medium.woff")
+      format("woff");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Inter';
-  src: url('../assets/fonts/Inter-Regular.woff') format('woff'),
-    url('https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/assets/fonts/Inter-Regular.woff')
-      format('woff');
+  font-family: "Inter";
+  src: url("../assets/fonts/Inter-Regular.woff") format("woff"),
+    url("https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/assets/fonts/Inter-Regular.woff")
+      format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -58,10 +58,10 @@
 
 /* Variables */
 :root {
-  --font-main: 'Inter', -apple-system, 'Helvetica Neue', Helvetica, Arial,
+  --font-main: "Inter", -apple-system, "Helvetica Neue", Helvetica, Arial,
     sans-serif;
-  --font-serif: 'Charter', serif;
-  --font-mono: 'Menlo', monospace;
+  --font-serif: "Charter", serif;
+  --font-mono: "Menlo", monospace;
   --font-size: 20px;
   --max-font-size: 20;
   --min-font-size: 16;
@@ -183,9 +183,12 @@
   transition: all 0.5s;
 }
 
-.logo a:hover img,
-.logo a:focus img {
+/* .logo a:hover img {
   opacity: 0.6;
+} */
+.logo a:focus-visible img {
+  border-radius: 4px;
+  box-shadow: 0 0 0 4px var(--blue);
 }
 
 /* Menu */
@@ -206,10 +209,13 @@
   transition: all 0.5s;
 }
 
-.menu button:hover img,
-.menu button:focus img {
+.menu button:hover img {
   cursor: pointer;
-  opacity: 0.6;
+  /* opacity: 0.6; */
+}
+.menu button:focus-visible img {
+  border-radius: 4px;
+  box-shadow: 0 0 0 4px var(--blue);
 }
 
 /* Menu - Overlay */
@@ -229,7 +235,7 @@
 
 /* List of languages */
 .lang-list {
-  margin-top: 5vh;
+  margin-top: 8vh;
   display: flex;
   flex-direction: column;
 }
@@ -237,11 +243,11 @@
 .lang {
   display: inline-block;
   position: relative;
-  margin: 4vh auto;
+  margin: 3.25vh auto;
   text-align: center;
   letter-spacing: 0.02em;
   /*  */
-  font-size: calc(var(--font-size) * 1.8);
+  font-size: calc(var(--font-size) * 1.5);
   transition: all 0.2s;
   text-decoration: line-through;
   color: var(--_c);
