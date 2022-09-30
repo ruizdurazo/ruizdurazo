@@ -71,15 +71,16 @@
     </script>
     <script
       async
-      src="https://www.googletagmanager.com/gtag/js?id=UA-123151773-1"
+      src="https://www.googletagmanager.com/gtag/js?id=G-LT28T7BZ5K"
     ></script>
     <script>
-      window.dataLayer = window.dataLayer || []
+      window.dataLayer = window.dataLayer || [];
       function gtag() {
-        dataLayer.push(arguments)
+        dataLayer.push(arguments);
       }
-      gtag('js', new Date())
-      gtag('config', 'UA-123151773-1')
+      gtag("js", new Date());
+
+      gtag("config", "G-LT28T7BZ5K");
     </script>
   </head>
 
@@ -148,32 +149,20 @@
           <div class="cards">
             <div class="card" id="one">
               <a href="#">
-                <img src="/assets/images/name.jpg" alt="" />
-                <span>Figure-<br />Ground</span>
+                <img src="/assets/images/1.jpg" alt="" />
+                <span>Figure-<br />1</span>
               </a>
             </div>
             <div class="card" id="two">
               <a href="#">
-                <img src="/assets/images/name.jpg" alt="" />
-                <span>Pixels</span>
+                <img src="/assets/images/2.jpg" alt="" />
+                <span>2</span>
               </a>
             </div>
             <div class="card" id="three">
               <a href="#">
-                <img src="/assets/images/name.jpg" alt="" />
-                <span>Markets</span>
-              </a>
-            </div>
-            <div class="card" id="four">
-              <a href="#">
-                <img src="/assets/images/name.jpg" alt="" />
-                <span>Elections</span>
-              </a>
-            </div>
-            <div class="card" id="five">
-              <a href="#">
-                <img src="/assets/images/name.jpg" alt="" />
-                <span>Land Use</span>
+                <img src="/assets/images/3.jpg" alt="" />
+                <span>3</span>
               </a>
             </div>
           </div> -->
@@ -353,14 +342,14 @@
 
       // Date format options
       const date_options = {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      }
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      };
 
       notes
         .sort((a, b) => (a.date > b.date ? 1 : b.date > a.date ? -1 : 0))
-        .reverse()
+        .reverse();
 
       if (notes) {
         // add placeholder content awaiting note data
@@ -397,7 +386,7 @@
           // Either: 1) normal text post or 2) media post with thumbnail image
           if (note.thumbnail) {
             // Media post
-            document.getElementById('notes').innerHTML +=
+            document.getElementById("notes").innerHTML +=
               '<article class="note" id="' +
               note.folder +
               '">' +
@@ -414,27 +403,27 @@
               // '<hr class="sep sep-note">' +
               '<small class="date">' +
               new Date(note.date).getFullYear() +
-              ' ' +
-              new Intl.DateTimeFormat('en-US', { month: 'long' })
+              " " +
+              new Intl.DateTimeFormat("en-US", { month: "long" })
                 .format(new Date(note.date))
                 .toUpperCase() +
-              ' ' +
+              " " +
               new Date(note.date).getDate() +
-              ' ' +
-              '</small>' +
+              " " +
+              "</small>" +
               '<div class="text">' +
               '<span class="title">' +
               note.title +
-              '</span>' +
+              "</span>" +
               '<span class="description">' +
               note.description +
-              '</span>' +
-              '</div>' +
-              '</a>' +
-              '</article>'
+              "</span>" +
+              "</div>" +
+              "</a>" +
+              "</article>";
           } else {
             // Text post
-            document.getElementById('notes').innerHTML +=
+            document.getElementById("notes").innerHTML +=
               '<article class="note" id="' +
               note.folder +
               '">' +
@@ -445,24 +434,24 @@
               '<div class="date-title-desc">' +
               '<small class="date">' +
               new Date(note.date).getFullYear() +
-              ' ' +
-              new Intl.DateTimeFormat('en-US', { month: 'long' })
+              " " +
+              new Intl.DateTimeFormat("en-US", { month: "long" })
                 .format(new Date(note.date))
                 .toUpperCase() +
-              ' ' +
+              " " +
               new Date(note.date).getDate() +
-              ' ' +
-              '</small>' +
+              " " +
+              "</small>" +
               '<div class="title-desc">' +
               '<span class="title">' +
               note.title +
-              '</span>' +
-              '</div>' +
-              '</div>' +
-              '</a>' +
-              '</article>'
+              "</span>" +
+              "</div>" +
+              "</div>" +
+              "</a>" +
+              "</article>";
           }
-        })
+        });
       }
     </script>
     <script>
@@ -476,9 +465,9 @@
       // Footer
       //
 
-      var yyyy = new Date()
-      document.getElementById('copyright').innerHTML =
-        '© ' + yyyy.getFullYear() + ' Enrique Ruiz Durazo'
+      var yyyy = new Date();
+      document.getElementById("copyright").innerHTML =
+        "© " + yyyy.getFullYear() + " Enrique Ruiz Durazo";
 
       //
       // Words animation
@@ -487,40 +476,40 @@
       // List of strings to cycle through
       const words = [
         "I'm <u>Enrique</u>",
-        'I write <u>code</u>',
-        'I <u>design</u> stuff',
-        'I analyze <u>data</u>',
-      ]
+        "I write <u>code</u>",
+        "I <u>design</u> stuff",
+        "I create <u>content</u>",
+      ];
 
       // Get location to render
-      const word_element = document.getElementById('slideshow-anim')
+      const word_element = document.getElementById("slideshow-anim");
 
       // Animation settings
-      let anim_delay = 3500 // ms
-      let anim_duration = 500 // ms
-      let num = 0 // counter
+      let anim_delay = 3500; // ms
+      let anim_duration = 500; // ms
+      let num = 0; // counter
 
       // Animation function
-      document.addEventListener('DOMContentLoaded', function (event) {
+      document.addEventListener("DOMContentLoaded", function (event) {
         setInterval(() => {
-          num++
+          num++;
           // add outro class to current word
-          word_element.classList.add('fade-out')
+          word_element.classList.add("fade-out");
           // replace innerhtml of word, add intro class to new word
           setTimeout(() => {
-            word_element.classList.remove('fade-out')
-            word_element.innerHTML = words[num % words.length]
-            word_element.classList.add('fade-in')
-          }, anim_duration)
-          word_element.classList.remove('fade-in')
-        }, anim_delay)
-      })
+            word_element.classList.remove("fade-out");
+            word_element.innerHTML = words[num % words.length];
+            word_element.classList.add("fade-in");
+          }, anim_duration);
+          word_element.classList.remove("fade-in");
+        }, anim_delay);
+      });
 
       //
       // Slides
       //
 
-      const body = document.body
+      const body = document.body;
 
       const learnMore = [
         {
@@ -528,14 +517,14 @@
               <p>Enrique</p>
               <p>(EN-RI-KEH)</p>
             `,
-          bgColor: 'blue',
+          bgColor: "blue",
         }, // if 'color' then set style attrs (bg, text, fills)
         {
           text: `
               <p>Engineer</p>
               <p>Designer</p>
             `,
-          bgColor: 'white',
+          bgColor: "white",
         },
         {
           text: `
@@ -548,7 +537,7 @@
                 >
               </p>
             `,
-          bgColor: 'blue',
+          bgColor: "blue",
         },
         {
           text: `
@@ -561,14 +550,14 @@
                 >
               </p>
             `,
-          bgColor: 'gold',
+          bgColor: "gold",
         },
         {
           text: `
               <p>A bit quiet</p>
               <p>A lot nerdy</p>
             `,
-          bgColor: 'white',
+          bgColor: "white",
         },
         {
           text: `
@@ -578,7 +567,7 @@
               <p>Housing</p>
               <p>Cities</p>
             `,
-          bgColor: 'black',
+          bgColor: "black",
         },
         {
           text: `
@@ -586,21 +575,21 @@
               <p>Figma</p>
               <p>Python</p>
             `,
-          bgColor: 'blue',
+          bgColor: "blue",
         },
         {
           text: `
               <p>Black coffee</p>
               <p>Black clothing</p>
             `,
-          bgColor: 'black',
+          bgColor: "black",
         },
         {
           text: `
             <p>Hate mornings</p>
             <p>Love sunsets</p>
             `,
-          bgColor: 'sunset',
+          bgColor: "sunset",
         },
         {
           text: `
@@ -608,7 +597,7 @@
             <p>German</p>
             <p>Spanish</p>
             `,
-          bgColor: 'white',
+          bgColor: "white",
         },
         {
           text: `
@@ -630,7 +619,7 @@
               <p title="Agreeableness">A ~50% •••••-----</p>
               <p title="Neuroticism">N ~15% ••--------</p>
             `,
-          bgColor: 'blue',
+          bgColor: "blue",
         },
         {
           text: `
@@ -652,7 +641,7 @@
               <p title="Type Eight: Challenger">8 ~80% ••••••••--</p>
               <p title="Type Nine: Peacemaker">9 ~70% •••••••---</p>
             `,
-          bgColor: 'blue',
+          bgColor: "blue",
         },
         {
           text: `
@@ -669,7 +658,7 @@
               <p title="Judging">J ~50% •••••-----</p>
               <p title="Assertive">A ~90% •••••••••-</p>
             `,
-          bgColor: 'blue',
+          bgColor: "blue",
         },
         {
           text: `
@@ -694,194 +683,194 @@
                 >
               </p>
             `,
-          bgColor: 'white',
+          bgColor: "white",
         },
         {
           text: `
             <p>omg you clicked the button!</p>
             `,
-          bgColor: 'black',
+          bgColor: "black",
         },
-      ]
+      ];
 
       // Slideshow helpers
-      let slideNo = 0
-      let colorBg = 'var(--blue)'
-      let isSlideshowOpen = false
+      let slideNo = 0;
+      let colorBg = "var(--blue)";
+      let isSlideshowOpen = false;
 
       const resetBg = () => {
-        document.getElementById('more--fg').style.background = colorBg
-        document.getElementById('more--fg').style.opacity = '1'
+        document.getElementById("more--fg").style.background = colorBg;
+        document.getElementById("more--fg").style.opacity = "1";
         setTimeout(() => {
-          document.getElementById('more--bg').style.background = colorBg
-          document.getElementById('more--fg').style.transition = 'none'
-          document.getElementById('more--fg').style.opacity = '0'
-          document.getElementById('more--fg').style.transition = 'opacity 0.3s'
-        }, 300)
-      }
+          document.getElementById("more--bg").style.background = colorBg;
+          document.getElementById("more--fg").style.transition = "none";
+          document.getElementById("more--fg").style.opacity = "0";
+          document.getElementById("more--fg").style.transition = "opacity 0.3s";
+        }, 300);
+      };
 
       const updateSlides = () => {
-        if (learnMore[slideNo].bgColor === 'blue') {
-          colorBg = 'var(--blue)'
-          resetBg()
+        if (learnMore[slideNo].bgColor === "blue") {
+          colorBg = "var(--blue)";
+          resetBg();
           document
-            .getElementById('more--logo')
-            .children[0].children[0].setAttribute('fill', '#fff')
+            .getElementById("more--logo")
+            .children[0].children[0].setAttribute("fill", "#fff");
           document
-            .getElementById('more--close')
-            .children[0].setAttribute('fill', '#fff')
+            .getElementById("more--close")
+            .children[0].setAttribute("fill", "#fff");
           document
-            .getElementById('more--back')
-            .children[0].setAttribute('fill', '#fff')
+            .getElementById("more--back")
+            .children[0].setAttribute("fill", "#fff");
           document
-            .getElementById('more--next')
-            .children[0].setAttribute('fill', '#fff')
-          document.getElementById('more--count').style.color = '#fff'
-          document.getElementById('more--text').innerHTML =
-            learnMore[slideNo].text
-          let children = document.getElementById('more--text').children
+            .getElementById("more--next")
+            .children[0].setAttribute("fill", "#fff");
+          document.getElementById("more--count").style.color = "#fff";
+          document.getElementById("more--text").innerHTML =
+            learnMore[slideNo].text;
+          let children = document.getElementById("more--text").children;
           for (let i = 0; i < children.length; i++) {
-            children[i].style.color = '#fff'
+            children[i].style.color = "#fff";
           }
-        } else if (learnMore[slideNo].bgColor === 'white') {
-          colorBg = '#fff'
-          resetBg()
+        } else if (learnMore[slideNo].bgColor === "white") {
+          colorBg = "#fff";
+          resetBg();
           document
-            .getElementById('more--logo')
-            .children[0].children[0].setAttribute('fill', 'var(--black)')
+            .getElementById("more--logo")
+            .children[0].children[0].setAttribute("fill", "var(--black)");
           document
-            .getElementById('more--close')
-            .children[0].setAttribute('fill', 'var(--black)')
+            .getElementById("more--close")
+            .children[0].setAttribute("fill", "var(--black)");
           document
-            .getElementById('more--back')
-            .children[0].setAttribute('fill', 'var(--black)')
+            .getElementById("more--back")
+            .children[0].setAttribute("fill", "var(--black)");
           document
-            .getElementById('more--next')
-            .children[0].setAttribute('fill', 'var(--black)')
-          document.getElementById('more--count').style.color = 'var(--black)'
-          document.getElementById('more--text').innerHTML =
-            learnMore[slideNo].text
-          let children = document.getElementById('more--text').children
+            .getElementById("more--next")
+            .children[0].setAttribute("fill", "var(--black)");
+          document.getElementById("more--count").style.color = "var(--black)";
+          document.getElementById("more--text").innerHTML =
+            learnMore[slideNo].text;
+          let children = document.getElementById("more--text").children;
           for (let i = 0; i < children.length; i++) {
-            children[i].style.color = 'var(--black)'
+            children[i].style.color = "var(--black)";
           }
-        } else if (learnMore[slideNo].bgColor === 'black') {
-          colorBg = '#000'
-          resetBg()
+        } else if (learnMore[slideNo].bgColor === "black") {
+          colorBg = "#000";
+          resetBg();
           document
-            .getElementById('more--logo')
-            .children[0].children[0].setAttribute('fill', '#fff')
+            .getElementById("more--logo")
+            .children[0].children[0].setAttribute("fill", "#fff");
           document
-            .getElementById('more--close')
-            .children[0].setAttribute('fill', '#fff')
+            .getElementById("more--close")
+            .children[0].setAttribute("fill", "#fff");
           document
-            .getElementById('more--back')
-            .children[0].setAttribute('fill', '#fff')
+            .getElementById("more--back")
+            .children[0].setAttribute("fill", "#fff");
           document
-            .getElementById('more--next')
-            .children[0].setAttribute('fill', '#fff')
-          document.getElementById('more--count').style.color = '#fff'
-          document.getElementById('more--text').innerHTML =
-            learnMore[slideNo].text
-          let children = document.getElementById('more--text').children
+            .getElementById("more--next")
+            .children[0].setAttribute("fill", "#fff");
+          document.getElementById("more--count").style.color = "#fff";
+          document.getElementById("more--text").innerHTML =
+            learnMore[slideNo].text;
+          let children = document.getElementById("more--text").children;
           for (let i = 0; i < children.length; i++) {
-            children[i].style.color = '#fff'
+            children[i].style.color = "#fff";
           }
-        } else if (learnMore[slideNo].bgColor === 'gold') {
-          colorBg = 'linear-gradient(180deg, #FF9C08 40%, #F7F03F 65%)'
-          resetBg()
+        } else if (learnMore[slideNo].bgColor === "gold") {
+          colorBg = "linear-gradient(180deg, #FF9C08 40%, #F7F03F 65%)";
+          resetBg();
           document
-            .getElementById('more--logo')
-            .children[0].children[0].setAttribute('fill', '#fff')
+            .getElementById("more--logo")
+            .children[0].children[0].setAttribute("fill", "#fff");
           document
-            .getElementById('more--close')
-            .children[0].setAttribute('fill', '#fff')
+            .getElementById("more--close")
+            .children[0].setAttribute("fill", "#fff");
           document
-            .getElementById('more--back')
-            .children[0].setAttribute('fill', '#fff')
+            .getElementById("more--back")
+            .children[0].setAttribute("fill", "#fff");
           document
-            .getElementById('more--next')
-            .children[0].setAttribute('fill', '#fff')
-          document.getElementById('more--count').style.color = '#fff'
-          document.getElementById('more--text').innerHTML =
-            learnMore[slideNo].text
-          let children = document.getElementById('more--text').children
+            .getElementById("more--next")
+            .children[0].setAttribute("fill", "#fff");
+          document.getElementById("more--count").style.color = "#fff";
+          document.getElementById("more--text").innerHTML =
+            learnMore[slideNo].text;
+          let children = document.getElementById("more--text").children;
           for (let i = 0; i < children.length; i++) {
-            children[i].style.color = '#fff'
+            children[i].style.color = "#fff";
           }
-        } else if (learnMore[slideNo].bgColor === 'sunset') {
+        } else if (learnMore[slideNo].bgColor === "sunset") {
           colorBg =
-            'linear-gradient(180deg, #046CE6 40%, #E16B87 55%, #FDDB64 65%)'
-          resetBg()
+            "linear-gradient(180deg, #046CE6 40%, #E16B87 55%, #FDDB64 65%)";
+          resetBg();
           document
-            .getElementById('more--logo')
-            .children[0].children[0].setAttribute('fill', '#fff')
+            .getElementById("more--logo")
+            .children[0].children[0].setAttribute("fill", "#fff");
           document
-            .getElementById('more--close')
-            .children[0].setAttribute('fill', '#fff')
+            .getElementById("more--close")
+            .children[0].setAttribute("fill", "#fff");
           document
-            .getElementById('more--back')
-            .children[0].setAttribute('fill', '#fff')
+            .getElementById("more--back")
+            .children[0].setAttribute("fill", "#fff");
           document
-            .getElementById('more--next')
-            .children[0].setAttribute('fill', '#fff')
-          document.getElementById('more--count').style.color = '#fff'
-          document.getElementById('more--text').innerHTML =
-            learnMore[slideNo].text
-          let children = document.getElementById('more--text').children
+            .getElementById("more--next")
+            .children[0].setAttribute("fill", "#fff");
+          document.getElementById("more--count").style.color = "#fff";
+          document.getElementById("more--text").innerHTML =
+            learnMore[slideNo].text;
+          let children = document.getElementById("more--text").children;
           for (let i = 0; i < children.length; i++) {
-            children[i].style.color = '#fff'
+            children[i].style.color = "#fff";
           }
         }
-        document.getElementById('more--count').innerHTML =
-          slideNo + 1 + '<span id="more--slash">/</span>' + learnMore.length
-      }
+        document.getElementById("more--count").innerHTML =
+          slideNo + 1 + '<span id="more--slash">/</span>' + learnMore.length;
+      };
 
       // back
       const back = () => {
-        document.getElementById('more--back').blur()
+        document.getElementById("more--back").blur();
         //
-        slideNo -= 1
+        slideNo -= 1;
         if (slideNo < 0) {
-          slideNo = learnMore.length - 1
+          slideNo = learnMore.length - 1;
         }
-        updateSlides()
-      }
+        updateSlides();
+      };
 
       // next
       const next = () => {
-        document.getElementById('more--next').blur()
+        document.getElementById("more--next").blur();
         //
-        slideNo += 1
+        slideNo += 1;
         if (slideNo >= learnMore.length) {
-          slideNo = 0
+          slideNo = 0;
         }
-        updateSlides()
-      }
+        updateSlides();
+      };
 
       // keystrokes
       document.addEventListener(
-        'keydown',
+        "keydown",
         (event) => {
-          if (event.key === 'ArrowLeft') {
+          if (event.key === "ArrowLeft") {
             // left
             if (isSlideshowOpen) {
-              back()
+              back();
             }
-          } else if (event.key === 'ArrowRight') {
+          } else if (event.key === "ArrowRight") {
             // right
             if (isSlideshowOpen) {
-              next()
+              next();
             }
-          } else if (event.key === 'Escape') {
+          } else if (event.key === "Escape") {
             // escape
-            if (document.getElementById('more--close')) {
-              document.getElementById('more--close').click()
+            if (document.getElementById("more--close")) {
+              document.getElementById("more--close").click();
             }
           }
         },
         true
-      )
+      );
 
       //
       // Click `Learn more`
@@ -889,43 +878,43 @@
 
       // `Learn more` button
       document
-        .getElementById('learn-more')
-        .addEventListener('click', async (event) => {
-          isSlideshowOpen = true
+        .getElementById("learn-more")
+        .addEventListener("click", async (event) => {
+          isSlideshowOpen = true;
 
           // moreBg
-          let moreBgElement = document.createElement('div')
-          moreBgElement.setAttribute('id', 'more--bg')
-          document.getElementById('hero').appendChild(moreBgElement)
-          let moreBg = document.getElementById('more--bg')
+          let moreBgElement = document.createElement("div");
+          moreBgElement.setAttribute("id", "more--bg");
+          document.getElementById("hero").appendChild(moreBgElement);
+          let moreBg = document.getElementById("more--bg");
           // moreFg
-          let moreFgElement = document.createElement('div')
-          moreFgElement.setAttribute('id', 'more--fg')
-          document.getElementById('more--bg').appendChild(moreFgElement)
-          let moreFg = document.getElementById('more--fg')
+          let moreFgElement = document.createElement("div");
+          moreFgElement.setAttribute("id", "more--fg");
+          document.getElementById("more--bg").appendChild(moreFgElement);
+          let moreFg = document.getElementById("more--fg");
           // more
-          let moreElement = document.createElement('div')
-          moreElement.setAttribute('id', 'more')
-          document.getElementById('hero').appendChild(moreElement)
-          let more = document.getElementById('more')
+          let moreElement = document.createElement("div");
+          moreElement.setAttribute("id", "more");
+          document.getElementById("hero").appendChild(moreElement);
+          let more = document.getElementById("more");
 
           // Change button state
-          document.getElementById('learn-more').blur()
+          document.getElementById("learn-more").blur();
           // Disable site overflow
-          body.setAttribute('style', 'overflow: hidden;')
+          body.setAttribute("style", "overflow: hidden;");
           // Start growing circle animation
           moreBg.setAttribute(
-            'style',
-            'top: ' +
+            "style",
+            "top: " +
               event.clientY +
-              'px; left: ' +
+              "px; left: " +
               event.clientX +
-              'px; opacity: 1; max-height: 8000px; max-width: 8000px;'
-          )
+              "px; opacity: 1; max-height: 8000px; max-width: 8000px;"
+          );
           // Wait for animation to finish
           setTimeout(() => {
             // Reset counter
-            slideNo = 0
+            slideNo = 0;
             // Add content
             more.innerHTML += `
                 <!-- Logo -->
@@ -993,64 +982,67 @@
                 </svg>
                 </button>
                 </div>
-                `
+                `;
 
-            more.setAttribute('style', 'width: 100%; height: 100%; opacity: 1;')
+            more.setAttribute(
+              "style",
+              "width: 100%; height: 100%; opacity: 1;"
+            );
 
             document
-              .getElementById('more--close')
-              .addEventListener('click', (event) => {
+              .getElementById("more--close")
+              .addEventListener("click", (event) => {
                 // Change button state
-                document.getElementById('more--close').blur()
+                document.getElementById("more--close").blur();
                 // Disable site overflow
-                body.setAttribute('style', 'overflow: auto;')
+                body.setAttribute("style", "overflow: auto;");
                 // Begin shrinking circle animation
                 moreBg.setAttribute(
-                  'style',
-                  'top: ' +
+                  "style",
+                  "top: " +
                     event.clientY +
-                    'px; left: ' +
+                    "px; left: " +
                     event.clientX +
-                    'px; opacity: 0; max-height: 40px; max-width: 40px;'
-                )
+                    "px; opacity: 0; max-height: 40px; max-width: 40px;"
+                );
                 // Hide and remove content
-                more.setAttribute('style', 'width: 0; height: 0; opacity: 0;')
+                more.setAttribute("style", "width: 0; height: 0; opacity: 0;");
                 setTimeout(() => {
-                  moreBg.remove()
-                  moreFg.remove()
-                  more.remove()
-                }, 300)
-              })
-          }, 300)
+                  moreBg.remove();
+                  moreFg.remove();
+                  more.remove();
+                }, 300);
+              });
+          }, 300);
 
           //
           // Clicks (vercel + supabase)
           //
 
           // Helper for fetch url
-          let url = document.location.href
+          let url = document.location.href;
 
           // Account for 'local' vs 'prod'
-          if (url.startsWith('https://ruizdurazo.com')) {
-            url = `https://ruizdurazo-button.vercel.app/api/clicks`
+          if (url.startsWith("https://ruizdurazo.com")) {
+            url = `https://ruizdurazo-button.vercel.app/api/clicks`;
           } else {
-            url = `http://localhost:3000/api/clicks`
+            url = `http://localhost:3000/api/clicks`;
           }
 
           await fetch(url, {
-            method: 'POST',
-            mode: 'cors',
+            method: "POST",
+            mode: "cors",
             headers: {
-              'Content-Type': 'application/json',
+              "Content-Type": "application/json",
             },
-          })
+          });
 
           fetch(url)
             .then((response) => response.json())
             .then((data) => {
               // console.log(data)
 
-              const numberOfClicks = data.count
+              const numberOfClicks = data.count;
 
               learnMore[learnMore.length - 1] =
                 numberOfClicks > 0
@@ -1058,20 +1050,20 @@
                       text: `
             <p>lol the button has been clicked ${numberOfClicks} times!</p>
             `,
-                      bgColor: 'black',
+                      bgColor: "black",
                     }
                   : {
                       text: `
             <p>omg you clicked the button!</p>
             `,
-                      bgColor: 'black',
-                    }
+                      bgColor: "black",
+                    };
 
               if (slideNo === learnMore.length - 1) {
-                updateSlides()
+                updateSlides();
               }
-            })
-        })
+            });
+        });
     </script>
   </body>
 </html>
