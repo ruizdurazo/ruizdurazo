@@ -172,11 +172,38 @@ img {
   box-shadow: 0 0 10px 0 #ffffff80;
 }
 
+.navbar.menu-open {
+  background-color: #fff;
+  animation: 0.1s ease-out 0s both navbar-background-fade-in;
+}
+
+.navbar.menu-close {
+  animation: 0.3s ease-out 0.4s both navbar-background-fade-out;
+}
+
+@keyframes navbar-background-fade-in {
+  from {
+    background-color: #ffffffdd;
+  }
+  to {
+    background-color: #fff;
+  }
+}
+
+@keyframes navbar-background-fade-out {
+  from {
+    background-color: #fff;
+  }
+  to {
+    background-color: #ffffffdd;
+  }
+}
+
 .navbar--elements {
   display: flex;
   justify-content: space-between;
   width: calc(100% - (1px * var(--offset)));
-  height: calc(var(--font-size) * 5);
+  height: var(--font-size-5);
   margin: 0 auto;
 }
 
@@ -242,7 +269,7 @@ img {
   left: 0;
   right: 0;
   background-color: #fff;
-  transition: all 0.3s ease-out;
+  transition: max-height 0.3s ease-out 0.1s;
 }
 
 /* List of menu items */
