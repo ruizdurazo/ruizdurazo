@@ -268,58 +268,63 @@
           <h2 class="section--title">Get in touch</h2>
           <div class="social-media">
             <ul class="social-media-links">
-              <li id="mail">
-                <a
-                  href="mailto:enrique@ruizdurazo.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  ><img
+              <li>
+                <button id="mail">
+                  <img
                     src="/assets/images/icon-mail.svg"
                     alt="Email"
                     draggable="false"
                     width="32"
                     height="32"
-                  /><span>Email</span></a
-                >
+                  />
+                  <span>Email</span>
+                </button>
               </li>
-              <li id="x">
+              <li>
                 <a
+                  id="x"
                   href="https://x.com/ruizdurazo"
                   target="_blank"
                   rel="noopener noreferrer"
-                  ><img
+                >
+                  <img
                     src="/assets/images/icon-x.svg"
                     alt="X (Twitter)"
                     draggable="false"
                     width="32"
                     height="32"
-                  /><span>X (Twitter)</span></a
-                >
+                  />
+                  <span>X (Twitter)</span>
+                </a>
               </li>
-              <li id="github">
+              <li>
                 <a
+                  id="github"
                   href="https://github.com/ruizdurazo"
                   target="_blank"
                   rel="noopener noreferrer"
-                  ><img
+                >
+                  <img
                     src="/assets/images/icon-github.svg"
                     alt="GitHub"
                     draggable="false"
                     width="32"
                     height="32"
-                  /><span>GitHub</span></a
-                >
+                  />
+                  <span>GitHub</span>
+                </a>
               </li>
-              <li id="lol">
-                <a href="/lol"
-                  ><img
+              <li>
+                <a id="lol" href="/lol">
+                  <img
                     src="/assets/images/icon-lol.svg"
                     alt="LinkedIn"
                     draggable="false"
                     width="32"
                     height="32"
-                  /><span>LinkedIn</span></a
-                >
+                  />
+                  <span>LinkedIn</span>
+                </a>
               </li>
             </ul>
           </div>
@@ -345,9 +350,8 @@
     <!-- Scripts -->
     <script src="/js/navbar.js"></script>
     <script src="/js/notes.js"></script>
+    <!-- Notes parsing -->
     <script>
-      // Notes parsing
-
       // Date format options
       const date_options = {
         year: "numeric",
@@ -462,12 +466,50 @@
         });
       }
     </script>
+    <!-- Email bubble -->
+    <script>
+      const mailBtn = document.getElementById("mail");
+      let bubble = null;
+      const bubbleText = "enrique" + "@" + "ruizdurazo.com";
+
+      // Create and show bubble on hover
+      mailBtn.addEventListener("mouseenter", () => {
+        bubble = document.createElement("div");
+        bubble.className = "email-bubble";
+        bubble.textContent = bubbleText;
+        mailBtn.appendChild(bubble);
+      });
+
+      // Remove bubble when mouse leaves
+      mailBtn.addEventListener("mouseleave", () => {
+        if (bubble) {
+          bubble.remove();
+          bubble = null;
+        }
+      });
+
+      // Copy email and update bubble text on click
+      mailBtn.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(bubbleText);
+          if (bubble) {
+            bubble.textContent = "Copied!";
+            setTimeout(() => {
+              if (bubble) {
+                bubble.textContent = bubbleText;
+              }
+            }, 1000);
+          }
+        } catch (err) {
+          console.error("Failed to copy email:", err);
+        }
+      });
+    </script>
+    <!-- Home page: footer + words animation + slides -->
     <script>
       //
-      // Home page: footer + words animation + slides
-      //
-
       // https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/
+      //
 
       //
       // Footer

@@ -39,6 +39,8 @@
   text-align: center;
 }
 
+/* Media queries */
+
 /* 1200px */
 @media (max-width: 1200px) {
   #content {

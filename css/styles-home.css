@@ -510,7 +510,8 @@ p {
   margin-bottom: var(--font-size-2);
 }
 
-.social-media-links li a {
+.social-media-links li a,
+.social-media-links li button {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -521,13 +522,15 @@ p {
   border-radius: 40px;
 }
 
-.social-media-links li a img {
+.social-media-links li a img,
+.social-media-links li button img {
   height: 100%;
   margin-right: 0.8em;
   transition: all 0.2s;
 }
 
-.social-media-links li a span {
+.social-media-links li a span,
+.social-media-links li button span {
   flex: none;
   display: inline-block;
   font-size: var(--font-size);
@@ -537,19 +540,62 @@ p {
 }
 
 .social-media-links li a:hover,
-.social-media-links li a:focus-visible {
+.social-media-links li a:focus-visible,
+.social-media-links li button:hover,
+.social-media-links li button:focus-visible {
+  cursor: pointer;
   background-color: var(--black);
 }
 
 .social-media-links li a:hover img,
-.social-media-links li a:focus-visible img {
+.social-media-links li a:focus-visible img,
+.social-media-links li button:hover img,
+.social-media-links li button:focus-visible img {
   filter: invert(1);
 }
 
 .social-media-links li a:hover span,
-.social-media-links li a:focus-visible span {
+.social-media-links li a:focus-visible span,
+.social-media-links li button:hover span,
+.social-media-links li button:focus-visible span {
   color: #fff;
 }
+
+/* Email bubble */
+#mail {
+  position: relative;
+}
+
+.email-bubble {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  color: var(--black);
+  padding: 8px 16px;
+  border-radius: 40px;
+  border: 1px solid var(--_e);
+  font-size: calc(var(--font-size) * 0.8);
+  line-height: calc(var(--font-size) * 1.2);
+  font-weight: 500;
+  white-space: nowrap;
+  margin-bottom: 8px;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 5px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+/* Media queries */
 
 /* 1040px */
 @media only screen and (max-width: 1040px) {
