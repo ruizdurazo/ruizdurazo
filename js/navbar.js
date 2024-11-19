@@ -1,27 +1,29 @@
 /*
  * Enrique Ruiz Durazo
- * 2021
+ * 2021-2025
  */
 
-let menuSVG = document.getElementById('menu-svg')
+const navbar = document.getElementById('navbar')
+const menuSVG = document.getElementById('menu-svg')
 document.getElementById('menu-button').addEventListener('click', (event) => {
   if (menuSVG.alt === 'Menu') {
     document.getElementById('menu-button').blur()
     document
       .getElementById('menu-overlay')
-      .setAttribute('style', 'max-height: 100vh;')
+      .setAttribute('style', 'max-height: 100svh;')
     document.getElementById('menu-overlay').innerHTML =
-      '<div class="lang-list">' +
-      '<a class="lang lang-current" href="/">Home</a>' +
-      '<a class="lang lang-current" href="mailto:enrique@ruizdurazo.com" target="_blank">Email</a>' +
-      '<a class="lang lang-current" href="https://twitter.com/ruizdurazo" target="_blank">Twitter</a>' +
-      '<a class="lang lang-current" href="https://github.com/ruizdurazo" target="_blank">GitHub</a>' +
-      '<a class="lang lang-current" href="/lol">LinkedIn</a>' +
+      '<div class="menu-list">' +
+      '<a class="menu-list-item" href="/">Home</a>' +
+      '<a class="menu-list-item" href="mailto:enrique@ruizdurazo.com" target="_blank">Email</a>' +
+      '<a class="menu-list-item" href="https://x.com/ruizdurazo" target="_blank">X (Twitter)</a>' +
+      '<a class="menu-list-item" href="https://github.com/ruizdurazo" target="_blank">GitHub</a>' +
+      '<a class="menu-list-item" href="/lol">LinkedIn</a>' +
       '</div>'
     menuSVG.src = '/assets/images/icon-close.svg'
     menuSVG.alt = 'Close'
     menuSVG.width = '60'
     menuSVG.height = '60'
+    navbar.style.backgroundColor = '#fff'
   } else {
     document.getElementById('menu-button').blur()
     document
@@ -32,6 +34,7 @@ document.getElementById('menu-button').addEventListener('click', (event) => {
     menuSVG.alt = 'Menu'
     menuSVG.width = '60'
     menuSVG.height = '60'
+    navbar.style.backgroundColor = '#ffffffdd'
   }
 })
 

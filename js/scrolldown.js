@@ -1,6 +1,6 @@
 /*
  * Enrique Ruiz Durazo
- * 2021
+ * 2021-2025
  */
 
 // Markdown document, an array of lines (strings)
@@ -101,9 +101,9 @@ fetch(url)
           } else if (prop.startsWith('author_email:')) {
             // Author Email
             noteData.author_email = prop.split(':')[1].trim()
-          } else if (prop.startsWith('author_twitter:')) {
-            // Author Twitter
-            noteData.author_twitter = prop.split(':')[1].trim()
+          } else if (prop.startsWith('author_x:')) {
+            // Author X
+            noteData.author_x = prop.split(':')[1].trim()
           }
         })
         // Remove metadata block from original document
@@ -918,23 +918,6 @@ fetch(url)
     // Finally, push parsed Scrolldown to DOM
     document.getElementById('note').innerHTML += noteArticle
 
-    // Credits
-    // document.getElementById('credits').innerHTML += ''
-    // <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-via="ruizdurazo" data-show-count="false">Tweet</a>
-    // <a href="https://twitter.com/ruizdurazo?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-via="ruizdurazo" data-show-count="false">Follow @ruizdurazo</a>
-    // <span id="author">Enrique Ruiz Durazo</span>
-
-    // image:
-    // highlight:
-    // repository:
-    // author_name: Enrique Ruiz Durazo
-    // author_email: enrique.ruizdurazo@gmail.com
-    // author_twitter: ruizdurazo
-    // twitter_url = 'https://twitter.com/' + author_twitter
-
-    // Notes / references / links?
-    // ...
-
     // Further Reading
     notes
       .sort((a, b) => (a.date > b.date ? 1 : b.date > a.date ? -1 : 0))
@@ -1089,9 +1072,9 @@ fetch(url)
     //       } else if (prop.startsWith('author_email:')) {
     //         // Author Email
     //         item.author_email = prop.split(':')[1].trim()
-    //       } else if (prop.startsWith('author_twitter:')) {
-    //         // Author Twitter
-    //         item.author_twitter = prop.split(':')[1].trim()
+    //       } else if (prop.startsWith('author_x:')) {
+    //         // Author X
+    //         item.author_x = prop.split(':')[1].trim()
     //       }
     //     })
     //   }
