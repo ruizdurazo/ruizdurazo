@@ -1,0 +1,245 @@
+/* 
+ * Enrique Ruiz Durazo
+ * 2019-2025
+ */
+
+/* Content */
+#content {
+  max-width: var(--max-width-home);
+  margin: 0 auto;
+  padding-top: var(--font-size-5);
+}
+
+/* Section - Quotes */
+#quotes {
+  position: relative;
+  margin: var(--font-size-4) 0;
+  padding: 0 var(--font-size-4);
+  min-height: calc(var(--font-size) * 6.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#quotes * {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  text-align: center;
+}
+
+#quotes .quote-text span {
+  font-size: calc(var(--font-size) * 1.1);
+  line-height: calc(var(--font-size) * 1.6);
+}
+
+#quotes .quote-attribution span {
+  font-size: calc(var(--font-size) * 0.8);
+  line-height: calc(var(--font-size) * 1.6);
+  color: var(--_70);
+}
+
+#quotes:hover {
+  cursor: pointer;
+}
+
+#quotes .quote-text,
+#quotes .quote-attribution {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+#quotes .quote-text.fade,
+#quotes .quote-attribution.fade {
+  opacity: 0;
+}
+
+/* Section - Prompts */
+#prompts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--font-size);
+  margin-bottom: var(--font-size-6);
+}
+
+#prompts .prompt-input-wrapper {
+  position: relative;
+}
+
+#prompts #prompt-input-search {
+  position: absolute;
+  pointer-events: none;
+  top: 17px;
+  left: 17px;
+  width: 32px;
+  height: 32px;
+}
+
+#prompts textarea {
+  width: 100%;
+  padding: 16px 32px 16px 56px;
+  border-radius: 32px;
+  background-color: #fff;
+  border: 1px solid #eee;
+  font-size: calc(var(--font-size) * 0.9);
+  line-height: calc(var(--font-size) * 1.6);
+  resize: none;
+  overflow-y: hidden;
+  transition: border-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+}
+
+#prompts textarea:hover {
+  border-color: #ddd;
+  box-shadow: 0 0 0 2px #fafafa;
+}
+
+#prompts textarea:focus-visible {
+  border-color: #ccc;
+  box-shadow: 0 0 0 5px #f8f8f8;
+}
+
+#prompts textarea::placeholder {
+  color: #808080;
+}
+
+#prompts .prompt-sources {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 80px;
+  justify-content: center;
+  align-items: center;
+}
+
+#prompts .prompt-sources a {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  padding: 12px;
+  border-radius: 40px;
+  border: 1px solid #fff;
+  background-color: #fff;
+  transition: background-color 0.1s ease-out, box-shadow 0.1s ease-out;
+}
+
+#prompts .prompt-sources a:hover {
+  border: 1px solid #eee;
+}
+
+#prompts .prompt-sources a:focus-visible {
+  box-shadow: 0 0 0 4px var(--blue);
+}
+
+#prompts .prompt-sources a * {
+  font-size: calc(var(--font-size) * 0.8);
+  font-weight: 600;
+  line-height: calc(var(--font-size) * 1.2);
+}
+
+/* Section - Quick Links */
+#quick-links {
+  margin-bottom: var(--font-size-8);
+}
+
+#quick-links ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+#quick-links ul li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+#quick-links ul li a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--font-size) * 0.8);
+  width: 155px;
+  height: 155px;
+  text-align: center;
+  font-size: calc(var(--font-size) * 0.8);
+  font-weight: 600;
+  border-radius: 16px;
+  background-color: #fff;
+  transition: background-color 0.1s ease-out, box-shadow 0.1s ease-out;
+}
+
+#quick-links ul li a:hover {
+  background-color: #fafafa;
+}
+
+#quick-links ul li a:focus-visible {
+  box-shadow: 0 0 0 4px var(--blue);
+}
+
+#quick-links ul li a img {
+  width: 56px;
+  height: 56px;
+}
+
+/* 1040px */
+@media only screen and (max-width: 1040px) {
+  #content {
+    width: calc(
+      100% -
+        (
+          (1px * var(--offset) * 0.75) + (var(--offset) - var(--offset) * 0.75) *
+            (100vw - 768px) / (1040 - 768)
+        )
+    );
+  }
+
+  #quotes {
+    padding: 0 var(--font-size-2);
+  }
+
+  #prompts .prompt-sources {
+    gap: var(--font-size-3);
+  }
+}
+
+/* 768px */
+@media only screen and (max-width: 768px) {
+  #content {
+    width: calc(
+      100% -
+        (
+          (1px * var(--offset) / 2) +
+            ((var(--offset) * 0.75) - var(--offset) / 2) * (100vw - 480px) /
+            (768 - 480)
+        )
+    );
+  }
+
+  #prompts .prompt-sources {
+    gap: var(--font-size-2);
+  }
+}
+
+/* 640px */
+@media only screen and (max-width: 640px) {
+  #prompts .prompt-sources {
+    gap: var(--font-size);
+  }
+}
+
+/* 480px */
+@media only screen and (max-width: 480px) {
+  #content {
+    width: calc(100% - (1px * var(--offset) / 2));
+  }
+
+  #quotes {
+    padding: 0;
+  }
+}

@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr" prefix="og: http://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Dashboard – Enrique Ruiz Durazo</title>
+    <meta
+      name="description"
+      content="Software Engineer / Designer. Making things using code and design."
+    />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/images/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/images/favicon-16x16.png"
+    />
+    <link rel="mask-icon" href="/assets/images/favicon.svg" color="#202020" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@ruizdurazo" />
+    <meta name="twitter:title" content="Enrique Ruiz Durazo" />
+    <meta
+      name="twitter:description"
+      content="Software Engineer / Designer. Making things using code and design."
+    />
+    <meta
+      name="twitter:image"
+      content="https://ruizdurazo.com/assets/images/card.png"
+    />
+
+    <meta property="og:url" content="https://ruizdurazo.com/" />
+    <meta property="og:title" content="Enrique Ruiz Durazo" />
+    <meta
+      property="og:description"
+      content="Software Engineer / Designer. Making things using code and design."
+    />
+    <meta
+      property="og:image"
+      content="https://ruizdurazo.com/assets/images/card.png"
+    />
+
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/styles-dashboard.css" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "Person",
+        "name": "Enrique Ruiz Durazo",
+        "url": "https://ruizdurazo.com",
+        "email": "enrique@ruizdurazo.com",
+        "sameAs": ["https://x.com/ruizdurazo", "https://github.com/ruizdurazo"]
+      }
+    </script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-LT28T7BZ5K"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-LT28T7BZ5K");
+    </script>
+  </head>
+
+  <body>
+    <div id="site" class="site">
+      <!-- Navbar -->
+      <nav id="navbar" class="navbar">
+        <div class="navbar--elements">
+          <div id="logo" class="logo">
+            <a href="/">
+              <img
+                id="logo-svg"
+                src="/assets/images/logo-ruizdurazo.svg"
+                alt="Enrique Ruiz Durazo"
+                draggable="false"
+                width="300"
+                height="30"
+              />
+            </a>
+          </div>
+          <div class="menu" id="menu">
+            <button id="menu-button">
+              <img
+                id="menu-svg"
+                src="/assets/images/icon-menu.svg"
+                alt="Menu"
+                draggable="false"
+                width="60"
+                height="60"
+              />
+            </button>
+          </div>
+        </div>
+        <div id="menu-overlay"></div>
+      </nav>
+
+      <!-- Dashboard -->
+      <div id="content" class="content">
+        <!-- Section - Quotes -->
+        <section id="quotes" class="section">
+          <div class="quote-text">
+            <span id="quote"> </span>
+          </div>
+          <div class="quote-attribution">
+            <span id="attribution"> </span>
+          </div>
+        </section>
+
+        <!-- Section - Prompts -->
+        <section id="prompts" class="section">
+          <!-- Search input -->
+          <div class="prompt-input-wrapper">
+            <textarea
+              id="prompt-input"
+              placeholder="Prompt"
+              rows="1"
+            ></textarea>
+            <img
+              id="prompt-input-search"
+              src="/assets/images/dashboard/icon-search.svg"
+              alt="Search icon"
+              width="32"
+              height="32"
+            />
+          </div>
+
+          <!-- Sources -->
+          <div class="prompt-sources">
+            <a id="chatgpt" href="https://chat.openai.com">
+              <img
+                src="/assets/images/dashboard/openai.png"
+                alt="OpenAI"
+                width="24"
+                height="24"
+              />
+              <span>ChatGPT</span>
+              <span>↩</span>
+            </a>
+            <a id="claude" href="https://claude.ai">
+              <img
+                src="/assets/images/dashboard/claude.png"
+                alt="Claude"
+                width="24"
+                height="24"
+              />
+              <span>Claude</span>
+              <span>⌘↩</span>
+            </a>
+            <a id="search" href="https://google.com">
+              <img
+                src="/assets/images/dashboard/google.png"
+                alt="Google"
+                width="24"
+                height="24"
+              />
+              <span>Search</span>
+              <span>⇧⌘↩</span>
+            </a>
+          </div>
+        </section>
+
+        <!-- Section - Quick Links -->
+        <section id="quick-links" class="section">
+          <ul>
+            <li>
+              <a href="https://mail.google.com" rel="noopener noreferrer">
+                <img
+                  src="/assets/images/dashboard/gmail.png"
+                  alt="Gmail"
+                  width="56"
+                  height="56"
+                />
+                Mail
+              </a>
+            </li>
+            <li>
+              <a href="https://calendar.google.com" rel="noopener noreferrer">
+                <img
+                  src="/assets/images/dashboard/calendar.png"
+                  alt="Calendar"
+                  width="56"
+                  height="56"
+                />
+                Calendar
+              </a>
+            </li>
+            <li>
+              <a href="https://google.com/finance" rel="noopener noreferrer">
+                <img
+                  src="/assets/images/dashboard/finance.png"
+                  alt="Finance"
+                  width="56"
+                  height="56"
+                />
+                Finance
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://app.getquin.com/en/dashboard"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="/assets/images/dashboard/getquin.png"
+                  alt="Getquin"
+                  width="56"
+                  height="56"
+                />
+                Getquin
+              </a>
+            </li>
+            <li>
+              <a href="https://x.com/i/bookmarks/all" rel="noopener noreferrer">
+                <img
+                  src="/assets/images/dashboard/x.png"
+                  alt="X"
+                  width="56"
+                  height="56"
+                />
+                X
+              </a>
+            </li>
+            <li>
+              <a href="https://pro.x.com" rel="noopener noreferrer">
+                <img
+                  src="/assets/images/dashboard/x.png"
+                  alt="X"
+                  width="56"
+                  height="56"
+                />
+                X Pro
+              </a>
+            </li>
+            <li>
+              <a href="https://notion.so" rel="noopener noreferrer">
+                <img
+                  src="/assets/images/dashboard/notion.png"
+                  alt="Notion"
+                  width="56"
+                  height="56"
+                />
+                Notion
+              </a>
+            </li>
+            <li>
+              <a href="https://figma.com" rel="noopener noreferrer">
+                <img
+                  src="/assets/images/dashboard/figma.png"
+                  alt="Figma"
+                  width="56"
+                  height="56"
+                />
+                Figma
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com" rel="noopener noreferrer">
+                <img
+                  src="/assets/images/dashboard/github.png"
+                  alt="GitHub"
+                  width="56"
+                  height="56"
+                />
+                GitHub
+              </a>
+            </li>
+            <li>
+              <a href="https://vercel.com" rel="noopener noreferrer">
+                <img
+                  src="/assets/images/dashboard/vercel.png"
+                  alt="Vercel"
+                  width="56"
+                  height="56"
+                />
+                Vercel
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://supabase.com/dashboard"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="/assets/images/dashboard/supabase.png"
+                  alt="Supabase"
+                  width="56"
+                  height="56"
+                />
+                Supabase
+              </a>
+            </li>
+            <li>
+              <a href="https://webflow.com" rel="noopener noreferrer">
+                <img
+                  src="/assets/images/dashboard/webflow.png"
+                  alt="Webflow"
+                  width="56"
+                  height="56"
+                />
+                Webflow
+              </a>
+            </li>
+            <li>
+              <a href="https://youtube.com" rel="noopener noreferrer">
+                <img
+                  src="/assets/images/dashboard/youtube.png"
+                  alt="YouTube"
+                  width="56"
+                  height="56"
+                />
+                YouTube
+              </a>
+            </li>
+            <li>
+              <a href="https://news.ycombinator.com" rel="noopener noreferrer">
+                <img
+                  src="/assets/images/dashboard/ycombinator.png"
+                  alt="Y Combinator"
+                  width="56"
+                  height="56"
+                />
+                Hacker News
+              </a>
+            </li>
+            <li>
+              <a href="https://layers.to" rel="noopener noreferrer">
+                <img
+                  src="/assets/images/dashboard/layers.png"
+                  alt="Layers"
+                  width="56"
+                  height="56"
+                />
+                Layers
+              </a>
+            </li>
+            <li>
+              <a href="https://fontsinuse.com" rel="noopener noreferrer">
+                <img
+                  src="/assets/images/dashboard/fontsinuse.png"
+                  alt="Fonts in Use"
+                  width="56"
+                  height="56"
+                />
+                Fonts in Use
+              </a>
+            </li>
+            <li>
+              <a href="https://behance.net/galleries" rel="noopener noreferrer">
+                <img
+                  src="/assets/images/dashboard/behance.png"
+                  alt="Behance"
+                  width="56"
+                  height="56"
+                />
+                Behance
+              </a>
+            </li>
+            <li>
+              <a href="https://www.archdaily.com/search/projects/categories/residential-architecture" rel="noopener noreferrer">
+                <img
+                  src="/assets/images/dashboard/archdaily.png"
+                  alt="ArchDaily"
+                  width="56"
+                  height="56"
+                />
+                ArchDaily
+              </a>
+            </li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- Footer -->
+      <footer id="footer" class="footer">
+        <span id="copyright">© Enrique Ruiz Durazo</span>
+        <div class="footer-links">
+          <a href="/dashboard">Dashboard</a>
+          <a
+            id="source"
+            href="https://github.com/ruizdurazo/ruizdurazo"
+            target="_blank"
+            >Source &nearr;</a
+          >
+        </div>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/js/navbar.js"></script>
+    <script>
+      var yyyy = new Date();
+      document.getElementById("copyright").innerHTML =
+        "© " + yyyy.getFullYear() + " Enrique Ruiz Durazo";
+    </script>
+    <!-- Auto-resize textarea -->
+    <script>
+      const textarea = document.getElementById("prompt-input");
+      textarea.addEventListener("input", function () {
+        this.style.height = "auto";
+        this.style.height = this.scrollHeight + 2 + "px";
+      });
+    </script>
+    <!-- Update prompt links based on textarea input -->
+    <script>
+      const promptInput = document.getElementById("prompt-input");
+      const chatgptLink = document.getElementById("chatgpt");
+      const claudeLink = document.getElementById("claude");
+      const searchLink = document.getElementById("search");
+
+      promptInput.addEventListener("input", function () {
+        const text = this.value.trim();
+        chatgptLink.href = text
+          ? `https://chat.openai.com/?q=${encodeURIComponent(text)}`
+          : "https://chat.openai.com";
+        claudeLink.href = text
+          ? `https://claude.ai/new?q=${encodeURIComponent(text)}`
+          : "https://claude.ai";
+        searchLink.href = text
+          ? `https://google.com/search?q=${encodeURIComponent(text)}`
+          : "https://google.com";
+      });
+
+      // Add keyboard shortcuts
+      promptInput.addEventListener("keydown", function (e) {
+        const text = this.value.trim();
+        if (!text) return; // Only proceed if there's input
+
+        // Enter key for ChatGPT
+        if (e.key === "Enter" && !e.metaKey && !e.shiftKey) {
+          e.preventDefault();
+          window.location.href = chatgptLink.href;
+        }
+        // Cmd + Enter for Claude
+        else if (e.key === "Enter" && e.metaKey && !e.shiftKey) {
+          e.preventDefault();
+          window.location.href = claudeLink.href;
+        }
+        // Cmd + Shift + Enter for Google Search
+        else if (e.key === "Enter" && e.metaKey && e.shiftKey) {
+          e.preventDefault();
+          window.location.href = searchLink.href;
+        }
+      });
+    </script>
+    <!-- Fetch quotes -->
+    <script>
+      // Helpers
+      let url = document.location.href;
+      let quoteId = 0;
+      let count = 0;
+
+      // Account for 'local' vs 'prod'
+      if (url.startsWith("https://ruizdurazo.com")) {
+        url = `https://ruizdurazo-button.vercel.app/api/quotes`;
+      } else {
+        url = `http://localhost:3000/api/quotes`;
+      }
+
+      // Get quotes element
+      const quotes = document.getElementById("quotes");
+
+      // First fetch the count and initialize
+      fetchQuoteCount().then(() => {
+        // Add click event listener after we have the count
+        quotes.addEventListener("click", async () => {
+          quoteId = (quoteId % count) + 1; // This ensures we cycle from 1 to count
+          fetchQuote(quoteId);
+        });
+      });
+
+      // Fetch quote count
+      async function fetchQuoteCount() {
+        const { count: totalCount } = await fetch(url).then((response) =>
+          response.json()
+        );
+        count = totalCount;
+
+        // Generate random quote id
+        if (count > 0) {
+          quoteId = Math.floor(Math.random() * count) + 1; // Add 1 to avoid getting 0
+          fetchQuote(quoteId);
+        }
+
+        return count;
+      }
+
+      // Fetch 1 quote by id and update DOM
+      async function fetchQuote(id) {
+        const quoteText = document.getElementById("quote");
+        const attribution = document.getElementById("attribution");
+        const quoteWrapper = quoteText.parentElement;
+        const attributionWrapper = attribution.parentElement;
+
+        // Fade out
+        quoteWrapper.classList.add("fade");
+        attributionWrapper.classList.add("fade");
+
+        // Wait for fade out
+        await new Promise((resolve) => setTimeout(resolve, 300));
+
+        // Fetch and update content
+        const { quote } = await fetch(`${url}?id=${id}`).then((response) =>
+          response.json()
+        );
+
+        quoteText.innerHTML = `“${quote.quote}”`;
+        attribution.innerHTML = quote.attribution
+          ? `– ${quote.attribution}`
+          : "";
+
+        // Remove widows
+        const words = quoteText.textContent.split(" ");
+        if (words.length > 1) {
+          words[words.length - 2] += "\u00A0" + words[words.length - 1];
+          words.pop();
+          quoteText.innerHTML = words.join(" ");
+        }
+
+        // Fade in
+        quoteWrapper.classList.remove("fade");
+        attributionWrapper.classList.remove("fade");
+      }
+    </script>
+  </body>
+</html>
