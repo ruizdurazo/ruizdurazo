@@ -8,7 +8,7 @@ image_alt:
 repository:
 author_name: Enrique Ruiz Durazo
 author_email: enrique@ruizdurazo.com
-author_twitter: ruizdurazo
+author_x: ruizdurazo
 acknowledgements:
 further_reading: true
 _:
@@ -260,4 +260,4 @@ However, there are many other flavors of Markdown. If you want to learn more you
 
 ---
 
-Hope you found it useful. If you’d like to get in touch, [send me an email](mailto:enrique@ruizdurazo.com) or [dm me on Twitter](https://twitter.com/ruizdurazo).
+Hope you found it useful. If you’d like to get in touch, [write me an email](mailto:enrique@ruizdurazo.com) or [dm me on X](https://x.com/ruizdurazo).

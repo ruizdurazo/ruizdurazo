@@ -63,10 +63,7 @@
         "name": "Enrique Ruiz Durazo",
         "url": "https://ruizdurazo.com",
         "email": "enrique@ruizdurazo.com",
-        "sameAs": [
-          "https://twitter.com/ruizdurazo",
-          "https://github.com/ruizdurazo"
-        ]
+        "sameAs": ["https://x.com/ruizdurazo", "https://github.com/ruizdurazo"]
       }
     </script>
     <script
@@ -135,10 +132,6 @@
               <br />
               <span id="slideshow-anim">I'm <u>Enrique</u></span>
             </h1>
-            <button id="learn-more" class="learn-more">
-              <!-- onclick="event => onButtonClicked(event)" -->
-              Don't click here
-            </button>
           </div>
         </section>
 
@@ -172,16 +165,22 @@
         <section id="summary-section" class="summary-section">
           <hr class="sep" />
           <div class="summary">
+            <!-- Summary Text -->
             <div class="summary__text">
               <h2 class="section--title">Summary</h2>
-              <p class="bold">Full-stack software engineer and designer.</p>
-              <p>
-                Nerding out about design, tech, real estate, housing, and
-                cities.
+              <p class="bold">
+                Senior software engineer, product designer, and content creator.
               </p>
+              <p>
+                Obsessed with crafting great products and creating quality
+                content.
+              </p>
+              <!-- <p>
+                Senior software engineer and product designer at <a href="https://tend.ch" target="_blank" rel="noopener noreferrer" class="link">Tend</a>. Freelance designer and content creator elsewhere.
+              </p> -->
               <p>Living in Zürich, Switzerland.</p>
               <p>
-                Say hi.
+                Say hi!
                 <a
                   href="mailto:enrique@ruizdurazo.com"
                   target="_blank"
@@ -191,23 +190,29 @@
                 >
                 or
                 <a
-                  href="https://twitter.com/ruizdurazo"
+                  href="https://x.com/ruizdurazo"
                   target="_blank"
                   rel="noopener noreferrer"
                   class="link"
-                  >dm me on Twitter</a
+                  >dm me on X</a
                 >.
               </p>
             </div>
 
+            <!-- Profile Image -->
             <div class="summary__image">
-              <img
-                src="/assets/images/enrique.jpg"
-                draggable="false"
-                alt=""
-                width="330"
-                height="370"
-              />
+              <div class="image-wrapper">
+                <img
+                  src="/assets/images/enrique.jpg"
+                  draggable="false"
+                  alt=""
+                  width="330"
+                  height="370"
+                />
+              </div>
+              <button id="learn-more" class="learn-more">
+                Don't click here
+              </button>
             </div>
           </div>
         </section>
@@ -277,18 +282,18 @@
                   /><span>Email</span></a
                 >
               </li>
-              <li id="twitter">
+              <li id="x">
                 <a
-                  href="https://twitter.com/ruizdurazo"
+                  href="https://x.com/ruizdurazo"
                   target="_blank"
                   rel="noopener noreferrer"
                   ><img
-                    src="/assets/images/icon-twitter.svg"
-                    alt="Twitter"
+                    src="/assets/images/icon-x.svg"
+                    alt="X (Twitter)"
                     draggable="false"
                     width="32"
                     height="32"
-                  /><span>Twitter</span></a
+                  /><span>X (Twitter)</span></a
                 >
               </li>
               <li id="github">
@@ -324,13 +329,16 @@
       <!-- Footer -->
       <footer id="footer" class="footer">
         <span id="copyright">© Enrique Ruiz Durazo</span>
-        <a
-          id="source"
-          href="https://github.com/ruizdurazo/ruizdurazo"
-          target="_blank"
-          rel="noopener noreferrer"
-          >Source &nearr;</a
-        >
+        <div class="footer-links">
+          <a href="/dashboard">Dashboard</a>
+          <a
+            id="source"
+            href="https://github.com/ruizdurazo/ruizdurazo"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Source &nearr;</a
+          >
+        </div>
       </footer>
     </div>
 
@@ -352,7 +360,7 @@
         .reverse();
 
       if (notes) {
-        // add placeholder content awaiting note data
+        // Add placeholder content awaiting note data?
 
         // document.getElementById('notes-section').setAttribute('style', 'display: auto;')
         // document.getElementById('notes-section').innerHTML +=
@@ -506,6 +514,48 @@
       });
 
       //
+      // Profile Image
+      //
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const wrapper = document.querySelector(".image-wrapper");
+        const image = wrapper.querySelector("img");
+
+        // Variables for rotation
+        const maxRotation = 10; // Maximum rotation in degrees
+
+        wrapper.addEventListener("mousemove", (e) => {
+          if (!wrapper || !image) return;
+
+          // Get the dimensions and position of the wrapper
+          const rect = wrapper.getBoundingClientRect();
+
+          // Calculate mouse position relative to the center of the wrapper
+          const centerX = rect.left + rect.width / 2;
+          const centerY = rect.top + rect.height / 2;
+
+          // Calculate rotation based on mouse distance from center
+          const rotateY =
+            ((e.clientX - centerX) / (rect.width / 2)) * maxRotation;
+          const rotateX =
+            -((e.clientY - centerY) / (rect.height / 2)) * maxRotation;
+
+          // Apply the transformation
+          image.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        // Reset the image position when mouse leaves
+        wrapper.addEventListener("mouseleave", () => {
+          image.style.transform = "rotateX(0) rotateY(0)";
+        });
+
+        // Optional: Smooth transition when mouse enters
+        wrapper.addEventListener("mouseenter", (e) => {
+          image.style.transition = "transform 0.2s ease-out";
+        });
+      });
+
+      //
       // Slides
       //
 
@@ -523,6 +573,7 @@
           text: `
               <p>Engineer</p>
               <p>Designer</p>
+              <p>Creator</p>
             `,
           bgColor: "white",
         },
@@ -561,8 +612,8 @@
         },
         {
           text: `
-              <p>Design</p>
               <p>Tech</p>
+              <p>Design</p>
               <p>Real estate</p>
               <p>Housing</p>
               <p>Cities</p>
@@ -572,8 +623,10 @@
         {
           text: `
               <p>JavaScript</p>
-              <p>Figma</p>
               <p>Python</p>
+              <p>Figma</p>
+              <p>DaVinci Resolve</p>
+              <p>Capture One</p>
             `,
           bgColor: "blue",
         },
@@ -668,8 +721,8 @@
                 >
               </p>
               <p>
-                <a href="https://twitter.com/ruizdurazo" target="_blank"
-                  >Twitter</a
+                <a href="https://x.com/ruizdurazo" target="_blank"
+                  >X (Twitter)</a
                 >
               </p>
               <p>

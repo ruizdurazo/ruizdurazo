@@ -8,7 +8,7 @@ image_alt:
 repository:
 author_name: Enrique Ruiz Durazo
 author_email: enrique@ruizdurazo.com
-author_twitter: ruizdurazo
+author_x: ruizdurazo
 acknowledgements:
 further_reading: true
 _:
@@ -156,4 +156,4 @@ print('Hello, Universe. ✌️')
 
 P.S. — On comments. I don’t like blog posts with comments. They make me cringe. So there will be no comments here.
 
-If you’d like to applaud me, shout at me, or just talk, [send me an email](mailto:enrique@ruizdurazo.com) or [dm me on Twitter](https://twitter.com/ruizdurazo).
+If you’d like to applaud me, shout at me, or just talk, [write me an email](mailto:enrique@ruizdurazo.com) or [dm me on X](https://x.com/ruizdurazo).

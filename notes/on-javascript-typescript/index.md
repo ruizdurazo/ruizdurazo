@@ -8,7 +8,7 @@ image_alt:
 repository:
 author_name: Enrique Ruiz Durazo
 author_email: enrique@ruizdurazo.com
-author_twitter: ruizdurazo
+author_x: ruizdurazo
 acknowledgements:
 further_reading: true
 _:
@@ -507,4 +507,4 @@ console.log(correct2)
 
 ---
 
-If you’d like to get in touch, [send me an email](mailto:enrique@ruizdurazo.com) or [dm me on Twitter](https://twitter.com/ruizdurazo).
+If you’d like to get in touch, [write me an email](mailto:enrique@ruizdurazo.com) or [dm me on X](https://x.com/ruizdurazo).
