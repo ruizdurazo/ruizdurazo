@@ -124,6 +124,7 @@
           <div class="quote-attribution">
             <span id="attribution"> </span>
           </div>
+          <div id="loader"></div>
         </section>
 
         <!-- Section - Prompts -->
@@ -376,7 +377,10 @@
               </a>
             </li>
             <li>
-              <a href="https://www.archdaily.com/search/projects/categories/residential-architecture" rel="noopener noreferrer">
+              <a
+                href="https://www.archdaily.com/search/projects/categories/residential-architecture"
+                rel="noopener noreferrer"
+              >
                 <img
                   src="/assets/images/dashboard/archdaily.png"
                   alt="ArchDaily"
@@ -508,6 +512,7 @@
       async function fetchQuote(id) {
         const quoteText = document.getElementById("quote");
         const attribution = document.getElementById("attribution");
+        const loader = document.getElementById("loader");
         const quoteWrapper = quoteText.parentElement;
         const attributionWrapper = attribution.parentElement;
 
@@ -517,12 +522,14 @@
 
         // Wait for fade out
         await new Promise((resolve) => setTimeout(resolve, 300));
+        loader.style.display = "initial";
 
         // Fetch and update content
         const { quote } = await fetch(`${url}?id=${id}`).then((response) =>
           response.json()
         );
 
+        loader.style.display = "none";
         quoteText.innerHTML = `“${quote.quote}”`;
         attribution.innerHTML = quote.attribution
           ? `– ${quote.attribution}`
