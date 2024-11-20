@@ -137,6 +137,7 @@ p {
 }
 
 .summary__text .link {
+  position: relative;
   border-bottom: solid 2px #ddd;
   padding-bottom: 1px;
   transition: all 0.2s;
@@ -144,6 +145,7 @@ p {
 }
 
 .summary__text .link:hover {
+  cursor: pointer;
   color: var(--blue);
   border-bottom: solid 2px var(--blue);
 }
@@ -580,8 +582,9 @@ p {
   line-height: calc(var(--font-size) * 1.2);
   font-weight: 500;
   white-space: nowrap;
-  margin-bottom: 8px;
+  margin-bottom: calc(var(--font-size) * 0.8);
   animation: fadeIn 0.2s ease-in-out;
+  box-shadow: 0 4px 16px -4px #ddd;
 }
 
 @keyframes fadeIn {

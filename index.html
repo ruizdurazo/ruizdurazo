@@ -184,7 +184,6 @@
                 <a
                   href="mailto:enrique@ruizdurazo.com"
                   target="_blank"
-                  rel="noopener noreferrer"
                   class="link"
                   >Write me an email</a
                 >
@@ -469,40 +468,58 @@
     <!-- Email bubble -->
     <script>
       const mailBtn = document.getElementById("mail");
-      let bubble = null;
       const bubbleText = "enrique" + "@" + "ruizdurazo.com";
 
-      // Create and show bubble on hover
-      mailBtn.addEventListener("mouseenter", () => {
-        bubble = document.createElement("div");
-        bubble.className = "email-bubble";
-        bubble.textContent = bubbleText;
-        mailBtn.appendChild(bubble);
-      });
+      // Function to create and handle email bubbles
+      const handleEmailBubble = (element, email) => {
+        let elementBubble = null;
 
-      // Remove bubble when mouse leaves
-      mailBtn.addEventListener("mouseleave", () => {
-        if (bubble) {
-          bubble.remove();
-          bubble = null;
-        }
-      });
-
-      // Copy email and update bubble text on click
-      mailBtn.addEventListener("click", async () => {
-        try {
-          await navigator.clipboard.writeText(bubbleText);
-          if (bubble) {
-            bubble.textContent = "Copied!";
-            setTimeout(() => {
-              if (bubble) {
-                bubble.textContent = bubbleText;
-              }
-            }, 1000);
+        // Create and show bubble on hover
+        element.addEventListener("mouseenter", () => {
+          // If the element is an anchor, remove href
+          if (element.tagName.toLowerCase() === "a") {
+            element.href = "#";
           }
-        } catch (err) {
-          console.error("Failed to copy email:", err);
-        }
+          elementBubble = document.createElement("div");
+          elementBubble.className = "email-bubble";
+          elementBubble.textContent = email;
+          element.appendChild(elementBubble);
+        });
+
+        // Remove bubble when mouse leaves
+        element.addEventListener("mouseleave", () => {
+          if (elementBubble) {
+            elementBubble.remove();
+            elementBubble = null;
+          }
+        });
+
+        // Copy email and update bubble text on click
+        element.addEventListener("click", async (e) => {
+          e.preventDefault();
+          try {
+            await navigator.clipboard.writeText(email);
+            if (elementBubble) {
+              elementBubble.textContent = "Copied!";
+              setTimeout(() => {
+                if (elementBubble) {
+                  elementBubble.textContent = email;
+                }
+              }, 1000);
+            }
+          } catch (err) {
+            console.error("Failed to copy email:", err);
+          }
+        });
+      };
+
+      // Apply to mail button
+      handleEmailBubble(mailBtn, bubbleText);
+
+      // Apply to all mailto links
+      document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
+        const email = link.href.replace("mailto:", "");
+        handleEmailBubble(link, email);
       });
     </script>
     <!-- Home page: footer + words animation + slides -->
@@ -763,12 +780,12 @@
                 >
               </p>
               <p>
-                <a href="https://x.com/ruizdurazo" target="_blank"
+                <a href="https://x.com/ruizdurazo" target="_blank" rel="noopener noreferrer"
                   >X (Twitter)</a
                 >
               </p>
               <p>
-                <a href="https://github.com/ruizdurazo" target="_blank"
+                <a href="https://github.com/ruizdurazo" target="_blank" rel="noopener noreferrer"
                   >GitHub</a
                 >
               </p>

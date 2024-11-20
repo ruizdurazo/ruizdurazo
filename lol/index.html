@@ -64,10 +64,7 @@
         "name": "Enrique Ruiz Durazo",
         "url": "https://ruizdurazo.com",
         "email": "enrique@ruizdurazo.com",
-        "sameAs": [
-          "https://x.com/ruizdurazo",
-          "https://github.com/ruizdurazo"
-        ]
+        "sameAs": ["https://x.com/ruizdurazo", "https://github.com/ruizdurazo"]
       }
     </script>
     <script
@@ -75,12 +72,12 @@
       src="https://www.googletagmanager.com/gtag/js?id=G-LT28T7BZ5K"
     ></script>
     <script>
-      window.dataLayer = window.dataLayer || []
+      window.dataLayer = window.dataLayer || [];
       function gtag() {
-        dataLayer.push(arguments)
+        dataLayer.push(arguments);
       }
-      gtag('js', new Date())
-      gtag('config', 'G-LT28T7BZ5K')
+      gtag("js", new Date());
+      gtag("config", "G-LT28T7BZ5K");
     </script>
   </head>
 
@@ -557,11 +554,11 @@
             </li>
             <li>
               <a
-              class="pa"
-              href="https://www.youtube.com/watch?v=kIEWJ1ljEro"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Joji</a
+                class="pa"
+                href="https://www.youtube.com/watch?v=kIEWJ1ljEro"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Joji</a
               >
             </li>
             <li>Hiking 🏔️</li>
@@ -843,11 +840,7 @@
 
           <p>
             If you'd like to get in touch,
-            <a
-              class="pa"
-              href="mailto:enrique@ruizdurazo.com"
-              target="_blank"
-              rel="noopener noreferrer"
+            <a class="pa" href="mailto:enrique@ruizdurazo.com" target="_blank"
               >write me an email</a
             >, or
             <a
@@ -894,9 +887,59 @@
     <!-- Scripts -->
     <script src="/js/navbar.js"></script>
     <script>
-      var yyyy = new Date()
-      document.getElementById('copyright').innerHTML =
-        '© ' + yyyy.getFullYear() + ' Enrique Ruiz Durazo'
+      // Function to create and handle email bubbles
+      const handleEmailBubble = (element, email) => {
+        let elementBubble = null;
+
+        // Create and show bubble on hover
+        element.addEventListener("mouseenter", () => {
+          // If the element is an anchor, remove href
+          if (element.tagName.toLowerCase() === "a") {
+            element.href = "#";
+          }
+          elementBubble = document.createElement("div");
+          elementBubble.className = "email-bubble";
+          elementBubble.textContent = email;
+          element.appendChild(elementBubble);
+        });
+
+        // Remove bubble when mouse leaves
+        element.addEventListener("mouseleave", () => {
+          if (elementBubble) {
+            elementBubble.remove();
+            elementBubble = null;
+          }
+        });
+
+        // Copy email and update bubble text on click
+        element.addEventListener("click", async (e) => {
+          e.preventDefault();
+          try {
+            await navigator.clipboard.writeText(email);
+            if (elementBubble) {
+              elementBubble.textContent = "Copied!";
+              setTimeout(() => {
+                if (elementBubble) {
+                  elementBubble.textContent = email;
+                }
+              }, 1000);
+            }
+          } catch (err) {
+            console.error("Failed to copy email:", err);
+          }
+        });
+      };
+
+      // Apply to all mailto links
+      document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
+        const email = link.href.replace("mailto:", "");
+        handleEmailBubble(link, email);
+      });
+    </script>
+    <script>
+      var yyyy = new Date();
+      document.getElementById("copyright").innerHTML =
+        "© " + yyyy.getFullYear() + " Enrique Ruiz Durazo";
     </script>
   </body>
 </html>

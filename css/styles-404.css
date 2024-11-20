@@ -11,7 +11,7 @@
   display: grid;
   grid-gap: 0;
   grid-template-columns: repeat(1, 1fr);
-  grid-template-areas: 'error';
+  grid-template-areas: "error";
 }
 
 /* Error */
@@ -24,7 +24,6 @@
 }
 
 #error div {
-  /*  */
   margin-bottom: 0.25em;
   color: var(--text-error_404);
   font-size: var(--font-size-5);
