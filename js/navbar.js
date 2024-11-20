@@ -52,7 +52,7 @@ document.addEventListener(
   true
 );
 
-// Apply to email menu list item (requires handleEmailBubble function)
+// Add email bubble to email menu list item (requires handleEmailBubble function)
 const menuListItemEmail = document.getElementById("menu-list-item-email");
 const email = menuListItemEmail.href.replace("mailto:", "");
 handleEmailBubble(menuListItemEmail, email);

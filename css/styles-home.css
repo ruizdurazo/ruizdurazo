@@ -563,41 +563,6 @@ p {
   color: #fff;
 }
 
-/* Email bubble */
-#mail {
-  position: relative;
-}
-
-.email-bubble {
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #fff;
-  color: var(--black);
-  padding: 8px 16px;
-  border-radius: 40px;
-  border: 1px solid var(--_e);
-  font-size: calc(var(--font-size) * 0.8);
-  line-height: calc(var(--font-size) * 1.2);
-  font-weight: 500;
-  white-space: nowrap;
-  margin-bottom: calc(var(--font-size) * 0.8);
-  animation: fadeIn 0.2s ease-in-out;
-  box-shadow: 0 4px 16px -4px #ddd;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translate(-50%, 5px);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
-}
-
 /* Media queries */
 
 /* 1040px */

@@ -1038,50 +1038,7 @@ fetch(url)
       window.location.href = window.location.href;
     }
 
-    // Function to create and handle email bubbles
-    const handleEmailBubble = (element, email) => {
-      let elementBubble = null;
-
-      // Create and show bubble on hover
-      element.addEventListener("mouseenter", () => {
-        // If the element is an anchor, remove href
-        if (element.tagName.toLowerCase() === "a") {
-          element.href = "#";
-        }
-        elementBubble = document.createElement("div");
-        elementBubble.className = "email-bubble";
-        elementBubble.textContent = email;
-        element.appendChild(elementBubble);
-      });
-
-      // Remove bubble when mouse leaves
-      element.addEventListener("mouseleave", () => {
-        if (elementBubble) {
-          elementBubble.remove();
-          elementBubble = null;
-        }
-      });
-
-      // Copy email and update bubble text on click
-      element.addEventListener("click", async (e) => {
-        e.preventDefault();
-        try {
-          await navigator.clipboard.writeText(email);
-          if (elementBubble) {
-            elementBubble.textContent = "Copied!";
-            setTimeout(() => {
-              if (elementBubble) {
-                elementBubble.textContent = email;
-              }
-            }, 1000);
-          }
-        } catch (err) {
-          console.error("Failed to copy email:", err);
-        }
-      });
-    };
-
-    // Apply to all mailto links
+    // Add email bubble to all mailto links (requires handleEmailBubble function)
     document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
       const email = link.href.replace("mailto:", "");
       handleEmailBubble(link, email);
