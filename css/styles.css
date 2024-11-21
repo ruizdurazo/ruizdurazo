@@ -243,7 +243,7 @@ img {
 
 .menu button img {
   display: block;
-  width: 48px;
+  width: 60px;
   height: 100%;
   padding: 6px;
   transition: all 0.5s;
@@ -430,7 +430,7 @@ img {
 
   .menu button img,
   .menu button:active img {
-    width: calc((1px * 40) + (48 - 40) * (100vw - 480px) / (768 - 480));
+    width: calc((1px * 48) + (60 - 48) * (100vw - 480px) / (768 - 480));
     padding: calc((1px * 4) + (6 - 4) * (100vw - 480px) / (768 - 480));
   }
 }
@@ -469,7 +469,7 @@ img {
 
   .menu button img,
   .menu button:active img {
-    width: 40px;
+    width: 48px;
     padding: 4px;
   }
 }
