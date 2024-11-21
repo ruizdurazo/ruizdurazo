@@ -117,18 +117,20 @@
       <!-- Dashboard -->
       <div id="content" class="content">
         <!-- Section - Quotes -->
-        <section id="quotes" class="section">
-          <div class="quote-text">
-            <span id="quote"> </span>
-          </div>
-          <div class="quote-attribution">
-            <span id="attribution"> </span>
-          </div>
-          <div id="loader"></div>
+        <section id="quotes-section">
+          <a id="quotes" href="#">
+            <div class="quote-text">
+              <span id="quote"> </span>
+            </div>
+            <div class="quote-attribution">
+              <span id="attribution"> </span>
+            </div>
+            <div id="loader"></div>
+          </a>
         </section>
 
         <!-- Section - Prompts -->
-        <section id="prompts" class="section">
+        <section id="prompts-section">
           <!-- Search input -->
           <div class="prompt-input-wrapper">
             <textarea
@@ -181,7 +183,7 @@
         </section>
 
         <!-- Section - Quick Links -->
-        <section id="quick-links" class="section">
+        <section id="quick-links-section">
           <ul>
             <li>
               <a href="https://mail.google.com" rel="noopener noreferrer">
@@ -488,8 +490,14 @@
       // First fetch the count and initialize
       fetchQuoteCount().then(() => {
         // Add click event listener after we have the count
-        quotes.addEventListener("click", async () => {
-          quoteId = (quoteId % count) + 1; // This ensures we cycle from 1 to count
+        quotes.addEventListener("click", async (e) => {
+          e.preventDefault();
+          // If it's a shift click, cycle backwards
+          if (e.shiftKey) {
+            quoteId = ((quoteId - 2 + count) % count) + 1;
+          } else {
+            quoteId = (quoteId % count) + 1; // This ensures we cycle from 1 to count
+          }
           fetchQuote(quoteId);
         });
       });

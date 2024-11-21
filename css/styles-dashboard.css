@@ -13,13 +13,22 @@
 /* Section - Quotes */
 #quotes {
   position: relative;
-  margin: var(--font-size-4) 0;
+  margin: calc(var(--font-size) * 3.5) 0;
   padding: 0 var(--font-size-4);
-  min-height: calc(var(--font-size) * 6.4);
+  min-height: calc(var(--font-size) * 8);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+#quotes:hover {
+  cursor: pointer;
+}
+
+#quotes:focus-visible {
+  box-shadow: 0 0 0 4px var(--blue);
+  border-radius: 16px;
 }
 
 #quotes * {
@@ -85,18 +94,18 @@
 }
 
 /* Section - Prompts */
-#prompts {
+#prompts-section {
   display: flex;
   flex-direction: column;
   gap: var(--font-size);
-  margin-bottom: var(--font-size-6);
+  margin-bottom: var(--font-size-5);
 }
 
-#prompts .prompt-input-wrapper {
+#prompts-section .prompt-input-wrapper {
   position: relative;
 }
 
-#prompts #prompt-input-search {
+#prompts-section #prompt-input-search {
   position: absolute;
   pointer-events: none;
   top: 17px;
@@ -105,7 +114,7 @@
   height: 32px;
 }
 
-#prompts textarea {
+#prompts-section textarea {
   width: 100%;
   padding: 16px 32px 16px 56px;
   border-radius: 32px;
@@ -115,24 +124,25 @@
   line-height: calc(var(--font-size) * 1.6);
   resize: none;
   overflow-y: hidden;
-  transition: border-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+  transition: box-shadow 0.1s ease-out;
 }
 
-#prompts textarea:hover {
+#prompts-section textarea:hover {
   border-color: #ddd;
-  box-shadow: 0 0 0 2px #fafafa;
+  box-shadow: 0 0 0 3px #fafafa;
 }
 
-#prompts textarea:focus-visible {
-  border-color: #ccc;
-  box-shadow: 0 0 0 5px #f8f8f8;
+#prompts-section textarea:focus-visible {
+  padding: 15px 31px 15px 55px;
+  border: 2px solid var(--blue);
+  box-shadow: 0 0 0 3px #0f4fff20;
 }
 
-#prompts textarea::placeholder {
+#prompts-section textarea::placeholder {
   color: #808080;
 }
 
-#prompts .prompt-sources {
+#prompts-section .prompt-sources {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -141,7 +151,7 @@
   align-items: center;
 }
 
-#prompts .prompt-sources a {
+#prompts-section .prompt-sources a {
   display: flex;
   flex-direction: row;
   gap: 8px;
@@ -153,26 +163,26 @@
   transition: background-color 0.1s ease-out, box-shadow 0.1s ease-out;
 }
 
-#prompts .prompt-sources a:hover {
+#prompts-section .prompt-sources a:hover {
   border: 1px solid #eee;
 }
 
-#prompts .prompt-sources a:focus-visible {
+#prompts-section .prompt-sources a:focus-visible {
   box-shadow: 0 0 0 4px var(--blue);
 }
 
-#prompts .prompt-sources a * {
+#prompts-section .prompt-sources a * {
   font-size: calc(var(--font-size) * 0.8);
   font-weight: 600;
   line-height: calc(var(--font-size) * 1.2);
 }
 
 /* Section - Quick Links */
-#quick-links {
+#quick-links-section {
   margin-bottom: var(--font-size-8);
 }
 
-#quick-links ul {
+#quick-links-section ul {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -181,14 +191,14 @@
   gap: 6px;
 }
 
-#quick-links ul li {
+#quick-links-section ul li {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 }
 
-#quick-links ul li a {
+#quick-links-section ul li a {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -204,15 +214,15 @@
   transition: background-color 0.1s ease-out, box-shadow 0.1s ease-out;
 }
 
-#quick-links ul li a:hover {
+#quick-links-section ul li a:hover {
   background-color: #fafafa;
 }
 
-#quick-links ul li a:focus-visible {
+#quick-links-section ul li a:focus-visible {
   box-shadow: 0 0 0 4px var(--blue);
 }
 
-#quick-links ul li a img {
+#quick-links-section ul li a img {
   width: 56px;
   height: 56px;
 }
@@ -235,7 +245,7 @@
     padding: 0 var(--font-size-2);
   }
 
-  #prompts .prompt-sources {
+  #prompts-section .prompt-sources {
     gap: var(--font-size-3);
   }
 }
@@ -253,14 +263,14 @@
     );
   }
 
-  #prompts .prompt-sources {
+  #prompts-section .prompt-sources {
     gap: var(--font-size-2);
   }
 }
 
 /* 640px */
 @media only screen and (max-width: 640px) {
-  #prompts .prompt-sources {
+  #prompts-section .prompt-sources {
     gap: var(--font-size);
   }
 }
