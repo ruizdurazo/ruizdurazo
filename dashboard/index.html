@@ -473,6 +473,7 @@
       let url = document.location.href;
       let quoteId = 0;
       let count = 0;
+      let controller = null;
 
       // Account for 'local' vs 'prod'
       if (url.startsWith("https://ruizdurazo.com")) {
@@ -495,18 +496,27 @@
 
       // Fetch quote count
       async function fetchQuoteCount() {
-        const { count: totalCount } = await fetch(url).then((response) =>
-          response.json()
-        );
-        count = totalCount;
+        try {
+          const { count: totalCount } = await fetch(url).then((response) =>
+            response.json()
+          );
 
-        // Generate random quote id
-        if (count > 0) {
-          quoteId = Math.floor(Math.random() * count) + 1; // Add 1 to avoid getting 0
-          fetchQuote(quoteId);
+          count = totalCount;
+
+          // Generate random quote id
+          if (count > 0) {
+            quoteId = Math.floor(Math.random() * count) + 1; // Add 1 to avoid getting 0
+            await fetchQuote(quoteId);
+          }
+
+          return count;
+        } catch (err) {
+          if (err.name === "AbortError") {
+            // Ignore abort errors
+            return;
+          }
+          throw err;
         }
-
-        return count;
       }
 
       // Fetch 1 quote by id and update DOM
@@ -517,36 +527,53 @@
         const quoteWrapper = quoteText.parentElement;
         const attributionWrapper = attribution.parentElement;
 
-        // Fade out
-        quoteWrapper.classList.add("fade");
-        attributionWrapper.classList.add("fade");
+        try {
+          // Cancel any ongoing fetch
+          if (controller) {
+            controller.abort();
+          }
+          controller = new AbortController();
+          const signal = controller.signal;
 
-        // Wait for fade out
-        await new Promise((resolve) => setTimeout(resolve, 300));
-        loader.style.display = "initial";
+          // Fade out
+          quoteWrapper.classList.add("fade");
+          attributionWrapper.classList.add("fade");
+          await new Promise((resolve) => setTimeout(resolve, 300));
+          loader.style.display = "initial";
 
-        // Fetch and update content
-        const { quote } = await fetch(`${url}?id=${id}`).then((response) =>
-          response.json()
-        );
+          // Fetch with abort signal
+          const { quote } = await fetch(`${url}?id=${id}`, {
+            signal,
+          }).then((response) => response.json());
 
-        loader.style.display = "none";
-        quoteText.innerHTML = `“${quote.quote}”`;
-        attribution.innerHTML = quote.attribution
-          ? `– ${quote.attribution}`
-          : "";
+          loader.style.display = "none";
+          quoteText.innerHTML = `"${quote.quote}"`;
+          attribution.innerHTML = quote.attribution
+            ? `– ${quote.attribution}`
+            : "";
 
-        // Remove widows
-        const words = quoteText.textContent.split(" ");
-        if (words.length > 1) {
-          words[words.length - 2] += "\u00A0" + words[words.length - 1];
-          words.pop();
-          quoteText.innerHTML = words.join(" ");
+          // Remove widows
+          const words = quoteText.textContent.split(" ");
+          if (words.length > 1) {
+            words[words.length - 2] += "\u00A0" + words[words.length - 1];
+            words.pop();
+            quoteText.innerHTML = words.join(" ");
+          }
+
+          // Fade in
+          quoteWrapper.classList.remove("fade");
+          attributionWrapper.classList.remove("fade");
+        } catch (err) {
+          if (err.name === "AbortError") {
+            // Ignore abort errors
+            return;
+          }
+          // Handle other errors
+          loader.style.display = "none";
+          quoteText.innerHTML = "Failed to load quote";
+          attribution.innerHTML = "";
+          throw err;
         }
-
-        // Fade in
-        quoteWrapper.classList.remove("fade");
-        attributionWrapper.classList.remove("fade");
       }
     </script>
   </body>
