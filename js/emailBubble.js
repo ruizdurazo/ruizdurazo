@@ -41,7 +41,7 @@ const handleEmailBubble = (element, email) => {
         }, 1000);
       }
     } catch (err) {
-      console.error("Failed to copy email:", err);
+      new Error("Failed to copy email:", err);
     }
   });
 };

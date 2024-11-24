@@ -8,6 +8,7 @@
   max-width: var(--max-width-home);
   margin: 0 auto;
   padding-top: var(--font-size-5);
+  min-height: calc(100% - var(--font-size-6));
 }
 
 /* Section - Quotes */
@@ -20,6 +21,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-wrap: balance;
 }
 
 #quotes:hover {

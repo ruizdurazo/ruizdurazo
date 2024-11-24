@@ -12,7 +12,7 @@ const notes = [
   {
     folder: "on-javascript-typescript",
     date: "2022-07-07",
-    title: "On JavaScript / TypeScript",
+    title: "On JavaScript & TypeScript",
     description: "Snippets and tips on JavaScript and TypeScript.",
     thumbnail: false,
     thumbnailImage: "",
@@ -21,7 +21,7 @@ const notes = [
   {
     folder: "on-css-styling",
     date: "2021-11-14",
-    title: "On CSS / Styling",
+    title: "On CSS & Styling",
     description: "Snippets and tips on CSS, SCSS/Sass, and styling in general.",
     thumbnail: false,
     thumbnailImage: "",

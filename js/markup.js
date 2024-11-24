@@ -11,9 +11,10 @@ let noteData = {};
 let noteArticle = {};
 let sectionHeadings = [];
 let previousElement = {};
-previousElement.lang = "";
-previousElement.type = "none";
-previousElement.state = "closed";
+previousElement.lang = ""; // Language for syntax highlighting
+previousElement.type = "none"; // Type of element
+previousElement.state = "closed"; // State of multi-line element
+previousElement.isFirstElement = false; // Whether the element is the first element in a multi-line element
 noteData.word_count = 0;
 
 // Date settings
@@ -23,7 +24,7 @@ const date_options = {
   day: "numeric",
 };
 
-// Helper for piping functions
+// Helper for piping functions in sequential order
 pipe =
   (...fns) =>
   (x) =>
@@ -61,22 +62,23 @@ fetch(url)
       let metadataPattern = /---[^]*?---/;
       let metadataBlock = text.match(metadataPattern);
       if (metadataBlock) {
+        let hasTitle = false;
+        let hasThumbnailImage = false;
         // If metadata found, split on new lines
-        let metadata = metadataBlock[0].trim().split("\n");
+        const metadata = metadataBlock[0].trim().split("\n");
         metadata.shift();
         metadata.pop();
         // Iterate through meta properties
         metadata.forEach((prop) => {
           if (prop.startsWith("title:")) {
             // Page Title
+            hasTitle = true;
             noteData.title = prop.split(":")[1].trim();
             document.title = noteData.title + " — Enrique Ruiz Durazo";
             document.getElementById("title").innerHTML = noteData.title;
           } else if (prop.startsWith("date:")) {
             // Date
             noteData.date = new Date(prop.split(":")[1].trim());
-            // document.getElementById('date').innerHTML = Intl.DateTimeFormat('en-US', date_options).format(noteData.date)
-            // document.getElementById('date').innerHTML = noteData.date.getFullYear() + ' ' + Intl.DateTimeFormat('en-US', { month: 'long' }).format(noteData.date).toUpperCase() + ' ' + noteData.date.getDate()
             document.getElementById("date").innerHTML =
               noteData.date.getFullYear() +
               " " +
@@ -106,27 +108,34 @@ fetch(url)
             noteData.author_x = prop.split(":")[1].trim();
           }
         });
+        if (hasTitle && hasThumbnailImage) {
+          // TODO: Add thumbnail image, if present and title is present
+        } else if (hasTitle) {
+          // Add hr, if title is present
+          document.getElementById("hr").style.display = "block";
+        }
         // Remove metadata block from original document
         text = text.replace(metadataBlock[0], "");
       }
     }
 
-    // pseudo code
-    // helper object for article (html)
-    // helper object attr for current element type (h, p, img, etc.)
-    // helper object attr for current element state (open/closed)
-    // for each element:
-    //   if new line
-    //     if an element is open, close element
-    //   if not new line
-    //     if an element is open, continue element
-    //     if an element is not open, detect/create element
+    // Pseudo code
+    // Helper object for article (html)
+    // Helper object attr for current element type (h, p, img, etc.)
+    // Helper object attr for current element state (open/closed)
+    // For each element:
+    //   If new line
+    //     If an element is open, close element
+    //   If not new line
+    //     If an element is open, continue element
+    //     If an element is not open, detect/create element
 
     // Section Headings
     h = (element, level = 2) => {
       // Count words
       wordCounter(element);
-      // IDs: lowercase, replace spaces with dashes, track unique (pending)
+      // IDs: lowercase, replace spaces with dashes
+      // TODO: track uniqueness of ids
       let id = element
         .slice(level + 1)
         .trim()
@@ -147,70 +156,131 @@ fetch(url)
       );
     };
 
-    // Blockquotes
+    // Blockquotes, quotes, and callouts
     blockquote = (element) => {
-      // nesting?
-      // normal blockquotes, nesting, lists inside
+      // DONE: normal blockquotes
       //
       // > boop
       //
-      // > bopp
+      //
+      // DONE: blockquotes with quotes and bylines
+      //
+      // > quote
+      // > example quote
       // >
-      // > boop
+      // > byline
+      // > example author
       //
-      // > sdf
-      // > > sfd
+      //
+      // TODO?: nesting blockquotes?
+      //
+      // > boop
+      // > > more boop
+      //
+      //
+      // TODO?: nesting lists inside blockquotes?
+      //
+      // > boop:
+      // > * boop 1
+      // > * boop 2
+      //
+      //
+      // DONE: callouts
+      //
+      // > callout
+      // >
+      // > example callout
+      //
+      // TODO?: nesting callouts?
+      //
+      // > callout
+      // >
+      // > callout text
+      // > > callout
+      // > >
+      // > > callout text
       //
       let out;
       if (
         previousElement.state === "open" &&
+        previousElement.type === "callout"
+      ) {
+        // Continue callout
+        const p_element = p(element.slice(1).trim());
+        if (p_element.length > 0) {
+          out = "<p>" + p_element + "</p>";
+        } else {
+          out = "";
+        }
+      } else if (
+        previousElement.state === "open" &&
         previousElement.type === "blockquote"
       ) {
-        // if there something started, check if nesting
+        // Continue default blockquote
+        const p_element = p(element.slice(1).trim());
+        if (p_element.length > 0) {
+          out = "<p>" + p_element + "</p>";
+        } else {
+          out = "";
+        }
+        // If there something started, check if nesting
         // if (element.slice(1).trim() === 'quote') {
-        // start nested quote
+        // Start nested quote
         // out = '<blockquote class="quote"><span class="start-quote">“</span>'
         // out = '<blockquote class="blockquote">' + p(element.slice(1).trim())
         // } else {
-        // continue default
-        out = "<p>" + p(element.slice(1).trim()) + "</p>";
         // out = p(element.slice(1).trim()) + '\n'
-        // console.log('boop')
         // }
       } else if (
         previousElement.state === "open" &&
         previousElement.type === "blockquote-quote"
       ) {
-        // continue quote
+        // Continue quote blockquote
         if (element.slice(1).trim() === "byline") {
-          // end the quote body with "
-          out = '<span class="end-quote"> ”</span>';
+          // End the quote body with `”`
+          out = '<span class="end-quote"> ”</span></p>';
           previousElement.type = "blockquote-byline";
         } else {
-          // continue the quote body
-          out = p(element.slice(1).trim());
+          // Continue the quote body
+          const p_element = p(element.slice(1).trim());
+          if (p_element.length > 0 && previousElement.isFirstElement) {
+            out = p_element;
+            previousElement.isFirstElement = false;
+          } else if (p_element.length > 0) {
+            out = "</p><p>" + p_element;
+          } else {
+            out = "";
+          }
         }
       } else if (
         previousElement.state === "open" &&
         previousElement.type === "blockquote-byline"
       ) {
-        // finish blockquote by adding author byline
-        // p(element)
+        // Finish blockquote by adding author byline
         out =
           '<span class="byline">— ' + p(element.slice(1).trim()) + "</span>";
       } else if (previousElement.state === "closed") {
         // if there is nothing started, start
-        if (element.slice(1).trim() === "quote") {
-          // start quote
-          out = '<blockquote class="quote"><span class="start-quote">“</span>';
+        if (element.slice(1).trim() === "callout") {
+          // Start callout
+          out = '<div class="callout">';
+          previousElement.type = "callout";
+          previousElement.state = "open";
+        } else if (element.slice(1).trim() === "quote") {
+          // Start quote blockquote
+          out =
+            '<blockquote class="quote"><span class="start-quote">“</span><p>';
           previousElement.type = "blockquote-quote";
           previousElement.state = "open";
+          previousElement.isFirstElement = true;
         } else {
-          // start default
-          out =
-            '<blockquote class="blockquote"><p>' +
-            p(element.slice(1).trim()) +
-            "</p>";
+          // Start default blockquote
+          const p_element = p(element.slice(1).trim());
+          if (p_element.length > 0) {
+            out = '<blockquote class="blockquote"><p>' + p_element + "</p>";
+          } else {
+            out = '<blockquote class="blockquote">';
+          }
           previousElement.type = "blockquote";
           previousElement.state = "open";
         }
@@ -226,26 +296,18 @@ fetch(url)
       let out;
       if (previousElement.state === "open" && previousElement.type === "pre") {
         if (element.trim() === "```") {
-          // close
+          // Close
           out = "</code></pre>";
           previousElement.lang = "";
           previousElement.type = "none";
           previousElement.state = "closed";
         } else {
-          // continue
-          // need to escape <> for html elements,
-          // add to 'line' class for css numbering counter to work,
-          // and have new lines at the end for syntax highlighting
+          // Continue
+          // Need to escape <> for html elements,
+          // Add to 'line' class for css numbering counter to work,
+          // And have new lines at the end for syntax highlighting
 
           if (previousElement.lang !== "") {
-            // original
-            // out =
-            //   '<span class="line">' +
-            //   element.replace(/\</g, '&lt;').replace(/\>/g, '&gt;') +
-            //   '\n</span>'
-
-            // new
-            // console.log(previousElement.lang)
             out =
               '<span class="line">' +
               "<span>" +
@@ -258,14 +320,12 @@ fetch(url)
       } else if (previousElement.state === "closed") {
         if (element.startsWith("```") && element.slice(3).trim().length > 0) {
           previousElement.lang = element.slice(3).trim();
-          // start syntax highlighting
-          // out = '<pre><code>'
-          // out = '<pre><code class="lang-' + element.slice(3).trim() + '">'
+          // Start syntax highlighting
           out = '<pre><code class="language-' + previousElement.lang + '">';
           previousElement.type = "pre";
           previousElement.state = "open";
         } else {
-          // start plain text
+          // Start plain text
           out = '<pre><code class="nohighlight">';
           previousElement.lang = "";
           previousElement.type = "pre";
@@ -277,13 +337,13 @@ fetch(url)
 
     // Unordered lists
     ul = (element) => {
-      // nesting?
+      // TODO?: nesting?
       let out;
       if (previousElement.state === "open" && previousElement.type === "ul") {
-        // continue
+        // Continue
         out = "<li>" + p(element.slice(2).trim()) + "</li>";
       } else if (previousElement.state === "closed") {
-        // start
+        // Start
         out = '<ul class="ul"><li>' + p(element.slice(1).trim()) + "</li>";
         previousElement.type = "ul";
         previousElement.state = "open";
@@ -293,16 +353,16 @@ fetch(url)
 
     // Ordered lists
     ol = (element) => {
-      // nesting?
+      // TODO?: nesting?
       let out;
       if (previousElement.state === "open" && previousElement.type === "ol") {
-        // continue
+        // Continue
         out =
           "<li>" +
           p(element.slice(element.match(/^\d+\. /)[0].length).trim()) +
           "</li>";
       } else if (previousElement.state === "closed") {
-        // start
+        // Start
         out =
           '<ol class="ol"><li>' +
           p(element.slice(element.match(/^\d+\. /)[0].length).trim()) +
@@ -315,8 +375,10 @@ fetch(url)
 
     // Images
     img = (element, syntax_style = "default") => {
-      // if gallery tag, start gallery
-      // else simple image
+      // TODO: add gallery support
+      // If gallery tag, start gallery
+      // Else simple image
+      //
       // !gallery
       // ![Alt text](https://example.com/pic.jpg "Caption")
       // ![Alt text](https://example.com/pic.jpg 'Caption')
@@ -325,10 +387,10 @@ fetch(url)
       // [size: (small, medium(default), large), aspect: ('1:1')]
       // [size: (s, m(default), l, xl), aspect: ('1x1')]
       //
-      // image sizing, style types
-      // image viewbox
-      // image gallery
-      // image slideshow
+      // Image sizing, style types
+      // Image viewbox
+      // Image gallery
+      // Image slideshow
       //
       let out;
       if (syntax_style == "default") {
@@ -337,14 +399,14 @@ fetch(url)
           .match(/\!\[[^]*?\)/g)[0]
           .slice(2, -1)
           .split("](");
-        let img_alt = components[0];
-        let img_src_capt = components[1];
+        const img_alt = components[0];
+        const img_src_capt = components[1];
         if (img_src_capt.endsWith('"')) {
           // ![Alt text](https://example.com/pic.jpg "Caption")
           img_src_capt = img_src_capt.split(' "');
           if (img_src_capt.length > 1) {
-            let img_src = img_src_capt[0];
-            let img_capt = img_src_capt[1].slice(0, -1);
+            const img_src = img_src_capt[0];
+            const img_capt = img_src_capt[1].slice(0, -1);
             wordCounter(img_capt); // Count words
             out =
               '<div class="img-size-m"><img class="img" src="' +
@@ -359,8 +421,8 @@ fetch(url)
           // ![Alt text](https://example.com/pic.jpg 'Caption')
           img_src_capt = img_src_capt.split(" '");
           if (img_src_capt.length > 1) {
-            let img_src = img_src_capt[0];
-            let img_capt = img_src_capt[1].slice(0, -1);
+            const img_src = img_src_capt[0];
+            const img_capt = img_src_capt[1].slice(0, -1);
             wordCounter(img_capt); // Count words
             out =
               '<div class="img-size-m"><img class="img" src="' +
@@ -372,7 +434,7 @@ fetch(url)
               "</small></div>";
           }
         } else {
-          let img_src = img_src_capt;
+          const img_src = img_src_capt;
           out =
             '<div> class="img-size-m"<img class="img" src="' +
             img_src +
@@ -380,13 +442,13 @@ fetch(url)
             img_alt +
             '" draggable="false"></div>';
         }
-      } else if (syntax_style == "scrolldown") {
-        // Scrolldown syntax
+      } else if (syntax_style == "markup") {
+        // Markup syntax
         let components = element
           .match(/\!\[[^]*?\)\[[^]*?\]/g)[0]
           .slice(2, -1)
           .split("](");
-        let img_alt = components[0];
+        const img_alt = components[0];
         let img_src_capt_sizing = components[1];
         img_src_capt_sizing = img_src_capt_sizing.split(")[");
         // First do src_capt split
@@ -461,17 +523,14 @@ fetch(url)
         } else {
           out = img(element, "default");
         }
-        // Fi
-        // out = '<div class="img-width-m"><img class="img" src="' + img_src + '" alt="' + img_alt + '"><small class="img-caption">' + img_capt + '</small></div>'
       }
       return out;
     };
 
     // Code
     code = (element) => {
-      //
       let out;
-      let match = element.match(/\u0060[^]*?\u0060/g);
+      const match = element.match(/\u0060[^]*?\u0060/g);
       if (match) {
         match.forEach((i) => {
           let code_element =
@@ -491,38 +550,28 @@ fetch(url)
     a = (element) => {
       // Check for pattern
       // If it exists, create external links and anchor links
-      // Important to detect <em> and <strong> elements if url had underscores
+      // Warning: Important to detect <em> and <strong> elements
       let out;
-      // let match = element.match(/\[[^]*?\)/g)
-      // let match = element.match(/\[[^]\]\(*?\)/g)
-      // let match = element.match(/\[[^]\(*?\)/g)
       let match = element.match(/\[[^]*?\](\([^]*?\))/g);
-      // let match = element.match(/\[([^\[]+)\](\(.*\))/gm)
-      // let match = element.match(/\[([^\[]+)\](\(.*\))/g)
-      // let match = element.match(
-      //   /(?<!\(\s*\S+)_([^_]+)_(?!\S+(?:\s+"[^"]")\s*\))/g
-      // )
       if (match) {
-        // console.log(match)
         match.forEach((i) => {
           let a_element;
           // Turn string => "[text](link "title")"
           // Into array => ["text", "link 'title'"]
-          let a_components = i
+          const a_components = i
             .slice(1, -1)
             .replace(/<em>/g, "_")
             .replace(/<\/em>/g, "_")
             .replace(/<strong>/g, "_")
             .replace(/<\/strong>/g, "_")
             .split("](");
-          let a_text = a_components[0];
+          const a_text = a_components[0];
           if (a_components[1].endsWith('"')) {
-            // [text](link "title")
-            let a_href_title = a_components[1].split(' "');
+            const a_href_title = a_components[1].split(' "');
             if (a_href_title.length > 1) {
-              let a_href = a_href_title[0];
-              let a_title = a_href_title[1].slice(0, -1);
-              let a_element =
+              const a_href = a_href_title[0];
+              const a_title = a_href_title[1].slice(0, -1);
+              a_element =
                 '<a href="' +
                 a_href +
                 '" title="' +
@@ -534,12 +583,11 @@ fetch(url)
               out = element;
             }
           } else if (a_components[1].endsWith("'")) {
-            // [text](link 'title')
-            let a_href_title = a_components[1].split(" '");
+            const a_href_title = a_components[1].split(" '");
             if (a_href_title.length > 1) {
-              let a_href = a_href_title[0];
-              let a_title = a_href_title[1].slice(0, -1);
-              let a_element =
+              const a_href = a_href_title[0];
+              const a_title = a_href_title[1].slice(0, -1);
+              a_element =
                 '<a href="' +
                 a_href +
                 '" title="' +
@@ -551,7 +599,7 @@ fetch(url)
               out = element;
             }
           } else {
-            let a_href = a_components[1].trim();
+            const a_href = a_components[1].trim();
             if (a_href.startsWith("#")) {
               a_element =
                 '<a href="' + a_href + '" class="pa">' + a_text + "</a>";
@@ -573,50 +621,34 @@ fetch(url)
       return out;
     };
 
-    // Callout
-    // callout = element => {
-    //   //
-    //   let out
-    //   let match = element.match(/<!--[^]*?-->/g)
-    //   if (match) {
-    //     match.forEach(i => {
-    //       element = element.replace(i, '')
-    //       out = element
-    //     })
-    //   } else {
-    //     out = element
-    //   }
-    //   return out
-    // }
-
     // Bold
     strong = (element) => {
       // Check for one of two patterns
       // If they exist, apply emphasis to all elements
       let out;
-      let match1 = element.match(/\*\*[^]*?\*\*/g);
-      let match2 = element.match(/__[^]*?__/g);
+      const match1 = element.match(/\*\*[^]*?\*\*/g);
+      const match2 = element.match(/__[^]*?__/g);
       if (match1 || match2) {
         if (match1 && match2) {
           match1.forEach((i) => {
-            let strong_element = "<strong>" + i.slice(2, -2) + "</strong>";
+            const strong_element = "<strong>" + i.slice(2, -2) + "</strong>";
             element = element.replace(i, strong_element);
             out = element;
           });
           match2.forEach((i) => {
-            let strong_element = "<strong>" + i.slice(2, -2) + "</strong>";
+            const strong_element = "<strong>" + i.slice(2, -2) + "</strong>";
             element = element.replace(i, strong_element);
             out = element;
           });
         } else if (match1) {
           match1.forEach((i) => {
-            let strong_element = "<strong>" + i.slice(2, -2) + "</strong>";
+            const strong_element = "<strong>" + i.slice(2, -2) + "</strong>";
             element = element.replace(i, strong_element);
             out = element;
           });
         } else if (match2) {
           match2.forEach((i) => {
-            let strong_element = "<strong>" + i.slice(2, -2) + "</strong>";
+            const strong_element = "<strong>" + i.slice(2, -2) + "</strong>";
             element = element.replace(i, strong_element);
             out = element;
           });
@@ -632,29 +664,29 @@ fetch(url)
       // Check for one of two patterns
       // If they exist, apply emphasis to all elements
       let out;
-      let match1 = element.match(/\*[^]*?\*/g);
-      let match2 = element.match(/_[^]*?_/g);
+      const match1 = element.match(/\*[^]*?\*/g);
+      const match2 = element.match(/_[^]*?_/g);
       if (match1 || match2) {
         if (match1 && match2) {
           match1.forEach((i) => {
-            let em_element = "<em>" + i.slice(1, -1) + "</em>";
+            const em_element = "<em>" + i.slice(1, -1) + "</em>";
             element = element.replace(i, em_element);
             out = element;
           });
           match2.forEach((i) => {
-            let em_element = "<em>" + i.slice(1, -1) + "</em>";
+            const em_element = "<em>" + i.slice(1, -1) + "</em>";
             element = element.replace(i, em_element);
             out = element;
           });
         } else if (match1) {
           match1.forEach((i) => {
-            let em_element = "<em>" + i.slice(1, -1) + "</em>";
+            const em_element = "<em>" + i.slice(1, -1) + "</em>";
             element = element.replace(i, em_element);
             out = element;
           });
         } else if (match2) {
           match2.forEach((i) => {
-            let em_element = "<em>" + i.slice(1, -1) + "</em>";
+            const em_element = "<em>" + i.slice(1, -1) + "</em>";
             element = element.replace(i, em_element);
             out = element;
           });
@@ -670,10 +702,10 @@ fetch(url)
       // Check for pattern
       // If it exists, apply emphasis to all elements
       let out;
-      let match = element.match(/~~[^]*?~~/g);
+      const match = element.match(/~~[^]*?~~/g);
       if (match) {
         match.forEach((i) => {
-          let del_element = "<del>" + i.slice(2, -2) + "</del>";
+          const del_element = "<del>" + i.slice(2, -2) + "</del>";
           element = element.replace(i, del_element);
           out = element;
         });
@@ -688,10 +720,10 @@ fetch(url)
       // Check for pattern
       // If it exists, apply emphasis to all elements
       let out;
-      let match = element.match(/\+\+[^]*?\+\+/g);
+      const match = element.match(/\+\+[^]*?\+\+/g);
       if (match) {
         match.forEach((i) => {
-          let ins_element = "<ins>" + i.slice(2, -2) + "</ins>";
+          const ins_element = "<ins>" + i.slice(2, -2) + "</ins>";
           element = element.replace(i, ins_element);
           out = element;
         });
@@ -706,10 +738,10 @@ fetch(url)
       // Check for pattern
       // If it exists, apply emphasis to all elements
       let out;
-      let match = element.match(/==[^]*?==/g);
+      const match = element.match(/==[^]*?==/g);
       if (match) {
         match.forEach((i) => {
-          let mark_element = "<mark>" + i.slice(2, -2) + "</mark>";
+          const mark_element = "<mark>" + i.slice(2, -2) + "</mark>";
           element = element.replace(i, mark_element);
           out = element;
         });
@@ -724,10 +756,10 @@ fetch(url)
       // Check for pattern
       // If it exists, apply emphasis to all elements
       let out;
-      let match = element.match(/\^[^]*?\^/g);
+      const match = element.match(/\^[^]*?\^/g);
       if (match) {
         match.forEach((i) => {
-          let sup_element = "<sup>" + i.slice(1, -1) + "</sup>";
+          const sup_element = "<sup>" + i.slice(1, -1) + "</sup>";
           element = element.replace(i, sup_element);
           out = element;
         });
@@ -742,10 +774,10 @@ fetch(url)
       // Check for pattern
       // If it exists, apply emphasis to all elements
       let out;
-      let match = element.match(/~[^]*?~/g);
+      const match = element.match(/~[^]*?~/g);
       if (match) {
         match.forEach((i) => {
-          let sub_element = "<sub>" + i.slice(1, -1) + "</sub>";
+          const sub_element = "<sub>" + i.slice(1, -1) + "</sub>";
           element = element.replace(i, sub_element);
           out = element;
         });
@@ -755,17 +787,8 @@ fetch(url)
       return out;
     };
 
-    // Text
+    // Paragraph / Text
     p = (element) => {
-      if (noteData.word_count === 0) {
-        // Count words
-        wordCounter(element);
-        return (
-          '<p style="margin-top: calc(var(--font-size) * 5);">' +
-          pipe(code, strong, em, a, del, ins, mark, sup, sub)(element) +
-          "</p>"
-        );
-      }
       // Count words
       wordCounter(element);
       // Parse text for links and emphasis
@@ -776,6 +799,13 @@ fetch(url)
     newline = (element) => {
       let out;
       if (
+        previousElement.state === "open" &&
+        previousElement.type === "callout"
+      ) {
+        out = "</div>";
+        previousElement.type = "none";
+        previousElement.state = "closed";
+      } else if (
         previousElement.state === "open" &&
         previousElement.type === "blockquote"
       ) {
@@ -825,7 +855,7 @@ fetch(url)
     // ttr = word_count / 250 (wpm) (round to nearest) Math.round()
     // 6m13s
     function wordCounter(element) {
-      let words = element.split(/\s+/);
+      const words = element.split(/\s+/);
       words.forEach((word) => {
         noteData.word_count += 1;
       });
@@ -861,24 +891,24 @@ fetch(url)
         "".concat(...new Set(element.replace(/\s/g, ""))).length === 1 &&
         element.replace(/\s/g, "").length >= 3
       ) {
-        // Hyphens
+        // Horizontal Rule (using Hyphens)
         noteArticle += "<hr>";
       } else if (
         element.startsWith("*") &&
         "".concat(...new Set(element.replace(/\s/g, ""))).length === 1 &&
         element.replace(/\s/g, "").length >= 3
       ) {
-        // Asterisks
+        // Horizontal Rule (using Asterisks)
         noteArticle += "<hr>";
       } else if (
         element.startsWith("_") &&
         "".concat(...new Set(element.replace(/\s/g, ""))).length === 1 &&
         element.replace(/\s/g, "").length >= 3
       ) {
-        // Underscores
+        // Horizontal Rule (using Underscores)
         noteArticle += "<hr>";
       } else if (element.startsWith(">")) {
-        // Blockquotes
+        // Blockquotes (Standard / Default syntax), quotes, and callouts
         noteArticle += blockquote(element);
       } else if (
         element.startsWith("```") ||
@@ -896,16 +926,16 @@ fetch(url)
         element.startsWith("![") &&
         element.match(/\!\[[^]*?\)\[[^]*?\]/g)
       ) {
-        // Images (Scrolldown syntax)
-        noteArticle += img(element, "scrolldown");
+        // Images (Markup syntax)
+        noteArticle += img(element, "markup");
       } else if (element.startsWith("![") && element.match(/\!\[[^]*?\)/g)) {
-        // Images (Default syntax)
+        // Images (Standard / Default syntax)
         noteArticle += img(element, "default");
       } else if (element.trim().startsWith("<")) {
-        // If the element contains plain html... iffy
+        // If the element contains plain html... (TODO: check robustness)
         noteArticle += element;
       } else if (element) {
-        // If the element contains text...
+        // If the element is simply text
         noteArticle += "<p>" + p(element) + "</p>";
       }
     });
@@ -916,7 +946,7 @@ fetch(url)
     //   String(Math.round(noteData.word_count / 250)) +
     //   ' minute read</small>'
 
-    // Finally, push parsed Scrolldown to DOM
+    // Finally, push parsed Markup to DOM
     document.getElementById("note").innerHTML += noteArticle;
 
     // Further Reading
@@ -939,7 +969,6 @@ fetch(url)
     if (back >= notes.length) {
       back = -1;
     }
-    // console.log(back, next)
     if (back === -1) {
       furtherBack = `<a href="/" class="further further--back">
       <div class="further__arrow further__arrow--back">
@@ -1044,7 +1073,7 @@ fetch(url)
       handleEmailBubble(link, email);
     });
 
-    // Dump: For extracting metadata
+    // TODO?: For extracting metadata
     // if (text.startsWith('---')) {
     //   let m = /---[^]*?---/
     //   let meta = text.match(m)

@@ -1,5 +1,5 @@
 ---
-title: On JavaScript / TypeScript
+title: On JavaScript & TypeScript
 date: 2022-07-07
 description_short: Snippets and tips on JavaScript and TypeScript.
 description_long: Snippets and tips on JavaScript and TypeScript.
@@ -16,7 +16,7 @@ _:
 
 <!-- --- -->
 
-## JS: How to do if/else statements on a single line: Ternary operators
+## [JS] How to do if/else statements on a single line: Ternary operators
 
 ```js
 // Ternary operators use a condition followed by a question mark (?),
@@ -35,7 +35,7 @@ console.log(result)
 
 <!-- --- -->
 
-## JS: How to check truthiness of items in an Array: Every, Some
+## [JS] How to check truthiness of items in an Array: Every, Some
 
 ```js
 const nums = [10, 20, 50]
@@ -54,7 +54,7 @@ console.log(resultEvery)
 
 <!-- --- -->
 
-## JS: How to check if a value exists in an Array: Includes
+## [JS] How to check if a value exists in an Array: Includes
 
 ```js
 const nums = [10, 20, 50]
@@ -68,7 +68,7 @@ console.log(result)
 
 <!-- --- -->
 
-## JS: How to filter arrays based on some condition: Filter
+## [JS] How to filter arrays based on some condition: Filter
 
 Filter is a method that arrays have. You provide a callback that will be executed for every item in the array. It can be an arrow function or a function define elsewhere, but it should obviously resolve to a boolean: true or false. All elements that are false will be dropped in the resulting array.
 
@@ -120,7 +120,7 @@ console.log(result)
 
 <!-- --- -->
 
-## JS: How to join strings with template literals: ${}
+## [JS] How to join strings with template literals: ${}
 
 ```js
 // Use dollar sign and curly brackets within backticks `${}`
@@ -142,7 +142,7 @@ console.log(`Your total is: ${sum(a, b)}`)
 
 <!-- --- -->
 
-## JS: How to add items to or replace items in an Array or Object: Spread syntax
+## [JS] How to add items to or replace items in an Array or Object: Spread syntax
 
 ```js
 // Ellipsis (...), and then add the data
@@ -202,7 +202,7 @@ console.log(mergedObj)
 
 <!-- --- -->
 
-## JS: How to extract items from an Array or Object in a single line: Destructuring
+## [JS] How to extract items from an Array or Object in a single line: Destructuring
 
 Destructuring is a complex topic, but these are the basics:
 
@@ -241,7 +241,7 @@ console.log(somethingElse)
 
 <!-- --- -->
 
-## JS: How to transform items in an array without using for loops: Map
+## [JS] How to transform items in an array without using for loops: Map
 
 Apply some method to every single item in an array.
 
@@ -264,7 +264,7 @@ console.log(itemsTransformed)
 
 <!-- --- -->
 
-## JS: How to sort simple arrays: Sort
+## [JS] How to sort simple arrays: Sort
 
 ```js
 // Sorting an array of strings
@@ -301,7 +301,7 @@ console.log(correctResult)
 
 <!-- --- -->
 
-## JS: How to sort an array of objects: Sort
+## [JS] How to sort an array of objects: Sort
 
 Sort the objects in an array according to the value of a single key.
 
@@ -348,7 +348,7 @@ console.log(sorted)
 
 <!-- --- -->
 
-## JS: How to sort an object: Sort
+## [JS] How to sort an object: Sort
 
 This is kind of dumb, but it can be done. This is impossible in Python because dictionaries in Python don't care about the order of the keys, they get stored in a hash tree.
 
@@ -446,7 +446,7 @@ console.log(sortedArr)
 
 <!-- --- -->
 
-## JS: How to copy text to the clipboard
+## [JS] How to copy text to the clipboard
 
 ```js
 // Copying something, for example, when clicking a button
@@ -456,7 +456,7 @@ navigator.clipboard.writeText('some text you want to copy')
 
 <!-- --- -->
 
-## JS: How to add decimals
+## [JS] How to add decimals
 
 **Warning**: 0.1 + 0.2 _does not equal_ 0.3!!
 

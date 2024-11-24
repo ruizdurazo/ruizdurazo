@@ -1,5 +1,5 @@
 ---
-title: On CSS / Styling
+title: On CSS & Styling
 date: 2021-11-14
 description_short: Snippets and tips on CSS, SCSS/Sass, and styling in general.
 description_long: Snippets and tips on CSS, SCSS/Sass, and styling in general.
@@ -16,7 +16,7 @@ _:
 
 <!-- --- -->
 
-## CSS: How to hide scrollbars
+## [CSS] How to hide scrollbars
 
 ```scss
 .scroll {
@@ -33,7 +33,7 @@ _:
 
 <!-- --- -->
 
-## CSS: How to create sticky elements: Sticky
+## [CSS] How to create sticky elements: Sticky
 
 Be aware of the difference between `fixed` and `sticky`.
 
@@ -79,7 +79,7 @@ Also, `sticky` is tied directly to its parent container, and not some grandparen
 
 <!-- --- -->
 
-## CSS: How to add scroll margings to elements: scroll-margin-top
+## [CSS] How to add scroll margings to elements: scroll-margin-top
 
 Usually, websites might have fixed navbars or other elements. When using anchors to scroll to a section of the page (using an href with a pound sign `#`), the navbar might overlap the element. This might be a problem especially if the element is a heading and it's hidden. You can account for this using `scroll-margin-top`.
 
@@ -92,7 +92,7 @@ Usually, websites might have fixed navbars or other elements. When using anchors
 
 <!-- --- -->
 
-## CSS: How to handle focus with :focus-visible
+## [CSS] How to handle focus with :focus-visible
 
 Only show `:focus` ring with keyboard navigation, not with clicks or taps.
 
@@ -116,7 +116,7 @@ Only show `:focus` ring with keyboard navigation, not with clicks or taps.
 
 <!-- --- -->
 
-## CSS: How to do animations: Transition, Animation
+## [CSS] How to do animations: Transition, Animation
 
 Not all CSS attributes can be animated (e.g. `background` can't, but `background-color` can, `width` can't, but `max-width` can).
 
@@ -161,7 +161,7 @@ It is less performant to animate **margins** and **paddings**.
 
 <!-- --- -->
 
-## CSS: How to fill a child's height to its parent: Flex stretch
+## [CSS] How to fill a child's height to its parent: Flex stretch
 
 Use `align-items: stretch` to do this.
 
@@ -179,7 +179,7 @@ Use `align-items: stretch` to do this.
 
 <!-- --- -->
 
-## CSS: How to add ellipsis for text overflows
+## [CSS] How to add ellipsis for text overflows
 
 **Warning**: CSS ellipsis only works for a single line of text.
 
@@ -195,7 +195,7 @@ For multiple lines, JavaScript is needed.
 
 <!-- --- -->
 
-## HTML: How to set break points for words and lines
+## [HTML] How to set break points for words and lines
 
 Three main options:
 
@@ -216,7 +216,7 @@ Three main options:
 
 <!-- --- -->
 
-## HTML: Ampersands (&)
+## [HTML] Ampersands (&)
 
 Use `&amp;amp;` for adding an ampersand (&).
 
@@ -228,7 +228,7 @@ The ampersand is a special character in HTML.
 
 <!-- --- -->
 
-## HTML: Other special HTML characters
+## [HTML] Other special HTML characters
 
 `"` is replaced with `&&shy;quot;`
 
