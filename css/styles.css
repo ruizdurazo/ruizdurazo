@@ -355,8 +355,6 @@ img {
 
 .email-bubble {
   position: absolute;
-  bottom: 100%;
-  left: 50%;
   transform: translateX(-50%);
   background-color: #fff;
   color: var(--black);
@@ -367,9 +365,9 @@ img {
   line-height: calc(var(--font-size) * 1.2);
   font-weight: 500;
   white-space: nowrap;
-  margin-bottom: calc(var(--font-size) * 0.8);
   animation: fadeIn 0.2s ease-in-out;
   box-shadow: 0 4px 16px -4px #ddd;
+  pointer-events: none;
 }
 
 @keyframes fadeIn {
