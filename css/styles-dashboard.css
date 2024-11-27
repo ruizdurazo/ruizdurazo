@@ -125,6 +125,7 @@
   color: var(--_70);
   font-weight: 500;
   padding: 4px 10px;
+  background-color: #fcfcfc;
   border-radius: 6px;
   border: 1px solid var(--_e);
   pointer-events: none;
@@ -204,14 +205,12 @@
 
 #prompts-section .prompt-sources a .shortcut {
   margin-left: 4px;
-  padding: 0 4px;
+  padding: 1px 4px;
   border-radius: 6px;
-  border: 1px solid var(--_e);
-  font-size: calc(var(--font-size) * 0.7);
-}
-
-#prompts-section .prompt-sources a:hover .shortcut {
+  color: var(--_50);
+  border: 1px solid #eee;
   background-color: #fcfcfc;
+  font-size: calc(var(--font-size) * 0.8);
 }
 
 /* Section - Quick Links */
