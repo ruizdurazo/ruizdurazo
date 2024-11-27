@@ -1057,7 +1057,7 @@ fetch(url)
       " Enrique Ruiz Durazo" +
       "</span>" +
       '<div class="footer-links">' +
-      '<a href="/dashboard">Dashboard</a>' +
+      '<a href="/dashboard" id="dashboard-link">Dashboard</a>' +
       '<a href="https://github.com/ruizdurazo/ruizdurazo" target="_blank" id="source">Source &nearr;</a>' +
       "</div>";
 

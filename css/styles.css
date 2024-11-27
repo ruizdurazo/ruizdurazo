@@ -66,6 +66,7 @@
   --font-size: 20px;
   --max-font-size: 20;
   --min-font-size: 16;
+  
   /* Font sizes */
   --font-size-1_2: calc(var(--font-size) * 1.2);
   --font-size-1_5: calc(var(--font-size) * 1.5);
@@ -77,11 +78,13 @@
   --font-size-6: calc(var(--font-size) * 6);
   --font-size-7: calc(var(--font-size) * 7);
   --font-size-8: calc(var(--font-size) * 8);
+
   /* Max and min widths */
   --max-width: 1520px;
   --max-width-home: 960px;
   --max-width-note: 720px;
   --min-width: 360px;
+
   /* Grid units */
   --grid-unit: 120px;
   --grid-unit-2: calc(var(--grid-unit) * 2);
@@ -92,10 +95,29 @@
   --grid-unit-7: calc(var(--grid-unit) * 7);
   --grid-unit-8: calc(var(--grid-unit) * 8);
   --offset: 80;
+
   /* Colors */
   --selection: #00000016;
-  --black: #101010;
-  --blue: #0f4fff;
+
+  --black-900: #101010;
+  --black-700: #303030;
+  --black-500: #505050;
+  --black-300: #707070;
+  --black-100: #909090;
+
+  --white-900: #ffffff;
+  --white-700: #fafafa;
+  --white-500: #eeeeee;
+  --white-300: #dddddd;
+  --white-100: #cccccc;
+
+  --blue-100: #e7f7ff;
+  --blue-500: #0f4fff;
+
+  --black: var(--black-900);
+  --blue: var(--blue-500);
+  --light-blue: var(--blue-100);
+
   --text: #303030;
   --text-date: #909090;
   --text-description: #707070;
@@ -104,11 +126,13 @@
   --text-blockquote: #303030;
   --text-footer: #aaa;
   --text-error_404: #909090;
+
   --_10: #101010;
   --_30: #303030;
   --_50: #505050;
   --_70: #707070;
   --_90: #909090;
+  
   --_a: #aaa;
   --_b: #bbb;
   --_c: #ccc;
@@ -346,6 +370,22 @@ img {
 
 .footer-links a:focus-visible {
   box-shadow: 0 0 0 4px var(--blue);
+}
+
+.footer-links #dashboard-link {
+  position: relative;
+  margin: 0 0 0 var(--font-size);
+}
+
+.footer-links #dashboard-link::before {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--font-size) * -.9);
+  transform: translateY(-50%);
+  content: "•";
+  font-weight: 700;
+  color: var(--blue);
+  pointer-events: none;
 }
 
 /* Email bubble */
