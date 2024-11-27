@@ -122,7 +122,7 @@
   right: 24px;
   font-size: calc(var(--font-size) * 0.8);
   line-height: calc(var(--font-size) * 1.2);
-  color: var(--_30);
+  color: var(--_70);
   font-weight: 500;
   padding: 4px 10px;
   border-radius: 6px;
@@ -164,7 +164,7 @@
 }
 
 #prompts-section textarea::placeholder {
-  color: #808080;
+  color: var(--_90);
 }
 
 #prompts-section .prompt-sources {
