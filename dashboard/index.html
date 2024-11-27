@@ -510,6 +510,10 @@
         if (e.metaKey && e.key === "k") {
           promptInput.focus();
         }
+        // Blur prompt input with Escape
+        else if (e.key === "Escape") {
+          promptInput.blur();
+        }
       });
     </script>
     <!-- Fetch quotes -->
