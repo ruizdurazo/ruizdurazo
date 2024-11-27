@@ -116,6 +116,29 @@
   height: 32px;
 }
 
+#prompts-section .prompt-input-wrapper .shortcut {
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  font-size: calc(var(--font-size) * 0.8);
+  line-height: calc(var(--font-size) * 1.2);
+  color: var(--_30);
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--_e);
+  pointer-events: none;
+  transition: opacity 0.2s ease-out;
+}
+
+#prompts-section .prompt-input-wrapper:hover .shortcut {
+  background-color: #fcfcfc;
+}
+
+#prompts-section .prompt-input-wrapper:focus-within .shortcut {
+  opacity: 0;
+}
+
 #prompts-section textarea {
   width: 100%;
   padding: 16px 32px 16px 56px;
@@ -184,8 +207,11 @@
   padding: 0 4px;
   border-radius: 6px;
   border: 1px solid var(--_e);
+  font-size: calc(var(--font-size) * 0.7);
+}
+
+#prompts-section .prompt-sources a:hover .shortcut {
   background-color: #fcfcfc;
-  font-size: calc(var(--font-size) * .7);
 }
 
 /* Section - Quick Links */

@@ -145,6 +145,7 @@
               width="32"
               height="32"
             />
+            <span class="shortcut">⌘K</span>
           </div>
 
           <!-- Sources -->
@@ -177,7 +178,7 @@
                 height="24"
               />
               <span>Search</span>
-              <span class="shortcut">⌘⇧↩</span>
+              <span class="shortcut">⇧⌘↩</span>
             </a>
           </div>
         </section>
@@ -452,7 +453,7 @@
       const textarea = document.getElementById("prompt-input");
       textarea.addEventListener("input", function () {
         this.style.height = "auto";
-        this.style.height = this.scrollHeight + 2 + "px";
+        this.style.height = this.scrollHeight + 4 + "px";
       });
     </script>
     <!-- Update prompt links based on textarea input -->
@@ -494,6 +495,13 @@
         else if (e.key === "Enter" && e.metaKey && e.shiftKey) {
           e.preventDefault();
           window.location.href = searchLink.href;
+        }
+      });
+
+      // Focus on prompt input with Cmd + K
+      document.addEventListener("keydown", function (e) {
+        if (e.metaKey && e.key === "k") {
+          promptInput.focus();
         }
       });
     </script>
