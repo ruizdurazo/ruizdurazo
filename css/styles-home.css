@@ -139,7 +139,7 @@ p {
 
 .summary__text .link {
   position: relative;
-  border-bottom: solid 2px #ddd;
+  border-bottom: 2px solid #ddd;
   padding-bottom: 1px;
   transition: all 0.2s;
   font-weight: 400;
@@ -149,7 +149,7 @@ p {
 .summary__text .link:hover {
   cursor: pointer;
   color: var(--blue);
-  border-bottom: solid 2px var(--blue);
+  border-bottom: 2px solid var(--blue);
 }
 
 .summary__text .link:focus-visible {

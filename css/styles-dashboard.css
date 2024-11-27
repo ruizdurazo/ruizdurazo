@@ -179,6 +179,15 @@
   line-height: calc(var(--font-size) * 1.2);
 }
 
+#prompts-section .prompt-sources a .shortcut {
+  margin-left: 4px;
+  padding: 0 4px;
+  border-radius: 4px;
+  border: 1px solid var(--_e);
+  background-color: #fcfcfc;
+  font-size: calc(var(--font-size) * .7);
+}
+
 /* Section - Quick Links */
 #quick-links-section {
   margin-bottom: var(--font-size-8);

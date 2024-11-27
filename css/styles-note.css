@@ -449,7 +449,7 @@ p {
 
 .pa {
   position: relative;
-  border-bottom: solid 2px #ddd;
+  border-bottom: 2px solid #ddd;
   padding-bottom: 1px;
   transition: color 0.2s, border 0.2s;
   font-weight: 400;
@@ -458,7 +458,7 @@ p {
 .pa:hover {
   cursor: pointer;
   color: var(--blue);
-  border-bottom: solid 2px var(--blue);
+  border-bottom: 2px solid var(--blue);
 }
 
 .pa:focus-visible {
