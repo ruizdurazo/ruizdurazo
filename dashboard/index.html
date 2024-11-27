@@ -465,6 +465,7 @@
 
       promptInput.addEventListener("input", function () {
         const text = this.value.trim();
+        // Update links based on input
         chatgptLink.href = text
           ? `https://chat.openai.com/?q=${encodeURIComponent(text)}`
           : "https://chat.openai.com";
@@ -474,6 +475,12 @@
         searchLink.href = text
           ? `https://google.com/search?q=${encodeURIComponent(text)}`
           : "https://google.com";
+        // Hide Cmd + K shortcut if there's input
+        if (text) {
+          document.querySelector(".shortcut").style.display = "none";
+        } else {
+          document.querySelector(".shortcut").style.display = "initial";
+        }
       });
 
       // Add keyboard shortcuts
@@ -498,7 +505,7 @@
         }
       });
 
-      // Focus on prompt input with Cmd + K
+      // Focus on prompt input with Cmd + K shortcut
       document.addEventListener("keydown", function (e) {
         if (e.metaKey && e.key === "k") {
           promptInput.focus();
