@@ -125,7 +125,7 @@
   color: var(--_70);
   font-weight: 500;
   padding: 4px 10px;
-  background-color: #fcfcfc;
+  background-color: #fff;
   border-radius: 6px;
   border: 1px solid var(--_e);
   pointer-events: none;
@@ -209,7 +209,7 @@
   border-radius: 6px;
   color: var(--_50);
   border: 1px solid #eee;
-  background-color: #fcfcfc;
+  background-color: #fff;
   font-size: calc(var(--font-size) * 0.8);
 }
 
