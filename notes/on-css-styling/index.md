@@ -1,6 +1,6 @@
 ---
 title: On CSS & Styling
-date: 2021-11-14
+date: 2024-11-29
 description_short: Snippets and tips on CSS, SCSS/Sass, and styling in general.
 description_long: Snippets and tips on CSS, SCSS/Sass, and styling in general.
 image:
@@ -13,6 +13,10 @@ acknowledgements:
 further_reading: true
 _:
 ---
+
+Styling and visual design is incredibly important. It makes or breaks a user's experience. The problem is that default styles are aggressively ugly. You need to know how to bend styles to your will. 
+
+Here's a list of snippets I've found useful.
 
 <!-- --- -->
 
@@ -190,6 +194,33 @@ For multiple lines, JavaScript is needed.
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+```
+
+<!-- --- -->
+
+## [CSS] How to format numbers for tables: tabular-nums
+
+You can format tabular numbers using the `font-variant-numeric` property. Specifically, the `tabular-nums` value ensures that all numbers in the selected text have the same width (monospaced), making them align neatly. Useful for displaying data and prices, for example.
+
+```css
+.some-class-name {
+  font-variant-numeric: tabular-nums;
+}
+```
+
+<!-- --- -->
+
+## [CSS] How to format centered headlines: text-wrap
+
+The `text-wrap: balance` property in CSS ensures that the lines in a text element are visually balance. It achieves this by distributing text more evenly across lines, rather than prioritizing the natural flow of text or the default line break behavior based on the element's width.
+
+In certain multi-line elements like titles, headlines, or quotes, balanced wrapping really improves visual harmony, ensuring that the text appears well-distributed.
+
+```css
+.some-class-name {
+  text-align: center;
+  text-wrap: balance;
 }
 ```
 

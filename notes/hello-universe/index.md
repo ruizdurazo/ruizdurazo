@@ -24,7 +24,7 @@ I want to start making things, but I have to be honest. Going at it alone is tou
 
 Tim Urban [knows](https://waitbutwhy.com/2013/10/why-procrastinators-procrastinate.html) [the](https://waitbutwhy.com/2013/11/how-to-beat-procrastination.html) [struggle](https://www.ted.com/talks/tim_urban_inside_the_mind_of_a_master_procrastinator). [Spongebob does too](https://www.youtube.com/watch?v=sd2Q6Fagemg).
 
-![Spongebob writing an essay. He is holding what is basically a blank piece of paper.](/notes/hello-universe/images/spongebob.jpg "Break time!")[size: m, aspect: 672x495]
+![Spongebob writing an essay. He is holding what is basically a blank piece of paper.](./images/spongebob.jpg "Break time!")[size: m, aspect: 672x495]
 
 ## Make
 
@@ -79,7 +79,7 @@ You might not know it, but the ideas in your mind can be really fuzzy. Incomplet
 
 Writing is different. Writing is expression. Expressing ideas helps to form them. Or rather, _forge_ them. The blacksmith imagery seems appropriate. It takes energy. It takes focus. It takes work. But it's worth it. The material was always there, just not in the right shape. So get pounding. 🔨
 
-![Painting: Francisco Goya's La Fragua. Three men working a red-hot piece of metal.](/notes/hello-universe/images/blacksmith.jpg "La Fragua. Francisco Goya.")[size: m, aspect: 672x840]
+![Painting: Francisco Goya's La Fragua. Three men working a red-hot piece of metal.](./images/blacksmith.jpg "La Fragua, Francisco Goya")[size: m, aspect: 672x840]
 
 But wait, there’s more.
 

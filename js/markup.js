@@ -972,13 +972,13 @@ fetch(url)
     if (back === -1) {
       furtherBack = `<a href="/" class="further further--back">
       <div class="further__arrow further__arrow--back">
-        <img src="/assets/images/icon-arrow_left.svg" alt="" />
+        <img src="/assets/icons/icon-arrow_left.svg" alt="" />
       </div>
       <div class="further__text">
         <div class="title">Home</div>
       </div>
       <div class="further__arrow further__arrow--next">
-        <img src="/assets/images/icon-arrow_right.svg" alt="" />
+        <img src="/assets/icons/icon-arrow_right.svg" alt="" />
       </div>
     </a>
 `;
@@ -988,7 +988,7 @@ fetch(url)
         notes[back].folder +
         `" class="further further--back">
       <div class="further__arrow further__arrow--back">
-        <img src="/assets/images/icon-arrow_left.svg" alt="" />
+        <img src="/assets/icons/icon-arrow_left.svg" alt="" />
       </div>
       <div class="further__text">
         <div class="label">PREVIOUS</div>
@@ -1002,7 +1002,7 @@ fetch(url)
         </div>
       </div>
       <div class="further__arrow further__arrow--next">
-        <img src="/assets/images/icon-arrow_right.svg" alt="" />
+        <img src="/assets/icons/icon-arrow_right.svg" alt="" />
       </div>
     </a>
 `;
@@ -1010,13 +1010,13 @@ fetch(url)
     if (next === -1) {
       furtherNext = `<a href="/" class="further further--next">
       <div class="further__arrow further__arrow--back">
-        <img src="/assets/images/icon-arrow_left.svg" alt="" />
+        <img src="/assets/icons/icon-arrow_left.svg" alt="" />
       </div>
       <div class="further__text">
         <div class="title">Home</div>
       </div>
       <div class="further__arrow further__arrow--next">
-        <img src="/assets/images/icon-arrow_right.svg" alt="" />
+        <img src="/assets/icons/icon-arrow_right.svg" alt="" />
       </div>
     </a>
 `;
@@ -1026,7 +1026,7 @@ fetch(url)
         notes[next].folder +
         `" class="further further--next">
       <div class="further__arrow further__arrow--back">
-        <img src="/assets/images/icon-arrow_left.svg" alt="" />
+        <img src="/assets/icons/icon-arrow_left.svg" alt="" />
       </div>
       <div class="further__text">
         <div class="label">NEXT</div>
@@ -1040,7 +1040,7 @@ fetch(url)
         </div>
       </div>
       <div class="further__arrow further__arrow--next">
-        <img src="/assets/images/icon-arrow_right.svg" alt="" />
+        <img src="/assets/icons/icon-arrow_right.svg" alt="" />
       </div>
     </a>`;
     }

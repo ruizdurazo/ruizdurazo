@@ -26,7 +26,7 @@ document.getElementById("menu-button").addEventListener("click", (event) => {
     menuOverlay.setAttribute("style", "max-height: 100svh;");
     menuOverlay.children[0].style.display = "flex";
     // Change menu icon
-    menuSVG.src = "/assets/images/icon-close.svg";
+    menuSVG.src = "/assets/icons/icon-close.svg";
     menuSVG.alt = "Close";
     menuSVG.width = "60";
     menuSVG.height = "60";
@@ -43,7 +43,7 @@ document.getElementById("menu-button").addEventListener("click", (event) => {
     menuOverlay.setAttribute("style", "max-height: 0;");
     menuOverlay.children[0].style.display = "none";
     // Change menu icon
-    menuSVG.src = "/assets/images/icon-menu.svg";
+    menuSVG.src = "/assets/icons/icon-menu.svg";
     menuSVG.alt = "Menu";
     menuSVG.width = "60";
     menuSVG.height = "60";

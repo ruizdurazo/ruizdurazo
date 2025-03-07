@@ -1,6 +1,6 @@
 ---
 title: On JavaScript & TypeScript
-date: 2022-07-07
+date: 2024-11-29
 description_short: Snippets and tips on JavaScript and TypeScript.
 description_long: Snippets and tips on JavaScript and TypeScript.
 image:
@@ -13,6 +13,15 @@ acknowledgements:
 further_reading: true
 _:
 ---
+
+
+The whole world runs on JavaScript.
+
+![JavaScript](./images/javascript.png "It do be like that")[size: l, aspect: 672x840]
+
+
+Here's a list of notes and snippets I've found useful.
+
 
 <!-- --- -->
 
