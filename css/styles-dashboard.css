@@ -145,6 +145,11 @@
   height: 56px;
 }
 
+#quick-links-section ul li * div {
+  width: 56px;
+  height: 56px;
+}
+
 /* Media queries */
 
 /* 1040px */
