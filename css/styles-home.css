@@ -810,7 +810,7 @@ p {
   }
 
   .summary__image {
-    align-items: flex-start;
+    margin: var(--font-size-2) 0;
   }
 
   /* Notes */
@@ -837,14 +837,16 @@ p {
   /* Contact */
   .social-media-links {
     gap: 1em;
+    margin: var(--font-size-2) 0;
   }
 
   .social-media-links li {
     width: 100%;
-    margin-bottom: 0;
+    margin: 0 0 0 -16px;
   }
 
-  .social-media-links li a {
+  .social-media-links li a,
+  .social-media-links li button {
     padding: 12px 24px 12px 16px;
   }
 }

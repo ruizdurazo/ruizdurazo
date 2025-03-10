@@ -167,10 +167,6 @@
   #quotes {
     padding: 0 var(--font-size-2);
   }
-
-  #prompts-section .prompt-sources {
-    gap: var(--font-size-3);
-  }
 }
 
 /* 768px */
@@ -186,15 +182,10 @@
     );
   }
 
-  #prompts-section .prompt-sources {
-    gap: var(--font-size-2);
-  }
-}
-
-/* 640px */
-@media only screen and (max-width: 640px) {
-  #prompts-section .prompt-sources {
-    gap: var(--font-size);
+  #quick-links-section ul li > * {
+    font-size: calc(
+      17px - (17 - 16) * (100vw - 480px) / (768 - 480)
+    );
   }
 }
 
@@ -206,5 +197,9 @@
 
   #quotes {
     padding: 0;
+  }
+
+  #quick-links-section ul li > * {
+    font-size: var(--font-size);
   }
 }
