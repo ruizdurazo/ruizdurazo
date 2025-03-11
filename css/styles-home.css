@@ -92,7 +92,6 @@ h1 span,
 
 .sep-note {
   height: 1px;
-  margin: 0 0 var(--font-size) 0;
 }
 
 /* Section Titles */
@@ -424,17 +423,19 @@ p {
   margin: 0 auto var(--font-size-6);
 }
 
-.note {
-  margin-bottom: 1.6em;
+.note .note-default,
+.note .note-thumbnail {
+  display: flex;
 }
 
-.note-thumbnail {
-  display: flex;
+.note .note-default {
+  flex-direction: row;
+  padding: 1em 0;
+}
+
+.note .note-thumbnail {
   flex-direction: row-reverse;
-}
-
-.note-default {
-  display: flex;
+  padding: 1em 0 1.2em;
 }
 
 .note img {
