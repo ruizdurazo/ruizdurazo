@@ -9,7 +9,6 @@ let md = [];
 // Note objects and helpers
 let noteData = {};
 let noteArticle = {};
-let sectionHeadings = [];
 let previousElement = {};
 previousElement.lang = ""; // Language for syntax highlighting
 previousElement.type = "none"; // Type of element
@@ -119,6 +118,10 @@ fetch(url)
       }
     }
 
+    // Table of Contents
+    let tableOfContents = [];
+
+    // Article Content
     // Pseudo code
     // Helper object for article (html)
     // Helper object attr for current element type (h, p, img, etc.)
@@ -136,11 +139,20 @@ fetch(url)
       wordCounter(element);
       // IDs: lowercase, replace spaces with dashes
       // TODO: track uniqueness of ids
-      let id = element
-        .slice(level + 1)
-        .trim()
+      const headerText = element.slice(level + 1).trim();
+      let id = headerText
         .toLowerCase()
-        .replace(" ", "-");
+        .replaceAll(" ", "-") // Replace all spaces with dashes
+        .replace(/[^\w\-]/g, "") // Remove special chars except dashes
+        .replace(/^[-]+|[-]+$/g, ""); // Remove dashes at the start or end
+
+      // Add to table of contents list with appropriate nesting level
+      tableOfContents.push({
+        level: level,
+        text: headerText,
+        id: id,
+      });
+
       return (
         "<h" +
         level +
@@ -149,7 +161,7 @@ fetch(url)
         '" class="h' +
         level +
         '">' +
-        element.slice(level + 1).trim() +
+        headerText +
         "</h" +
         level +
         ">"
@@ -939,6 +951,42 @@ fetch(url)
         noteArticle += "<p>" + p(element) + "</p>";
       }
     });
+
+    // Helper function to generate the Table of Contents
+    function generateTableOfContents() {
+      // If there are no headers, return an empty string
+      if (tableOfContents.length === 0) return "";
+
+      // Create the Table of Contents container
+      let toc = '<div id="table-of-contents" class="table-of-contents">';
+      // toc += '<div class="toc-title">Table of Contents</div>';
+      toc += '<ul class="toc-list">';
+      // Iterate through the headers and create the Table of Contents
+      tableOfContents.forEach((header) => {
+        // Indent based on header level (h2 = no indent, h3 = 1x indent, h4 = 2x indent, etc.)
+        const indent =
+          header.level > 2
+            ? ' style="margin-left: ' + (header.level - 2) * 20 + 'px;"'
+            : "";
+        toc +=
+          "<li" +
+          indent +
+          '><a href="#' +
+          header.id +
+          '">' +
+          header.text +
+          "</a></li>";
+      });
+      toc += "</ul></div>";
+      return toc;
+    }
+
+    // Generate the Table of Contents after all headers have been parsed
+    const tocHTML = generateTableOfContents();
+    // If the TOC is not empty, insert it into the header, before the article content
+    if (tocHTML) {
+      document.getElementById("header").innerHTML += tocHTML;
+    }
 
     // Add Time-To-Read
     // document.getElementById('date-ttr').innerHTML +=

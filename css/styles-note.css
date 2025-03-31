@@ -117,8 +117,10 @@
   margin: calc(var(--font-size) * 2.5) auto;
 }
 
-#header hr {
+/* Hide the horizontal rule in the header by default */
+#header #hr {
   display: none;
+  width: 100% !important;
 }
 
 /* Date */
@@ -182,6 +184,42 @@ h1 span {
 /* #note {
   grid-area: note;
 } */
+
+/* Table of Contents */
+#table-of-contents {
+  width: var(--max-width-note);
+  margin: 0 auto;
+}
+
+#table-of-contents .toc-list {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--font-size) * 0.5);
+}
+
+#table-of-contents .toc-list li a {
+  color: var(--text-toc);
+  font-size: calc(var(--font-size) * 0.9);
+  line-height: calc(var(--font-size) * 1.2);
+  border-bottom: 2px solid #eee;
+  text-wrap: pretty;
+}
+
+#table-of-contents .toc-list li a:hover {
+  color: var(--blue);
+  border-bottom: 2px solid var(--blue);
+}
+
+#table-of-contents .toc-list li {
+  color: transparent;
+  list-style: disc;
+  transition: color 0.2s;
+}
+
+/* Show dot only if the child `a` is hovered */
+#table-of-contents .toc-list li:has(a:hover) {
+  color: var(--blue);
+}
 
 /* Section Headings */
 .h2,
@@ -755,11 +793,9 @@ br {
     max-width: calc(100% - (1px * var(--offset) / 2));
   }
 
+  #header,
+  #table-of-contents,
   .further-reading {
-    width: calc(100% - (1px * var(--offset) * 0.75));
-  }
-
-  #header {
     width: calc(100% - (1px * var(--offset) * 0.75));
   }
 
@@ -784,8 +820,9 @@ br {
     width: calc(
       100% -
         (
-          (1px * var(--offset) / 1.5) + ((var(--offset)) - (var(--offset) / 1.5)) *
-            (100vw - 480px) / (780 - 480)
+          (1px * var(--offset) / 1.5) +
+            ((var(--offset)) - (var(--offset) / 1.5)) * (100vw - 480px) /
+            (780 - 480)
         )
     );
   }
@@ -793,30 +830,9 @@ br {
 
 /* 768px */
 @media only screen and (max-width: 768px) {
+  #header,
+  #table-of-contents,
   .further-reading {
-    width: calc(
-      100% -
-        (
-          (1px * var(--offset) / 2) +
-            ((var(--offset) * 0.75) - var(--offset) / 2) * (100vw - 480px) /
-            (768 - 480)
-        )
-    );
-  }
-
-  .further__text .title {
-    font-size: calc(
-      (var(--max-font-size) * 0.9px) + (20 - 18) * (100vw - 480px) / (768 - 480)
-    );
-  }
-
-  .further__text .description {
-    font-size: calc(
-      (var(--max-font-size) * 0.9px) + (20 - 18) * (100vw - 480px) / (768 - 480)
-    );
-  }
-
-  #header {
     width: calc(
       100% -
         (
@@ -862,6 +878,18 @@ br {
         )
     );
   }
+
+  .further__text .title {
+    font-size: calc(
+      (var(--max-font-size) * 0.9px) + (20 - 18) * (100vw - 480px) / (768 - 480)
+    );
+  }
+
+  .further__text .description {
+    font-size: calc(
+      (var(--max-font-size) * 0.9px) + (20 - 18) * (100vw - 480px) / (768 - 480)
+    );
+  }
 }
 
 /* 767px */
@@ -892,10 +920,6 @@ br {
 
 /* 480px */
 @media only screen and (max-width: 480px) {
-  .further-reading {
-    width: calc(100% - (1px * var(--offset) / 2));
-  }
-
   .further__text .title {
     font-size: calc(var(--max-font-size) * 0.9px);
   }
@@ -904,7 +928,9 @@ br {
     font-size: calc(var(--max-font-size) * 0.9px);
   }
 
-  #header {
+  #header,
+  #table-of-contents,
+  .further-reading {
     width: calc(100% - (1px * var(--offset) / 2));
   }
 

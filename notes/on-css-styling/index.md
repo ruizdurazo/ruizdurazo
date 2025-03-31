@@ -14,6 +14,8 @@ further_reading: true
 _:
 ---
 
+## Intro
+
 Styling and visual design is incredibly important. It makes or breaks a user's experience. The problem is that default styles are aggressively ugly. You need to know how to bend styles to your will. 
 
 Here's a list of snippets I've found useful.

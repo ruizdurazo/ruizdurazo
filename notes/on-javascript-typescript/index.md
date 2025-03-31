@@ -14,14 +14,13 @@ further_reading: true
 _:
 ---
 
+## Intro
 
 The whole world runs on JavaScript.
 
 ![JavaScript](./images/javascript.png "It do be like that")[size: l, aspect: 672x840]
 
-
 Here's a list of notes and snippets I've found useful.
-
 
 <!-- --- -->
 
