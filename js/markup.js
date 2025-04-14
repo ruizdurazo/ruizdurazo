@@ -319,30 +319,67 @@ fetch(url)
           // Add to 'line' class for css numbering counter to work,
           // And have new lines at the end for syntax highlighting
 
+          // Escape HTML characters
+          const escapedElement = element
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
           if (previousElement.lang !== "") {
+            // Apply syntax highlighting if language is specified
+            try {
+              out =
+                '<span class="line">' +
+                "<span>" +
+                hljs.highlight(element, { language: previousElement.lang })
+                  .value +
+                "</span>" +
+                "</span>";
+            } catch (e) {
+              // Fallback to no highlighting if language is invalid
+              out =
+                '<span class="line">' +
+                "<span>" +
+                escapedElement +
+                "</span>" +
+                "</span>";
+            }
+          } else {
+            // No language specified, just output escaped text
             out =
               '<span class="line">' +
               "<span>" +
-              hljs.highlight(element, { language: previousElement.lang })
-                .value +
+              escapedElement +
               "</span>" +
               "</span>";
           }
         }
       } else if (previousElement.state === "closed") {
-        if (element.startsWith("```") && element.slice(3).trim().length > 0) {
-          previousElement.lang = element.slice(3).trim();
-          // Start syntax highlighting
-          out = '<pre><code class="language-' + previousElement.lang + '">';
-          previousElement.type = "pre";
-          previousElement.state = "open";
-        } else {
-          // Start plain text
-          out = '<pre><code class="nohighlight">';
-          previousElement.lang = "";
-          previousElement.type = "pre";
-          previousElement.state = "open";
-        }
+        // Start new code block
+        // Get language name
+        const langMatch = element.match(/^```(\S*)/);
+        previousElement.lang = langMatch && langMatch[1] ? langMatch[1] : "";
+        const langName = hljs.getLanguage(previousElement.lang)?.name || "";
+        const langDisplay = langName
+          ? '<span class="pre-lang">' + langName + "</span>"
+          : '<span class="pre-lang"></span>'; // Empty span if no lang
+
+        out = "<pre>";
+        out += '<div class="pre-header">';
+        out += langDisplay;
+        out += '<button class="pre-copy-button"><img src="/assets/icons/icon-copy.svg" alt="Copy" width="16" height="16" />Copy</button>';
+        out += "</div>";
+
+        // Add the appropriate code class for styling/highlighting
+        const codeClass = previousElement.lang
+          ? ' class="language-' + previousElement.lang + '"'
+          : ' class="nohighlight"'; // Or a class indicating no highlighting
+        out += "<code" + codeClass + ">";
+
+        previousElement.type = "pre";
+        previousElement.state = "open";
       }
       return out;
     };
@@ -1119,6 +1156,33 @@ fetch(url)
       window.location.href = window.location.href;
     }
 
+    // Add copy button functionality
+    document.querySelectorAll(".pre-copy-button").forEach((button) => {
+      button.addEventListener("click", () => {
+        const pre = button.closest("pre");
+        const code = pre.querySelector("code");
+        const text = code.innerText; // Use innerText to get raw text
+
+        navigator.clipboard
+          .writeText(text)
+          .then(() => {
+            button.innerHTML = "Copied!";
+            button.classList.add("copied");
+            setTimeout(() => {
+              button.innerHTML = "<img src='/assets/icons/icon-copy.svg' alt='Copy' width='16' height='16' />Copy";
+              button.classList.remove("copied");
+            }, 2000); // Reset after 2 seconds
+          })
+          .catch((err) => {
+            console.error("Failed to copy text: ", err);
+            button.innerHTML = "Error";
+            setTimeout(() => {
+              button.innerHTML = "<img src='/assets/icons/icon-copy.svg' alt='Copy' width='16' height='16' />Copy";
+            }, 2000);
+          });
+      });
+    });
+
     // Add email bubble to all mailto links (requires handleEmailBubble function)
     document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
       const email = link.href.replace("mailto:", "");
@@ -1187,8 +1251,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const mainTocRect = mainToc.getBoundingClientRect();
-
-    console.log(mainTocRect.bottom);
 
     // Check if the bottom of the main TOC is above the viewport
     if (mainTocRect.bottom < 0) {

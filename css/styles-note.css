@@ -618,9 +618,10 @@ pre span {
 }
 
 pre {
+  position: relative;
   border-radius: 8px;
   width: calc((var(--grid-unit) * 6) - (var(--font-size) * 2));
-  padding: calc(var(--font-size) * 1);
+  padding: 0 calc(var(--font-size) * 1) calc(var(--font-size) * 2.2);
   margin: calc(var(--font-size) * 2) auto calc(var(--font-size) * 3) auto;
   box-shadow: 0 10px 20px #e4e6e840;
   border: 1px solid #d5d8da;
@@ -632,6 +633,61 @@ pre {
 pre:hover {
   border: 1px solid #d3d6d8;
   box-shadow: 0 10px 20px #e4e6e880;
+}
+
+pre .pre-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: calc(var(--font-size) * 0.4) 0 calc(var(--font-size) * 0.4);
+  margin-right: -12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+pre .pre-header .pre-lang {
+  font-size: calc(var(--font-size) * 0.7);
+  line-height: calc(var(--font-size) * 0.7);
+  color: var(--text-description);
+  opacity: 0.5;
+  font-family: var(--font-main);
+}
+
+pre .pre-header .pre-copy-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-main);
+  font-size: calc(var(--font-size) * 0.7);
+  line-height: calc(var(--font-size) * 1.4);
+  color: var(--text-description);
+  background-color: #fcfcfc;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 0 10px;
+  transition: border 0.2s ease-in-out;
+}
+
+pre .pre-header .pre-copy-button img {
+  width: 16px;
+  height: 16px;
+  opacity: 0.5;
+}
+
+pre .pre-header .pre-copy-button:hover {
+  cursor: pointer;
+  opacity: 1;
+  border: 1px solid #ccc;
+}
+
+pre:hover .pre-header {
+  opacity: 1;
 }
 
 pre .line {
