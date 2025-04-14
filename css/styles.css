@@ -196,7 +196,7 @@ img {
 #navbar {
   position: fixed;
   width: 100%;
-  z-index: 1;
+  z-index: 2;
   background-color: #ffffffdd;
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
@@ -336,6 +336,8 @@ img {
 
 /* Footer */
 .footer {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
