@@ -111,7 +111,7 @@ fetch(url)
           // TODO: Add thumbnail image, if present and title is present
         } else if (hasTitle) {
           // Add hr, if title is present
-          document.getElementById("hr").style.display = "block";
+          document.getElementById("header").innerHTML += "<hr/>";
         }
         // Remove metadata block from original document
         text = text.replace(metadataBlock[0], "");
@@ -238,7 +238,7 @@ fetch(url)
         // If there something started, check if nesting
         // if (element.slice(1).trim() === 'quote') {
         // Start nested quote
-        // out = '<blockquote class="quote"><span class="start-quote">“</span>'
+        // out = '<blockquote class="quote"><span class="start-quote">"</span>'
         // out = '<blockquote class="blockquote">' + p(element.slice(1).trim())
         // } else {
         // out = p(element.slice(1).trim()) + '\n'
@@ -249,8 +249,8 @@ fetch(url)
       ) {
         // Continue quote blockquote
         if (element.slice(1).trim() === "byline") {
-          // End the quote body with `”`
-          out = '<span class="end-quote"> ”</span></p>';
+          // End the quote body with `"`
+          out = '<span class="end-quote"> "</span></p>';
           previousElement.type = "blockquote-byline";
         } else {
           // Continue the quote body
@@ -281,7 +281,7 @@ fetch(url)
         } else if (element.slice(1).trim() === "quote") {
           // Start quote blockquote
           out =
-            '<blockquote class="quote"><span class="start-quote">“</span><p>';
+            '<blockquote class="quote"><span class="start-quote">"</span><p>';
           previousElement.type = "blockquote-quote";
           previousElement.state = "open";
           previousElement.isFirstElement = true;
@@ -958,9 +958,11 @@ fetch(url)
       if (tableOfContents.length === 0) return "";
 
       // Create the Table of Contents container
-      let toc = '<div id="table-of-contents" class="table-of-contents">';
+      let toc = '<div id="table-of-contents">';
+      let floatingToc = '<div id="floating-table-of-contents">';
+      let tocList = '<div class="toc-list">';
       // toc += '<div class="toc-title">Table of Contents</div>';
-      toc += '<ul class="toc-list">';
+      tocList += "<ul>";
       // Iterate through the headers and create the Table of Contents
       tableOfContents.forEach((header) => {
         // Indent based on header level (h2 = no indent, h3 = 1x indent, h4 = 2x indent, etc.)
@@ -968,7 +970,7 @@ fetch(url)
           header.level > 2
             ? ' style="margin-left: ' + (header.level - 2) * 20 + 'px;"'
             : "";
-        toc +=
+        tocList +=
           "<li" +
           indent +
           '><a href="#' +
@@ -977,8 +979,10 @@ fetch(url)
           header.text +
           "</a></li>";
       });
-      toc += "</ul></div>";
-      return toc;
+      tocList += "</ul></div>";
+      toc += tocList + "</div><hr/>";
+      floatingToc += tocList + "</div>";
+      return toc + floatingToc;
     }
 
     // Generate the Table of Contents after all headers have been parsed
@@ -1167,3 +1171,67 @@ fetch(url)
     //   }
     // }
   });
+
+// START: Floating TOC visibility logic
+document.addEventListener("DOMContentLoaded", () => {
+  // Function to check visibility and toggle class
+  const checkTocVisibility = () => {
+    const mainToc = document.getElementById("table-of-contents");
+    const floatingToc = document.getElementById("floating-table-of-contents");
+
+    // Ensure both elements exist before proceeding
+    if (!mainToc || !floatingToc) {
+      // If elements don't exist yet (e.g., still loading), exit
+      // or potentially retry later if using MutationObserver
+      return;
+    }
+
+    const mainTocRect = mainToc.getBoundingClientRect();
+
+    console.log(mainTocRect.bottom);
+
+    // Check if the bottom of the main TOC is above the viewport
+    if (mainTocRect.bottom < 0) {
+      floatingToc.classList.add("visible");
+    } else {
+      floatingToc.classList.remove("visible");
+    }
+  };
+
+  // Initial check in case the page loads scrolled down
+  checkTocVisibility();
+
+  // Check visibility on scroll
+  window.addEventListener("scroll", checkTocVisibility);
+
+  // Optional: Use MutationObserver to ensure elements are ready
+  // This is more robust if the TOCs are added dynamically after initial load
+  const observer = new MutationObserver((mutationsList, observer) => {
+    for (let mutation of mutationsList) {
+      if (mutation.type === "childList") {
+        // Check if our specific TOC elements were added
+        const addedNodes = Array.from(mutation.addedNodes);
+        if (
+          addedNodes.some(
+            (node) =>
+              node.id === "table-of-contents" ||
+              node.id === "floating-table-of-contents"
+          )
+        ) {
+          // Re-run the check once elements are potentially added
+          checkTocVisibility();
+          // Maybe disconnect observer if only needed once: observer.disconnect();
+        }
+      }
+    }
+  });
+
+  // Start observing the container where TOCs are added (e.g., #header or document.body)
+  const headerElement = document.getElementById("header");
+  if (headerElement) {
+    observer.observe(headerElement, { childList: true, subtree: true });
+  }
+  // Consider observing document.body as a fallback if #header might not exist yet
+  // observer.observe(document.body, { childList: true, subtree: true });
+});
+// END: Floating TOC visibility logic
