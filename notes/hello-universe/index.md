@@ -118,11 +118,11 @@ And who knows. You might actually finish. You might actually do great work. Fing
 
 Which brings us to this site. And this post.
 
-If you're trying to start a blog, and you're not sure where to begin, you'll find that there are [a](https://jekyllrb.com/) [bunch](https://www.gatsbyjs.org/) [of](https://github.com/gatsbyjs/gatsby-starter-blog) [options](https://idyll-lang.org/) [out](https://medium.com/) [there](https://substack.com/). But none of them are ideal. At least not for me.
+If you're trying to start a blog, and you're not sure where to begin, you'll find that there are [a](https://jekyllrb.com) [bunch](https://www.gatsbyjs.org) [of](https://github.com/gatsbyjs/gatsby-starter-blog) [options](https://idyll-lang.org) [out](https://medium.com) [there](https://substack.com). But none of them are ideal. At least not for me.
 
 So after giving it some thought, I decided to start from scratch. This site is hand-built by me down to the last `<div>` and `border-radius`.
 
-It's a good ol’-fashioned static website hosted on [GitHub Pages](https://pages.github.com/) with some vanilla JavaScript on top, and Markdown on the side. It’s static, so no need to maintain servers. And it’s plain, so no need for webpack and the like. No bundles!
+It's a good ol’-fashioned static website hosted on [GitHub Pages](https://pages.github.com) with some vanilla JavaScript on top, and Markdown on the side. It’s static, so no need to maintain servers. And it’s plain, so no need for webpack and the like. No dependencies, no bundles!
 
 But more importantly, it _looks_ how I want, and _works_ how I want.
 
@@ -131,13 +131,13 @@ Basically, there were two design principles:
 1. Easy to read and write.
 2. Flexibility.
 
-Easy to read and write: this is all written on a Markdown-inspired syntax that I can tweak to my liking. It renders well on GitHub, but also comes with my own quirks, making it easier for me to write how I want to write. As for publishing? A `push` to `master` is all it takes. Easy.
+Easy to read and write: I want to be able to read what I write easily in it's final format as well as in the code editor. That's why this is all written on a Markdown-inspired syntax that I can tweak to my liking. It renders well on [GitHub](https://github.com), I can copy over notes from [Notion](https://notion.com), and it just makes it possible for me to write how I want to write. I can track changes through git diffs, and as for publishing? A `push` to `master` is all it takes. Easy.
 
-Flexibility: if I come up with a new feature I want, I can easily add it. If I want to change the way something looks (or works), I can easily change it. And no huge third-party dependencies. Simple.
+Flexibility: if I come up with a new feature I want, I can easily add it. If I want to change the way something looks (or works), I can easily change it. And no huge, annoying third-party dependencies. Simple. Flexible.
 
 > callout
 >
-> If you want some more technical details, head over to the [repository](https://github.com/ruizdurazo/ruizdurazo) to see the source code.
+> If you want to see the technical details and source code, head over to the [repository](https://github.com/ruizdurazo/ruizdurazo).
 
 OK. But is all this extra and unnecessary work just another barrier to me actually finishing stuff? Well, maybe.
 
@@ -161,4 +161,6 @@ print('Hello, Universe. ✌️')
 
 P.S. — On comments. I don’t like blog posts with comments. They make me cringe. So there will be no comments here.
 
-If you’d like to applaud me, shout at me, or just talk, [write me an email](mailto:enrique@ruizdurazo.com) or [dm me on X](https://x.com/ruizdurazo).
+---
+
+If you’d like to get in touch, [write me an email](mailto:enrique@ruizdurazo.com) or [dm me on X](https://x.com/ruizdurazo).

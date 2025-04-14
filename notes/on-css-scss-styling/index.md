@@ -1,8 +1,8 @@
 ---
-title: On CSS & Styling
+title: On CSS/SCSS & Styling
 date: 2024-11-29
-description_short: Snippets and tips on CSS, SCSS/Sass, and styling in general.
-description_long: Snippets and tips on CSS, SCSS/Sass, and styling in general.
+description_short: Snippets and tips on CSS/SCSS and styling in general.
+description_long: Snippets and tips on CSS/SCSS and styling in general.
 image:
 image_alt:
 repository:
@@ -16,13 +16,15 @@ _:
 
 ## Intro
 
-Styling and visual design is incredibly important. It makes or breaks a user's experience. The problem is that default styles are aggressively ugly. You need to know how to bend styles to your will. 
+Styling and visual design is incredibly important. It makes or breaks a user's experience. The problem is that default styles and most UI libraries are aggressively ugly. You need to know how to bend styles to your will. 
 
 Here's a list of snippets I've found useful.
 
 <!-- --- -->
 
-## [CSS] How to hide scrollbars
+## [SCSS] How to hide scrollbars
+
+Add these styles to the element that overflows.
 
 ```scss
 .scroll {
@@ -100,7 +102,7 @@ Usually, websites might have fixed navbars or other elements. When using anchors
 
 ## [CSS] How to handle focus with :focus-visible
 
-Only show `:focus` ring with keyboard navigation, not with clicks or taps.
+Only show the `:focus` ring with keyboard navigation, not with clicks or taps.
 
 ```css
 /* Default for browsers that don't support it yet */
@@ -122,7 +124,7 @@ Only show `:focus` ring with keyboard navigation, not with clicks or taps.
 
 <!-- --- -->
 
-## [CSS] How to do animations: Transition, Animation
+## [SCSS] How to do animations: Transition, Animation
 
 Not all CSS attributes can be animated (e.g. `background` can't, but `background-color` can, `width` can't, but `max-width` can).
 
@@ -167,7 +169,7 @@ It is less performant to animate **margins** and **paddings**.
 
 <!-- --- -->
 
-## [CSS] How to fill a child's height to its parent: Flex stretch
+## [SCSS] How to fill a child's height to its parent: Flex stretch
 
 Use `align-items: stretch` to do this.
 

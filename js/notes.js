@@ -19,10 +19,10 @@ const notes = [
     thumbnailImageAlt: "",
   },
   {
-    folder: "on-css-styling",
+    folder: "on-css-scss-styling",
     date: "2024-11-29",
-    title: "On CSS & Styling",
-    description: "Snippets and tips on CSS, SCSS/Sass, and styling in general.",
+    title: "On CSS/SCSS & Styling",
+    description: "Snippets and tips on CSS/SCSS and styling in general.",
     thumbnail: false,
     thumbnailImage: "",
     thumbnailImageAlt: "",
