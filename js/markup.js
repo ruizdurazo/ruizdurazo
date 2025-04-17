@@ -158,7 +158,7 @@ fetch(url)
         level +
         ' id="' +
         id +
-        '" class="h' +
+        '" class="toc-heading h' +
         level +
         '">' +
         headerText +
@@ -369,7 +369,8 @@ fetch(url)
         out = "<pre>";
         out += '<div class="pre-header">';
         out += langDisplay;
-        out += '<button class="pre-copy-button"><img src="/assets/icons/icon-copy.svg" alt="Copy" width="16" height="16" />Copy</button>';
+        out +=
+          '<button class="pre-copy-button"><img src="/assets/icons/icon-copy.svg" alt="Copy" width="16" height="16" />Copy</button>';
         out += "</div>";
 
         // Add the appropriate code class for styling/highlighting
@@ -920,6 +921,12 @@ fetch(url)
       if (element.trim() === "") {
         // If the element is an empty newline...
         noteArticle += newline(element);
+      } else if (
+        element.startsWith("```") ||
+        (previousElement.type === "pre" && previousElement.state === "open")
+      ) {
+        // Code Blocks
+        noteArticle += pre(element);
       } else if (element.startsWith("## ")) {
         // Section Heading 2
         noteArticle += h(element, 2);
@@ -959,12 +966,6 @@ fetch(url)
       } else if (element.startsWith(">")) {
         // Blockquotes (Standard / Default syntax), quotes, and callouts
         noteArticle += blockquote(element);
-      } else if (
-        element.startsWith("```") ||
-        (previousElement.type === "pre" && previousElement.state === "open")
-      ) {
-        // Code Blocks
-        noteArticle += pre(element);
       } else if (element.startsWith("- ") || element.startsWith("* ")) {
         // Unordered lists
         noteArticle += ul(element);
@@ -1169,7 +1170,8 @@ fetch(url)
             button.innerHTML = "Copied!";
             button.classList.add("copied");
             setTimeout(() => {
-              button.innerHTML = "<img src='/assets/icons/icon-copy.svg' alt='Copy' width='16' height='16' />Copy";
+              button.innerHTML =
+                "<img src='/assets/icons/icon-copy.svg' alt='Copy' width='16' height='16' />Copy";
               button.classList.remove("copied");
             }, 2000); // Reset after 2 seconds
           })
@@ -1177,7 +1179,8 @@ fetch(url)
             console.error("Failed to copy text: ", err);
             button.innerHTML = "Error";
             setTimeout(() => {
-              button.innerHTML = "<img src='/assets/icons/icon-copy.svg' alt='Copy' width='16' height='16' />Copy";
+              button.innerHTML =
+                "<img src='/assets/icons/icon-copy.svg' alt='Copy' width='16' height='16' />Copy";
             }, 2000);
           });
       });
@@ -1238,7 +1241,7 @@ fetch(url)
 
 // START: Floating TOC visibility logic
 document.addEventListener("DOMContentLoaded", () => {
-  // Function to check visibility and toggle class
+  // Function to check visibility and toggle class for the floating TOC container
   const checkTocVisibility = () => {
     const mainToc = document.getElementById("table-of-contents");
     const floatingToc = document.getElementById("floating-table-of-contents");
@@ -1282,7 +1285,6 @@ document.addEventListener("DOMContentLoaded", () => {
         ) {
           // Re-run the check once elements are potentially added
           checkTocVisibility();
-          // Maybe disconnect observer if only needed once: observer.disconnect();
         }
       }
     }
@@ -1293,7 +1295,126 @@ document.addEventListener("DOMContentLoaded", () => {
   if (headerElement) {
     observer.observe(headerElement, { childList: true, subtree: true });
   }
-  // Consider observing document.body as a fallback if #header might not exist yet
-  // observer.observe(document.body, { childList: true, subtree: true });
+
+  // START: Floating TOC active link logic
+  const setupActiveTocLinkObserver = () => {
+    const headings = document.querySelectorAll(
+      "#note .toc-heading"
+    );
+    const tocLinks = document.querySelectorAll(
+      "#floating-table-of-contents .toc-list li a"
+    );
+    const floatingTocList = document.querySelector(
+      "#floating-table-of-contents .toc-list"
+    );
+
+    if (!headings.length || !tocLinks.length || !floatingTocList) {
+      // Don't run if elements aren't ready
+      return;
+    }
+
+    let currentActiveLink = null; // Keep track of the currently active link
+    
+    // Store headings in an array to track their order and positions
+    const headingsList = Array.from(headings);
+    
+    // Trigger point (in pixels from top of viewport)
+    const triggerPoint = 240; // Adjust as needed
+
+    // Function to update the active TOC link based on scroll position
+    const updateActiveTocLink = () => {
+      // Get current scroll position
+      const scrollPosition = window.scrollY;
+      
+      // Find the last heading that is above or at the trigger point
+      let activeHeadingIndex = -1;
+      
+      for (let i = 0; i < headingsList.length; i++) {
+        const headingTop = headingsList[i].getBoundingClientRect().top + scrollPosition;
+        
+        // If the heading is above or at the trigger point relative to current scroll
+        if (headingTop <= scrollPosition + triggerPoint) {
+          activeHeadingIndex = i;
+        } else {
+          // Once we find a heading below the trigger, we can stop
+          break;
+        }
+      }
+      
+      // Clear current active link
+      if (currentActiveLink) {
+        currentActiveLink.classList.remove("active");
+      }
+      
+      // Set new active link if a valid heading was found
+      if (activeHeadingIndex >= 0) {
+        const activeHeadingId = headingsList[activeHeadingIndex].id;
+        const newActiveLink = floatingTocList.querySelector(
+          `a[href="#${activeHeadingId}"]`
+        );
+        
+        if (newActiveLink) {
+          newActiveLink.classList.add("active");
+          currentActiveLink = newActiveLink;
+        }
+      }
+    };
+    
+    // Update active link on scroll
+    window.addEventListener("scroll", updateActiveTocLink, { passive: true });
+    
+    // Initial update
+    updateActiveTocLink();
+    
+    return {
+      cleanup: () => {
+        window.removeEventListener("scroll", updateActiveTocLink);
+      }
+    };
+  };
+
+  // Keep track of the observer setup to clean up if needed
+  let activeTocSetup = null;
+
+  // Call setup function initially
+  activeTocSetup = setupActiveTocLinkObserver();
+
+  // Re-run setup if MutationObserver detects changes that might affect headings/TOC
+  const contentObserver = new MutationObserver((mutationsList, observer) => {
+    // Basic check: If nodes are added to #note or #floating-table-of-contents, re-run setup
+    for (let mutation of mutationsList) {
+      if (mutation.type === "childList" && mutation.addedNodes.length > 0) {
+        if (
+          mutation.target.closest("#note") ||
+          mutation.target.closest("#floating-table-of-contents")
+        ) {
+          // Clean up previous observer setup if it exists
+          if (activeTocSetup && activeTocSetup.cleanup) {
+            activeTocSetup.cleanup();
+          }
+          
+          // Re-run setup
+          activeTocSetup = setupActiveTocLinkObserver();
+          break; // Only need to run once per mutation batch
+        }
+      }
+    }
+  });
+
+  // Observe the main note container and the floating TOC container for changes
+  const noteElement = document.getElementById("note");
+  const floatingTocElement = document.getElementById(
+    "floating-table-of-contents"
+  );
+  if (noteElement) {
+    contentObserver.observe(noteElement, { childList: true, subtree: true });
+  }
+  if (floatingTocElement) {
+    contentObserver.observe(floatingTocElement, {
+      childList: true,
+      subtree: true,
+    });
+  }
+  // END: Floating TOC active link logic
 });
 // END: Floating TOC visibility logic
