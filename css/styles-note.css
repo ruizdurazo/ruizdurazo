@@ -143,7 +143,7 @@
 }
 
 /* Title */
-h1 {
+#title {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -154,8 +154,8 @@ h1 {
   text-wrap: balance;
 }
 
-h1,
-h1 span {
+#title,
+#title span {
   font-size: calc(var(--font-size) * 3.45);
   font-weight: 700;
   line-height: 1em;
@@ -280,17 +280,24 @@ h1 span {
 
 #floating-table-of-contents .toc-list li {
   color: transparent;
-  list-style: disc;
   mix-blend-mode: difference;
   transition: color 0.2s;
 }
 
+/* Style for the active link */
+#floating-table-of-contents .toc-list li:has(a.active) {
+  list-style: circle;
+  color: var(--text-toc);
+}
+
 /* Show dot only if the child `a` is hovered */
 #floating-table-of-contents .toc-list li:has(a:hover) {
+  list-style: disc;
   color: var(--blue);
 }
 
 /* Section Headings */
+.h1,
 .h2,
 .h3,
 .h4,
@@ -303,6 +310,10 @@ h1 span {
   letter-spacing: -0.001em;
   scroll-margin-top: calc(var(--font-size) * 1);
   text-wrap: pretty;
+}
+
+.h1 {
+  font-size: calc(var(--font-size) * 2);
 }
 
 .h2 {
@@ -893,6 +904,15 @@ br {
   line-height: 1.5em;
   letter-spacing: 0;
   color: #505050;
+}
+
+/* Special blocks */
+
+.black-background {
+  width: 100svw;
+  height: 100px;
+  background-color: #000;
+  margin-bottom: calc(var(--font-size) * 2);
 }
 
 /* Media queries */
