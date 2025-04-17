@@ -896,4 +896,10 @@ p {
   .social-media-links li button {
     padding: 12px 24px 12px 16px;
   }
+
+  .social-media .call-link-button-container {
+    justify-content: flex-start;
+    margin: var(--font-size-3) 0 0;
+  }
+  
 }

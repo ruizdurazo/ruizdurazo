@@ -1086,6 +1086,10 @@ br {
     width: calc(100% - (1px * var(--offset) / 2));
   }
 
+  #header hr {
+    width: 100%;
+  }
+
   h1,
   h1 span {
     font-size: calc(2.5px * var(--min-font-size));
