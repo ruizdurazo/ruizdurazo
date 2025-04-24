@@ -295,7 +295,7 @@ Markdown syntax:
 ```markdown
 For inline code: `someVariable`
 
-For a code block:
+For a simple code block:
 
 \```
 const test = 'hello'
@@ -312,13 +312,13 @@ Result:
 
 <p>For inline code: <code class="code">someVariable</code></p>
 
-For a code block:
+For a simple code block:
 
-<pre><div class="pre-header"><span class="pre-lang"></span><button class="pre-copy-button"><img src="/assets/icons/icon-copy.svg" alt="Copy" width="16" height="16">Copy</button></div><code>const test = 'hello'</code></pre>
+<pre><div class="pre-header"><span class="pre-lang"></span><button class="pre-copy-button"><img src="/assets/icons/icon-copy.svg" alt="Copy" width="16" height="16">Copy</button></div><code><span class="line">const test = 'hello'</span></code></pre>
 
 For a code block with syntax highlighting (python):
 
-<pre><div class="pre-header"><span class="pre-lang">Python</span><button class="pre-copy-button"><img src="/assets/icons/icon-copy.svg" alt="Copy" width="16" height="16">Copy</button></div><code class="language-python"><span class="hljs-built_in">print</span>(<span class="hljs-string">'test'</span>)</code></pre>
+<pre><div class="pre-header"><span class="pre-lang">Python</span><button class="pre-copy-button"><img src="/assets/icons/icon-copy.svg" alt="Copy" width="16" height="16">Copy</button></div><code class="language-python"><span class="line"><span class="hljs-built_in">print</span>(<span class="hljs-string">'test'</span>)</span></code></pre>
 
 ### Inline HTML
 
