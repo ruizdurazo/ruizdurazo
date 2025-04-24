@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr" prefix="og: http://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Globe – Enrique Ruiz Durazo</title>
+    <meta
+      name="description"
+      content="Software Engineer / Designer. Making things using code and design."
+    />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/images/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/images/favicon-16x16.png"
+    />
+    <link rel="mask-icon" href="/assets/images/favicon.svg" color="#202020" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@ruizdurazo" />
+    <meta name="twitter:title" content="Enrique Ruiz Durazo" />
+    <meta
+      name="twitter:description"
+      content="Software Engineer / Designer. Making things using code and design."
+    />
+    <meta
+      name="twitter:image"
+      content="https://ruizdurazo.com/assets/images/card.png"
+    />
+
+    <meta property="og:url" content="https://ruizdurazo.com/" />
+    <meta property="og:title" content="Enrique Ruiz Durazo" />
+    <meta
+      property="og:description"
+      content="Software Engineer / Designer. Making things using code and design."
+    />
+    <meta
+      property="og:image"
+      content="https://ruizdurazo.com/assets/images/card.png"
+    />
+
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/styles-dashboard.css" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "Person",
+        "name": "Enrique Ruiz Durazo",
+        "url": "https://ruizdurazo.com",
+        "email": "enrique@ruizdurazo.com",
+        "sameAs": ["https://x.com/ruizdurazo", "https://github.com/ruizdurazo"]
+      }
+    </script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-LT28T7BZ5K"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-LT28T7BZ5K");
+    </script>
+    <!-- Mapbox -->
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.11.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.11.0/mapbox-gl.js"></script>
+    <style>
+      #content {
+        position: relative;
+        max-width: 100%;
+        width: 100%;
+        height: calc(100svh - 100px);
+      }
+      #map {
+        width: 100%;
+        height: 100%;
+      }
+      .mapboxgl-ctrl {
+        display: none !important;
+      }
+      #place-count {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 12px 16px;
+        border-radius: 20px;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        font-size: 16px;
+        line-height: 16px;
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+      }
+      .mapboxgl-popup-content {
+        text-align: center;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 4px 8px;
+        border-radius: 20px;
+      }
+      .mapboxgl-popup-tip {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="site" class="site">
+      <!-- Navbar -->
+      <nav id="navbar" class="navbar">
+        <div class="navbar--elements">
+          <div id="logo" class="logo">
+            <a href="/">
+              <img
+                id="logo-svg"
+                src="/assets/images/logo-ruizdurazo.svg"
+                alt="Enrique Ruiz Durazo"
+                draggable="false"
+                width="300"
+                height="30"
+              />
+            </a>
+          </div>
+          <div class="menu" id="menu">
+            <button id="menu-button">
+              <img
+                id="menu-svg"
+                src="/assets/icons/icon-menu.svg"
+                alt="Menu"
+                draggable="false"
+                width="60"
+                height="60"
+              />
+            </button>
+          </div>
+        </div>
+        <div id="menu-overlay"></div>
+      </nav>
+
+      <!-- Globe -->
+      <div id="content" class="content">
+        <div id="map"></div>
+      </div>
+
+      <!-- Footer -->
+      <footer id="footer" class="footer">
+        <span id="copyright">© Enrique Ruiz Durazo</span>
+        <div class="footer-links">
+          <a href="/dashboard" id="dashboard-link">Dashboard</a>
+          <a
+            id="source"
+            href="https://github.com/ruizdurazo/ruizdurazo"
+            target="_blank"
+            >Source &nearr;</a
+          >
+        </div>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/js/emailBubble.js"></script>
+    <script src="/js/navbar.js"></script>
+    <script>
+      var yyyy = new Date();
+      document.getElementById("copyright").innerHTML =
+        "© " + yyyy.getFullYear() + " Enrique Ruiz Durazo";
+    </script>
+    <!-- Fetch places, create map -->
+    <script>
+      // Helpers
+      let url = document.location.href;
+
+      // Account for 'local' vs 'prod'
+      if (url.startsWith("https://ruizdurazo.com")) {
+        url = `https://ruizdurazo-button.vercel.app/api/places`;
+      } else {
+        url = `http://localhost:3000/api/places`;
+      }
+
+      let places = [];
+      let specialPlaces = [
+        //
+        "Cananea",
+        "Hermosillo",
+        "Mexico City",
+        "Zürich",
+      ];
+
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          places = data.places;
+
+          // Sort places: special places last
+          places.sort((a, b) => {
+            if (specialPlaces.includes(a.name)) {
+              return 1;
+            }
+            return -1;
+          });
+
+          // Create map
+          mapboxgl.accessToken =
+            "pk.eyJ1IjoicnVpemR1cmF6byIsImEiOiJjanFvcXNkMmowNnB6NDlxcDBwaGQ4ZjEzIn0.H-lM1PHESSmLxzfeJowlOg";
+          const map = new mapboxgl.Map({
+            container: "map",
+            style: "mapbox://styles/ruizdurazo/clhaq1brg013201p60gyh1h0k",
+            projection: "globe",
+            center: [-47.547703684164986, 36.67297948100479],
+            zoom: 2,
+            maxZoom: 8,
+            attributionControl: false,
+          });
+
+          // On zoom, update the size of the markers
+          map.on("zoom", () => {
+            const zoom = map.getZoom();
+            const markers = document.querySelectorAll(".marker");
+            // 10px at zoom 2, 20px at zoom 8
+            const size = 10 + (10 * (zoom - 2)) / 6;
+            markers.forEach((marker) => {
+              marker.style.width = `${size}px`;
+              marker.style.height = `${size}px`;
+            });
+          });
+
+          //
+          const content = document.getElementById("content");
+          const placeCount = document.createElement("div");
+          placeCount.id = "place-count";
+          placeCount.innerHTML = `${places.length} places`;
+          content.appendChild(placeCount);
+
+          // Add place markers to map
+          places.forEach((place) => {
+            // Marker html
+            const el = document.createElement("div");
+            el.className = "marker";
+            el.style.width = "10px";
+            el.style.height = "10px";
+            el.style.background = "#0f4fff";
+            el.style.border = "2px solid white";
+            el.style.borderRadius = "50%";
+
+            const marker = new mapboxgl.Marker(el)
+              .setLngLat([place.lon, place.lat])
+              .setPopup(
+                new mapboxgl.Popup({ offset: 10, closeButton: false }).setText(
+                  place.name
+                )
+              )
+              .addTo(map);
+          });
+        });
+    </script>
+  </body>
+</html>
