@@ -16,7 +16,7 @@ _:
 
 _Mostly, I’m writing this as a quick reference for myself. So I don’t have to do a Google search every time I forget how to write something in Markdown._
 
-## Overview
+## Intro
 
 So what is [Markdown](https://daringfireball.net/projects/markdown/)? Well, according to it’s creator:
 
@@ -41,13 +41,13 @@ Markdown is a better time. Markdown is a way of writing in plain text so that it
 
 You just have to create a text file with the extension `.md`, and use the syntax.
 
-Markdown has been around since 2004. And, over 16 years later, it’s taken over the world. Markdown is everywhere. It’s used by developers, bloggers, and many others. It’s used on [Notion](https://www.notion.so/), [GitHub](https://github.com/), [Jupyter](https://jupyter.org/), [Observable](https://observablehq.com/), [Catalog](https://www.catalog.style/). And the list goes on and on.
+Markdown has been around since 2004. And, over 16 years later, it’s taken over the world. Markdown is everywhere. It’s used by developers, bloggers, and many others. It’s used on [Notion](https://www.notion.com/), [GitHub](https://github.com/), [Jupyter](https://jupyter.org/), [Observable](https://observablehq.com/), [Catalog](https://www.catalog.style/). And the list goes on and on.
 
 Markdown is cool. It's simple. It’s elegant. It makes writing for the web feel like, well, writing. You just gotta stick to the syntax. And that’s what this post is about.
 
 Markdown is designed to output HTML. Therefore, much of the syntax translates directly into exactly that: HTML elements. A title, or heading, will be a section heading element `<h1>`, `<h2>`, etc., a link will be an anchor element `<a>`, and lists will be contained in `<ul>` or `<ol>` elements.
 
-Here is the list of all the most common Markdown components:
+Here is the list of all the most common Markdown elements:
 
 1. [Headings](#headings)
 2. [Horizontal Rules](#horizontal-rules)
@@ -59,54 +59,80 @@ Here is the list of all the most common Markdown components:
 8. [Code](#code)
 9. [Inline HTML](#inline-html)
 
-## Headings
+## Elements
+
+### Headings
 
 **Section Headings** are basically titles or subtitles. There are 6 levels, translating directly to their corresponding HTML elements (`<h1>`, `<h2>`, `<h3>`, `<h4>`, `<h5>`, `<h6>`).
 
-Use one or more (up to 6) pound signs (#) followed by the heading text.
+Use one or more (up to 6) pound signs (`#`) followed by the heading text.
 
 Markdown syntax:
 
-```md
-`# Heading 1`
-`## Heading 2`
-`### Heading 3`
-`#### Heading 4`
-`##### Heading 5`
-`###### Heading 6`
+```markdown
+# Heading 1
+## Heading 2
+### Heading 3
+#### Heading 4
+##### Heading 5
+###### Heading 6
 
-There is also this alternate syntax for h1 and h2:
+There is also this alternate syntax for h1 and h2,
+where you underline the heading with equals or dashes:
 
-`Heading 1`
-`=========`
+Heading 1
+=========
 
-`Heading 2`
-`---------`
+Heading 2
+---------
 ```
 
-## Horizontal Rules
+Result:
+
+<h1 class="h1">Heading 1</h1>
+<h2 class="h2">Heading 2</h2>
+<h3 class="h3">Heading 3</h3>
+<h4 class="h4">Heading 4</h4>
+<h5 class="h5">Heading 5</h5>
+<h6 class="h6">Heading 6</h6>
+<p>There is also this alternate syntax for h1 and h2, where you underline the heading with equals or dashes:</p>
+<h1 class="h1">Heading 1</h1>
+<h2 class="h2">Heading 2</h2>
+
+
+### Horizontal Rules
 
 You can create a horizontal separator, or horizontal rule (`<hr>`) by consecutively using 3 or more asterisks (`*`), hyphens (`-`) or underscores (`_`). They all look the same: a horizontal line.
 
 Markdown syntax:
 
-```md
-`***`
+```
+***
 
-`---`
+---
 
-`___`
+___
 
-If you wish, they can even be separated by spaces:
+You can also separate the characters with spaces:
 
-`* * * *`
+* * * *
 
-`- - - - -`
+- - - - -
 
-`_ _ _ _ _ _`
+_ _ _ _ _ _
 ```
 
-## Emphasis
+Result:
+
+<hr/>
+<hr/>
+<hr/>
+<p>You can also separate the characters with spaces:<p>
+<hr/>
+<hr/>
+<hr/>
+
+### Emphasis
 
 In Markdown, you can easily make text **bold**, _italic_ or ~~strikethrough~~.
 
@@ -120,35 +146,49 @@ You can also combine the styling. Here are a few examples.
 
 Markdown syntax:
 
-```md
-This is `*italic text*`.
-This is `_also italic text_`.
+```
+This is *italic text*.
+This is _also italic text_.
 
-`**Bold text**`
-`__Also bold text__`
+This is **bold text**.
+This is __also bold text__.
 
-Use double tildes to `~~strike this~~`
+Use double tildes to ~~strike this~~
 ```
 
-<!--  -->
+Result:
 
-## Links
+<p>This is <em>italic text</em>.</p>
+<p>This is <em>also italic text</em>.</p>
+
+<p>This is <strong>bold text</strong>.</p>
+<p>This is <strong>also bold text</strong>.</p>
+
+<p>Use double tildes to <del>strike this</del>.</p>
+
+### Links
 
 You can create inline links by wrapping some text in brackets `[ ]`, and then wrapping the URL in parentheses `( )` with no space in between. This turns the text and sets the href to the url in the parenthesis.
 
 Markdown syntax:
 
-```md
-`[text to display](url)`
+```markdown
+[text to display](url)
 
 other syntax...
 
-You can place a `[link](url)` in a sentence.
+You can place a [link](url) in a sentence.
 ```
 
-<!--  -->
+Result:
 
-## Images
+<p><a href="https://x.com" class="pa">text to display</a></p>
+
+<p>other syntax...</p>
+
+<p>You can place a <a href="https://x.com" class="pa">link</a> in a sentence.</p>
+
+### Images
 
 Displaying images is similar to links: brackets + parenthesis.
 
@@ -158,7 +198,7 @@ The image is displayed in its actual size. Markdown does not provide a way to se
 
 Markdown syntax:
 
-```md
+```markdown
 ![alt text](url)
 
 ![alt text](url “title”)
@@ -166,9 +206,21 @@ Markdown syntax:
 ![](url)
 ```
 
-<!--  -->
+Result:
 
-## Lists
+<div class="img-size-m">
+<img src="images/image.jpg" alt="alt text" class="img">
+</div>
+
+<div class="img-size-m">
+<img src="images/image.jpg" alt="alt text" title="title" class="img">
+</div>
+
+<div class="img-size-m">
+<img src="images/image.jpg" alt="" class="img">
+</div>
+
+### Lists
 
 You can create **numbered lists** (ordered) and **bulleted lists** (unordered).
 
@@ -178,7 +230,7 @@ For unordered lists, you use an asterisk (`*`) or hyphen (`-`).
 
 Markdown syntax:
 
-```md
+```markdown
 1. Item
 2. Another item
 3. A third item
@@ -190,9 +242,25 @@ Markdown syntax:
 * Yes
 ```
 
-<!--  -->
+Result:
 
-## Blockquotes
+<ol class="ol">
+  <li>Item</li>
+  <li>Another item</li>
+  <li>A third item</li>
+</ol>
+
+<ul class="ul">
+  <li>Bullet list</li>
+  <li>With an interesting point</li>
+</ul>
+
+<ul class="ul">
+  <li>Another way to make a bullet list</li>
+  <li>Yes</li>
+</ul>
+
+### Blockquotes
 
 Want to quote someone? You can use blockquotes for that.
 
@@ -200,64 +268,90 @@ Blockquotes are indented. You start each line with a "greater than" character (`
 
 Markdown syntax:
 
-```md
-`>` Some inspiring quote...
-`>`
-`>` By some author
+```markdown
+> An inspiring quote...
+> By some author
 ```
 
-<!--  -->
+Result:
 
-## Code
+<blockquote class="blockquote">
+  <p>An inspiring quote...</p>
+  <p>By some author</p>
+</blockquote>
+
+### Code
 
 There are two ways to display code: **inline code** and **code blocks**.
 
 For inline code, you must wrap the characters with single backticks (`).
 
-For code blocks, you wrap the code using sets of 3 backticks: 3 to open and 3 to close.
+For code blocks, you wrap the code using sets of 3 backticks: 3 to open and 3 to close. (In the example below, the backticks are escaped with a backslash `\`)
 
 In some interpreters you can even specify the name of the programming language after the tickmarks in order to display the corresponding syntax highlighting. This works in GitHub.
 
 Markdown syntax:
 
-```md
-For inline code:
-`someVariable`
+```markdown
+For inline code: `someVariable`
 
-A code block:
-\`\`\`
+For a code block:
+
+\```
 const test = 'hello'
-\`\`\`
+\```
 
-A python code block:
-\`\`\`python
+For a code block with syntax highlighting (python):
+
+\```python
 print('test')
-\`\`\`
+\```
 ```
 
-## Inline HTML
+Result:
 
-Finally, you can even write raw HTML code directly into your Markdown document and it’ll work pretty well.
+<p>For inline code: <code class="code">someVariable</code></p>
+
+For a code block:
+
+<pre><div class="pre-header"><span class="pre-lang"></span><button class="pre-copy-button"><img src="/assets/icons/icon-copy.svg" alt="Copy" width="16" height="16">Copy</button></div><code>const test = 'hello'</code></pre>
+
+For a code block with syntax highlighting (python):
+
+<pre><div class="pre-header"><span class="pre-lang">Python</span><button class="pre-copy-button"><img src="/assets/icons/icon-copy.svg" alt="Copy" width="16" height="16">Copy</button></div><code class="language-python"><span class="hljs-built_in">print</span>(<span class="hljs-string">'test'</span>)</code></pre>
+
+### Inline HTML
+
+Finally, you can even write raw HTML code directly into your Markdown document. Useful for adding custom styles and components.
 
 Markdown syntax:
 
-```md
+```markdown
 <div>
-  <p>Some test</p>
+  <p style="color:red;">Some test</p>
 </div>
 ```
 
+Result:
+
+<div>
+  <p style="color:red;">Some test</p>
+</div>
+
 ## End
 
-And that’s it. That’s about all there is in vanilla Markdown.
+And that’s it. That’s about all there is in *vanilla* Markdown.
 
-However, there are many other flavors of Markdown. If you want to learn more you can visit:
+However, there are many other *flavors* of Markdown. These support other features like checklists, tables and even frontend components.
 
-- The GitHub reference where you can add checklists, and emojis.
-- There are other flavors of markdown that support other features.
+If you want to learn more you can visit:
 
-**TLDR**: Markdown can be found in many places. It's an easy way to write on the web. Just stick to the syntax.
+- [GitHub Markdown](https://docs.github.com/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
+- [MDX](https://mdxjs.com/)
+- [MDC](https://github.com/nuxt-modules/mdc)
+
+**TLDR**: Markdown can be found in many places. What makes it so successful? It's an easy way to write on the web. Just learn the syntax.
 
 ---
 
-Hope you found it useful. If you’d like to get in touch, [write me an email](mailto:enrique@ruizdurazo.com) or [dm me on X](https://x.com/ruizdurazo).
+If you’d like to get in touch, [write me an email](mailto:enrique@ruizdurazo.com) or [dm me on X](https://x.com/ruizdurazo).

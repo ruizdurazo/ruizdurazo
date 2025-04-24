@@ -390,7 +390,7 @@
 }
 
 .quote {
-  background-color: none;
+  background-color: transparent;
   padding: calc(var(--font-size) * 0.25) calc(var(--font-size) * 1);
 }
 
@@ -702,14 +702,15 @@ pre:hover .pre-header {
 }
 
 pre .line {
+  flex: 1;
   display: block;
   transition: background-color 0.2s;
-  background-color: none;
+  background-color: transparent;
 }
 
 pre .line * {
   transition: background-color 0.2s;
-  background-color: none;
+  background-color: transparent;
 }
 
 pre .line:before {
@@ -736,6 +737,13 @@ pre .line:hover * {
 
 pre .line > * {
   margin: 0 20px 0 0;
+}
+
+pre code {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  min-width: 100%;
 }
 
 .code {

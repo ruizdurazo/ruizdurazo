@@ -189,7 +189,6 @@ img {
 /* Site */
 #site {
   min-width: var(--min-width);
-  height: 100%;
 }
 
 /* Navbar */
@@ -341,10 +340,11 @@ img {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   width: calc(100% - (1px * var(--offset)));
   margin: 0 auto;
   font-size: calc(var(--min-font-size) * 1px);
-  padding: 3em 0;
+  height: 100px;
 }
 
 .footer-links {
