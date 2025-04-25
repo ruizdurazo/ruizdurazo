@@ -149,7 +149,7 @@
             <!-- Summary Text -->
             <div class="summary__text">
               <h2 class="section__title">Summary</h2>
-              <p class="bold">
+              <p id="senior-software-engineer" class="bold">
                 Senior software engineer, product designer, and content creator.
               </p>
               <p>
@@ -200,13 +200,28 @@
             <!-- Profile Image -->
             <div class="summary__image">
               <div class="image-wrapper">
-                <img
-                  src="/assets/images/enrique.jpg"
-                  draggable="false"
-                  alt=""
-                  width="330"
-                  height="370"
-                />
+                <div class="card-wrapper">
+                  <div class="card">
+                    <div class="card-face card-front">
+                      <img
+                        src="/assets/images/enrique.jpg"
+                        draggable="false"
+                        alt="Enrique"
+                        width="330"
+                        height="370"
+                      />
+                    </div>
+                    <div class="card-face card-back">
+                      <img
+                        src="/assets/images/not-enrique.jpg"
+                        draggable="false"
+                        alt="Señor Software Engineer"
+                        width="330"
+                        height="370"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
               <button id="learn-more" class="learn-more">
                 Don't click here
@@ -571,14 +586,76 @@
       //
 
       document.addEventListener("DOMContentLoaded", () => {
+        const card = document.querySelector(".card");
+
+        card.addEventListener("click", () => {
+          card.classList.toggle("flipped");
+          
+          const titleElement = document.getElementById("senior-software-engineer");
+          const currentText = titleElement.textContent;
+          const targetText = card.classList.contains("flipped")
+            ? "🌵 Señor software engineer, product designer, and content creator. 🌵"
+            : "Senior software engineer, product designer, and content creator.";
+          
+          // Create a container for characters
+          titleElement.innerHTML = "";
+          const container = document.createElement("div");
+          container.style.display = "inline-block";
+          titleElement.appendChild(container);
+          
+          // Add each character of current text with span
+          for (let char of currentText) {
+            const span = document.createElement("span");
+            span.textContent = char;
+            span.style.opacity = "1";
+            span.style.transition = "opacity 500ms";
+            container.appendChild(span);
+          }
+          
+          // Fade out each character one by one
+          const spans = container.querySelectorAll("span");
+          let delay = 0;
+          spans.forEach((span, i) => {
+            setTimeout(() => {
+              span.style.opacity = "0";
+            }, delay);
+            delay += 5;
+          });
+          
+          // After all characters have faded out, start fading in new text
+          setTimeout(() => {
+            container.innerHTML = "";
+            
+            // Add each character of new text with span
+            for (let char of targetText) {
+              const span = document.createElement("span");
+              span.textContent = char;
+              span.style.opacity = "0";
+              span.style.transition = "opacity 500ms";
+              container.appendChild(span);
+            }
+            
+            // Fade in each character one by one
+            const newSpans = container.querySelectorAll("span");
+            let newDelay = 0;
+            newSpans.forEach((span) => {
+              setTimeout(() => {
+                span.style.opacity = "1";
+              }, newDelay);
+              newDelay += 5;
+            });
+          }, delay + 5);
+        });
+
+        // Optional: Add hover effect for rotation if desired
         const wrapper = document.querySelector(".image-wrapper");
-        const image = wrapper.querySelector("img");
+        const cardWrapper = wrapper.querySelector(".card-wrapper");
 
         // Variables for rotation
         const maxRotation = 10; // Maximum rotation in degrees
 
         wrapper.addEventListener("mousemove", (e) => {
-          if (!wrapper || !image) return;
+          if (!wrapper || !cardWrapper) return;
 
           // Get the dimensions and position of the wrapper
           const rect = wrapper.getBoundingClientRect();
@@ -593,13 +670,13 @@
           const rotateX =
             -((e.clientY - centerY) / (rect.height / 2)) * maxRotation;
 
-          // Apply the transformation
-          image.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+          // Apply the transformation to the card (not the image directly)
+          cardWrapper.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
         });
 
         // Reset the image position when mouse leaves
         wrapper.addEventListener("mouseleave", () => {
-          image.style.transform = "rotateX(0) rotateY(0)";
+          cardWrapper.style.transform = "rotateX(0) rotateY(0)";
         });
       });
 

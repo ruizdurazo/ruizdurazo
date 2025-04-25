@@ -169,16 +169,48 @@ p {
   margin-top: 1em;
 }
 
+.summary__image .card {
+  position: relative;
+  width: 330px;
+  height: 370px;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.summary__image .card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.1);
+}
+
+.summary__image .card-front {
+  transform: rotateY(0deg);
+}
+
+.summary__image .card-back {
+  transform: rotateY(180deg);
+}
+
+.summary__image .card.flipped {
+  transform: rotateY(180deg);
+}
+
 .summary__image .image-wrapper {
   perspective: 1000px;
   transition: transform 0.3s ease;
 }
 
-.summary__image .image-wrapper img {
-  border-radius: 12px;
-  box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.1);
+.summary__image .card-wrapper {
   transform-style: preserve-3d;
   transition: transform 0.2s ease-out;
+}
+
+.summary__image .card-wrapper img {
+  border-radius: 12px;
+  box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.1);
 }
 
 /* Learn More / Don't Click Here Button */
@@ -599,7 +631,7 @@ p {
   font-size: calc(var(--font-size) * 0.9);
   gap: 16px;
   width: fit-content;
-  box-shadow: 0 16px 32px #ddd;
+  box-shadow: 0 16px 32px #00000020;
   transition: transform 0.2s ease;
   will-change: transform;
 }
@@ -901,5 +933,4 @@ p {
     justify-content: flex-start;
     margin: var(--font-size-3) 0 0;
   }
-  
 }
