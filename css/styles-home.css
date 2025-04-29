@@ -24,8 +24,7 @@
 /* H1 Title */
 h1,
 h1 span,
-#slideshow-anim,
-#slideshow-anim u {
+#slideshow-anim {
   font-size: calc(var(--font-size) * 3.45);
 }
 
@@ -34,10 +33,6 @@ h1 span,
   display: inline-block;
   width: auto;
   height: calc(var(--font-size) * 3.45);
-}
-
-#slideshow-anim u {
-  border-bottom: solid 6px var(--blue);
 }
 
 /* Animations */
@@ -67,7 +62,47 @@ h1 span,
   display: block;
   opacity: 1;
   transform: translateY(0);
+  height: 2em;
 }
+
+/* Emoji animation (hand rotate and wave) */
+@keyframes hello-img-anim {
+  0% {
+    transform: translate(-45%, -45%) rotate(0deg);
+  }
+  15% {
+    transform: translate(-45%, -45%) rotate(2deg);
+  }
+  50% {
+    transform: translate(-45%, -45%) rotate(-10deg);
+  }
+  80% {
+    transform: translate(-45%, -45%) rotate(2deg);
+  }
+  100% {
+    transform: translate(-45%, -45%) rotate(0deg);
+  }
+}
+
+#slideshow-anim .hello-img {
+  position: relative;
+  display: inline-block;
+  width: calc(var(--font-size) * 3.45);
+  height: calc(var(--font-size) * 3.45);
+}
+
+#slideshow-anim .hello-img img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-45%, -45%);
+  animation: hello-img-anim 1.2s 0.3s forwards;
+}
+
+/* Old underline */
+/* #slideshow-anim u {
+  border-bottom: solid 6px var(--blue);
+} */
 
 #slideshow-anim.fade-out {
   -webkit-animation: fade-out 0.5s ease-in-out both;
@@ -77,6 +112,173 @@ h1 span,
 #slideshow-anim.fade-in {
   -webkit-animation: fade-in 0.5s ease-in-out both;
   animation: fade-in 0.5s ease-in-out both;
+}
+
+/* Underline animation */
+@keyframes underline-anim {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+#slideshow-anim .underline-anim {
+  position: relative;
+  display: inline-block;
+  font-size: inherit;
+}
+
+#slideshow-anim .underline-anim::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 6px;
+  background: var(--blue);
+  border-radius: 2px;
+  /* Target, duration, delay, easing */
+  animation: underline-anim 0.7s 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  z-index: 1;
+}
+
+#slideshow-anim .underline-anim.animated::after {
+  width: 100%;
+}
+
+/* Code - Cursor animation */
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+#slideshow-anim .cursor-anim {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+#slideshow-anim .cursor-anim code {
+  font-family: var(--font-mono);
+  font-size: inherit;
+  font-weight: 400;
+  background-color: var(--blue-100);
+  padding: 0 10px;
+  border-radius: 12px;
+}
+
+#slideshow-anim .cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1.2em;
+  background-color: var(--blue);
+  margin-left: 4px;
+  animation: blink 1s step-end infinite;
+}
+
+/* Design - Font change animation */
+@keyframes font-weight-change {
+  0% {
+    font-weight: 400;
+  }
+  100% {
+    font-weight: 700;
+  }
+}
+
+/* @keyframes font-weight-change-infinite {
+  0%, 100% {
+    font-weight: 400;
+  }
+  50% {
+    font-weight: 700;
+  }
+} */
+
+#slideshow-anim .font-change-anim {
+  position: relative;
+  display: inline-block;
+}
+
+#slideshow-anim .font-change-anim .box {
+  position: absolute;
+  top: 0px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border: 1px solid var(--blue);
+  border-radius: 4px;
+}
+
+#slideshow-anim .font-change-anim .corner {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--blue);
+  background: white;
+}
+
+#slideshow-anim .font-change-anim .corner-top-left {
+  top: -3px;
+  left: -7px;
+}
+
+#slideshow-anim .font-change-anim .corner-top-right {
+  top: -3px;
+  right: -7px;
+}
+
+#slideshow-anim .font-change-anim .corner-bottom-left {
+  bottom: -7px;
+  left: -7px;
+}
+
+#slideshow-anim .font-change-anim .corner-bottom-right {
+  bottom: -7px;
+  right: -7px;
+}
+
+/* Font animation */
+#slideshow-anim .font-change-anim .font-change-anim-text {
+  display: inline-block;
+  font-weight: 400;
+  font-size: inherit;
+  animation: font-weight-change 1.5s 0.5s forwards;
+}
+
+/* Content -SVG Circle animation */
+@keyframes draw-path {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+#slideshow-anim .circle-anim {
+  position: relative;
+  display: inline-block;
+}
+
+#slideshow-anim .circle-anim svg {
+  position: absolute;
+  top: 50%;
+  left: 53%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  pointer-events: none;
+}
+
+#slideshow-anim .circle-anim svg path {
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  animation: draw-path 1.5s 0.3s cubic-bezier(0.77, 0, 0.18, 1) forwards;
 }
 
 /* Separators */
@@ -737,8 +939,7 @@ p {
 
   h1,
   h1 span,
-  #slideshow-anim,
-  #slideshow-anim u {
+  #slideshow-anim {
     font-size: calc(
       (3px * var(--min-font-size)) + (60 - 48) * (100vw - 480px) / (768 - 480)
     );
@@ -750,10 +951,20 @@ p {
     );
   }
 
-  #slideshow-anim u {
+  #slideshow-anim .hello-img {
+    width: calc(
+      (3px * var(--min-font-size)) + (69 - 48) * (100vw - 480px) / (768 - 480)
+    );
+    height: calc(
+      (3px * var(--min-font-size)) + (69 - 48) * (100vw - 480px) / (768 - 480)
+    );
+  }
+
+  /* Old underline */
+  /* #slideshow-anim u {
     border-bottom: solid calc(4px + (6 - 4) * (100vw - 480px) / (768 - 480))
       var(--blue);
-  }
+  } */
 
   /* Learn more */
   #more--logo {
@@ -840,8 +1051,7 @@ p {
 
   h1,
   h1 span,
-  #slideshow-anim,
-  #slideshow-anim u {
+  #slideshow-anim {
     font-size: calc(2.5px * var(--min-font-size));
   }
 
@@ -849,9 +1059,15 @@ p {
     height: calc(2.5px * var(--min-font-size));
   }
 
-  #slideshow-anim u {
-    border-bottom: solid 4px var(--blue);
+  #slideshow-anim .hello-img {
+    width: calc(2.5px * var(--min-font-size));
+    height: calc(2.5px * var(--min-font-size));
   }
+
+  /* Old underline */
+  /* #slideshow-anim u {
+    border-bottom: solid 4px var(--blue);
+  } */
 
   /* Learn more */
   #more--logo {

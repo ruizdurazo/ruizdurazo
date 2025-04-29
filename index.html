@@ -120,7 +120,20 @@
         <section id="hero" class="hero">
           <div>
             <h1>
-              <span>Hello</span>
+              <span id="slideshow-anim">
+                <span>Hello</span>
+                <span class="hello-img">
+                  <img
+                    src="/assets/images/hello2.png"
+                    id="hello"
+                    draggable="false"
+                    alt="Hello"
+                    width="160"
+                    height="160"
+                  />
+                </span>
+              </span>
+              <!-- <span>Hello</span>
               <img
                 src="/assets/images/hello2.png"
                 id="hello"
@@ -128,9 +141,46 @@
                 alt="Hello"
                 width="160"
                 height="160"
-              />
-              <br />
-              <span id="slideshow-anim">I'm <u>Enrique</u></span>
+              /> -->
+              <!-- <br /> -->
+              <!-- <span id="slideshow-anim">
+                I'm <u class="underline-anim">Enrique</u>
+              </span> -->
+              <!-- <span id="slideshow-anim">
+                I write <span class="cursor-anim"><code>code</code><span class="cursor"></span></span>
+              </span> -->
+              <!-- <span id="slideshow-anim">
+                I
+                <span class="font-change-anim"
+                  ><span class="box"></span
+                  ><span class="corner corner-top-left"></span
+                  ><span class="corner corner-top-right"></span
+                  ><span class="corner corner-bottom-left"></span
+                  ><span class="corner corner-bottom-right"></span
+                  ><span class="font-change-anim-text">design</span></span
+                >
+                stuff
+              </span> -->
+              <!-- <span id="slideshow-anim">
+                I create
+                <span class="circle-anim"
+                  ><span>content</span>
+                  <svg
+                    width="319"
+                    height="100"
+                    viewBox="0 0 319 100"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M284.012 3.58265C283.732 2.27167 232.507 3.58267 232.507 3.58267C200.247 3.58267 131.462 8.6098 111.562 11.1754C91.6617 13.7411 -7.3403 24.9383 3.88402 66.9056C15.1083 108.873 236.532 98.2085 279.427 86.6588C322.321 75.109 327.902 36.5532 293.962 24.9383C260.022 13.3235 248.553 12.9457 218 11.1754"
+                      stroke="#0F4FFF"
+                      stroke-width="6"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </span>
+              </span> -->
             </h1>
           </div>
         </section>
@@ -150,11 +200,12 @@
             <div class="summary__text">
               <h2 class="section__title">Summary</h2>
               <p id="senior-software-engineer" class="bold">
-                Senior software engineer, product designer, and content creator.
+                Senior software engineer, product designer, content creator, and
+                techno-optimist.
               </p>
               <p>
                 Obsessed with crafting great websites, apps, and creating
-                quality content.
+                quality content (video, photo).
               </p>
               <!-- <p>
                 Senior software engineer and designer at <a href="https://tend.ch" target="_blank" rel="noopener noreferrer" class="link">Tend</a>. Design consultant and content creator elsewhere.
@@ -550,35 +601,104 @@
       //
 
       // List of strings to cycle through
+      // const words = [
+      //   "I'm <u>Enrique</u>",
+      //   "I write <u>code</u>",
+      //   "I <u>design</u> stuff",
+      //   "I create <u>content</u>",
+      // ];
       const words = [
-        "I'm <u>Enrique</u>",
-        "I write <u>code</u>",
-        "I <u>design</u> stuff",
-        "I create <u>content</u>",
+        'Hello <span class="hello-img"><img src="/assets/images/hello2.png" id="hello" draggable="false" alt="Hello" width="160" height="160" /></span>',
+        'I\'m <u class="underline-anim">Enrique</u>',
+        'I write <span class="cursor-anim"><code class="code-anim">c</code><span class="cursor"></span></span>',
+        'I <span class="font-change-anim"><span class="box"></span><span class="corner corner-top-left"></span><span class="corner corner-top-right"></span><span class="corner corner-bottom-left"></span><span class="corner corner-bottom-right"></span><span class="font-change-anim-text">design</span></span> stuff',
+        'I create <span class="circle-anim"><span>content</span><svg width="319" height="100" viewBox="0 0 319 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M284.012 3.58265C283.732 2.27167 232.507 3.58267 232.507 3.58267C200.247 3.58267 131.462 8.6098 111.562 11.1754C91.6617 13.7411 -7.3403 24.9383 3.88402 66.9056C15.1083 108.873 236.532 98.2085 279.427 86.6588C322.321 75.109 327.902 36.5532 293.962 24.9383C260.022 13.3235 248.553 12.9457 218 11.1754" stroke="#0F4FFF" stroke-width="6" stroke-linecap="round" /></svg></span>',
+        // 'Hallo <span class="hello-img"><img src="/assets/images/hello.png" id="hello" draggable="false" alt="Hello" width="160" height="160" /></span>',
+        // 'Ich bin <u class="underline-anim">Enrique</u>',
+        // 'I write <span class="cursor-anim"><code>code</code><span class="cursor"></span></span>',
+        // 'I <span class="font-change-anim"><span class="box"></span><span class="corner corner-top-left"></span><span class="corner corner-top-right"></span><span class="corner corner-bottom-left"></span><span class="corner corner-bottom-right"></span><span class="font-change-anim-text">design</span></span> stuff',
+        // 'I create <span class="circle-anim"><span>content</span><svg width="319" height="100" viewBox="0 0 319 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M284.012 3.58265C283.732 2.27167 232.507 3.58267 232.507 3.58267C200.247 3.58267 131.462 8.6098 111.562 11.1754C91.6617 13.7411 -7.3403 24.9383 3.88402 66.9056C15.1083 108.873 236.532 98.2085 279.427 86.6588C322.321 75.109 327.902 36.5532 293.962 24.9383C260.022 13.3235 248.553 12.9457 218 11.1754" stroke="#0F4FFF" stroke-width="6" stroke-linecap="round" /></svg></span>',
+        // 'Hola <span class="hello-img"><img src="/assets/images/hello2.png" id="hello" draggable="false" alt="Hello" width="160" height="160" /></span>',
+        // 'Soy <u class="underline-anim">Enrique</u>',
+        // 'I write <span class="cursor-anim"><code>code</code><span class="cursor"></span></span>',
+        // 'I <span class="font-change-anim"><span class="box"></span><span class="corner corner-top-left"></span><span class="corner corner-top-right"></span><span class="corner corner-bottom-left"></span><span class="corner corner-bottom-right"></span><span class="font-change-anim-text">design</span></span> stuff',
+        // 'I create <span class="circle-anim"><span>content</span><svg width="319" height="100" viewBox="0 0 319 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M284.012 3.58265C283.732 2.27167 232.507 3.58267 232.507 3.58267C200.247 3.58267 131.462 8.6098 111.562 11.1754C91.6617 13.7411 -7.3403 24.9383 3.88402 66.9056C15.1083 108.873 236.532 98.2085 279.427 86.6588C322.321 75.109 327.902 36.5532 293.962 24.9383C260.022 13.3235 248.553 12.9457 218 11.1754" stroke="#0F4FFF" stroke-width="6" stroke-linecap="round" /></svg></span>',
+        // 'Grüezi <span class="hello-img"><img src="/assets/images/hello.png" id="hello" draggable="false" alt="Hello" width="160" height="160" /></span>',
+        // 'I bi d\'<u class="underline-anim">Enrique</u>',
+        // 'I write <span class="cursor-anim"><code>code</code><span class="cursor"></span></span>',
+        // 'I <span class="font-change-anim"><span class="box"></span><span class="corner corner-top-left"></span><span class="corner corner-top-right"></span><span class="corner corner-bottom-left"></span><span class="corner corner-bottom-right"></span><span class="font-change-anim-text">design</span></span> stuff',
+        // 'I create <span class="circle-anim"><span>content</span><svg width="319" height="100" viewBox="0 0 319 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M284.012 3.58265C283.732 2.27167 232.507 3.58267 232.507 3.58267C200.247 3.58267 131.462 8.6098 111.562 11.1754C91.6617 13.7411 -7.3403 24.9383 3.88402 66.9056C15.1083 108.873 236.532 98.2085 279.427 86.6588C322.321 75.109 327.902 36.5532 293.962 24.9383C260.022 13.3235 248.553 12.9457 218 11.1754" stroke="#0F4FFF" stroke-width="6" stroke-linecap="round" /></svg></span>',
       ];
 
       // Get location to render
       const word_element = document.getElementById("slideshow-anim");
 
       // Animation settings
-      let anim_delay = 3500; // ms
-      let anim_duration = 500; // ms
+      let anim_delay = 2600; // ms
+      let anim_duration = 400; // ms
       let num = 0; // counter
 
-      // Animation function
-      document.addEventListener("DOMContentLoaded", function (event) {
-        setInterval(() => {
-          num++;
-          // add outro class to current word
-          word_element.classList.add("fade-out");
-          // replace innerhtml of word, add intro class to new word
-          setTimeout(() => {
-            word_element.classList.remove("fade-out");
-            word_element.innerHTML = words[num % words.length];
-            word_element.classList.add("fade-in");
-          }, anim_duration);
-          word_element.classList.remove("fade-in");
-        }, anim_delay);
+      // Animation words loop
+      // readystatechange
+      document.addEventListener("readystatechange", function (event) {
+        if (document.readyState === "interactive") {
+          setInterval(() => {
+            num++; // Increment counter
+            // Add outro class to current word
+            word_element.classList.add("fade-out");
+            // Replace innerhtml of word, add intro class to new word
+            setTimeout(() => {
+              word_element.classList.remove("fade-out");
+              word_element.innerHTML = words[num % words.length];
+              word_element.classList.add("fade-in");
+
+              // Animate 'code' letters if present
+              const codeAnim = word_element.querySelector(".code-anim");
+              if (codeAnim) {
+                setTimeout(() => {
+                  codeAnim.textContent = "co";
+                }, 400); // slight delay to allow DOM update
+                setTimeout(() => {
+                  codeAnim.textContent = "cod";
+                }, 500);
+                setTimeout(() => {
+                  codeAnim.textContent = "code";
+                }, 600);
+              }
+            }, anim_duration);
+            word_element.classList.remove("fade-in");
+          }, anim_delay);
+        }
+      });
+      // DOM content loaded
+      // document.addEventListener("DOMContentLoaded", function (event) {
+      //   setInterval(() => {
+      //     num++; // Increment counter
+      //     // Add outro class to current word
+      //     word_element.classList.add("fade-out");
+      //     // Replace innerhtml of word, add intro class to new word
+      //     setTimeout(() => {
+      //       word_element.classList.remove("fade-out");
+      //       word_element.innerHTML = words[num % words.length];
+      //       word_element.classList.add("fade-in");
+      //     }, anim_duration);
+      //     word_element.classList.remove("fade-in");
+      //   }, anim_delay);
+      // });
+
+      // Underline animation
+      // document.addEventListener("DOMContentLoaded", function () {
+      //   document.querySelector(".underline-anim").classList.add("animated");
+      // });
+
+      // Circle animation
+      document.addEventListener("DOMContentLoaded", function () {
+        var circleAnim = document.querySelector(".circle-anim svg path");
+        if (circleAnim) {
+          var length = circleAnim.getTotalLength();
+          circleAnim.style.strokeDasharray = length;
+          circleAnim.style.strokeDashoffset = length;
+        }
       });
 
       //
@@ -590,28 +710,31 @@
 
         card.addEventListener("click", () => {
           card.classList.toggle("flipped");
-          
-          const titleElement = document.getElementById("senior-software-engineer");
+
+          const titleElement = document.getElementById(
+            "senior-software-engineer"
+          );
           const currentText = titleElement.textContent;
           const targetText = card.classList.contains("flipped")
-            ? "🌵 Señor software engineer, product designer, and content creator. 🌵"
-            : "Senior software engineer, product designer, and content creator.";
-          
+            ? "🌵 Señor software engineer, product designer, content creator, and techno-optimist. 🌵"
+            : "Senior software engineer, product designer, content creator, and techno-optimist.";
+
           // Create a container for characters
           titleElement.innerHTML = "";
           const container = document.createElement("div");
           container.style.display = "inline-block";
           titleElement.appendChild(container);
-          
+
           // Add each character of current text with span
           for (let char of currentText) {
             const span = document.createElement("span");
             span.textContent = char;
+            span.style.letterSpacing = "0.01em";
             span.style.opacity = "1";
             span.style.transition = "opacity 500ms";
             container.appendChild(span);
           }
-          
+
           // Fade out each character one by one
           const spans = container.querySelectorAll("span");
           let delay = 0;
@@ -621,20 +744,21 @@
             }, delay);
             delay += 5;
           });
-          
+
           // After all characters have faded out, start fading in new text
           setTimeout(() => {
             container.innerHTML = "";
-            
+
             // Add each character of new text with span
             for (let char of targetText) {
               const span = document.createElement("span");
               span.textContent = char;
+              span.style.letterSpacing = "0.01em";
               span.style.opacity = "0";
               span.style.transition = "opacity 500ms";
               container.appendChild(span);
             }
-            
+
             // Fade in each character one by one
             const newSpans = container.querySelectorAll("span");
             let newDelay = 0;

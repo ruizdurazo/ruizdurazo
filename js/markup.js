@@ -55,7 +55,10 @@ fetch(url)
     // Parse head, get attributes, and create note post header
     // Parse document body, line by line, and create article content
 
+    //
     // Head / Metadata
+    //
+
     // Check if Markdown document has note post metadata
     if (text.startsWith("---")) {
       let metadataPattern = /---[^]*?---/;
@@ -74,55 +77,77 @@ fetch(url)
             hasTitle = true;
             noteData.title = prop.split(":")[1].trim();
             document.title = noteData.title + " — Enrique Ruiz Durazo";
-            document.getElementById("title").innerHTML = noteData.title;
+            title = noteData.title ? '<h1 id="title">' + noteData.title + "</h1>" : "";
           } else if (prop.startsWith("date:")) {
             // Date
             noteData.date = new Date(prop.split(":")[1].trim());
-            document.getElementById("date").innerHTML =
+            date = noteData.date ? '<div id="date-ttr"><small id="date">' +
               noteData.date.getFullYear() +
               " " +
               Intl.DateTimeFormat("en-US", { month: "long" }).format(
                 noteData.date
               ) +
               " " +
-              noteData.date.getDate();
+              noteData.date.getDate() +
+              "</small></div>" : "";
           } else if (prop.startsWith("description_short:")) {
             // Short Description
             noteData.description_short = prop.split(":")[1].trim();
-            document.getElementsByName("description")[0].content =
-              noteData.description_short;
+            description = noteData.description_short ? '<span id="description">' + noteData.description_short + "</span>" : "";
           } else if (prop.startsWith("description_long:")) {
             // Long Description
             noteData.description_long = prop.split(":")[1].trim();
-            document.getElementById("description").innerHTML =
-              noteData.description_long;
+            description = noteData.description_long ? '<span id="description">' + noteData.description_long + "</span>" : "";
           } else if (prop.startsWith("author_name:")) {
             // Author Name
             noteData.author_name = prop.split(":")[1].trim();
+            author_name = noteData.author_name ? '<span id="author-name">' + noteData.author_name + "</span>" : "";
           } else if (prop.startsWith("author_email:")) {
             // Author Email
             noteData.author_email = prop.split(":")[1].trim();
+            author_email = noteData.author_email ? '<span id="author-email">' + noteData.author_email + "</span>" : "";
           } else if (prop.startsWith("author_x:")) {
             // Author X
             noteData.author_x = prop.split(":")[1].trim();
+            author_x = noteData.author_x ? '<span id="author-x">' + noteData.author_x + "</span>" : "";
           }
         });
+        // Add header elements
+        // Add date to header
+        if (date) {
+          document.getElementById("header").innerHTML += date;
+        } 
+        // Add title to header
+        if (title) {
+          document.getElementById("header").innerHTML += title;
+        }
+        // Add description to header
+        if (description) {
+          document.getElementById("header").innerHTML += description;
+        }
+
         if (hasTitle && hasThumbnailImage) {
           // TODO: Add thumbnail image, if present and title is present
         } else if (hasTitle) {
           // Add hr, if title is present
           document.getElementById("header").innerHTML += "<hr/>";
         }
+
         // Remove metadata block from original document
         text = text.replace(metadataBlock[0], "");
       }
     }
 
-    // Table of Contents
+    // Table of Contents (TOC) helper container
     let tableOfContents = [];
 
+    //
+    // Note
+    //
+
     // Article Content
-    // Pseudo code
+    //
+    // Pseudo code:
     // Helper object for article (html)
     // Helper object attr for current element type (h, p, img, etc.)
     // Helper object attr for current element state (open/closed)
@@ -1039,7 +1064,9 @@ fetch(url)
     // Finally, push parsed Markup to DOM
     document.getElementById("note").innerHTML += noteArticle;
 
+    //
     // Further Reading
+    //
     notes
       .sort((a, b) => (a.date > b.date ? 1 : b.date > a.date ? -1 : 0))
       .reverse();
@@ -1138,7 +1165,9 @@ fetch(url)
 
     document.getElementById("further-reading").innerHTML += furtherReading;
 
+    //
     // Footer
+    //
     let yyyy = new Date();
     document.getElementById("footer").innerHTML +=
       '<span id="copyright">' +
@@ -1150,6 +1179,10 @@ fetch(url)
       '<a href="/dashboard" id="dashboard-link">Dashboard</a>' +
       '<a href="https://github.com/ruizdurazo/ruizdurazo" target="_blank" id="source">Source &nearr;</a>' +
       "</div>";
+
+    //
+    // Other
+    //
 
     // Redirect if there is an anchor in the url.
     // HTML doc is empty on load, so this must take place once content is generated.
@@ -1298,9 +1331,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // START: Floating TOC active link logic
   const setupActiveTocLinkObserver = () => {
-    const headings = document.querySelectorAll(
-      "#note .toc-heading"
-    );
+    const headings = document.querySelectorAll("#note .toc-heading");
     const tocLinks = document.querySelectorAll(
       "#floating-table-of-contents .toc-list li a"
     );
@@ -1314,10 +1345,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     let currentActiveLink = null; // Keep track of the currently active link
-    
+
     // Store headings in an array to track their order and positions
     const headingsList = Array.from(headings);
-    
+
     // Trigger point (in pixels from top of viewport)
     const triggerPoint = 240; // Adjust as needed
 
@@ -1325,13 +1356,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const updateActiveTocLink = () => {
       // Get current scroll position
       const scrollPosition = window.scrollY;
-      
+
       // Find the last heading that is above or at the trigger point
       let activeHeadingIndex = -1;
-      
+
       for (let i = 0; i < headingsList.length; i++) {
-        const headingTop = headingsList[i].getBoundingClientRect().top + scrollPosition;
-        
+        const headingTop =
+          headingsList[i].getBoundingClientRect().top + scrollPosition;
+
         // If the heading is above or at the trigger point relative to current scroll
         if (headingTop <= scrollPosition + triggerPoint) {
           activeHeadingIndex = i;
@@ -1340,36 +1372,36 @@ document.addEventListener("DOMContentLoaded", () => {
           break;
         }
       }
-      
+
       // Clear current active link
       if (currentActiveLink) {
         currentActiveLink.classList.remove("active");
       }
-      
+
       // Set new active link if a valid heading was found
       if (activeHeadingIndex >= 0) {
         const activeHeadingId = headingsList[activeHeadingIndex].id;
         const newActiveLink = floatingTocList.querySelector(
           `a[href="#${activeHeadingId}"]`
         );
-        
+
         if (newActiveLink) {
           newActiveLink.classList.add("active");
           currentActiveLink = newActiveLink;
         }
       }
     };
-    
+
     // Update active link on scroll
     window.addEventListener("scroll", updateActiveTocLink, { passive: true });
-    
+
     // Initial update
     updateActiveTocLink();
-    
+
     return {
       cleanup: () => {
         window.removeEventListener("scroll", updateActiveTocLink);
-      }
+      },
     };
   };
 
@@ -1392,7 +1424,7 @@ document.addEventListener("DOMContentLoaded", () => {
           if (activeTocSetup && activeTocSetup.cleanup) {
             activeTocSetup.cleanup();
           }
-          
+
           // Re-run setup
           activeTocSetup = setupActiveTocLinkObserver();
           break; // Only need to run once per mutation batch
