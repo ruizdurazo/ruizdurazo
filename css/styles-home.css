@@ -1069,6 +1069,15 @@ p {
     border-bottom: solid 4px var(--blue);
   } */
 
+  #slideshow-anim .underline-anim::after {
+    bottom: -4px;
+    height: 4px;
+  }
+
+  #slideshow-anim .cursor {
+    width: 5px;
+  }
+
   /* Learn more */
   #more--logo {
     height: 20px;

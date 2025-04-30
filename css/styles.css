@@ -196,10 +196,10 @@ img {
   position: fixed;
   width: 100%;
   z-index: 2;
-  background-color: #ffffffdd;
+  background-color: #ffffff80;
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  box-shadow: 0 0 10px 0 #ffffff80;
+  /* box-shadow: 0 0 10px 0 #ffffff80; */
 }
 
 #navbar.menu-open {
@@ -213,7 +213,7 @@ img {
 
 @keyframes navbar-background-fade-in {
   from {
-    background-color: #ffffffdd;
+    background-color: #ffffff80;
   }
   to {
     background-color: #fff;
@@ -225,7 +225,7 @@ img {
     background-color: #fff;
   }
   to {
-    background-color: #ffffffdd;
+    background-color: #ffffff80;
   }
 }
 
@@ -495,7 +495,9 @@ img {
 
   .footer {
     flex-direction: column;
+    justify-content: center;
     gap: 1.5em;
+    height: 160px;
   }
 
   /* Logo */
