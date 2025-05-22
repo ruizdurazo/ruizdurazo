@@ -77,46 +77,64 @@ fetch(url)
             hasTitle = true;
             noteData.title = prop.split(":")[1].trim();
             document.title = noteData.title + " — Enrique Ruiz Durazo";
-            title = noteData.title ? '<h1 id="title">' + noteData.title + "</h1>" : "";
+            title = noteData.title
+              ? '<h1 id="title">' + noteData.title + "</h1>"
+              : "";
           } else if (prop.startsWith("date:")) {
             // Date
             noteData.date = new Date(prop.split(":")[1].trim());
-            date = noteData.date ? '<div id="date-ttr"><small id="date">' +
-              noteData.date.getFullYear() +
-              " " +
-              Intl.DateTimeFormat("en-US", { month: "long" }).format(
-                noteData.date
-              ) +
-              " " +
-              noteData.date.getDate() +
-              "</small></div>" : "";
+            date = noteData.date
+              ? '<div id="date-ttr"><small id="date">' +
+                noteData.date.getFullYear() +
+                " " +
+                Intl.DateTimeFormat("en-US", { month: "long" }).format(
+                  noteData.date
+                ) +
+                " " +
+                noteData.date.getDate() +
+                "</small></div>"
+              : "";
           } else if (prop.startsWith("description_short:")) {
             // Short Description
             noteData.description_short = prop.split(":")[1].trim();
-            description = noteData.description_short ? '<span id="description">' + noteData.description_short + "</span>" : "";
+            description = noteData.description_short
+              ? '<span id="description">' +
+                noteData.description_short +
+                "</span>"
+              : "";
           } else if (prop.startsWith("description_long:")) {
             // Long Description
             noteData.description_long = prop.split(":")[1].trim();
-            description = noteData.description_long ? '<span id="description">' + noteData.description_long + "</span>" : "";
+            description = noteData.description_long
+              ? '<span id="description">' +
+                noteData.description_long +
+                "</span>"
+              : "";
           } else if (prop.startsWith("author_name:")) {
             // Author Name
             noteData.author_name = prop.split(":")[1].trim();
-            author_name = noteData.author_name ? '<span id="author-name">' + noteData.author_name + "</span>" : "";
+            author_name = noteData.author_name
+              ? '<span id="author-name">' + noteData.author_name + "</span>"
+              : "";
           } else if (prop.startsWith("author_email:")) {
             // Author Email
             noteData.author_email = prop.split(":")[1].trim();
-            author_email = noteData.author_email ? '<span id="author-email">' + noteData.author_email + "</span>" : "";
+            author_email = noteData.author_email
+              ? '<span id="author-email">' + noteData.author_email + "</span>"
+              : "";
           } else if (prop.startsWith("author_x:")) {
             // Author X
             noteData.author_x = prop.split(":")[1].trim();
-            author_x = noteData.author_x ? '<span id="author-x">' + noteData.author_x + "</span>" : "";
+            author_x = noteData.author_x
+              ? '<span id="author-x">' + noteData.author_x + "</span>"
+              : "";
           }
         });
         // Add header elements
         // Add date to header
         if (date) {
           document.getElementById("header").innerHTML += date;
-        } 
+        }
         // Add title to header
         if (title) {
           document.getElementById("header").innerHTML += title;
@@ -187,6 +205,9 @@ fetch(url)
         level +
         '">' +
         headerText +
+        ' <a href="#' +
+        id +
+        '" class="heading-anchor">#</a>' +
         "</h" +
         level +
         ">"
@@ -936,6 +957,11 @@ fetch(url)
       });
     }
 
+    // Style and script tag handling state
+    previousElement.inHtmlBlock = false;
+    previousElement.htmlBlockType = null; // Will be "style", "script", or null
+    previousElement.htmlTagStack = []; // Track open HTML tags
+
     // Parse Body / Article Content
     // First, split Markdown document's body content into lines
     md = text.split("\n");
@@ -943,6 +969,41 @@ fetch(url)
     noteArticle = document.getElementById("note").innerHTML;
     // Then, begin parsing line by line
     md.forEach((element) => {
+      //
+      // Check for HTML style and script tags
+      //
+      if (element.trim().match(/^<style(\s|>)/i)) {
+        // Opening style tag
+        noteArticle += element;
+        previousElement.inHtmlBlock = true;
+        previousElement.htmlBlockType = "style";
+        return;
+      } else if (element.trim().match(/^<script(\s|>)/i)) {
+        // Opening script tag
+        noteArticle += element;
+        previousElement.inHtmlBlock = true;
+        previousElement.htmlBlockType = "script";
+        return;
+      } else if (previousElement.inHtmlBlock) {
+        // Inside an HTML block
+        if (
+          (previousElement.htmlBlockType === "style" &&
+            element.trim().match(/<\/style>/i)) ||
+          (previousElement.htmlBlockType === "script" &&
+            element.trim().match(/<\/script>/i))
+        ) {
+          // Closing tag for the current block
+          noteArticle += element;
+          previousElement.inHtmlBlock = false;
+          previousElement.htmlBlockType = null;
+          return;
+        }
+        // Just add the line as-is within the block
+        noteArticle += element + "\n";
+        // noteArticle += element;
+        return;
+      }
+
       if (element.trim() === "") {
         // If the element is an empty newline...
         noteArticle += newline(element);
@@ -952,6 +1013,96 @@ fetch(url)
       ) {
         // Code Blocks
         noteArticle += pre(element);
+      } else if (
+        (element.trim().startsWith("<") &&
+          !(previousElement.state === "open")) ||
+        previousElement.htmlTagStack.length > 0
+      ) {
+        // 
+        // Check for HTML tags
+        // 
+        // Start HTML checks
+        // 1. Check for tag types
+        // Check for 1 or more opening HTML tags
+        const openTags = [];
+        const openTagMatches = element
+          .trim()
+          .matchAll(/<([a-z][a-z0-9]*)\b[^>]*>/g);
+        openTagMatches.forEach((i) => {
+          openTags.push(i[1]);
+        });
+        // Check for 1 or more closing HTML tags
+        const closeTags = [];
+        const closeTagMatches = element
+          .trim()
+          .matchAll(/<\/([a-z][a-z0-9]*)\b[^>]*>/g);
+        closeTagMatches.forEach((i) => {
+          closeTags.push(i[1]);
+        });
+        // Check for 1 or more self-closing HTML tags
+        const selfClosingTags = [];
+        const selfClosingTagMatches = element
+          .trim()
+          .matchAll(/<([a-z][a-z0-9]*)\b[^>]*>\s*\/?/g);
+        selfClosingTagMatches.forEach((i) => {
+          selfClosingTags.push(i[1]);
+        });
+
+        // 2. Parse the line to find all opening and closing tags we know exist, sequentially
+        // Split the string by `<`
+        const listOfTags = element.trim().split("<");
+        // Iterate through the split string
+        listOfTags.forEach((tag) => {
+          if (tag === "") {
+            return;
+          }
+          let fullTag = "<" + tag;
+
+          // 3. Do another regex to find the tag name, even if there's class or id attributes
+          let openingTag = fullTag.match(/<([a-z][a-z0-9]*)\b[^>]*>/i);
+          if (openingTag) {
+            openingTag = openingTag[1];
+          }
+          let closingTag = fullTag.match(/<\/([a-z][a-z0-9]*)\b[^>]*>/i);
+          if (closingTag) {
+            closingTag = closingTag[1];
+          }
+          let selfClosingTag = fullTag.match(/<([a-z][a-z0-9]*)\b[^>]*>\s*\/?/i);
+          if (selfClosingTag) {
+            selfClosingTag = selfClosingTag[1];
+          } else {
+            selfClosingTag = "";
+          }
+
+          // If the tag is a comment, br, hr, or self-closing tag, don't do anything
+          if (
+            fullTag.startsWith("<!--") ||
+            fullTag.startsWith("<br>") ||
+            fullTag.startsWith("<hr>") ||
+            selfClosingTags.includes(selfClosingTag)
+          ) {
+            noteArticle += fullTag;
+            return;
+          }
+
+
+          // 4. Handle opening and closing tags
+          // If the tag is a closing tag, pop it from the stack
+          if (closingTag) {
+            previousElement.htmlTagStack.pop();
+            noteArticle += fullTag;
+            return;
+          }
+          if (openingTag) {
+            // If the tag is an opening tag, add it to the stack
+            previousElement.htmlTagStack.push(openingTag);
+            noteArticle += fullTag;
+            return;
+          }
+          noteArticle += tag;
+          return;
+        });
+        // End HTML checks
       } else if (element.startsWith("## ")) {
         // Section Heading 2
         noteArticle += h(element, 2);
@@ -1007,7 +1158,7 @@ fetch(url)
         // Images (Standard / Default syntax)
         noteArticle += img(element, "default");
       } else if (element.trim().startsWith("<")) {
-        // If the element contains plain html... (TODO: check robustness)
+        // If the element contains plain html...
         noteArticle += element;
       } else if (element) {
         // If the element is simply text
@@ -1063,6 +1214,29 @@ fetch(url)
 
     // Finally, push parsed Markup to DOM
     document.getElementById("note").innerHTML += noteArticle;
+
+    // Execute any script tags that were added via innerHTML
+    function executeInlineScripts() {
+      const scripts = document.querySelectorAll('#note script');
+      scripts.forEach((oldScript) => {
+        console.log("oldScript");
+        const newScript = document.createElement('script');
+        
+        // Copy all attributes
+        Array.from(oldScript.attributes).forEach((attr) => {
+          newScript.setAttribute(attr.name, attr.value);
+        });
+        
+        // Copy the script content
+        newScript.textContent = oldScript.textContent;
+        
+        // Replace the old script with the new one
+        oldScript.parentNode.replaceChild(newScript, oldScript);
+      });
+    }
+    
+    // Execute scripts once DOM has loaded
+    setTimeout(executeInlineScripts, 0);
 
     //
     // Further Reading
