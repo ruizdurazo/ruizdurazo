@@ -222,7 +222,7 @@ h1 span,
   width: 8px;
   height: 8px;
   border: 1px solid var(--blue);
-  background: white;
+  background: var(--bg-color);
 }
 
 #slideshow-anim .font-change-anim .corner-top-left {
@@ -284,7 +284,7 @@ h1 span,
 /* Separators */
 .sep,
 .sep-note {
-  background-color: var(--_d);
+  background-color: var(--separator-color);
 }
 
 .sep {
@@ -341,7 +341,7 @@ p {
 
 .summary__text .link {
   position: relative;
-  border-bottom: 2px solid #ddd;
+  border-bottom: 2px solid var(--border-color);
   padding-bottom: 1px;
   transition: all 0.2s;
   font-weight: 400;
@@ -494,7 +494,7 @@ p {
 
 #more--logo,
 #more--close {
-  background-color: #fff0;
+  background-color: transparent;
   display: block;
   text-align: center;
   transition: opacity 0.5s;
@@ -588,7 +588,7 @@ p {
 #more--back:active,
 #more--next,
 #more--next:active {
-  background-color: #fff0;
+  background-color: transparent;
   height: 60px;
   transition: opacity 0.5s;
 }
@@ -678,13 +678,13 @@ p {
   height: calc(var(--grid-unit-2) / 16 * 9);
   object-fit: cover;
   transition: all 0.2s ease;
-  box-shadow: 0 5px 15px #ccc;
+  box-shadow: 0 5px 15px var(--box-shadow-color);
 }
 
 .note a:hover img,
 .note a:focus-visible img {
   transform: translateY(-1px);
-  box-shadow: 0 10px 30px #ccc;
+  box-shadow: 0 10px 30px var(--box-shadow-color-color);
 }
 
 .note .date-title-desc {
@@ -792,7 +792,7 @@ p {
 .social-media-links li button:hover,
 .social-media-links li button:focus-visible {
   cursor: pointer;
-  background-color: var(--black);
+  background-color: var(--menu-hover-bg);
 }
 
 .social-media-links li a:hover img,
@@ -806,7 +806,7 @@ p {
 .social-media-links li a:focus-visible span,
 .social-media-links li button:hover span,
 .social-media-links li button:focus-visible span {
-  color: #fff;
+  color: var(--menu-hover-text);
 }
 
 .social-media .call-link-button-container {
@@ -852,7 +852,7 @@ p {
 /* Media queries */
 
 /* 1040px */
-@media only screen and (max-width: 1040px) {
+@media screen and (max-width: 1040px) {
   #content {
     width: calc(
       100% -
@@ -882,7 +882,7 @@ p {
 }
 
 /* 1000px */
-@media only screen and (max-width: 1000px) {
+@media screen and (max-width: 1000px) {
   .summary {
     flex-direction: column;
   }
@@ -914,7 +914,7 @@ p {
 }
 
 /* 768px */
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   #content {
     width: calc(
       100% -
@@ -996,7 +996,7 @@ p {
   #more--back:active,
   #more--next,
   #more--next:active {
-    background-color: #fff0;
+    background-color: transparent;
     transition: opacity 0.5s;
   }
 
@@ -1032,7 +1032,7 @@ p {
 }
 
 /* 672px */
-@media only screen and (max-width: 672px) {
+@media screen and (max-width: 672px) {
   .note img {
     margin-top: 0.25em;
     margin-bottom: 1.15em;
@@ -1044,7 +1044,7 @@ p {
 }
 
 /* 480px */
-@media only screen and (max-width: 480px) {
+@media screen and (max-width: 480px) {
   #content {
     width: calc(100% - (1px * var(--offset) / 2));
   }

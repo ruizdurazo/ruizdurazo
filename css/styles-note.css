@@ -166,7 +166,6 @@
 #description {
   display: block;
   text-align: center;
-  font-family: var(--font-main);
   font-family: var(--font-serif);
   font-size: calc(var(--font-size) * 1.1);
   line-height: 1.4em;
@@ -305,11 +304,13 @@
 .h6 {
   width: var(--max-width-note);
   font-weight: 700;
-  margin: 0 auto calc(var(--font-size) * 1.8) auto;
-  padding-top: calc(var(--font-size) * 4);
+  margin: calc(var(--font-size) * 7) auto calc(var(--font-size) * 1.8) auto;
   letter-spacing: -0.001em;
   scroll-margin-top: calc(var(--font-size) * 1);
   text-wrap: pretty;
+  position: relative;
+  /* Important: add scroll margin */
+  scroll-margin-top: calc(var(--font-size) * 6);
 }
 
 .h1 {
@@ -334,6 +335,28 @@
 
 .h6 {
   font-size: calc(var(--font-size) * 0.8);
+}
+
+/* Heading anchor link styling */
+.heading-anchor {
+  position: absolute;
+  top: 0;
+  left: -1.5rem;
+  width: 1.5rem;
+  opacity: 0;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: inherit;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.toc-heading:hover .heading-anchor {
+  opacity: 0.2;
+}
+
+.heading-anchor:hover {
+  opacity: 1 !important;
+  color: var(--blue);
 }
 
 /* Blockquotes, Quotes */
@@ -436,19 +459,23 @@
   font-family: var(--font-serif);
 }
 
-/* Callouts */
-.callout {
+/* Callouts and boxes (html blocks for examples) */
+.callout,
+.box {
   width: calc((var(--grid-unit) * 6) - (var(--font-size) * 2));
   background-color: #fcfcfc;
-  padding: calc(var(--font-size) * 1) calc(var(--font-size) * 1.5);
   border-radius: 8px;
   border: 1px solid #d5d8da;
   margin: calc(var(--font-size) * 2) auto;
+  box-shadow: 0 10px 20px #e4e6e840;
+  transition: border 0.2s, background-color 0.2s, box-shadow 0.2s;
+}
+
+.callout {
+  padding: calc(var(--font-size) * 1) calc(var(--font-size) * 1.5);
   font-family: var(--font-main);
   font-size: calc(var(--font-size) * 1.1);
   line-height: calc(var(--font-size) * 1.8);
-  box-shadow: 0 10px 20px #e4e6e840;
-  transition: border 0.2s, background-color 0.2s, box-shadow 0.2s;
 }
 
 .callout:hover {
@@ -463,6 +490,23 @@
 
 .callout p + p {
   margin-top: calc(var(--font-size) * 1.8);
+}
+
+.box--padding {
+  padding: calc(var(--font-size) * 1.5);
+}
+
+.box--resizable {
+  resize: both;
+  overflow: auto;
+  min-width: 200px;
+  max-width: 1000px;
+  min-height: 200px;
+  max-height: 500px;
+}
+
+.box--resizable p {
+  width: 100% !important;
 }
 
 /* Lists */
@@ -558,6 +602,7 @@ sub {
   color: var(--text);
   font-size: calc(var(--font-size) * 1);
   line-height: 1.8em;
+  min-height: 1em;
 }
 
 p {
@@ -761,12 +806,6 @@ hr {
   height: 1px;
   background-color: #ddd;
   margin: calc(var(--font-size) * 3) auto;
-}
-
-br {
-  display: inline-block;
-  width: calc(var(--grid-unit) * 6);
-  margin: 0 auto;
 }
 
 .signature {
@@ -976,6 +1015,7 @@ br {
   }
 
   .callout,
+  .box,
   pre {
     width: calc(
       100% -
@@ -1124,7 +1164,19 @@ br {
   }
 
   .callout,
+  .box,
   pre {
     width: calc(100% - (1px * var(--offset) / 1.5));
+  }
+}
+
+/* Print */
+@media print {
+  #content {
+    padding: 0;
+  }
+
+  #floating-table-of-contents {
+    display: none;
   }
 }

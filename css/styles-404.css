@@ -41,14 +41,14 @@
 /* Media queries */
 
 /* 1200px */
-@media (max-width: 1200px) {
+@media screen and (max-width: 1200px) {
   #content {
     max-width: var(--grid-unit-8);
   }
 }
 
 /* 768px */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
   #content {
     width: calc(
       100% -
@@ -58,7 +58,7 @@
 }
 
 /* 360px */
-@media (max-width: 360px) {
+@media screen and (max-width: 360px) {
   #content {
     width: calc(100% - (1px * var(--offset) / 2));
   }

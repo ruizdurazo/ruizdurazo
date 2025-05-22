@@ -153,7 +153,7 @@
 /* Media queries */
 
 /* 1040px */
-@media only screen and (max-width: 1040px) {
+@media screen and (max-width: 1040px) {
   #content {
     width: calc(
       100% -
@@ -170,7 +170,7 @@
 }
 
 /* 768px */
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   #content {
     width: calc(
       100% -
@@ -190,7 +190,7 @@
 }
 
 /* 480px */
-@media only screen and (max-width: 480px) {
+@media screen and (max-width: 480px) {
   #content {
     width: calc(100% - (1px * var(--offset) / 2));
   }
