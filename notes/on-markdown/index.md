@@ -14,11 +14,11 @@ further_reading: true
 _:
 ---
 
-_Mostly, I’m writing this as a quick reference for myself. So I don’t have to do a Google search every time I forget how to write something in Markdown._
-
 ## Intro
 
-So what is [Markdown](https://daringfireball.net/projects/markdown/)? Well, according to it’s creator:
+So what is [Markdown](https://daringfireball.net/projects/markdown/)? 
+
+Well, according to its creator:
 
 > quote
 >

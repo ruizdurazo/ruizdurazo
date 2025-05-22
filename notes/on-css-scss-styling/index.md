@@ -16,9 +16,616 @@ _:
 
 ## Intro
 
-Styling and visual design is incredibly important. It makes or breaks a user's experience. The problem is that default styles and most UI libraries are aggressively ugly. You need to know how to bend styles to your will. 
+Styling and visual design is incredibly important. It makes or breaks a user's experience. The problem is that default styles and most UI libraries are aggressively ugly. You need to know how to bend styles to your will.
+
+You need to learn CSS.
+
+![CSS](./images/css.png)[size: m, aspect: 860x720]
 
 Here's a list of snippets I've found useful.
+
+<!-- --- -->
+
+## [CSS] CSS 101
+
+CSS is a styles sheet. You literally just spell out what things should look like.
+
+> callout
+>
+> **Step 1**: Select the element.<br>**Step 2**: Style it.<br>**Step 3**: Profit.
+
+It's not that hard.
+
+```css
+/* Basic selecting */
+/* There are many ways to select elements. */
+/* Some of the most common are:            */
+/* - Class name                            */
+/* - ID name                               */
+/* - Tag name                              */
+/* - Children, siblings, etc.              */
+
+/* Selecting by class name */
+.some-class-name {
+  color: red;
+  font-size: 16px;
+  background-color: pink;
+}
+
+/* Selecting by ID name */
+#some-id-name {
+  color: white;
+  font-size: 16px;
+  background-color: blue;
+}
+
+/* Selecting by tag name */
+/* Selects all elements of a certain type */
+/* e.g. all <div> elements */
+div {
+  color: green;
+}
+
+/* Selecting by children, siblings, etc. */
+/* Select direct descendant children divs of .container */
+.container > div {
+  color: orange;
+}
+
+/* Select any descendant children divs of .container */
+.container div {
+  color: orange;
+}
+
+/* Select adjacent sibling .other-container of .container */
+.container + .other-container {
+  color: purple;
+}
+
+/* Select elements with multiple classes */
+.some-class-name.other-class-name {
+  color: yellow;
+}
+
+/* Select multiple elements at once */
+.some-class-name,
+.other-class-name,
+.another-class-name.some-other-class-name {
+  color: red;
+}
+
+/* Fancier selecting */
+/* There are even more ways to select elements. */
+/* For example:                                 */
+/* - Pseudo-classes                             */
+/* - Index pseudo-classes                       */
+/* - Functional pseudo-classes                  */
+/* - Pseudo-elements                            */
+/* - Attributes                                 */
+
+/* Selecting by pseudo-class */
+/* e.g. :hover, :focus, :active, etc. */
+.some-class-name:hover {
+  color: red;
+}
+
+/* Selecting by index pseudo-classes */
+/* e.g. :first-child, :last-child, :nth-child(), etc. */
+/* Selects the 2nd child of the parent */
+.some-class-name:nth-child(2) {
+  color: red;
+}
+
+/* Selecting by functional pseudo-classes */
+/* e.g. :has(), :is(), :where(), :not(), :has(), :is(), :where(), :not(), etc. */
+/* Selects elements that have a child element with the class .other-class-name */
+.some-class-name:has(.other-class-name) {
+  color: red;
+}
+
+/* Selects elements that match any of the selectors in the list */
+.some-class-name:is(.other-class-name, .another-class-name) {
+  color: red;
+}
+
+/* Selecting by pseudo-element */
+/* e.g. ::before, ::after, etc. */
+.some-class-name::before {
+  content: "Hello";
+}
+
+/* Selecting by attribute */
+/* e.g. [attribute], [attribute="value"], [attribute^="value"], [attribute$="value"], [attribute*="value"], etc. */
+.some-class-name[attribute="value"] {
+  color: red;
+}
+```
+
+<!-- --- -->
+
+## [SCSS] SCSS 101
+
+SCSS/Sass is a _preprocessor_ for CSS. Basically, it makes CSS better.
+
+Its most obvious feature is nested rules (but they are so good, that now [they're a part of CSS too](https://developer.mozilla.org/en-US/docs/Web/CSS/Nesting_selector)). I love nesting because it makes the code more readable, and it groups styles together in a way that can reflect the HTML structure.
+
+Besides that, you get a different syntax for variables (`$`, as opposed to the `--` and `var()` combo), and the ability to import styles (`@use`), and a couple of other things.
+
+```scss
+// SCSS basics
+
+// 1. Variables
+// SCSS: `$`
+$primary-color: #3498db;
+$secondary-color: #2ecc71;
+$spacing-unit: 16px;
+$border-radius: 4px;
+$font-stack: "Inter", sans-serif;
+
+.some-class-name {
+  color: $primary-color;
+}
+
+// CSS: `--` + `var()`
+:root {
+  --another-color: #3498db;
+}
+
+.some-class-name {
+  color: var(--another-color);
+}
+
+// - - - - - - - - - -
+
+// 2. Importing other SCSS files
+@use "reset"; // imports reset.scss
+@use "typography"; // imports typography.scss
+
+// - - - - - - - - - -
+
+// 3. Nesting
+.card {
+  background-color: white;
+
+  // Nested media queries
+  @media screen and (max-width: 768px) {
+    // Calculations without `calc()`
+    padding: $spacing-unit / 2;
+  }
+
+  // Nested elements (classes, ids, tags, etc.)
+  // Same as `.card .button`
+  & .button {
+    color: $primary-color;
+    opacity: 1;
+
+    // Nested pseudo-classes
+    // Same as `.card .button:hover`
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  // Nested pseudo-elements
+  // Same as `.card::before`
+  &::before {
+    content: "Hello";
+  }
+
+  // Nested element *names* (possible, but I hate this)
+  // Same as `.card__header`
+  &__header {
+    font-family: $font-stack;
+  }
+}
+```
+
+<!-- --- -->
+
+## [SCSS] How to reset styles
+
+Browser defaults are violently ugly. If you’re serious about good design, you should be ok with breaking them completely, and crafting your own.
+
+```scss
+/* Nuke all defaults */
+/* Broken is better than the default. */
+/* If things are broken, you'll have to craft them. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: none;
+  text-decoration: none;
+  list-style-type: none;
+  outline: none;
+  border: none;
+}
+
+/* Reset mozilla form shits */
+input,
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  ...
+  
+  /* mozilla ugliness */
+  &::-moz-focus-inner {
+    border: none !important;
+    outline: none !important;
+  }
+}
+```
+
+<!-- --- -->
+
+## [SCSS] How to do responsive design: Media queries
+
+Personally, I like: 1) to stick the media queries inside the element's styles, and 2) to start the media queries from large to small using `max-width`.
+
+```scss
+.element {
+  /* Styles for all screens */
+
+  @media screen and (max-width: 1023px) {
+    /* Style overrides for tablets */
+  }
+
+  @media screen and (max-width: 767px) {
+    /* Style overrides for phones */
+  }
+}
+```
+
+<!-- --- -->
+
+## [SCSS+JS] How to do simple, beautiful inputs
+
+Default input styles are terrible. Here's how to create beautiful, modern input fields with floating labels and smooth animations.
+
+The key principles:
+
+1. Remove all default browser styles
+2. Add consistent padding and typography
+3. Use subtle borders and focus states
+4. Implement floating labels for better UX
+5. Add smooth transitions for all state changes
+
+```html
+<div class="input-group">
+  <input type="text" id="name" class="input-field" required />
+  <label for="name" class="input-label">Full Name</label>
+</div>
+
+<div class="input-group">
+  <input type="email" id="email" class="input-field" required />
+  <label for="email" class="input-label">Email Address</label>
+</div>
+
+<div class="input-group">
+  <textarea id="message" class="input-field" rows="4" required></textarea>
+  <label for="message" class="input-label">Message</label>
+</div>
+```
+
+```js
+// Optional: Add JavaScript for enhanced UX
+document.addEventListener("DOMContentLoaded", function () {
+  const inputs = document.querySelectorAll(".input-field");
+
+  inputs.forEach((input) => {
+    // Handle autofill detection
+    function checkAutofill() {
+      if (input.matches(":-webkit-autofill")) {
+        input.classList.add("has-content");
+      }
+    }
+
+    // Check for autofill on load and after animation
+    checkAutofill();
+    setTimeout(checkAutofill, 100);
+
+    // Handle manual input
+    input.addEventListener("input", function () {
+      if (this.value) {
+        this.classList.add("has-content");
+      } else {
+        this.classList.remove("has-content");
+      }
+    });
+  });
+});
+```
+
+```scss
+.input-group {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 16px 12px 8px 12px;
+  border: 1px solid #e1e5e9;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: inherit;
+  background-color: #ffffff;
+  color: #333333;
+  transition: all 0.2s ease;
+
+  // Remove default styles
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  // Focus state
+  &:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+
+  // Error state (when invalid and touched)
+  &:invalid:not(:placeholder-shown) {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+  }
+
+  // When input has content or is focused
+  &:not(:placeholder-shown),
+  &:focus {
+    padding-top: 20px;
+    padding-bottom: 4px;
+
+    + .input-label {
+      top: 8px;
+      font-size: 12px;
+      color: #6b7280;
+    }
+  }
+
+  // Focus state for label
+  &:focus + .input-label {
+    color: #3b82f6;
+  }
+
+  // Error state for label
+  &:invalid:not(:placeholder-shown) + .input-label {
+    color: #ef4444;
+  }
+}
+
+.input-label {
+  position: absolute;
+  left: 12px;
+  top: 16px;
+  font-size: 16px;
+  color: #9ca3af;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  background-color: transparent;
+}
+
+// Textarea specific adjustments
+textarea.input-field {
+  resize: vertical;
+  min-height: 80px;
+
+  &:not(:placeholder-shown),
+  &:focus {
+    padding-top: 24px;
+    padding-bottom: 8px;
+  }
+}
+```
+
+Result:
+
+<style>
+  .input {
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-width: 300px;
+    
+  }
+  .input > input {
+    border-color: #ddd;
+    width: 100% !important;
+    text-overflow: initial;
+
+    outline: none;
+    appearance: none;
+    transition:
+      background-color 0.2s,
+      border-color 0.2s;
+
+    padding: 8px 12px;
+    width: 100%;
+
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    outline-offset: 0px;
+
+    font-size: 17px;
+    line-height: 17px;
+  }
+  .input > input:hover {
+    border: 1px solid #888;
+  }
+  .input > input:focus {
+    border-color: var(--color-secondary-highlight);
+    outline: 3px solid #eee;
+    border: 1px solid #888 !important;
+  }
+</style>
+
+<div class="input">
+  <!-- <label for="text-input-example">Full Name</label> -->
+  <input type="text" id="text-input-example"required />
+</div>
+
+<!-- <script>
+</script> -->
+
+<!-- --- -->
+
+## [SCSS] How to automatically resize textareas on input
+
+...
+
+```html
+<div class="input">
+  <textarea id="textarea-example" class="input-field" rows="4" required></textarea>
+</div>
+```
+
+```js
+// Get the textarea element
+const textarea = document.getElementById('textarea-example');
+
+// Then 2 options:
+
+// 1. Resizing function
+function resizeTextarea() {
+  textarea.style.height = 'auto'; // Reset the height
+  textarea.style.height = textarea.scrollHeight + 'px'; // Set it to the scrollHeight
+}
+
+// Add event listener for the input event
+textarea.addEventListener('input', resizeTextarea);
+
+// - - - - - - - - - -
+
+// 2. Directly in the event listener
+textarea.addEventListener('input', (e) => {
+  e.target.style.height = 'auto';
+  e.target.style.height = e.target.scrollHeight + 2 + 'px';
+});
+```
+
+```scss
+// What matters:
+textarea {
+  overflow: hidden;
+  resize: none;
+}
+```
+
+Result:
+
+<style>
+  .input {
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-width: 300px;
+    
+  }
+  .input > textarea {
+    overflow: hidden;
+    resize: none;
+
+    border-color: #ddd;
+    width: 100% !important;
+    /* text-overflow: initial; */
+
+    outline: none;
+    appearance: none;
+    transition:
+      background-color 0.2s,
+      border-color 0.2s;
+
+    padding: 12px 12px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    outline-offset: 0px;
+
+    font-size: 17px;
+    line-height: 17px;
+  }
+  .input > textarea:hover {
+    border: 1px solid #888;
+  }
+  .input > textarea:focus {
+    border-color: var(--color-secondary-highlight);
+    outline: 3px solid #eee;
+    border: 1px solid #888 !important;
+  }
+</style>
+
+<div class="input">
+  <textarea id="textarea-example" rows="2"></textarea>
+</div>
+
+<script>
+  const textarea = document.getElementById('textarea-example');
+  textarea.addEventListener('input', (e) => {
+    e.target.style.height = 'auto';
+    e.target.style.height = e.target.scrollHeight + 2 + 'px';
+  });
+</script>
+
+<!-- --- -->
+
+## [SCSS] How to add a custom font or web font: @font-face
+
+To make sure users see the font you want them to see (even if they don't have it on their device), you have to add it yourself.
+
+Cross-site caching no longer works. So really do have toadd it yourself and cache it yourself.
+
+For best performance:
+
+- Add only what you need
+- Lazy load it, add `swap` flag
+- Provide fallbacks in your styles
+
+```scss
+// `src`: The source url can be local or remote.
+// With more than one source, the browser will try the first one,
+// and if it's not available, it'll try the second one as a fallback, etc.
+// `swap`: The browser will display text immediately in an available font,
+// and then switch to the new font when it's done loading.
+@font-face {
+  font-family: "Inter";
+  src: url("../assets/fonts/Inter-Bold.woff"),
+    url("https://example.com/assets/fonts/Inter-Bold.woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+```
+
+<!-- --- -->
+
+## [SCSS] How to replace the default cursor with a custom one: Cursor SVG
+
+Sometimes you see websites with quirky custom cursors. That’s usually done with `cursor: url()` and an SVG.
+
+```scss
+// The source url can be local or remote.
+// The image can be an SVG or a PNG, but SVGs render better.
+// You need a fallback, the browser will try to load the first one,
+// and if it's not available, it'll try the second one as a fallback, etc.
+
+/* Custom default cursor */
+.some-class-name {
+  cursor: url("../assets/images/cursor.svg"), auto;
+}
+
+/* Custom hover state */
+.some-class-name:hover {
+  cursor: url("../assets/images/cursor-hover.svg"), pointer;
+}
+```
 
 <!-- --- -->
 
@@ -38,6 +645,37 @@ Add these styles to the element that overflows.
   }
 }
 ```
+
+Result:
+
+<style>
+#scrollbar-example {
+  height: 150px;
+  overflow-y: auto;
+  margin: 0 auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+#scrollbar-example::-webkit-scrollbar {
+  display: none;
+}
+#scrollbar-example > div {
+  min-height: 200px;
+  width: 100%;
+}
+#scrollbar-example > div > p {
+  line-height: 1.5em;
+  width: 100%;
+  margin: 0;
+}
+</style>
+
+<div id="scrollbar-example" class="box box--padding">
+  <div>
+    <p>"We choose to go to the moon in this decade and do the other things, not because they are easy, but because they are hard, because that goal will serve to organize and measure the best of our energies and skills, because that challenge is one that we are willing to accept, one we are unwilling to postpone, and one which we intend to win, and the others, too."
+    – John F. Kennedy</p>
+  </div>
+</div>
 
 <!-- --- -->
 
@@ -85,11 +723,85 @@ Also, `sticky` is tied directly to its parent container, and not some grandparen
 }
 ```
 
+Result:
+
+<style>
+.sticky-example-parent {
+  height: 250px;
+  overflow-y: auto;
+  margin: 0 auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.sticky-example-parent::-webkit-scrollbar {
+  display: none;
+}
+.sticky-example-parent > .sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: #eee;
+}
+.sticky-example-parent > .item {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: .5em;
+  margin-bottom: .5em;
+}
+</style>
+<div class="box box--padding">
+  <div class="sticky-example-parent">
+    <div class="item">One</div>
+    <div class="item">Two</div>
+    <div class="item">Three</div>
+    <div class="item sticky">Something sticky</div>
+    <div class="item">Four</div>
+    <div class="item">Five</div>
+    <div class="item">Six</div>
+    <div class="item">Seven</div>
+    <div class="item">Eight</div>
+    <div class="item">Nine</div>
+    <div class="item">Ten</div>
+  </div>
+</div>
+
+<!-- --- -->
+
+## [SCSS+JS] How to change the styling of the navbar on scroll
+
+On some websites, you may notice that the navbar’s appearance changes when you scroll. For example, you could make it smaller and/or trigger animating certain elements.
+
+Here's how to add a drop shadow, and shrink the height of the navbar once the user scrolls down using vanilla JavaScript:
+
+```html
+
+```
+
+```js
+
+```
+
+```scss
+
+```
+
+If you're using a framework, you could add something like this to a method that tracks the scroll value and updates the state accordingly. It'll depend if it's some computed variable (vue), or some sort of hook (react), or if you'll manage it in the global state. It's up to you.
+
+Result:
+
+<style>
+
+</style>
+
 <!-- --- -->
 
 ## [CSS] How to add scroll margings to elements: scroll-margin-top
 
-Usually, websites might have fixed navbars or other elements. When using anchors to scroll to a section of the page (using an href with a pound sign `#`), the navbar might overlap the element. This might be a problem especially if the element is a heading and it's hidden. You can account for this using `scroll-margin-top`.
+Usually, websites might have fixed navbars or other elements.
+
+When using anchors `<a href="#section">` to scroll to a section of the page (using an href with a pound sign `#`), the navbar might overlap and hide the anchor.
+
+This might be a problem especially if the element is a heading and it's hidden. You can account for this using `scroll-margin-top`.
 
 ```css
 /* Add scroll margings */
@@ -103,6 +815,8 @@ Usually, websites might have fixed navbars or other elements. When using anchors
 ## [CSS] How to handle focus with :focus-visible
 
 Only show the `:focus` ring with keyboard navigation, not with clicks or taps.
+
+Especially relevant for buttons.
 
 ```css
 /* Default for browsers that don't support it yet */
@@ -132,8 +846,13 @@ It is more performant to animate **colors**, **opacity**, **positions**, **trans
 
 It is less performant to animate **margins** and **paddings**.
 
+There are two ways to do animations:
+
+- `transition`
+- `animation`
+
 ```scss
-/* With `transition` */
+/* 1. With `transition` */
 /* Specify the property, and whenever it changes, it'll animate. */
 .some-class-name {
   opacity: 1;
@@ -144,7 +863,9 @@ It is less performant to animate **margins** and **paddings**.
   }
 }
 
-/* With `animation` */
+// - - - - - - - - - -
+
+/* 2. With `animation` */
 /* Specify name of the animation, and define its keyframes separately. */
 .other-class-name {
   opacity: 0;
@@ -169,6 +890,31 @@ It is less performant to animate **margins** and **paddings**.
 
 <!-- --- -->
 
+## [SCSS+JS] How to animate cycling through a list of words or phrases
+
+I use this on the home page.
+
+All you need to do is:
+
+- have an array of strings
+- add a `setInterval` that will increment a counter
+- check which index of the array should be shown with modulo `%`
+- define the animation styles
+
+```html
+
+```
+
+```js
+
+```
+
+```scss
+
+```
+
+<!-- --- -->
+
 ## [SCSS] How to fill a child's height to its parent: Flex stretch
 
 Use `align-items: stretch` to do this.
@@ -177,10 +923,11 @@ Use `align-items: stretch` to do this.
 .parent-class-name {
   display: flex;
   flex-direction: row;
+  /* Add this: */
   align-items: stretch;
 
   & .child-class-name {
-    /* Something... */
+    /* Styles... */
   }
 }
 ```
@@ -201,23 +948,111 @@ For multiple lines, JavaScript is needed.
 }
 ```
 
+Result:
+
+With ellipsis:
+
+<style>
+  #ellipsis-example {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+</style>
+<div class="box box--padding">
+  <div id="ellipsis-example">
+    "Humans are distinguished from other species by our ability to work miracles. We call these miracles technology."
+  </div>
+</div>
+
+Without:
+
+<div class="box box--padding">
+  <div>
+    "Humans are distinguished from other species by our ability to work miracles. We call these miracles technology."
+
+  </div>
+</div>
 <!-- --- -->
 
 ## [CSS] How to format numbers for tables: tabular-nums
 
-You can format tabular numbers using the `font-variant-numeric` property. Specifically, the `tabular-nums` value ensures that all numbers in the selected text have the same width (monospaced), making them align neatly. Useful for displaying data and prices, for example.
+You can format tabular numbers using the `font-variant-numeric` property.
+
+Specifically, the `tabular-nums` value ensures that all numbers in the text have the same width (monospaced), making them align neatly. Useful for displaying data and prices, for example.
 
 ```css
 .some-class-name {
+  text-align: right;
   font-variant-numeric: tabular-nums;
 }
 ```
+
+Result:
+
+With `font-variant-numeric: tabular-nums;`
+
+<style>
+.tabular-nums-example {
+  text-align: right;
+}
+.tabular-nums-example--tabular {
+  font-variant-numeric: tabular-nums;
+}
+</style>
+<div class="box box--padding tabular-nums-example tabular-nums-example--tabular">
+  <div>Prices:</div>
+  <div>$1,111.11</div>
+  <div>$384.88</div>
+  <br>
+  <div>Post codes:</div>
+  <div>90210</div>
+  <div>11111</div>
+  <br>
+  <div>Phone numbers:</div>
+  <div>+23 45 56 78 90</div>
+  <div>+11 31 91 11 90</div>
+  <br>
+  <div>Credit card numbers:</div>
+  <div>1234 0000 1111 3456</div>
+  <div>1234 0000 9012 3456</div>
+  <br>
+  <div>Time:</div>
+  <div>11:31:01</div>
+  <div>20:34:56</div>
+</div>
+
+With the default `font-variant-numeric: normal;`
+
+<div class="box box--padding tabular-nums-example">
+  <div>Prices:</div>
+  <div>$1,111.11</div>
+  <div>$384.88</div>
+  <br>
+  <div>Post codes:</div>
+  <div>90210</div>
+  <div>11111</div>
+  <br>
+  <div>Phone numbers:</div>
+  <div>+23 45 56 78 90</div>
+  <div>+11 31 91 11 90</div>
+  <br>
+  <div>Credit card numbers:</div>
+  <div>1234 0000 1111 3456</div>
+  <div>1234 0000 9012 3456</div>
+  <br>
+  <div>Time:</div>
+  <div>11:31:01</div>
+  <div>20:34:56</div>
+</div>
 
 <!-- --- -->
 
 ## [CSS] How to format centered headlines: text-wrap
 
-The `text-wrap: balance` property in CSS ensures that the lines in a text element are visually balance. It achieves this by distributing text more evenly across lines, rather than prioritizing the natural flow of text or the default line break behavior based on the element's width.
+The `text-wrap: balance` property in CSS ensures that the lines in a text element are visually balanced.
+
+It achieves this by distributing text more evenly across lines, rather than prioritizing the natural flow of text or the default line break behavior based on the element's width.
 
 In certain multi-line elements like titles, headlines, or quotes, balanced wrapping really improves visual harmony, ensuring that the text appears well-distributed.
 
@@ -228,6 +1063,35 @@ In certain multi-line elements like titles, headlines, or quotes, balanced wrapp
 }
 ```
 
+Result:
+
+With `text-wrap: balance;`
+
+<style>
+  .text-wrap-example {
+    text-align: center;
+  }
+  .text-wrap-example-balanced {
+    text-wrap: balance;
+  }
+  .text-wrap-example h3 {
+    padding: 0 10%;
+  }
+</style>
+<div class="box box--padding text-wrap-example">
+  <h3 class="text-wrap-example-balanced">
+    "Humans are distinguished from other species by our ability to work miracles. We call these miracles technology."
+  </h3>
+</div>
+
+With the default `text-wrap: wrap;`
+
+<div class="box box--padding text-wrap-example">
+  <h3>
+    "Humans are distinguished from other species by our ability to work miracles. We call these miracles technology."
+  </h3>
+</div>
+
 <!-- --- -->
 
 ## [HTML] How to set break points for words and lines
@@ -235,19 +1099,40 @@ In certain multi-line elements like titles, headlines, or quotes, balanced wrapp
 Three main options:
 
 - `<br/>` for setting where to break a line, can be disabled with CSS using `display: none;`
-- `&&shy;nbsp;` for setting blank spaces that should not be broken into multiple lines
 - `&&shy;shy;` for setting where words whould be split and hyphenated
+- `&&shy;nbsp;` for setting blank spaces that should not be broken into multiple lines
 
 ```html
-<div>
+<p>
   Some text that will be broken <br />
   into 2 lines.
-</div>
+</p>
 
-<div>Some long word that can be hyphen&shy;ated.</div>
+<p>
+  Some long word that can be <strong>hyphen&shy;ated</strong> exactly where we
+  want.
+</p>
 
-<div>Some term that shouldn't be on 2 lines like know&nbsp;how.</div>
+<p>
+  Some term that shouldn't be on 2 lines like <strong>know&nbsp;how</strong>.
+</p>
 ```
+
+Result:
+
+<div class="box box--padding box--resizable">
+  <p>
+    Some text that will be broken <br> into 2 lines.
+  </p>
+
+  <p>
+    Some long word that can be <strong>hyphen&shy;ated</strong> exactly where we want.
+  </p>
+
+  <p>
+    Some term that shouldn't be on 2 lines like <strong>know&nbsp;how</strong>.
+  </p>
+</div>
 
 <!-- --- -->
 
@@ -258,25 +1143,29 @@ Use `&amp;amp;` for adding an ampersand (&).
 The ampersand is a special character in HTML.
 
 ```html
-<div>Some text &amp; some more text</div>
+<div>Romeo &amp; Juliet</div>
 ```
+
+Result:
+
+<div class="box box--padding"><span>Romeo &amp; Juliet</span></div>
 
 <!-- --- -->
 
-## [HTML] Other special HTML characters
+## [HTML] Other HTML special characters
 
-`"` is replaced with `&&shy;quot;`
+There are certain characters that are reserved:
 
-`<` is replaced with `&&shy;lt;`
+- `"` is replaced with `&&shy;quot;` (quotation mark)
+- `'` is replaced with `&&shy;apos;` (apostrophe)
+- `<` is replaced with `&&shy;lt;` (less than)
+- `>` is replaced with `&&shy;gt;` (greater than)
 
-`>` is replaced with `&&shy;gt;`
+And there are many other HTML symbols that can be used:
 
-And there are many other HTML codes that can be used:
-
-`©` is replaced with `&&shy;copy;`
-
-`↗` is replaced with `&&shy;nearr;`
+- `©` is replaced with `&&shy;copy;` (copyright)
+- `↗` is replaced with `&&shy;nearr;` (northeast arrow)
 
 ---
 
-If you’d like to get in touch, [write me an email](mailto:enrique@ruizdurazo.com) or [dm me on X](https://x.com/ruizdurazo).
+If you'd like to get in touch, [write me an email](mailto:enrique@ruizdurazo.com) or [dm me on X](https://x.com/ruizdurazo).
