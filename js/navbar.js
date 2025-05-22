@@ -71,3 +71,99 @@ document.addEventListener(
 const menuListItemEmail = document.getElementById("menu-list-item-email");
 const email = menuListItemEmail.href.replace("mailto:", "");
 handleEmailBubble(menuListItemEmail, email);
+
+// TODO / WIP
+// // Dark/Light Mode Toggle Functionality
+// // Available modes: "system" (default), "light", "dark"
+// const modeToggleBtn = document.getElementById("mode-toggle");
+
+// // Function to get the user's current preferred color scheme
+// function getPreferredColorScheme() {
+//   // Check if user has previously set a preference
+//   const savedPreference = localStorage.getItem("color-theme");
+
+//   if (savedPreference) {
+//     return savedPreference;
+//   }
+
+//   // If no saved preference, check system preference
+//   if (
+//     window.matchMedia &&
+//     window.matchMedia("(prefers-color-scheme: dark)").matches
+//   ) {
+//     return "system-dark";
+//   } else {
+//     return "system-light";
+//   }
+// }
+
+// // Function to update the UI based on the current theme
+// function updateThemeUI(mode) {
+//   // Update button text
+//   if (mode === "system-dark" || mode === "system-light") {
+//     modeToggleBtn.textContent = "System";
+//     // Apply theme based on system preference
+//     if (mode === "system-dark") {
+//       document.documentElement.setAttribute("data-theme", "dark");
+//     } else {
+//       document.documentElement.removeAttribute("data-theme");
+//     }
+//   } else if (mode === "dark") {
+//     modeToggleBtn.textContent = "Dark";
+//     document.documentElement.setAttribute("data-theme", "dark");
+//   } else {
+//     modeToggleBtn.textContent = "Light";
+//     document.documentElement.removeAttribute("data-theme");
+//   }
+// }
+
+// // Listen for system color scheme changes
+// window
+//   .matchMedia("(prefers-color-scheme: dark)")
+//   .addEventListener("change", (e) => {
+//     const currentMode = localStorage.getItem("color-theme");
+//     // Only update if the user is using system preference
+//     if (
+//       currentMode === "system-dark" ||
+//       currentMode === "system-light" ||
+//       !currentMode
+//     ) {
+//       const newMode = e.matches ? "system-dark" : "system-light";
+//       localStorage.setItem("color-theme", newMode);
+//       updateThemeUI(newMode);
+//     }
+//   });
+
+// // Initialize theme based on saved preference or system default
+// document.addEventListener("DOMContentLoaded", () => {
+//   const currentTheme = getPreferredColorScheme();
+//   localStorage.setItem("color-theme", currentTheme);
+//   updateThemeUI(currentTheme);
+// });
+
+// // Toggle between system, light, and dark mode
+// modeToggleBtn.addEventListener("click", () => {
+//   const currentMode = localStorage.getItem("color-theme");
+
+//   let newMode;
+//   if (currentMode === "system-dark" || currentMode === "system-light") {
+//     newMode = "light";
+//   } else if (currentMode === "light") {
+//     newMode = "dark";
+//   } else {
+//     // If current mode is dark or undefined, switch to system
+//     newMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+//       ? "system-dark"
+//       : "system-light";
+//   }
+
+//   localStorage.setItem("color-theme", newMode);
+//   updateThemeUI(newMode);
+// });
+
+// // Apply theme on page load without waiting for DOMContentLoaded
+// // to prevent flash of incorrect theme
+// (function () {
+//   const currentTheme = getPreferredColorScheme();
+//   updateThemeUI(currentTheme);
+// })();
