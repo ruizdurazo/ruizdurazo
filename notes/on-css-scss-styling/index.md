@@ -20,7 +20,7 @@ Styling and visual design is incredibly important. It makes or breaks a user's e
 
 You need to learn CSS.
 
-![CSS](./images/css.png)[size: m, aspect: 860x720]
+![CSS](./images/css.png "")[size: m, aspect: 860x720]
 
 Here's a list of snippets I've found useful.
 
@@ -282,30 +282,27 @@ Personally, I like: 1) to stick the media queries inside the element's styles, a
 
 ## [SCSS+JS] How to do simple, beautiful inputs
 
-Default input styles are terrible. Here's how to create beautiful, modern input fields with floating labels and smooth animations.
+Things I value:
 
-The key principles:
-
-1. Remove all default browser styles
-2. Add consistent padding and typography
-3. Use subtle borders and focus states
-4. Implement floating labels for better UX
-5. Add smooth transitions for all state changes
+- Feedback on hover, focus, and error states
+- Clean, minimal feel
 
 ```html
-<div class="input-group">
-  <input type="text" id="name" class="input-field" required />
-  <label for="name" class="input-label">Full Name</label>
+<!-- 1. No label, barebones -->
+<div class="input">
+  <input type="text" id="name" required />
 </div>
 
-<div class="input-group">
-  <input type="email" id="email" class="input-field" required />
-  <label for="email" class="input-label">Email Address</label>
+<!-- 2. With label outside, and with placeholder -->
+<div class="input">
+  <label for="name">Full Name</label>
+  <input type="text" id="name" required />
 </div>
 
-<div class="input-group">
-  <textarea id="message" class="input-field" rows="4" required></textarea>
-  <label for="message" class="input-label">Message</label>
+<!-- 3. With label inside (overlaid) -->
+<div class="input">
+  <label for="name">Full Name</label>
+  <input type="text" id="name" required />
 </div>
 ```
 
@@ -474,37 +471,59 @@ Result:
 
 <!-- --- -->
 
-## [SCSS] How to automatically resize textareas on input
+## [SCSS+JS] How to automatically resize textareas on input
 
-...
+You can resize the textarea input box to fit the content dynamically. Chats and LLM inputs do this.
 
-```html
-<div class="input">
-  <textarea id="textarea-example" class="input-field" rows="4" required></textarea>
-</div>
+```jsx
+// Plain HTML + JS
+<textarea
+  id="message"
+  rows="1"
+  maxlength="2000"
+  onInput="(e) => resizeTextarea(e)"
+/>
+
+// Vue
+<textarea
+  id="message"
+  v-model="message"
+  rows="1"
+  maxlength="2000"
+  @input="resizeTextarea($event)"
+/>
+
+// React
+<textarea
+  id="message"
+  ref={messageTextArea}
+  rows={1}
+  maxlength={2000}
+  onInput={(e) => resizeTextarea(e)}
+/>
 ```
 
-```js
-// Get the textarea element
-const textarea = document.getElementById('textarea-example');
+```ts
+// 2 options: with a resizing function, or directly in the event listener
 
-// Then 2 options:
-
-// 1. Resizing function
-function resizeTextarea() {
-  textarea.style.height = 'auto'; // Reset the height
-  textarea.style.height = textarea.scrollHeight + 'px'; // Set it to the scrollHeight
+// Resizing function
+function resizeTextarea(event: Event) {
+  event.target.style.height = "auto"; // Reset the height
+  event.target.style.height = event.target.scrollHeight + 2 + "px"; // Set it to the scrollHeight
 }
 
-// Add event listener for the input event
-textarea.addEventListener('input', resizeTextarea);
+// Get the textarea element
+const textarea = document.getElementById("message");
+
+// [HTML] Add event listener for the input event
+textarea.addEventListener("input", resizeTextarea);
 
 // - - - - - - - - - -
 
-// 2. Directly in the event listener
-textarea.addEventListener('input', (e) => {
-  e.target.style.height = 'auto';
-  e.target.style.height = e.target.scrollHeight + 2 + 'px';
+// Directly in the event listener
+textarea.addEventListener("input", (e) => {
+  e.target.style.height = "auto";
+  e.target.style.height = e.target.scrollHeight + 2 + "px";
 });
 ```
 
@@ -535,7 +554,6 @@ Result:
 
     border-color: #ddd;
     width: 100% !important;
-    /* text-overflow: initial; */
 
     outline: none;
     appearance: none;
@@ -717,7 +735,7 @@ Also, `sticky` is tied directly to its parent container, and not some grandparen
 }
 
 .sticky {
-  position: -webkit-sticky; /* Safari */
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
 }
@@ -797,7 +815,7 @@ Result:
 
 ## [CSS] How to add scroll margings to elements: scroll-margin-top
 
-Usually, websites might have fixed navbars or other elements.
+Usually, websites will have fixed navbars or other elements.
 
 When using anchors `<a href="#section">` to scroll to a section of the page (using an href with a pound sign `#`), the navbar might overlap and hide the anchor.
 
@@ -892,26 +910,253 @@ There are two ways to do animations:
 
 ## [SCSS+JS] How to animate cycling through a list of words or phrases
 
-I use this on the home page.
+I use this on the home page. It's the common text animation that loops through a list of words or phrases.
 
 All you need to do is:
 
-- have an array of strings
+- have an array of strings or HTML elements
 - add a `setInterval` that will increment a counter
 - check which index of the array should be shown with modulo `%`
 - define the animation styles
 
 ```html
-
+<!-- Add an `id` to the element you want to animate -->
+<!-- The element's content will be the initial value -->
+<!-- 2 options: -->
+<!-- 1. Whole element -->
+<div id="phrase">Starting phrase</div>
+<!-- 2. Single word -->
+<div>Welcome, <span id="word">Harry!</span></div>
 ```
 
 ```js
+// 1. Define the array of strings
+// Can be a list of simple strings or actual HTML elements
+const phrases = [
+  // "Starting phrase", // You can add or exclude the initial word
+  "<ins>Gryffindor</ins>",
+  "Hufflepuff",
+  "Ravenclaw",
+  "<del>Slytherin</del>",
+];
+const words = [
+  "Harry", // You can add or exclude the initial word
+  "Ron",
+  "Hermione",
+  "Ginny",
+];
 
+// 2. Get the elements and define the setting and helper variables
+const phrase_element = document.getElementById('phrase')
+const word_element = document.getElementById('word')
+
+// Animation settings
+let anim_delay = 3500 // ms (3.5 seconds)
+let anim_duration = 500 // ms (0.5 seconds)
+let counter = 0 // helper
+
+// 2. Add a setInterval that will increment a counter
+document.addEventListener('DOMContentLoaded', function (event) {
+  setInterval(() => {
+  // Increment the counter either before or after updating the elements
+  counter++;
+
+  // [Optional] Update the elements directly (no animation)
+  // 1. Whole element
+  // phrase_element.textContent = phrases[counter % phrases.length];
+  // 2. Single word
+  // word_element.textContent = words[counter % words.length];
+
+  // Update the elements with animation
+  // Order of operations:
+  // - Add the out class to current elements
+  // - Remove the out class from current elements
+  // - Replace the inner HTML of `phrase_element` or `word_element`,
+  // - Add the in class to new elements
+  // - Remove the in class from new elements
+
+  // First, add the out class to current elements
+  // 1. Whole element
+  phrase_element.classList.add('fade-out')
+  // 2. Single word
+  word_element.classList.add('fade-out')
+
+  // Then, remove the out class from current elements,
+  // replace the inner HTML of `phrase_element` or `word_element`,
+  // and add the in class to new elements
+  setTimeout(() => {
+      // 1. Whole element
+      phrase_element.classList.remove('fade-out')
+      phrase_element.innerHTML = phrases[counter % phrases.length]
+      phrase_element.classList.add('fade-in')
+      // 2. Single word
+      word_element.classList.remove('fade-out')
+      word_element.innerHTML = words[counter % words.length]
+      word_element.classList.add('fade-in')
+    }, anim_duration)
+    // Finally, remove the in class from new elements
+    // 1. Whole element
+    phrase_element.classList.remove('fade-in')
+    // 2. Single word
+    word_element.classList.remove('fade-in')
+  }, anim_delay)
+});
 ```
 
-```scss
-
+```css
+/* In this case, a simple fade-in/out animation */
+/* But it can be any animation, like a slide-in/out, a blur-in/out, etc. */
+/* Declare the animations */
+/* Fade in */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* Fade out */
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+/* Important to have a default value */
+#phrase, #word {
+  opacity: 1;
+}
+/* Add the fade-in animation once `fade-in` class is added to the element */
+#phrase.fade-in, #word.fade-in {
+  -webkit-animation: fade-in 0.5s ease-in-out both;
+  animation: fade-in 0.5s ease-in-out both;
+}
+/* Add the fade-in animation once `fade-out` class is added to the element */
+#phrase.fade-out, #word.fade-out {
+  -webkit-animation: fade-out 0.5s ease-in-out both;
+  animation: fade-out 0.5s ease-in-out both;
+}
 ```
+
+Result:
+
+<style>
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes slide-in {
+  from {
+    transform: translateY(50px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes slide-out {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50px);
+  }
+}
+#phrase-example {
+  opacity: 1;
+}
+#phrase-example.fade-in {
+  animation: fade-in 0.5s ease-in-out both;
+}
+#phrase-example.fade-out {
+  animation: fade-out 0.5s ease-in-out both;
+}
+#word-example-container {
+  overflow: hidden;
+}
+#word-example {
+  display: inline-block;
+  transform: translateY(0);
+}
+#word-example.slide-in {
+  animation: slide-in 0.5s ease-in-out both;
+}
+#word-example.slide-out {
+  animation: slide-out 0.5s ease-in-out both;
+}
+</style>
+
+<div class="box box--padding">
+  <p id="phrase-example">Starting phrase</p>
+  <p id="word-example-container">Welcome, <span id="word-example">Harry!</span></p>
+</div>
+
+<script>
+  // 1. Define the array of strings
+  // Can be a list of simple strings or actual HTML elements
+  const phrases = [
+    // "Starting phrase", // You can add or exclude the initial word
+    "<ins>Gryffindor</ins>",
+    "Hufflepuff",
+    "Ravenclaw",
+    "<del>Slytherin</del>",
+  ];
+  const words = [
+    "Harry!", // You can add or exclude the initial word
+    "Ron!",
+    "Hermione!",
+    "Ginny!",
+  ];
+
+  // 2. Get the elements and define the setting and helper variables
+  const phrase_element = document.getElementById('phrase-example')
+  const word_element = document.getElementById('word-example')
+
+  // Animation settings
+  let anim_delay = 3500 // ms (3.5 seconds)
+  let anim_duration = 500 // ms (0.5 seconds)
+  let counter = 0 // helper
+
+  // 2. Add a setInterval that will increment a counter
+  setInterval(() => {
+    counter++;
+    // 1. Whole element
+    phrase_element.classList.add('fade-out')
+    // 2. Single word
+    word_element.classList.add('slide-out')
+
+    setTimeout(() => {
+      // 1. Whole element
+      phrase_element.classList.remove('fade-out')
+      phrase_element.innerHTML = phrases[counter % phrases.length]
+      phrase_element.classList.add('fade-in')
+      // 2. Single word
+      word_element.classList.remove('slide-out')
+      word_element.innerHTML = words[counter % words.length]
+      word_element.classList.add('slide-in')
+    }, anim_duration)
+
+    // Finally, remove the in class from new elements
+    // 1. Whole element
+    phrase_element.classList.remove('fade-in')
+    // 2. Single word
+    word_element.classList.remove('slide-in')
+  }, anim_delay)
+</script>
 
 <!-- --- -->
 
@@ -936,7 +1181,7 @@ Use `align-items: stretch` to do this.
 
 ## [CSS] How to add ellipsis for text overflows
 
-**Warning**: CSS ellipsis only works for a single line of text.
+**Warning**: The CSS ellipsis only works for a single line of text.
 
 For multiple lines, JavaScript is needed.
 
@@ -950,7 +1195,7 @@ For multiple lines, JavaScript is needed.
 
 Result:
 
-With ellipsis:
+With ellipsis
 
 <style>
   #ellipsis-example {
@@ -965,7 +1210,7 @@ With ellipsis:
   </div>
 </div>
 
-Without:
+Without
 
 <div class="box box--padding">
   <div>
@@ -979,7 +1224,7 @@ Without:
 
 You can format tabular numbers using the `font-variant-numeric` property.
 
-Specifically, the `tabular-nums` value ensures that all numbers in the text have the same width (monospaced), making them align neatly. Useful for displaying data and prices, for example.
+Specifically, the `tabular-nums` value ensures that all numbers in the text have the same width (monospaced), making them align neatly. Useful for displaying data and prices in tables, for example.
 
 ```css
 .some-class-name {
@@ -1078,6 +1323,7 @@ With `text-wrap: balance;`
     padding: 0 10%;
   }
 </style>
+
 <div class="box box--padding text-wrap-example">
   <h3 class="text-wrap-example-balanced">
     "Humans are distinguished from other species by our ability to work miracles. We call these miracles technology."
@@ -1118,17 +1364,15 @@ Three main options:
 </p>
 ```
 
-Result:
+Result (try resizing the box):
 
 <div class="box box--padding box--resizable">
   <p>
     Some text that will be broken <br> into 2 lines.
   </p>
-
   <p>
     Some long word that can be <strong>hyphen&shy;ated</strong> exactly where we want.
   </p>
-
   <p>
     Some term that shouldn't be on 2 lines like <strong>know&nbsp;how</strong>.
   </p>

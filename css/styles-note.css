@@ -505,7 +505,7 @@
   max-height: 500px;
 }
 
-.box--resizable p {
+.box p {
   width: 100% !important;
 }
 
@@ -578,12 +578,6 @@
 }
 
 /* Text */
-p {
-  width: calc(var(--grid-unit) * 6);
-  margin: 0 auto;
-  text-wrap: pretty;
-}
-
 p,
 .pa,
 .ol,
@@ -606,8 +600,11 @@ sub {
 }
 
 p {
+  width: calc(var(--grid-unit) * 6);
+  margin: 0 auto;
   margin-bottom: calc(var(--font-size) * 1.8);
   font-weight: 400;
+  text-wrap: pretty;
 }
 
 .pa {
@@ -636,6 +633,7 @@ strong {
 em {
   font-style: italic;
   font-family: var(--font-serif);
+  /* Because of font-family change */
   font-size: calc(var(--font-size) * 1.05);
   line-height: 1.75em;
 }

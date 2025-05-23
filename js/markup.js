@@ -992,15 +992,15 @@ fetch(url)
           (previousElement.htmlBlockType === "script" &&
             element.trim().match(/<\/script>/i))
         ) {
-          // Closing tag for the current block
+          // Closing tag for the current style or script block
           noteArticle += element;
           previousElement.inHtmlBlock = false;
           previousElement.htmlBlockType = null;
           return;
         }
-        // Just add the line as-is within the block
+        // If the line is not a closing tag,
+        // just add the line as-is within the block
         noteArticle += element + "\n";
-        // noteArticle += element;
         return;
       }
 
@@ -1018,9 +1018,9 @@ fetch(url)
           !(previousElement.state === "open")) ||
         previousElement.htmlTagStack.length > 0
       ) {
-        // 
+        //
         // Check for HTML tags
-        // 
+        //
         // Start HTML checks
         // 1. Check for tag types
         // Check for 1 or more opening HTML tags
@@ -1043,7 +1043,7 @@ fetch(url)
         const selfClosingTags = [];
         const selfClosingTagMatches = element
           .trim()
-          .matchAll(/<([a-z][a-z0-9]*)\b[^>]*>\s*\/?/g);
+          .matchAll(/<[^>]+\/>/g);
         selfClosingTagMatches.forEach((i) => {
           selfClosingTags.push(i[1]);
         });
@@ -1067,7 +1067,7 @@ fetch(url)
           if (closingTag) {
             closingTag = closingTag[1];
           }
-          let selfClosingTag = fullTag.match(/<([a-z][a-z0-9]*)\b[^>]*>\s*\/?/i);
+          let selfClosingTag = fullTag.match(/<[^>]+\/>/i);
           if (selfClosingTag) {
             selfClosingTag = selfClosingTag[1];
           } else {
@@ -1084,7 +1084,6 @@ fetch(url)
             noteArticle += fullTag;
             return;
           }
-
 
           // 4. Handle opening and closing tags
           // If the tag is a closing tag, pop it from the stack
@@ -1217,24 +1216,23 @@ fetch(url)
 
     // Execute any script tags that were added via innerHTML
     function executeInlineScripts() {
-      const scripts = document.querySelectorAll('#note script');
+      const scripts = document.querySelectorAll("#note script");
       scripts.forEach((oldScript) => {
-        console.log("oldScript");
-        const newScript = document.createElement('script');
-        
+        const newScript = document.createElement("script");
+
         // Copy all attributes
         Array.from(oldScript.attributes).forEach((attr) => {
           newScript.setAttribute(attr.name, attr.value);
         });
-        
+
         // Copy the script content
         newScript.textContent = oldScript.textContent;
-        
+
         // Replace the old script with the new one
         oldScript.parentNode.replaceChild(newScript, oldScript);
       });
     }
-    
+
     // Execute scripts once DOM has loaded
     setTimeout(executeInlineScripts, 0);
 
