@@ -222,9 +222,9 @@ $font-stack: "Inter", sans-serif;
 
 <!-- --- -->
 
-## [SCSS] How to reset styles
+<!-- ## [SCSS] How to reset styles
 
-Browser defaults are violently ugly. If you’re serious about good design, you should be ok with breaking them completely, and crafting your own.
+Browser defaults are violently ugly. If you're serious about good design, you should be ok with breaking them completely, and crafting your own.
 
 ```scss
 /* Nuke all defaults */
@@ -256,7 +256,7 @@ textarea {
     outline: none !important;
   }
 }
-```
+``` -->
 
 <!-- --- -->
 
@@ -280,146 +280,58 @@ Personally, I like: 1) to stick the media queries inside the element's styles, a
 
 <!-- --- -->
 
-## [SCSS+JS] How to do simple, beautiful inputs
+<!-- ## [SCSS+JS] How to do simple, beautiful buttons
 
-Things I value:
+Things I value in buttons:
 
-- Feedback on hover, focus, and error states
-- Clean, minimal feel
+- Feedback on hover, focus (with keyboard), disabled, and loading states so that it *feels* interactive or responsive
+- Clean, minimal look that *feels* like a button -->
 
-```html
-<!-- 1. No label, barebones -->
-<div class="input">
-  <input type="text" id="name" required />
-</div>
+<!-- ```html
 
-<!-- 2. With label outside, and with placeholder -->
-<div class="input">
-  <label for="name">Full Name</label>
-  <input type="text" id="name" required />
-</div>
-
-<!-- 3. With label inside (overlaid) -->
-<div class="input">
-  <label for="name">Full Name</label>
-  <input type="text" id="name" required />
-</div>
-```
-
-```js
-// Optional: Add JavaScript for enhanced UX
-document.addEventListener("DOMContentLoaded", function () {
-  const inputs = document.querySelectorAll(".input-field");
-
-  inputs.forEach((input) => {
-    // Handle autofill detection
-    function checkAutofill() {
-      if (input.matches(":-webkit-autofill")) {
-        input.classList.add("has-content");
-      }
-    }
-
-    // Check for autofill on load and after animation
-    checkAutofill();
-    setTimeout(checkAutofill, 100);
-
-    // Handle manual input
-    input.addEventListener("input", function () {
-      if (this.value) {
-        this.classList.add("has-content");
-      } else {
-        this.classList.remove("has-content");
-      }
-    });
-  });
-});
 ```
 
 ```scss
-.input-group {
-  position: relative;
-  margin-bottom: 24px;
-}
 
-.input-field {
-  width: 100%;
-  padding: 16px 12px 8px 12px;
-  border: 1px solid #e1e5e9;
-  border-radius: 8px;
-  font-size: 16px;
-  font-family: inherit;
-  background-color: #ffffff;
-  color: #333333;
-  transition: all 0.2s ease;
-
-  // Remove default styles
-  outline: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-
-  // Focus state
-  &:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-  }
-
-  // Error state (when invalid and touched)
-  &:invalid:not(:placeholder-shown) {
-    border-color: #ef4444;
-    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
-  }
-
-  // When input has content or is focused
-  &:not(:placeholder-shown),
-  &:focus {
-    padding-top: 20px;
-    padding-bottom: 4px;
-
-    + .input-label {
-      top: 8px;
-      font-size: 12px;
-      color: #6b7280;
-    }
-  }
-
-  // Focus state for label
-  &:focus + .input-label {
-    color: #3b82f6;
-  }
-
-  // Error state for label
-  &:invalid:not(:placeholder-shown) + .input-label {
-    color: #ef4444;
-  }
-}
-
-.input-label {
-  position: absolute;
-  left: 12px;
-  top: 16px;
-  font-size: 16px;
-  color: #9ca3af;
-  pointer-events: none;
-  transition: all 0.2s ease;
-  background-color: transparent;
-}
-
-// Textarea specific adjustments
-textarea.input-field {
-  resize: vertical;
-  min-height: 80px;
-
-  &:not(:placeholder-shown),
-  &:focus {
-    padding-top: 24px;
-    padding-bottom: 8px;
-  }
-}
 ```
 
-Result:
+```js
 
-<style>
+``` -->
+
+<!-- --- -->
+
+<!-- ## [SCSS+JS] How to make fancy buttons with radar borders and hover effects
+
+```html
+
+```
+
+```scss
+
+``` -->
+
+<!-- --- -->
+
+<!-- ## [SCSS+JS] How to do simple, beautiful inputs
+
+Things I value in inputs:
+
+- Feedback on hover, focus, and error states so that it *feels* interactive or responsive
+- Clean, minimal look that *feels* like an input
+
+```html
+```
+
+```js
+```
+
+```scss
+```
+
+Result: -->
+
+<!-- <style>
   .input {
     margin: 0 auto;
     padding: 0;
@@ -459,12 +371,11 @@ Result:
     outline: 3px solid #eee;
     border: 1px solid #888 !important;
   }
-</style>
+</style> -->
 
-<div class="input">
-  <!-- <label for="text-input-example">Full Name</label> -->
+<!-- <div class="input">
   <input type="text" id="text-input-example"required />
-</div>
+</div> -->
 
 <!-- <script>
 </script> -->
@@ -475,14 +386,13 @@ Result:
 
 You can resize the textarea input box to fit the content dynamically. Chats and LLM inputs do this.
 
-```jsx
-// Plain HTML + JS
-<textarea
-  id="message"
-  rows="1"
-  maxlength="2000"
-  onInput="(e) => resizeTextarea(e)"
-/>
+```html
+<!-- Plain HTML + JS -->
+<textarea id="message" rows="1" maxlength="2000"></textarea>
+```
+
+```js
+// Frameworks
 
 // Vue
 <textarea
@@ -503,13 +413,15 @@ You can resize the textarea input box to fit the content dynamically. Chats and 
 />
 ```
 
-```ts
+```js
 // 2 options: with a resizing function, or directly in the event listener
 
 // Resizing function
-function resizeTextarea(event: Event) {
-  event.target.style.height = "auto"; // Reset the height
-  event.target.style.height = event.target.scrollHeight + 2 + "px"; // Set it to the scrollHeight
+function resizeTextarea(event) {
+  // Reset the height
+  event.target.style.height = "auto";
+  // Set it to the scrollHeight (and probably account for border width)
+  event.target.style.height = event.target.scrollHeight + 2 + "px";
 }
 
 // Get the textarea element
@@ -690,8 +602,7 @@ Result:
 
 <div id="scrollbar-example" class="box box--padding">
   <div>
-    <p>"We choose to go to the moon in this decade and do the other things, not because they are easy, but because they are hard, because that goal will serve to organize and measure the best of our energies and skills, because that challenge is one that we are willing to accept, one we are unwilling to postpone, and one which we intend to win, and the others, too."
-    – John F. Kennedy</p>
+    <p>"We choose to go to the moon in this decade and do the other things, not because they are easy, but because they are hard, because that goal will serve to organize and measure the best of our energies and skills, because that challenge is one that we are willing to accept, one we are unwilling to postpone, and one which we intend to win, and the others, too." – John F. Kennedy</p>
   </div>
 </div>
 
@@ -761,7 +672,7 @@ Result:
   background-color: #eee;
 }
 .sticky-example-parent > .item {
-  border: 1px solid #ccc;
+  border: 1px solid #eee;
   border-radius: 4px;
   padding: .5em;
   margin-bottom: .5em;
@@ -808,8 +719,25 @@ If you're using a framework, you could add something like this to a method that 
 Result:
 
 <style>
-
+#navbar-example {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
 </style>
+
+<div class="box">
+  <div id="navbar-example">
+    <div class="navbar-example-item">Logo</div>
+    <div class="navbar-example-item">Menu</div>
+    <div class="navbar-example-item">Action</div>
+  </div>
+</div>
+
+<script>
+</script>
 
 <!-- --- -->
 
@@ -1206,7 +1134,7 @@ With ellipsis
 </style>
 <div class="box box--padding">
   <div id="ellipsis-example">
-    "Humans are distinguished from other species by our ability to work miracles. We call these miracles technology."
+    "Humans are distinguished from other species by our ability to work miracles. We call these miracles technology." – Peter Thiel
   </div>
 </div>
 
@@ -1214,7 +1142,7 @@ Without
 
 <div class="box box--padding">
   <div>
-    "Humans are distinguished from other species by our ability to work miracles. We call these miracles technology."
+    "Humans are distinguished from other species by our ability to work miracles. We call these miracles technology." – Peter Thiel
 
   </div>
 </div>
@@ -1340,18 +1268,160 @@ With the default `text-wrap: wrap;`
 
 <!-- --- -->
 
+## [JS] How show human readable times: RelativeTimeFormat
+
+To show time differences in a human readable way (like "1 day ago", "in 2 weeks", etc.), you can use `Intl.RelativeTimeFormat`.
+
+```js
+// Basics
+
+// Create a RelativeTimeFormat instance for English
+// Use 'auto' for natural language formatting
+const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
+
+// Days
+console.log(rtf.format(-1, 'day'));
+// Expected output: "yesterday"
+console.log(rtf.format(1, 'day'));
+// Expected output: "tomorrow"
+console.log(rtf.format(0, 'day'));
+// Expected output: "today"
+
+// Other units
+console.log(rtf.format(-5, 'minute'));
+// Expected output: "5 minute ago"
+console.log(rtf.format(-10, 'hour'));
+// Expected output: "10 hours ago"
+console.log(rtf.format(-2, 'month'));
+// Expected output: "2 months ago"
+console.log(rtf.format(-1, 'year'));
+// Expected output: "1 year ago"
+
+// - - - - - - - - - -
+
+// Create a RelativeTimeFormat instance for German
+const rtfGerman = new Intl.RelativeTimeFormat('de', { numeric: 'auto' });
+
+console.log(rtfGerman.format(-2, 'week')); 
+// Expected output: "vor 2 Wochen"
+console.log(rtfGerman.format(1, 'hour')); 
+// Expected output: "in 1 Stunde"
+
+// - - - - - - - - - -
+
+// Default is 'always' for precise numeric formatting
+const rtfAlways = new Intl.RelativeTimeFormat('en', { numeric: 'always' });
+
+console.log(rtfAlways.format(-1, 'day'));
+// Expected output: "1 day ago"
+console.log(rtfAlways.format(1, 'day')); 
+// Expected output: "in 1 day"
+
+// - - - - - - - - - -
+
+// Using 'short' for shorter formatting
+const rtfShort = new Intl.RelativeTimeFormat('en', { style: 'short' });
+
+console.log(rtfShort.format(-1, 'day')); 
+// Expected output: "1 day ago"
+console.log(rtfShort.format(2, 'week')); 
+// Expected output: "in 2 wk"
+
+// - - - - - - - - - -
+
+// Using 'narrow' for the most compact formatting
+const rtfNarrow = new Intl.RelativeTimeFormat('en', { style: 'narrow' });
+
+console.log(rtfNarrow.format(-1, 'day')); 
+// Expected output: "1d ago"
+console.log(rtfNarrow.format(2, 'week')); 
+// Expected output: "in 2w"
+```
+
+```js
+// Real-world example
+
+// 1. Create a RelativeTimeFormat instance
+const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
+
+// 2. Set date
+const eventDate = new Date(); // or some createAt/updatedAt date
+
+// 3. Calculate the difference between the dates
+function getTimeDifference(from, to = new Date()) {
+  // Get the difference in seconds
+  const difference = Math.round((from - to) / 1000); // round to nearest second
+  const abs = Math.abs(difference); // absolute value
+  // Return the difference and the corresponding unit
+  if (abs < 60)   return [difference, 'second'];
+  if (abs < 3600) return [Math.round(difference / 60), 'minute'];
+  if (abs < 86400) return [Math.round(difference / 3600), 'hour'];
+  if (abs < 604800) return [Math.round(difference / 86400), 'day'];
+  if (abs < 2629800) return [Math.round(difference / 604800), 'week'];
+  if (abs < 31557600) return [Math.round(difference / 2629800), 'month'];
+  return [Math.round(difference / 31557600), 'year'];
+}
+
+// 4) Function to update the time difference
+function update() {
+  const [value, unit] = getTimeDifference(eventDate);
+  document.getElementById('relative-time-format-example').textContent = rtf.format(value, unit);
+}
+
+// 5) Start it, and update it every second
+update(); // Initialize
+setInterval(update, 1000); // Update every second
+```
+
+Result:
+
+<div class="box box--padding">
+  <p>Time since you visited this page: <strong id="relative-time-format-example"></strong></p>
+  <p>Time since Jan 1 this year: <strong id="relative-time-format-example-1"></strong></p>
+  <p>Time to Jan 1 next year: <strong id="relative-time-format-example-2"></strong></p>
+</div>
+
+<script>
+  const eventDate = new Date();
+  const eventDate1 = new Date(new Date().getFullYear(), 0, 1); 
+  const eventDate2 = new Date(new Date().getFullYear() + 1, 0, 1);
+  const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
+  function getTimeDifference(from, to = new Date()) {
+    const difference = Math.round((from - to) / 1000);
+    const abs = Math.abs(difference);
+    if (abs < 60)   return [difference, 'second'];
+    if (abs < 3600) return [Math.round(difference / 60), 'minute'];
+    if (abs < 86400) return [Math.round(difference / 3600), 'hour'];
+    if (abs < 604800) return [Math.round(difference / 86400), 'day'];
+    if (abs < 2629800) return [Math.round(difference / 604800), 'week'];
+    if (abs < 31557600) return [Math.round(difference / 2629800), 'month'];
+    return [Math.round(difference / 31557600), 'year'];
+  }
+  function update(id, date) {
+    const [value, unit] = getTimeDifference(date);
+    document.getElementById(id).textContent = rtf.format(value, unit);
+  }
+  update('relative-time-format-example', eventDate);
+  setInterval(() => update('relative-time-format-example', eventDate), 1000);
+  update('relative-time-format-example-1', eventDate1);
+  update('relative-time-format-example-2', eventDate2);
+</script>
+
+
+
+<!-- --- -->
+
 ## [HTML] How to set break points for words and lines
 
 Three main options:
 
-- `<br/>` for setting where to break a line, can be disabled with CSS using `display: none;`
+- `<br>` for setting where to break a line, can be disabled with CSS using `display: none;`
 - `&&shy;shy;` for setting where words whould be split and hyphenated
 - `&&shy;nbsp;` for setting blank spaces that should not be broken into multiple lines
 
 ```html
 <p>
-  Some text that will be broken <br />
-  into 2 lines.
+  Some text that will be broken <br> into 2 lines.
 </p>
 
 <p>

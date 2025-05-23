@@ -124,13 +124,13 @@ _ _ _ _ _ _
 
 Result:
 
-<hr/>
-<hr/>
-<hr/>
-<p>You can also separate the characters with spaces:<p>
-<hr/>
-<hr/>
-<hr/>
+<hr>
+<hr>
+<hr>
+<p>You can also separate the characters with spaces:</p>
+<hr>
+<hr>
+<hr>
 
 ### Emphasis
 
@@ -286,7 +286,7 @@ There are two ways to display code: **inline code** and **code blocks**.
 
 For inline code, you must wrap the characters with single backticks (`).
 
-For code blocks, you wrap the code using sets of 3 backticks: 3 to open and 3 to close. (In the example below, the backticks are escaped with a backslash `\`)
+For code blocks, you wrap the code using sets of 3 backticks: 3 to open and 3 to close. 
 
 In some interpreters you can even specify the name of the programming language after the tickmarks in order to display the corresponding syntax highlighting. This works in GitHub.
 
