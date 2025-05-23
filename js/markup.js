@@ -353,6 +353,13 @@ fetch(url)
       // ...
       let out;
       if (previousElement.state === "open" && previousElement.type === "pre") {
+        if (element.trim().startsWith("\\```")) {
+          out =
+            '<span class="line"><span>```' +
+            element.slice(4).trim() +
+            "</span></span>";
+          return out;
+        }
         if (element.trim() === "```") {
           // Close
           out = "</code></pre>";
@@ -1079,6 +1086,7 @@ fetch(url)
             fullTag.startsWith("<!--") ||
             fullTag.startsWith("<br>") ||
             fullTag.startsWith("<hr>") ||
+            fullTag.startsWith("<img ") ||
             selfClosingTags.includes(selfClosingTag)
           ) {
             noteArticle += fullTag;
