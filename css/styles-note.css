@@ -378,10 +378,10 @@
   transition: border 0.2s, background-color 0.2s;
 }
 
-.blockquote:hover {
+/* .blockquote:hover {
   border-left: 3px solid var(--blue);
   background-color: #e7f7ff50;
-}
+} */
 
 .blockquote * {
   color: var(--text-blockquote);
