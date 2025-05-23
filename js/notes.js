@@ -11,7 +11,7 @@ const notes = [
   // }
   {
     folder: "on-javascript-typescript",
-    date: "2024-11-29",
+    date: "2025-05-23",
     title: "On JavaScript & TypeScript",
     description: "Snippets and tips on JavaScript and TypeScript.",
     thumbnail: false,
@@ -20,7 +20,7 @@ const notes = [
   },
   {
     folder: "on-css-scss-styling",
-    date: "2024-11-29",
+    date: "2025-05-23",
     title: "On CSS/SCSS & Styling",
     description: "Snippets and tips on CSS/SCSS and styling in general.",
     thumbnail: false,
@@ -29,7 +29,7 @@ const notes = [
   },
   // {
   //   folder: 'on-python',
-  //   date: '2025-04-15',
+  //   date: '2025-05-23',
   //   title: 'On Python',
   //   description: 'Snippets and tips on Python.',
   //   thumbnail: false,
