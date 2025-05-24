@@ -86,7 +86,7 @@ if (x > 0) {
 ```
 
 
-## [JS] Typical headaches: Callback hell, Undefined, NaN, Type coercion, Truthiness
+## [JS] Typical headaches: Callback hell, Undefined, NaN, Type coercion, Truthiness, Shallow copies
 
 If you thought JS was going to be easy, you're in for a couple (unpleasant) surprises.
 
@@ -197,7 +197,187 @@ console.log(Boolean(0))
 // Expected output: false
 console.log(Boolean('0'))
 // Expected output: true
+
+// - - - - - - - - - -
+
+// 6. Shallow copies
+// When you copy an object, you're copying the reference, not the value.
+// This means that if you change the original object, the copy will also change,
+// and vice versa!
+
+// Example:
+const original = { a: 1, b: 2 }
+const copy = original
+copy.a = 10
+console.log(original)
+// Expected output: { a: 10, b: 2 }
 ```
+
+<!-- --- -->
+
+## [JS] Useful built-in objects and functions: Math, Number, String, Array, Object, Date, Intl
+
+- `Math`
+- `Number`
+- `String`
+- `Array`
+- `Object`
+- `Date`
+- `Intl`
+
+```js
+// No need to import like in Python, just use them directly.
+
+// 1. Math
+Math.random() // Pseudo-random between 0 and 1
+Math.floor(0.5) // Round down to nearest integer (0)
+Math.ceil(0.5) // Round up to nearest integer (1)
+Math.round(0.5) // Round to nearest integer (1)
+Math.abs(-5) // Absolute value (5)
+Math.max(1, 2, 3) // Maximum value (3)
+Math.min(1, 2, 3) // Minimum value (1)
+Math.sqrt(16) // Square root (4)
+Math.pow(2, 3) // 2^3 (8)
+Math.PI // (3.14159...)
+// ... and other math functions like cos, log, etc.
+
+// - - - - - - - - - -
+
+// 2. Numbers
+const num = 10.1244
+num.toFixed(2) // Round to 2 decimal places as string ('10.12')
+
+// - - - - - - - - - -
+
+// 3. Arrays
+const numbers = [1, 2, 3, 4, 5]
+numbers.push(6) // Add to end ([1, 2, 3, 4, 5, 6])
+numbers.unshift(0) // Add to start ([0, 1, 2, 3, 4, 5, 6])
+numbers.pop() // Remove from end ([0, 1, 2, 3, 4, 5])
+numbers.shift() // Remove from start ([1, 2, 3, 4, 5])
+numbers.reverse() // ([5, 4, 3, 2, 1])
+// Splice: remove n items from an array at some starting point
+numbers.splice(2, 1) // Remove 1 item at index 2 ([1, 2, 4, 5])
+// Slice: get part of an array with a start (and end)
+letters = ['a', 'b', 'c', 'd', 'e'] // Reset
+letters.slice(1) // Items from index 1 to end (['b', 'c', 'd', 'e'])
+letters = ['a', 'b', 'c', 'd', 'e'] // Reset
+letters.slice(1, 3) // Items from index 1 to 3, not including 3 (['b', 'c'])
+letters = ['a', 'b', 'c', 'd', 'e'] // Reset
+letters.slice(0, -1) // Items from start to end-1 (['a', 'b', 'c', 'd'])
+// ... and other array methods like `map()`, `filter()`, `sort()`, `every()`, `some()`, etc.
+// (more on those below)
+
+// - - - - - - - - - -
+
+// 4. Objects
+const user = {
+  name: 'Harry Potter',
+  email: 'harry.potter@hogwarts.com',
+  age: 30,
+}
+Object.keys(user) // ['name', 'email', 'age']
+Object.values(user) // ['Harry Potter', 'harry.potter@hogwarts.com', 30]
+Object.entries(user) // [['name', 'Harry Potter'], ['email', 'harry.potter@hogwarts.com'], ['age', 30]]
+// and also `Object.groupBy()` (more on that below)
+
+// - - - - - - - - - -
+
+// 5. Strings
+const phrase = "You're a wizard, Harry. "
+phrase.toUpperCase() // "YOU'RE A WIZARD, HARRY. "
+phrase.toLowerCase() // "you're a wizard, harry. "
+phrase.split(',') // ["You're a wizard", "' Harry. "]
+// Remove whitespace at start and end
+phrase.trim() // "You're a wizard, Harry."
+// Editing
+phrase.replace('Harry', 'Ron') // "You're a wizard, Ron. "
+phrase.replaceAll('r', 'x') // "You'xe a wizaxd, Haxxy. "
+// Substrings
+phrase.substring(0, 10) // "You're a wizar"
+phrase.slice(0, 10) // "You're a wizar"
+phrase.slice(-10) // 'rd, Harry. '
+// True/false checks
+phrase.startsWith('You') // true
+phrase.endsWith('Harry') // true
+phrase.includes('wizard') // true
+// Regex matching
+phrase.match(/wizard/g) // ['wizard']
+
+// - - - - - - - - - -
+
+// 6. Dates
+// Date time string format:
+// YYYY-MM-DDTHH:mm:ss.sssZ
+const date = new Date('2025-01-01')
+const now = new Date()
+// Get parts of the date
+date.getFullYear() // 2025
+date.getMonth() // 0 (January)
+date.getDate() // 1
+// Editing the date (e.g. changing the year)
+date.setFullYear(2026) // 2026-01-01
+// Adding and subtracting dates (e.g. adding 1 day)
+date.setDate(date.getDate() + 1) // 2026-01-02
+
+// - - - - - - - - - -
+
+// 7. Intl
+// `Intl.DateTimeFormat` or directly on the date object
+// Formatting dates
+const options = { 
+  year: 'numeric', 
+  month: 'long', 
+  day: 'numeric'
+  // ... and more
+}
+date.toLocaleDateString('en-US', options) // 'January 2, 2026'
+date.toLocaleDateString('de', options) // '1. Januar 2026'
+// Formatting time (hours, minutes, seconds)
+const timeOptions = { hour: '2-digit', minute: '2-digit' }
+date.toLocaleTimeString('en-US', timeOptions) // '12:00 AM'
+date.toLocaleTimeString('de', timeOptions) // '00:00'
+
+// `Intl.NumberFormat` or directly on the number
+// Formatting numbers ('currency', 'decimal', 'percent', 'unit')
+const number = 1000
+// Currency
+const numberCurrencyDollarOptions = {
+  style: 'currency', 
+  currency: 'USD'
+}
+number.toLocaleString('en-US', numberCurrencyDollarOptions) // '$1,000.00'
+const numberCurrencyEuroOptions = {
+  style: 'currency', 
+  currency: 'EUR',
+  currencyDisplay: 'name'
+}
+number.toLocaleString('de', numberCurrencyEuroOptions) // '1.000,00 Euro'
+// Decimal
+const numberDecimalOptions = {
+  style: 'decimal',
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2
+}
+number.toLocaleString('en-US', numberDecimalOptions) // '1,000.00'
+number.toLocaleString('de', numberDecimalOptions) // '1.000,00'
+// Percent
+const percentNumber = 0.5
+const numberPercentOptions = { style: 'percent' }
+percentNumber.toLocaleString('en-US', numberPercentOptions) // '50%'
+// Unit
+const numberUnitOptions = {
+  style: 'unit',
+  unit: 'kilogram',
+  unitDisplay: 'short'
+}
+number.toLocaleString('en-US', numberUnitOptions) // '1,000 kg'
+
+// For `Intl.RelativeTimeFormat` (e.g. "1 day ago"),
+// you can check my "On CSS/SCSS & Styling" notes.
+```
+
+<!-- --- -->
 
 ## [JS] How to do if/else statements on a single line: Ternary operators
 
@@ -629,6 +809,92 @@ console.log(sortedArr)
 
 <!-- --- -->
 
+## [JS] How to aggregate data in an array of objects: GroupBy, Reduce
+
+Lots of data analysis tools have a way to aggregate data. They often have some tools called `groupBy` and `reduce`, and JS has them too. You can use them to group data by a key's value or some condition.
+
+```js
+// Grouping by a single key
+
+// Example 1:
+const products = [
+  { name: 'apple', price: 10, category: 'fruit' },
+  { name: 'banana', price: 20, category: 'fruit' },
+  { name: 'carrot', price: 30, category: 'vegetable' },
+  { name: 'orange', price: 40, category: 'fruit' },
+]
+
+// Group them by category name
+const groupedProducts = Object.groupBy(products, (product) => product.category)
+
+console.log(groupedProducts)
+// Expected output: Object {
+//   fruit: [
+//     { name: 'apple', price: 10, category: 'fruit' },
+//     { name: 'banana', price: 20, category: 'fruit' },
+//     { name: 'orange', price: 40, category: 'fruit' },
+//   ],
+//   vegetable: [
+//     { name: 'carrot', price: 30, category: 'vegetable' },
+//   ],
+// }
+
+// - - - - - - - - - -
+
+// Example 2:
+const countries = [
+  { name: 'USA', population: 330, continent: 'North America' },
+  { name: 'Canada', population: 37, continent: 'North America' },
+  { name: 'Mexico', population: 126, continent: 'North America' },
+  { name: 'France', population: 67, continent: 'Europe' },
+  { name: 'Germany', population: 83, continent: 'Europe' },
+  { name: 'Italy', population: 60, continent: 'Europe' },
+  { name: 'Japan', population: 126, continent: 'Asia' },
+  { name: 'China', population: 1402, continent: 'Asia' },
+  { name: 'India', population: 1380, continent: 'Asia' },
+]
+
+// Group them by population size (you can obviously do more complex conditions)
+const groupedCountries = Object.groupBy(countries, ((country) => country.population > 100 ? 'Large' : 'Small'))
+
+console.log(groupedCountries)
+// Expected output: Object {
+//   Large: [
+//     { name: 'USA', population: 330, continent: 'North America' },
+//     { name: 'China', population: 1402, continent: 'Asia' },
+//     { name: 'India', population: 1380, continent: 'Asia' },
+//     { name: 'Mexico', population: 126, continent: 'North America' },
+//     { name: 'Japan', population: 126, continent: 'Asia' },
+//   ],
+//   Small: [
+//     { name: 'Canada', population: 37, continent: 'North America' },
+//     { name: 'France', population: 67, continent: 'Europe' },
+//     { name: 'Germany', population: 83, continent: 'Europe' },
+//     { name: 'Italy', population: 60, continent: 'Europe' },
+//   ],
+// }
+
+// - - - - - - - - - -
+
+// Example 3:
+// Group the countries by continent, and sum the population of each continent
+// Using `Array.reduce()` directly, looping through each country in the array
+// `acc` is the accumulator, which is the object that will be returned in the end
+const reducedCountries = countries.reduce((acc, country) => {
+  acc[country.continent] = (acc[country.continent] || 0) + country.population
+  return acc
+}, {})
+
+console.log(reducedCountries)
+// Expected output: Object {
+//   'North America': 493,
+//   Europe: 210,
+//   Asia: 2908,
+// }
+```
+
+<!-- --- -->
+
 ## [JS] How to copy text to the clipboard
 
 ```js
@@ -727,7 +993,9 @@ localStorage.clear()
 
 ## [JS] How to prevent typing certain characters in form inputs
 
-You can prevent users from typing certain characters in an input by checking the `event.key` property. There are a couple of ways to do this. I prefer the second method, because it's more flexible, readable, and sets explicit control over what characters are allowed.
+You can prevent users from typing certain characters in an input by checking the `event.key` property. There are a couple of ways to do this. 
+
+I prefer the second method, because it's more flexible, readable, and sets explicit control over what characters are allowed.
 
 ```js
 // Example assuming HTML: <input type="text" id="numericInput">
@@ -762,7 +1030,9 @@ document.getElementById('numericInput').addEventListener('keydown', function(eve
 
 ## [JS] How to chain functions / methods: Pipe, Reduce
 
-A `pipe` is a functional programming concept that allows you to pass a value through a series or chain of functions, from left to right. It automatically passes the result of each function as the argument to the next function in the chain. I think it's not very commonly used, but I think it looks cool.
+A `pipe` is a functional programming concept that allows you to pass a value through a series or chain of functions, from left to right. 
+
+It automatically passes the result of each function as the argument to the next function in the chain. I think it's not very commonly used, but I think it looks cool.
 
 ```js
 // The pipe function takes any number of functions as arguments,
@@ -877,51 +1147,55 @@ console.log(add(10, '20'))
 In TypeScript, `type` is what you'll use the most (duh). But `type` and `interface` can be slightly confusing since they can look very similar when dealing with objects. They are usually interchangeable, and in general, you'll probably default to using `type` as much as possible.
 
 ```ts
+// 
 // 1. Type
+// 
 // Use for:
-// - simple types (primitives)
-// - complex types (objects)
-// - advanced types (mapped types, conditional types, etc.)
-// - arrays of a single type
-// - arrays of complex types
-// - tuples
-// - unions
-// - when you don't need to extend
+// - Simple types (primitives)
+// - Complex types (objects)
+// - Advanced types (mapped types, conditional types, etc.)
+// - Arrays of a single type
+// - Arrays of complex types
+// - Tuples
+// - Unions
+// - When you don't need to extend
 
 // Type examples:
-// - simple types (primitives)
+// - Simple types (primitives)
 type Name = string
 type Age = number
 
-// - complex types (objects)
+// - Complex types (objects)
 type Person = {
   name: string
   age: number
   nickname?: string // Optional property
 }
 
-// - advanced types (mapped types, conditional types, etc.)
+// - Advanced types (mapped types, conditional types, etc.)
 type ReadOnly<T> = {
   readonly [P in keyof T]: T[P]
 }
 
-// - arrays of a single type
+// - Arrays of a single type
 type Numbers = number[]
 
-// - arrays of complex types
+// - Arrays of complex types
 type People = Person[]
 
-// - tuples
+// - Tuples
 type Coordinates = [number, number]
 
-// - unions
+// - Unions
 type ID = string | number  
 
 // - - - - - - - - - -
 
+// 
 // 2. Interface
+// 
 // Use for: 
-// - objects that may need to be extended later
+// - Objects that may need to be extended later
 
 // Interface examples:
 interface User {

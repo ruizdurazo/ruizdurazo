@@ -20,7 +20,7 @@ Styling and visual design is incredibly important. It makes or breaks a user's e
 
 You need to learn CSS.
 
-![CSS](./images/css.png "")[size: m, aspect: 860x720]
+![CSS](./images/css.png)[size: m, aspect: 860x720]
 
 Here's a list of snippets I've found useful.
 
@@ -249,7 +249,7 @@ textarea {
   -webkit-appearance: none;
   -moz-appearance: none;
   ...
-  
+
   /* mozilla ugliness */
   &::-moz-focus-inner {
     border: none !important;
@@ -340,7 +340,7 @@ Result: -->
     flex-direction: row;
     align-items: center;
     max-width: 300px;
-    
+
   }
   .input > input {
     border-color: #ddd;
@@ -384,7 +384,7 @@ Result: -->
 
 ## [SCSS+JS] How to automatically resize textareas on input
 
-You can resize the textarea input box to fit the content dynamically. Chats and LLM inputs do this.
+You can resize the `textarea` input box to fit the content dynamically. Chat and LLM input boxes do this.
 
 ```html
 <!-- Plain HTML + JS -->
@@ -508,9 +508,9 @@ Result:
 
 ## [SCSS] How to add a custom font or web font: @font-face
 
-To make sure users see the font you want them to see (even if they don't have it on their device), you have to add it yourself.
+If you want to use a custom font, and if you want to make sure that users see that font (even if they don't have it on their device), you have to add it yourself.
 
-Cross-site caching no longer works. So really do have toadd it yourself and cache it yourself.
+Cross-site caching no longer works. So you really do have to add it yourself (and cache it yourself).
 
 For best performance:
 
@@ -556,6 +556,132 @@ Sometimes you see websites with quirky custom cursors. That’s usually done wit
   cursor: url("../assets/images/cursor-hover.svg"), pointer;
 }
 ```
+
+Result:
+
+<style>
+.custom-cursor-example {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.custom-cursor-example > div {
+  width: 100%;
+  padding: 100px 0;
+  text-align: center;
+  opacity: 0.33;
+}
+.custom-cursor-example:hover {
+  cursor: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHdpZHRoPSIyNHB4IiBoZWlnaHQ9IjI0cHgiIHN0cm9rZS13aWR0aD0iMS41IiB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgY29sb3I9IiMwMDAwMDAiPjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTkuNTAyNyA5Ljk2OTU4QzIwLjcwNzMgMTAuNDU4OCAyMC42MTU0IDEyLjE5NDEgMTkuMzY1OCAxMi41NTMzTDEzLjA2MDUgMTQuMzY1OEwxMC4xODA3IDIwLjI2MDZDOS42MDk5NiAyMS40Mjg4IDcuODg0OTkgMjEuMjE4IDcuNjEyNCAxOS45NDY4TDQuNjc2NzcgNi4yNTY0NkM0LjQ0NjM4IDUuMTgyMDQgNS41MTIxIDQuMjg3OCA2LjUzMDE5IDQuNzAxMjZMMTkuNTAyNyA5Ljk2OTU4WiIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2Utd2lkdGg9IjEuNSI+PC9wYXRoPjwvc3ZnPg=="), pointer;
+}
+.custom-cursor-example .hover {
+  background-color: #eee;
+}
+.custom-cursor-example .hover:hover {
+  cursor: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHdpZHRoPSIyNHB4IiBoZWlnaHQ9IjI0cHgiIHN0cm9rZS13aWR0aD0iMS41IiB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgY29sb3I9IiMwMDAwMDAiPjxwYXRoIGQ9Ik03LjUgMTJMNS40OTU5MSAxNC42NzIxQzQuOTE4NDUgMTUuNDQyMSA0Ljk3MTI3IDE2LjUxNDEgNS42MjE2IDE3LjIyMzZMOS40MDU1IDIxLjM1MTVDOS43ODQzMSAyMS43NjQ3IDEwLjMxODMgMjIgMTAuODc4OSAyMkMxMS45NjUxIDIyIDEzLjc0MTUgMjIgMTUuNSAyMkMxNy45IDIyIDE5LjUgMjAgMTkuNSAxOEMxOS41IDE4IDE5LjUgMTggMTkuNSAxOEMxOS41IDE4IDE5LjUgMTEuMTQyOSAxOS41IDkuNDI4NTkiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PC9wYXRoPjxwYXRoIGQ9Ik0xNi41IDkuOTk5OTVDMTYuNSA5Ljk5OTk1IDE2LjUgOS44NzQ4MyAxNi41IDkuNDI4NTJDMTYuNSA3LjE0MjggMTkuNSA3LjE0MjggMTkuNSA5LjQyODUyIiBzdHJva2U9IiMwMDAwMDAiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjwvcGF0aD48cGF0aCBkPSJNMTMuNSA5Ljk5OTk4QzEzLjUgOS45OTk5OCAxMy41IDkuMTc4MzIgMTMuNSA4LjI4NTdDMTMuNSA1Ljk5OTk4IDE2LjUgNS45OTk5OCAxNi41IDguMjg1N0MxNi41IDguNTA4ODUgMTYuNSA5LjIwNTQgMTYuNSA5LjQyODU1QzE2LjUgOS44NzQ4NyAxNi41IDkuOTk5OTggMTYuNSA5Ljk5OTk4IiBzdHJva2U9IiMwMDAwMDAiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjwvcGF0aD48cGF0aCBkPSJNMTAuNSAxMC4wMDAxQzEwLjUgMTAuMDAwMSAxMC41IDguNjE1ODQgMTAuNSA3LjUwMDA1QzEwLjUgNS4yMTQzNCAxMy41IDUuMjE0MzQgMTMuNSA3LjUwMDA1QzEzLjUgNy41MDAwNSAxMy41IDcuNTAwMDUgMTMuNSA3LjUwMDA1QzEzLjUgNy41MDAwNSAxMy41IDguMDYyNjEgMTMuNSA4LjI4NTc3QzEzLjUgOS4xNzgzOSAxMy41IDEwLjAwMDEgMTMuNSAxMC4wMDAxIiBzdHJva2U9IiMwMDAwMDAiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjwvcGF0aD48cGF0aCBkPSJNMTAuNSAxMEMxMC41IDEwIDEwLjUgOC42MTU3OCAxMC41IDcuNUMxMC41IDYuMzQxNTYgMTAuNSA0LjY4OTY4IDEwLjUgMy40OTg5OUMxMC41IDIuNjcwNTYgOS44Mjg0MyAyIDkgMlYyQzguMTcxNTcgMiA3LjUgMi42NzE1NyA3LjUgMy41VjEyVjE1IiBzdHJva2U9IiMwMDAwMDAiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjwvcGF0aD48L3N2Zz4="), pointer;
+  background-color: #ddd;
+}
+</style>
+
+<div class="box">
+  <div class="custom-cursor-example">
+    <div>Enter</div>
+    <div class="hover">Hover</div>
+  </div>
+</div>
+
+<!-- --- -->
+
+## [CSS] How to make a shimmering text effect
+
+Nowadays, you can see a sort of _shimmering_ text effect when something is loading or when an AI model is thinking.
+
+You can do this animation with a combination of `background-clip: text` and `background-image: linear-gradient()` (or you can also use `mask-image` with some gradient).
+
+```html
+<div class="shimmer-text">Loading...</div>
+```
+
+```scss
+// Animate the background-image
+// You can change the direction to go left to right,
+// or right to left, by switching the `to` and `from` values,
+// or by using `animation-direction: reverse`.
+// Important: Make `background-position` greater than 100%.
+@keyframes shimmer {
+  from {
+    background-position: -200% 0;
+  }
+  to {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-text {
+  // So that the background gradient size is relative to the text.
+  display: inline-block;
+  // Gradient
+  background-clip: text;
+  background-image: linear-gradient(to right, black, #ccc, black);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  // Important: Make `background-size` bigger than 100%.
+  background-size: 200% 100%;
+  background-repeat: repeat;
+  // Important: Add animation.
+  animation: shimmer 2s ease-in-out both infinite;
+}
+```
+
+Result:
+
+<style>
+@keyframes shimmer {
+  from {
+    background-position-x: 200%;
+  }
+  to {
+    background-position-x: -200%;
+  }
+}
+.shimmer-text-example-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+}
+.shimmer-text-example {
+  display: inline-block;
+  background-clip: text;
+  background-image: linear-gradient(to right, black, #ccc, black);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 100%;
+  background-repeat: repeat;
+  /* background-repeat: no-repeat; */
+  animation: shimmer 2s linear both infinite;
+  /* animation: shimmer 2s ease-in-out both infinite; */
+  position: relative;
+}
+.shimmer-text-example::before {
+  display: block;
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #666;
+  z-index: -1;
+}
+</style>
+
+<div class="box">
+  <div class="shimmer-text-example-container">
+    <div class="shimmer-text-example">Loading...</div>
+  </div>
+</div>
 
 <!-- --- -->
 
@@ -875,59 +1001,59 @@ const words = [
 ];
 
 // 2. Get the elements and define the setting and helper variables
-const phrase_element = document.getElementById('phrase')
-const word_element = document.getElementById('word')
+const phrase_element = document.getElementById("phrase");
+const word_element = document.getElementById("word");
 
 // Animation settings
-let anim_delay = 3500 // ms (3.5 seconds)
-let anim_duration = 500 // ms (0.5 seconds)
-let counter = 0 // helper
+let anim_delay = 3500; // ms (3.5 seconds)
+let anim_duration = 500; // ms (0.5 seconds)
+let counter = 0; // helper
 
 // 2. Add a setInterval that will increment a counter
-document.addEventListener('DOMContentLoaded', function (event) {
+document.addEventListener("DOMContentLoaded", function (event) {
   setInterval(() => {
-  // Increment the counter either before or after updating the elements
-  counter++;
+    // Increment the counter either before or after updating the elements
+    counter++;
 
-  // [Optional] Update the elements directly (no animation)
-  // 1. Whole element
-  // phrase_element.textContent = phrases[counter % phrases.length];
-  // 2. Single word
-  // word_element.textContent = words[counter % words.length];
+    // [Optional] Update the elements directly (no animation)
+    // 1. Whole element
+    // phrase_element.textContent = phrases[counter % phrases.length];
+    // 2. Single word
+    // word_element.textContent = words[counter % words.length];
 
-  // Update the elements with animation
-  // Order of operations:
-  // - Add the out class to current elements
-  // - Remove the out class from current elements
-  // - Replace the inner HTML of `phrase_element` or `word_element`,
-  // - Add the in class to new elements
-  // - Remove the in class from new elements
+    // Update the elements with animation
+    // Order of operations:
+    // - Add the out class to current elements
+    // - Remove the out class from current elements
+    // - Replace the inner HTML of `phrase_element` or `word_element`,
+    // - Add the in class to new elements
+    // - Remove the in class from new elements
 
-  // First, add the out class to current elements
-  // 1. Whole element
-  phrase_element.classList.add('fade-out')
-  // 2. Single word
-  word_element.classList.add('fade-out')
+    // First, add the out class to current elements
+    // 1. Whole element
+    phrase_element.classList.add("fade-out");
+    // 2. Single word
+    word_element.classList.add("fade-out");
 
-  // Then, remove the out class from current elements,
-  // replace the inner HTML of `phrase_element` or `word_element`,
-  // and add the in class to new elements
-  setTimeout(() => {
+    // Then, remove the out class from current elements,
+    // replace the inner HTML of `phrase_element` or `word_element`,
+    // and add the in class to new elements
+    setTimeout(() => {
       // 1. Whole element
-      phrase_element.classList.remove('fade-out')
-      phrase_element.innerHTML = phrases[counter % phrases.length]
-      phrase_element.classList.add('fade-in')
+      phrase_element.classList.remove("fade-out");
+      phrase_element.innerHTML = phrases[counter % phrases.length];
+      phrase_element.classList.add("fade-in");
       // 2. Single word
-      word_element.classList.remove('fade-out')
-      word_element.innerHTML = words[counter % words.length]
-      word_element.classList.add('fade-in')
-    }, anim_duration)
+      word_element.classList.remove("fade-out");
+      word_element.innerHTML = words[counter % words.length];
+      word_element.classList.add("fade-in");
+    }, anim_duration);
     // Finally, remove the in class from new elements
     // 1. Whole element
-    phrase_element.classList.remove('fade-in')
+    phrase_element.classList.remove("fade-in");
     // 2. Single word
-    word_element.classList.remove('fade-in')
-  }, anim_delay)
+    word_element.classList.remove("fade-in");
+  }, anim_delay);
 });
 ```
 
@@ -954,16 +1080,19 @@ document.addEventListener('DOMContentLoaded', function (event) {
   }
 }
 /* Important to have a default value */
-#phrase, #word {
+#phrase,
+#word {
   opacity: 1;
 }
 /* Add the fade-in animation once `fade-in` class is added to the element */
-#phrase.fade-in, #word.fade-in {
+#phrase.fade-in,
+#word.fade-in {
   -webkit-animation: fade-in 0.5s ease-in-out both;
   animation: fade-in 0.5s ease-in-out both;
 }
 /* Add the fade-in animation once `fade-out` class is added to the element */
-#phrase.fade-out, #word.fade-out {
+#phrase.fade-out,
+#word.fade-out {
   -webkit-animation: fade-out 0.5s ease-in-out both;
   animation: fade-out 0.5s ease-in-out both;
 }
@@ -1277,64 +1406,64 @@ To show time differences in a human readable way (like "1 day ago", "in 2 weeks"
 
 // Create a RelativeTimeFormat instance for English
 // Use 'auto' for natural language formatting
-const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
+const rtf = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
 
 // Days
-console.log(rtf.format(-1, 'day'));
+console.log(rtf.format(-1, "day"));
 // Expected output: "yesterday"
-console.log(rtf.format(1, 'day'));
+console.log(rtf.format(1, "day"));
 // Expected output: "tomorrow"
-console.log(rtf.format(0, 'day'));
+console.log(rtf.format(0, "day"));
 // Expected output: "today"
 
 // Other units
-console.log(rtf.format(-5, 'minute'));
+console.log(rtf.format(-5, "minute"));
 // Expected output: "5 minute ago"
-console.log(rtf.format(-10, 'hour'));
+console.log(rtf.format(-10, "hour"));
 // Expected output: "10 hours ago"
-console.log(rtf.format(-2, 'month'));
+console.log(rtf.format(-2, "month"));
 // Expected output: "2 months ago"
-console.log(rtf.format(-1, 'year'));
+console.log(rtf.format(-1, "year"));
 // Expected output: "1 year ago"
 
 // - - - - - - - - - -
 
 // Create a RelativeTimeFormat instance for German
-const rtfGerman = new Intl.RelativeTimeFormat('de', { numeric: 'auto' });
+const rtfGerman = new Intl.RelativeTimeFormat("de", { numeric: "auto" });
 
-console.log(rtfGerman.format(-2, 'week')); 
+console.log(rtfGerman.format(-2, "week"));
 // Expected output: "vor 2 Wochen"
-console.log(rtfGerman.format(1, 'hour')); 
+console.log(rtfGerman.format(1, "hour"));
 // Expected output: "in 1 Stunde"
 
 // - - - - - - - - - -
 
 // Default is 'always' for precise numeric formatting
-const rtfAlways = new Intl.RelativeTimeFormat('en', { numeric: 'always' });
+const rtfAlways = new Intl.RelativeTimeFormat("en", { numeric: "always" });
 
-console.log(rtfAlways.format(-1, 'day'));
+console.log(rtfAlways.format(-1, "day"));
 // Expected output: "1 day ago"
-console.log(rtfAlways.format(1, 'day')); 
+console.log(rtfAlways.format(1, "day"));
 // Expected output: "in 1 day"
 
 // - - - - - - - - - -
 
 // Using 'short' for shorter formatting
-const rtfShort = new Intl.RelativeTimeFormat('en', { style: 'short' });
+const rtfShort = new Intl.RelativeTimeFormat("en", { style: "short" });
 
-console.log(rtfShort.format(-1, 'day')); 
+console.log(rtfShort.format(-1, "day"));
 // Expected output: "1 day ago"
-console.log(rtfShort.format(2, 'week')); 
+console.log(rtfShort.format(2, "week"));
 // Expected output: "in 2 wk"
 
 // - - - - - - - - - -
 
 // Using 'narrow' for the most compact formatting
-const rtfNarrow = new Intl.RelativeTimeFormat('en', { style: 'narrow' });
+const rtfNarrow = new Intl.RelativeTimeFormat("en", { style: "narrow" });
 
-console.log(rtfNarrow.format(-1, 'day')); 
+console.log(rtfNarrow.format(-1, "day"));
 // Expected output: "1d ago"
-console.log(rtfNarrow.format(2, 'week')); 
+console.log(rtfNarrow.format(2, "week"));
 // Expected output: "in 2w"
 ```
 
@@ -1342,7 +1471,7 @@ console.log(rtfNarrow.format(2, 'week'));
 // Real-world example
 
 // 1. Create a RelativeTimeFormat instance
-const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
+const rtf = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
 
 // 2. Set date
 const eventDate = new Date(); // or some createAt/updatedAt date
@@ -1353,19 +1482,20 @@ function getTimeDifference(from, to = new Date()) {
   const difference = Math.round((from - to) / 1000); // round to nearest second
   const abs = Math.abs(difference); // absolute value
   // Return the difference and the corresponding unit
-  if (abs < 60)   return [difference, 'second'];
-  if (abs < 3600) return [Math.round(difference / 60), 'minute'];
-  if (abs < 86400) return [Math.round(difference / 3600), 'hour'];
-  if (abs < 604800) return [Math.round(difference / 86400), 'day'];
-  if (abs < 2629800) return [Math.round(difference / 604800), 'week'];
-  if (abs < 31557600) return [Math.round(difference / 2629800), 'month'];
-  return [Math.round(difference / 31557600), 'year'];
+  if (abs < 60) return [difference, "second"];
+  if (abs < 3600) return [Math.round(difference / 60), "minute"];
+  if (abs < 86400) return [Math.round(difference / 3600), "hour"];
+  if (abs < 604800) return [Math.round(difference / 86400), "day"];
+  if (abs < 2629800) return [Math.round(difference / 604800), "week"];
+  if (abs < 31557600) return [Math.round(difference / 2629800), "month"];
+  return [Math.round(difference / 31557600), "year"];
 }
 
 // 4) Function to update the time difference
 function update() {
   const [value, unit] = getTimeDifference(eventDate);
-  document.getElementById('relative-time-format-example').textContent = rtf.format(value, unit);
+  document.getElementById("relative-time-format-example").textContent =
+    rtf.format(value, unit);
 }
 
 // 5) Start it, and update it every second
@@ -1407,8 +1537,6 @@ Result:
   update('relative-time-format-example-2', eventDate2);
 </script>
 
-
-
 <!-- --- -->
 
 ## [HTML] How to set break points for words and lines
@@ -1421,7 +1549,8 @@ Three main options:
 
 ```html
 <p>
-  Some text that will be broken <br> into 2 lines.
+  Some text that will be broken <br />
+  into 2 lines.
 </p>
 
 <p>
