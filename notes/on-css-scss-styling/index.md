@@ -246,15 +246,266 @@ And I like to cover all the cases. Adding breakpoints wherever the design breaks
 
 <!-- --- -->
 
-## [SCSS+JS] How to make fancy buttons with radar borders and hover effects
+## [SCSS] How to make fancy buttons with radar borders
+
+This is how you can create a fancy animation for a button's border so that it sweeps around like a radar.
 
 ```html
-
+<button class="btn">
+  <span class="btn__text">Click here</span>
+  <span class="btn__border"></span>
+</button>
 ```
 
 ```scss
+:root {
+  --main-color-rgb: 29, 185, 84;
+  --transition-speed: 150ms;
+  --unit: 4px;
+  --button-size: 230px;
+  --button-offset: calc(var(--button-size) / 10);
+}
 
+// CSS Custom Properties for animations
+@property --border-x {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --border-rotation {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: auto;
+  padding: var(--unit);
+  padding-left: calc(var(--unit) * 5);
+  border-radius: 99999px;
+  background: rgba(var(--main-color-rgb), 0.05);
+  backdrop-filter: blur(5px);
+  transition: background var(--transition-speed) ease;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(var(--main-color-rgb), 0.25);
+  }
+}
+
+.btn__text {
+  color: rgb(var(--main-color-rgb));
+  font-weight: 500;
+  padding: calc(var(--unit) * 2) calc(var(--unit) * 3);
+}
+
+.btn__border {
+  position: absolute;
+  inset: 0;
+  border-radius: 99999px;
+  pointer-events: none;
+  
+  // Create a mask to show only the border
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  border: 1px solid rgba(var(--main-color-rgb), 0.2);
+
+  // Animated conic gradient that creates the radar effect
+  background: conic-gradient(
+      from calc(var(--border-rotation) - 80deg) at var(--border-x) 22px,
+      rgba(var(--main-color-rgb), 0) 0%,
+      rgba(var(--main-color-rgb), 0.8) 30%,
+      rgba(177, 177, 177, 0) 45%
+    )
+    border-box;
+
+  // Apply the animations
+  animation: border-rotation 6s linear infinite,
+             border-x 6s linear infinite;
+}
+
+// Animation for the x position of the gradient
+@keyframes border-x {
+  0% {
+    --border-x: var(--button-offset);
+  }
+  32.82275711% {
+    --border-x: var(--button-size);
+  }
+  50% {
+    --border-x: var(--button-size);
+  }
+  82.82275711% {
+    --border-x: var(--button-offset);
+  }
+  100% {
+    --border-x: var(--button-offset);
+  }
+}
+
+// Animation for the rotation of the gradient
+@keyframes border-rotation {
+  0% {
+    --border-rotation: 0deg;
+  }
+  32.82275711% {
+    --border-rotation: 0deg;
+  }
+  50% {
+    --border-rotation: 180deg;
+  }
+  82.82275711% {
+    --border-rotation: 180deg;
+  }
+  100% {
+    --border-rotation: 360deg;
+  }
+}
 ```
+
+Result:
+
+<style>
+#radar-button-example {
+  background-color: #101010;
+  height: 200px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+:root {
+  --main-color-rgb: 29, 185, 84;
+  --transition-speed: 150ms;
+  --button-size: 230px;
+  --button-offset: calc(var(--button-size) / 10);
+}
+
+.btn {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  /* padding: 10px 20px; */
+  /* width: calc(var(--button-size) + var(--button-offset) * 2); */
+  width: var(--button-size);
+  height: calc(var(--button-size) / 5);
+
+  border-radius: 99999px;
+  background: none;
+  /* background: rgba(var(--main-color-rgb), 0.05); */
+  backdrop-filter: blur(5px);
+  transition: background var(--transition-speed) ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn__text {
+  color: rgb(var(--main-color-rgb));
+  font-weight: 500;
+  /* padding: calc(var(--unit) * 2) calc(var(--unit) * 3); */
+}
+
+.btn__border {
+  position: absolute;
+  inset: 0;
+  border-radius: calc(var(--button-size) / 5);
+  pointer-events: none;
+  
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  border: 2px solid rgba(var(--main-color-rgb), 0.2);
+
+  background: conic-gradient(
+      from calc(var(--border-rotation) - 90deg) at var(--border-x) 22px,
+      rgba(var(--main-color-rgb), 0) 0%,
+      rgba(var(--main-color-rgb), 0.8) 25%,
+      rgba(177, 177, 177, 0) 35%
+    )
+    border-box;
+  /* background: conic-gradient(
+      from calc(var(--border-rotation) - 90deg) at var(--border-x) 22px,
+      rgba(var(--main-color-rgb), 0) 0%,
+      rgba(var(--main-color-rgb), 0.8) 30%,
+      rgba(177, 177, 177, 0) 45%
+    )
+    border-box; */
+
+  animation: border-rotation 6s linear infinite,
+             border-x 6s linear infinite;
+}
+
+/*
+ * Thanks, @shuding_
+ * https://x.com/shuding_/status/1655999450672660482
+ */
+
+@property --border-x {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --border-rotation {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes border-x {
+  0% {
+    --border-x: var(--button-offset);
+  }
+  32.82275711% {
+    --border-x: calc(var(--button-size) - var(--button-offset));
+  }
+  50% {
+    --border-x: calc(var(--button-size) - var(--button-offset));
+  }
+  82.82275711% {
+    --border-x: var(--button-offset);
+  }
+  100% {
+    --border-x: var(--button-offset);
+  }
+}
+
+@keyframes border-rotation {
+  0% {
+    --border-rotation: 0deg;
+  }
+  32.82275711% {
+    --border-rotation: 0deg;
+  }
+  50% {
+    --border-rotation: 180deg;
+  }
+  82.82275711% {
+    --border-rotation: 180deg;
+  }
+  100% {
+    --border-rotation: 360deg;
+  }
+}
+</style>
+
+<div id="radar-button-example" class="box box--padding">
+  <button class="btn">
+    <span class="btn__text">Try for free</span>
+    <span class="btn__border"></span>
+  </button>
+</div>
+
 
 <!-- --- -->
 
@@ -572,6 +823,77 @@ Result:
 
 <!-- --- -->
 
+## [CSS] How to make text have a gradient color
+
+This is also a combination of `background-clip: text` and `background-image: linear-gradient()`.
+
+```html
+<!-- Single text element -->
+<div class="gradient-text">
+  Gradient Title
+</div>
+
+<!-- Text inside a title or paragraph -->
+<div>Text with
+  <span class="gradient-text">
+    gradient
+  </span>
+  inside a title or paragraph.
+</div>
+```
+
+```scss
+// Add the gradient and background-clip
+.gradient-text {
+  background-image: linear-gradient(97deg, #0096ff, #bb64ff 42%, #f2416b 74%, #eb7500);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+```
+
+Result:
+
+<style>
+.gradient-text-example {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(97deg, #0096ff, #bb64ff 42%, #f2416b 74%, #eb7500);
+  /* background-image: linear-gradient(72.44deg, #ffd600 9.9%, #ff7a00 41%, #ff0169 89.43%); */
+}
+.gradient-text-example-2 {
+  background-image: linear-gradient(35deg, rgb(250, 193, 255) 0%, rgb(180, 74, 255) 45%, rgb(103, 75, 255) 100%);
+}
+#gradient-text-example {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#gradient-text-example > * {
+  margin: 10px 0;
+}
+#gradient-text-example * {
+  font-weight: 600;
+  font-size: 32px;
+  letter-spacing: -0.02em;
+}
+</style>
+
+<div id="gradient-text-example" class="box box--padding">
+  <div class="gradient-text-example-container">
+    <div class="gradient-text-example">Instantly</div>
+  </div>
+
+  <div>Life in<span class="gradient-text-example-container">
+      <span class="gradient-text-example gradient-text-example-2"> Color</span>
+    </span>
+  </div>
+</div>
+
+<!-- --- -->
+
 ## [SCSS] How to hide scrollbars
 
 Add these styles to the element that overflows.
@@ -625,9 +947,9 @@ Result:
 
 If you overlay 2 images, you can compare them with `clip-path`.
 
-You can compare 2 images (jpgs, pngs) of course, but you can also compare 2 SVGs, and even 2 entire pages or components (if you don't mind duplicating them entirely!).
+You can compare 2 images (jpgs, pngs) of course, but you can also compare 2 SVGs, and even 2 entire pages or components (if you don't mind duplicating them entirely!). You can also compare filters over an image (like black and white, blur, and others).
 
-Just change the contents of the `before` and `after` containers.
+Just change the contents of the `before` and `after` divs.
 
 And in the example below, the comparison slider swipes horizontally, but you can also swipe vertically if you want.
 
@@ -1514,7 +1836,7 @@ There are two ways to do animations:
 
 <!-- --- -->
 
-## [SCSS+JS] How to animate cycling through a list of words or phrases
+## [CSS+JS] How to animate cycling through a list of words or phrases
 
 I use this on the home page. It's the common text animation that loops through a list of words or phrases.
 
