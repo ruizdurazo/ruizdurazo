@@ -16,11 +16,13 @@ _:
 
 ## Intro
 
-Styling and visual design is incredibly important. It makes or breaks a user's experience. The problem is that default styles and most UI libraries are aggressively ugly. You need to know how to bend styles to your will.
+Styling and visual design is incredibly important. It makes or breaks a user's experience. The problem is that default styles and most UI libraries are aggressively ugly. 
+
+You need to know how to bend styles to your will.
 
 You need to learn CSS.
 
-![CSS](./images/css.png)[size: m, aspect: 860x720]
+![CSS](./images/css.png "")[size: m, aspect: 860x720]
 
 Here's a list of snippets I've found useful.
 
@@ -28,13 +30,13 @@ Here's a list of snippets I've found useful.
 
 ## [CSS] CSS 101
 
-CSS is a styles sheet. You literally just spell out what things should look like.
+Some people say that CSS is hard. But it's not.
 
 > callout
 >
-> **Step 1**: Select the element.<br>**Step 2**: Style it.<br>**Step 3**: Profit.
+> Step 1: _Select the element._<br>Step 2: _Style it._<br>Step 3: _Profit._
 
-It's not that hard.
+These are the basics of selecting:
 
 ```css
 /* Basic selecting */
@@ -414,7 +416,8 @@ You can resize the `textarea` input box to fit the content dynamically. Chat and
 ```
 
 ```js
-// 2 options: with a resizing function, or directly in the event listener
+// 2 options: with a resizing function (for Vue/React),
+// or directly in the event listener.
 
 // Resizing function
 function resizeTextarea(event) {
@@ -490,10 +493,13 @@ Result:
     outline: 3px solid #eee;
     border: 1px solid #888 !important;
   }
+  .input > textarea::placeholder {
+    color: #909090;
+  }
 </style>
 
 <div class="input">
-  <textarea id="textarea-example" rows="2"></textarea>
+  <textarea id="textarea-example" rows="2" placeholder="Write something"></textarea>
 </div>
 
 <script>
@@ -519,6 +525,7 @@ For best performance:
 - Provide fallbacks in your styles
 
 ```scss
+// Add one font-face rule for each font, weight, and style.
 // `src`: The source url can be local or remote.
 // With more than one source, the browser will try the first one,
 // and if it's not available, it'll try the second one as a fallback, etc.
@@ -532,13 +539,14 @@ For best performance:
   font-style: normal;
   font-display: swap;
 }
+// Add more fonts, weights, and styles (italic)...
 ```
 
 <!-- --- -->
 
 ## [SCSS] How to replace the default cursor with a custom one: Cursor SVG
 
-Sometimes you see websites with quirky custom cursors. That’s usually done with `cursor: url()` and an SVG.
+Sometimes you see websites with quirky custom cursors. That's usually done with `cursor: url()` and an SVG.
 
 ```scss
 // The source url can be local or remote.
@@ -734,6 +742,62 @@ Result:
 
 <!-- --- -->
 
+## [CSS] How to create a comparison slider: Clip-path
+
+You can overlay 2 images and compare them with `clip-path`.
+
+```html
+
+```
+
+```css
+
+```
+
+Result:
+
+<style>
+
+</style>
+
+<div class="box">
+
+</div>
+
+<!-- --- -->
+
+## [CSS+JS] How to create tab transitions: Clip-path
+
+You can animate the transition from one tab to the other with `clip-path` as well.
+
+```html
+
+```
+
+```css
+
+```
+
+```js
+
+```
+
+Result:
+
+<style>
+
+</style>
+
+<div class="box">
+
+</div>
+
+<script>
+
+</script>
+
+<!-- --- -->
+
 ## [CSS] How to create sticky elements: Sticky
 
 Be aware of the difference between `fixed` and `sticky`.
@@ -791,17 +855,18 @@ Result:
 .sticky-example-parent::-webkit-scrollbar {
   display: none;
 }
+.sticky-example-parent > .item {
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
 .sticky-example-parent > .sticky {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  background-color: #eee;
-}
-.sticky-example-parent > .item {
-  border: 1px solid #eee;
-  border-radius: 4px;
-  padding: .5em;
-  margin-bottom: .5em;
+  background-color: var(--blue);
+  color: white;
 }
 </style>
 <div class="box box--padding">
@@ -824,45 +889,149 @@ Result:
 
 ## [SCSS+JS] How to change the styling of the navbar on scroll
 
-On some websites, you may notice that the navbar’s appearance changes when you scroll. For example, you could make it smaller and/or trigger animating certain elements.
+On some websites, you may notice that the navbar's appearance changes when you scroll. For example, you could make it smaller and/or trigger animating certain elements.
 
 Here's how to add a drop shadow, and shrink the height of the navbar once the user scrolls down using vanilla JavaScript:
 
 ```html
-
-```
-
-```js
-
+<body>
+  <nav id="navbar">
+    <!-- Navbar items... -->
+  </nav>  
+  <main>
+    <!-- Content... -->
+  </main>
+</body>
 ```
 
 ```scss
-
+body {
+  position: relative;
+}
+#navbar {
+  position: fixed; // Fixed or sticky
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100; // Move to top
+  // Default styles
+  background-color: transparent;
+  padding: 10px;
+  // Add transitions for the styles that change
+  transition: background-color 0.3s ease-out, color 0.3s ease-out, padding 0.3s ease-out;
+  // More styles...
+  
+  // Class to add when scrolled
+  &.scrolled {
+    background-color: white;
+    padding: 0 10px;
+    // More styles...
+  }
+}
 ```
 
-If you're using a framework, you could add something like this to a method that tracks the scroll value and updates the state accordingly. It'll depend if it's some computed variable (vue), or some sort of hook (react), or if you'll manage it in the global state. It's up to you.
+
+```js
+// You track the scroll value, and then
+// add/remove the class to the navbar.
+
+// Get the navbar element
+const navbar = document.getElementById('navbar');
+// Get the scrollable container, in this case body
+const scrollContainer = document.body;
+
+// Listen to the scroll events
+scrollContainer.addEventListener('scroll', function() {
+  // Check if the scroll value is past a certain threshold
+  if (scrollContainer.scrollTop > 0) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+});
+```
+
+
+If you're using a framework, you could add something like this to a method that tracks the scroll value and updates the state accordingly. It'll depend if it's some computed variable (Vue), or some sort of hook (React), or if you'll manage it in the global state. It's up to you.
 
 Result:
 
 <style>
 #navbar-example {
+  position: relative;
+  height: 250px;
+  overflow-y: auto;
+}
+#navbar-example-navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   padding: 10px;
+  background-color: transparent;
+  transition: background-color 0.3s ease-out, color 0.3s ease-out, padding 0.3s ease-out;
+}
+#navbar-example-navbar.scrolled {
+  background-color: var(--blue);
+  padding: 0 10px;
+}
+#navbar-example-navbar.scrolled * {
+  color: white;
+}
+.navbar-example-item {
+  padding: 10px;
+}
+.navbar-example-content {
+  padding: 10px 20px;
+}
+.navbar-example-content .item {
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 </style>
 
-<div class="box">
-  <div id="navbar-example">
+<div id="navbar-example" class="box">
+  <nav id="navbar-example-navbar">
     <div class="navbar-example-item">Logo</div>
     <div class="navbar-example-item">Menu</div>
     <div class="navbar-example-item">Action</div>
+  </nav>
+  <div class="navbar-example-content">
+    <div class="item">One</div>
+    <div class="item">Two</div>
+    <div class="item">Three</div>
+    <div class="item">Four</div>
+    <div class="item">Five</div>
+    <div class="item">Six</div>
+    <div class="item">Seven</div>
+    <div class="item">Eight</div>
+    <div class="item">Nine</div>
+    <div class="item">Ten</div>
   </div>
 </div>
 
 <script>
+  // Get the scrollable container and the navbar
+  const scrollContainer = document.getElementById('navbar-example');
+  const navbarExample = document.getElementById('navbar-example-navbar');
+  
+  // Add scroll event listener to the container
+  scrollContainer.addEventListener('scroll', function() {
+    // Check if the container has been scrolled
+    if (scrollContainer.scrollTop > 0) {
+      // Add the scrolled class when scrolled
+      navbarExample.classList.add('scrolled');
+    } else {
+      // Remove the scrolled class when at the top
+      navbarExample.classList.remove('scrolled');
+    }
+  });
 </script>
 
 <!-- --- -->
