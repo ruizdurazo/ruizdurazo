@@ -1048,9 +1048,7 @@ fetch(url)
         });
         // Check for 1 or more self-closing HTML tags
         const selfClosingTags = [];
-        const selfClosingTagMatches = element
-          .trim()
-          .matchAll(/<[^>]+\/>/g);
+        const selfClosingTagMatches = element.trim().matchAll(/<[^>]+\/>/g);
         selfClosingTagMatches.forEach((i) => {
           selfClosingTags.push(i[1]);
         });
@@ -1518,13 +1516,31 @@ document.addEventListener("DOMContentLoaded", () => {
     const floatingTocList = document.querySelector(
       "#floating-table-of-contents .toc-list"
     );
+    const floatingToc = document.getElementById(
+      "floating-table-of-contents"
+    );
 
-    if (!headings.length || !tocLinks.length || !floatingTocList) {
+    if (
+      !headings.length ||
+      !tocLinks.length ||
+      !floatingTocList ||
+      !floatingToc
+    ) {
       // Don't run if elements aren't ready
       return;
     }
 
     let currentActiveLink = null; // Keep track of the currently active link
+    let isHoveringToc = false; // Track if cursor is hovering over floating TOC
+
+    // Add hover event listeners to track mouse state
+    floatingToc.addEventListener("mouseenter", () => {
+      isHoveringToc = true;
+    });
+
+    floatingToc.addEventListener("mouseleave", () => {
+      isHoveringToc = false;
+    });
 
     // Store headings in an array to track their order and positions
     const headingsList = Array.from(headings);
@@ -1568,6 +1584,41 @@ document.addEventListener("DOMContentLoaded", () => {
         if (newActiveLink) {
           newActiveLink.classList.add("active");
           currentActiveLink = newActiveLink;
+
+          // START: Scrolling active link in the floating TOC container
+          // Only scroll if the cursor is not hovering over the floating TOC
+          if (!isHoveringToc) {
+            // Scroll the active link into view within the toc-list inside the floating TOC container
+            if (floatingTocList) {
+              const containerRect = floatingTocList.getBoundingClientRect();
+              const linkRect = newActiveLink.getBoundingClientRect();
+
+              // Check if the active link is fully visible within the container
+              const isLinkVisible =
+                linkRect.top >= containerRect.top - 1 &&
+                linkRect.bottom <= containerRect.bottom + 1;
+
+              if (!isLinkVisible) {
+                // Scroll the link into view within the floating TOC container
+                // Calculate the scroll position to top-align the link in the container
+                const containerScrollTop = floatingTocList.scrollTop;
+                const linkOffsetTop = newActiveLink.offsetTop;
+                const containerHeight = floatingTocList.clientHeight;
+                const linkHeight = newActiveLink.offsetHeight;
+
+                // Top-align the link in the container
+                const targetScrollTop = linkOffsetTop - containerHeight / 2;
+
+                // Smooth scroll to the target position
+                // Wait for the # anchor link scroll to complete
+                floatingTocList.scrollTo({
+                  top: Math.max(0, targetScrollTop), // Ensure we don't scroll to negative position
+                  behavior: "smooth",
+                });
+              }
+            }
+          }
+          // END: Scrolling active link in the floating TOC container
         }
       }
     };
@@ -1581,6 +1632,12 @@ document.addEventListener("DOMContentLoaded", () => {
     return {
       cleanup: () => {
         window.removeEventListener("scroll", updateActiveTocLink);
+        floatingToc.removeEventListener("mouseenter", () => {
+          isHoveringToc = true;
+        });
+        floatingToc.removeEventListener("mouseleave", () => {
+          isHoveringToc = false;
+        });
       },
     };
   };
@@ -1593,23 +1650,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Re-run setup if MutationObserver detects changes that might affect headings/TOC
   const contentObserver = new MutationObserver((mutationsList, observer) => {
-    // Basic check: If nodes are added to #note or #floating-table-of-contents, re-run setup
+    // Only check for changes that actually affect TOC structure
+    let shouldResetup = false;
+    
     for (let mutation of mutationsList) {
-      if (mutation.type === "childList" && mutation.addedNodes.length > 0) {
-        if (
-          mutation.target.closest("#note") ||
-          mutation.target.closest("#floating-table-of-contents")
-        ) {
-          // Clean up previous observer setup if it exists
-          if (activeTocSetup && activeTocSetup.cleanup) {
-            activeTocSetup.cleanup();
+      if (mutation.type === "childList") {
+        // Check if any added nodes are TOC-related
+        const addedNodes = Array.from(mutation.addedNodes);
+        const removedNodes = Array.from(mutation.removedNodes);
+        
+        // Check for TOC headings or TOC containers being added/removed
+        const hasTocChanges = [...addedNodes, ...removedNodes].some(node => {
+          if (node.nodeType === Node.ELEMENT_NODE) {
+            // Check if the node itself is a TOC heading or contains TOC headings
+            return node.classList?.contains('toc-heading') ||
+                   node.querySelector?.('.toc-heading') ||
+                   node.id === 'table-of-contents' ||
+                   node.id === 'floating-table-of-contents' ||
+                   node.querySelector?.('#table-of-contents') ||
+                   node.querySelector?.('#floating-table-of-contents');
           }
-
-          // Re-run setup
-          activeTocSetup = setupActiveTocLinkObserver();
-          break; // Only need to run once per mutation batch
+          return false;
+        });
+        
+        if (hasTocChanges) {
+          shouldResetup = true;
+          break;
         }
       }
+    }
+    
+    if (shouldResetup) {
+      // Clean up previous observer setup if it exists
+      if (activeTocSetup && activeTocSetup.cleanup) {
+        activeTocSetup.cleanup();
+      }
+
+      // Re-run setup
+      activeTocSetup = setupActiveTocLinkObserver();
     }
   });
 
