@@ -518,7 +518,7 @@ If you want to use a custom font, and if you want to make sure that users see th
 
 Cross-site caching no longer works. So you really do have to add it yourself (and cache it yourself).
 
-For best performance:
+For best performance and user experience:
 
 - Add only what you need
 - Lazy load it, add `swap` flag
@@ -540,6 +540,11 @@ For best performance:
   font-display: swap;
 }
 // Add more fonts, weights, and styles (italic)...
+
+// And then use it in your styles:
+.some-class-name {
+  font-family: "Inter", "Helvetica", sans-serif; // Provide fallbacks too
+}
 ```
 
 <!-- --- -->
@@ -742,31 +747,246 @@ Result:
 
 <!-- --- -->
 
-## [CSS] How to create a comparison slider: Clip-path
+## [SCSS+JS] How to create a comparison slider: Clip-path
 
-You can overlay 2 images and compare them with `clip-path`.
+If you overlay 2 images, you can compare them with `clip-path`.
+
+You can compare 2 images (jpgs, pngs) of course, but you can also compare 2 SVGs, and even 2 entire pages or components (if you don't mind duplicating them entirely!).
+
+Just change the contents of the `before` and `after` containers.
+
+And in the example below, the comparison slider swipes horizontally, but you can also swipe vertically if you want.
 
 ```html
-
+<!-- Some container to overlay the images -->
+<div class="container">
+  <!-- Image 1 -->
+  <div class="after">
+    <img src="image-1.jpg" alt="After" />
+  </div>
+  <!-- Image 2 (the image that will be clipped) -->
+  <div class="before">
+    <img src="image-2.jpg" alt="Before" />
+  </div>
+  <!-- Can be simple or complicated -->
+  <button type="button" class="handle">
+    <div class="handle-line"></div>
+  </button>
+</div>
 ```
 
-```css
+```scss
+.container {
+  position: relative; // Important
+  overflow: hidden;
+  // Sizing of container
+  width: 100%;
+  height: 100%;
+  // More styles...
+  
+  // Sizing of images
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
+  // Positioning of images
+  & .before,
+  & .after {
+    position: absolute; // Important
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  // Default position
+  & .before {
+    clip-path: inset(0 50% 0 0);
+  }
+
+  // Handle
+  & .handle {
+    position: absolute; // Important
+    top: 0;
+    left: 50%;
+    width: 4px;
+    height: 100%;
+    background: white;
+    cursor: ew-resize;
+    transform: translateX(-50%);
+    // More styles...
+  }
+}
+```
+
+```js
+// When the user clicks and dragsthe handle,
+// we update the clip-path of the before image (container).
+
+// Get by class or id
+// Get the container
+const container = document.querySelector('.container');
+// Get the handle
+const handle = document.querySelector('.handle');
+// Get the before image (container)
+const beforeImage = document.querySelector('.before');
+
+// Track if the user is dragging the handle
+let isDragging = false;
+
+// Function to update the slider, 
+// and the clip-path of the before image.
+function updateSlider(x) {
+  const rect = container.getBoundingClientRect();
+  const percentage = Math.max(0, Math.min(100, ((x - rect.left) / rect.width) * 100));
+  // Update the clip-path of the before image
+  beforeImage.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+  // Update the handle position
+  handle.style.left = `${percentage}%`;
+}
+
+// Listen to the click and drag events on the handle and container,
+// and update the slider and the clip-path of the before image.
+handle.addEventListener('mousedown', (e) => {
+  isDragging = true;
+  updateSlider(e.clientX);
+});
+container.addEventListener('mousemove', (e) => {
+  if (isDragging) {
+    updateSlider(e.clientX);
+  }
+});
+container.addEventListener('mouseup', () => {
+  isDragging = false;
+});
 ```
 
 Result:
 
 <style>
-
+  #comparison-slider-example {
+    height: 400px;
+    overflow: hidden;
+    border: none
+  }
+  #comparison-slider-example .container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  #comparison-slider-example .container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  #comparison-slider-example .container #comparison-slider-example-before,
+  #comparison-slider-example .container #comparison-slider-example-after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  #comparison-slider-example .container #comparison-slider-example-before {
+    clip-path: inset(0 50% 0 0);
+  }
+  #comparison-slider-example .container #comparison-slider-example-after > div,
+  #comparison-slider-example .container #comparison-slider-example-before > div {
+    position: absolute;
+    bottom: 10px;
+    color: white;
+    font-size: .8em;
+    font-weight: 500;
+  }
+  #comparison-slider-example .container #comparison-slider-example-after > div {
+    right: 10px;
+  }
+  #comparison-slider-example .container #comparison-slider-example-before > div {
+    left: 10px;
+  }
+  #comparison-slider-example .container #comparison-slider-example-handle {
+    position: relative;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+    width: 8px;
+    cursor: ew-resize;
+    /*  */
+    background-color: transparent;
+    border: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    box-shadow: none;
+    outline: none;
+  }
+  #comparison-slider-example .container #comparison-slider-example-handle .handle-line {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 100%;
+    width: 8px;
+    background-color: white;
+    transform: translateX(-50%) scaleX(0.75);
+    transition: transform 0.2s ease-out;
+  }
+  #comparison-slider-example .container #comparison-slider-example-handle:hover .handle-line {
+    transform: translateX(-50%) scaleX(1);
+  }
+  #comparison-slider-example .container #comparison-slider-example-handle:active .handle-line {
+    transform: translateX(-50%) scaleX(0.75);
+  }
 </style>
 
-<div class="box">
-
+<div id="comparison-slider-example" class="box">
+  <div class="container">
+    <div id="comparison-slider-example-after">
+      <div>After</div>
+      <img src="./images/comparison-slider-after.jpg" alt="After" />
+    </div>
+    <div id="comparison-slider-example-before">
+      <div>Before</div>
+      <img src="./images/comparison-slider-before.jpg" alt="Before" />
+    </div>
+    <button type="button" id="comparison-slider-example-handle">
+      <div class="handle-line"></div>
+    </button>
+  </div>
 </div>
+
+<script>
+  const container = document.getElementById('comparison-slider-example');
+  const handle = document.getElementById('comparison-slider-example-handle');
+  const beforeImage = document.getElementById('comparison-slider-example-before');
+
+  let isDragging = false;
+
+  function updateSlider(x) {
+    const rect = container.getBoundingClientRect();
+    const percentage = Math.max(0, Math.min(100, ((x - rect.left) / rect.width) * 100));
+    beforeImage.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+    handle.style.left = `${percentage}%`;
+  }
+
+  handle.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    updateSlider(e.clientX);
+  });
+  container.addEventListener('mousemove', (e) => {
+    if (isDragging) {
+      updateSlider(e.clientX);
+    }
+  });
+  container.addEventListener('mouseup', () => {
+    isDragging = false;
+  });
+</script>
 
 <!-- --- -->
 
-## [CSS+JS] How to create tab transitions: Clip-path
+## [SCSS+JS] How to create tab transitions: Clip-path
 
 You can animate the transition from one tab to the other with `clip-path` as well.
 
@@ -774,7 +994,7 @@ You can animate the transition from one tab to the other with `clip-path` as wel
 
 ```
 
-```css
+```scss
 
 ```
 
@@ -788,7 +1008,7 @@ Result:
 
 </style>
 
-<div class="box">
+<div id="tab-transition-example" class="box">
 
 </div>
 
@@ -802,9 +1022,9 @@ Result:
 
 Be aware of the difference between `fixed` and `sticky`.
 
-Use `fixed` for **navbars**, **sidebars**, or other fixed elements.
+Usually, use `fixed` for **navbars**, **sidebars**, or other fixed elements.
 
-Use `sticky` for **section headers** or similar elements.
+Usually, use `sticky` for **section headers** or similar elements.
 
 Also, `sticky` is tied directly to its parent container, and not some grandparent element. In order to make a nested element sticky (in relation to some grandparent element or other react/vue component), JavaScript is needed.
 
@@ -812,7 +1032,9 @@ Also, `sticky` is tied directly to its parent container, and not some grandparen
 <!-- Example HTML Template -->
 <div class="parent">
   ...
-  <div class="sticky">Something</div>
+  <div class="sticky">
+    Something sticky
+  </div>
   ...
 </div>
 ```
