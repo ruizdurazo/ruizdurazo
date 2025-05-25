@@ -249,7 +249,30 @@ num.toFixed(2) // Round to 2 decimal places as string ('10.12')
 
 // - - - - - - - - - -
 
-// 3. Arrays
+// 3. Strings
+const phrase = "You're a wizard, Harry. "
+phrase.toUpperCase() // "YOU'RE A WIZARD, HARRY. "
+phrase.toLowerCase() // "you're a wizard, harry. "
+phrase.split(',') // ["You're a wizard", "' Harry. "]
+// Remove whitespace at start and end
+phrase.trim() // "You're a wizard, Harry."
+// Editing
+phrase.replace('Harry', 'Ron') // "You're a wizard, Ron. "
+phrase.replaceAll('r', 'x') // "You'xe a wizaxd, Haxxy. "
+// Substrings
+phrase.substring(0, 10) // "You're a wizar"
+phrase.slice(0, 10) // "You're a wizar"
+phrase.slice(-10) // 'rd, Harry. '
+// True/false checks
+phrase.startsWith('You') // true
+phrase.endsWith('Harry') // true
+phrase.includes('wizard') // true
+// Regex matching
+phrase.match(/wizard/g) // ['wizard']
+
+// - - - - - - - - - -
+
+// 4. Arrays
 const numbers = [1, 2, 3, 4, 5]
 numbers.push(6) // Add to end ([1, 2, 3, 4, 5, 6])
 numbers.unshift(0) // Add to start ([0, 1, 2, 3, 4, 5, 6])
@@ -270,7 +293,7 @@ letters.slice(0, -1) // Items from start to end-1 (['a', 'b', 'c', 'd'])
 
 // - - - - - - - - - -
 
-// 4. Objects
+// 5. Objects
 const user = {
   name: 'Harry Potter',
   email: 'harry.potter@hogwarts.com',
@@ -280,29 +303,6 @@ Object.keys(user) // ['name', 'email', 'age']
 Object.values(user) // ['Harry Potter', 'harry.potter@hogwarts.com', 30]
 Object.entries(user) // [['name', 'Harry Potter'], ['email', 'harry.potter@hogwarts.com'], ['age', 30]]
 // and also `Object.groupBy()` (more on that below)
-
-// - - - - - - - - - -
-
-// 5. Strings
-const phrase = "You're a wizard, Harry. "
-phrase.toUpperCase() // "YOU'RE A WIZARD, HARRY. "
-phrase.toLowerCase() // "you're a wizard, harry. "
-phrase.split(',') // ["You're a wizard", "' Harry. "]
-// Remove whitespace at start and end
-phrase.trim() // "You're a wizard, Harry."
-// Editing
-phrase.replace('Harry', 'Ron') // "You're a wizard, Ron. "
-phrase.replaceAll('r', 'x') // "You'xe a wizaxd, Haxxy. "
-// Substrings
-phrase.substring(0, 10) // "You're a wizar"
-phrase.slice(0, 10) // "You're a wizar"
-phrase.slice(-10) // 'rd, Harry. '
-// True/false checks
-phrase.startsWith('You') // true
-phrase.endsWith('Harry') // true
-phrase.includes('wizard') // true
-// Regex matching
-phrase.match(/wizard/g) // ['wizard']
 
 // - - - - - - - - - -
 

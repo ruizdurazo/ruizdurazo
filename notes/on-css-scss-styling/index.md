@@ -224,86 +224,29 @@ $font-stack: "Inter", sans-serif;
 
 <!-- --- -->
 
-<!-- ## [SCSS] How to reset styles
-
-Browser defaults are violently ugly. If you're serious about good design, you should be ok with breaking them completely, and crafting your own.
-
-```scss
-/* Nuke all defaults */
-/* Broken is better than the default. */
-/* If things are broken, you'll have to craft them. */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  background-color: none;
-  text-decoration: none;
-  list-style-type: none;
-  outline: none;
-  border: none;
-}
-
-/* Reset mozilla form shits */
-input,
-textarea {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  ...
-
-  /* mozilla ugliness */
-  &::-moz-focus-inner {
-    border: none !important;
-    outline: none !important;
-  }
-}
-``` -->
-
-<!-- --- -->
-
 ## [SCSS] How to do responsive design: Media queries
 
 Personally, I like: 1) to stick the media queries inside the element's styles, and 2) to start the media queries from large to small using `max-width`.
 
+And I like to cover all the cases. Adding breakpoints wherever the design breaks (sometimes even in a seemingly random width value if needed). It's work, but it makes the design so much nicer and much more robust.
+
 ```scss
 .element {
-  /* Styles for all screens */
+  /* Styles for all screens... */
 
-  @media screen and (max-width: 1023px) {
-    /* Style overrides for tablets */
+  @media screen and (max-width: 1024px) {
+    /* Style overrides for tablets... */
   }
 
   @media screen and (max-width: 767px) {
-    /* Style overrides for phones */
+    /* Style overrides for phones... */
   }
 }
 ```
 
 <!-- --- -->
 
-<!-- ## [SCSS+JS] How to do simple, beautiful buttons
-
-Things I value in buttons:
-
-- Feedback on hover, focus (with keyboard), disabled, and loading states so that it *feels* interactive or responsive
-- Clean, minimal look that *feels* like a button -->
-
-<!-- ```html
-
-```
-
-```scss
-
-```
-
-```js
-
-``` -->
-
-<!-- --- -->
-
-<!-- ## [SCSS+JS] How to make fancy buttons with radar borders and hover effects
+## [SCSS+JS] How to make fancy buttons with radar borders and hover effects
 
 ```html
 
@@ -311,76 +254,7 @@ Things I value in buttons:
 
 ```scss
 
-``` -->
-
-<!-- --- -->
-
-<!-- ## [SCSS+JS] How to do simple, beautiful inputs
-
-Things I value in inputs:
-
-- Feedback on hover, focus, and error states so that it *feels* interactive or responsive
-- Clean, minimal look that *feels* like an input
-
-```html
 ```
-
-```js
-```
-
-```scss
-```
-
-Result: -->
-
-<!-- <style>
-  .input {
-    margin: 0 auto;
-    padding: 0;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    max-width: 300px;
-
-  }
-  .input > input {
-    border-color: #ddd;
-    width: 100% !important;
-    text-overflow: initial;
-
-    outline: none;
-    appearance: none;
-    transition:
-      background-color 0.2s,
-      border-color 0.2s;
-
-    padding: 8px 12px;
-    width: 100%;
-
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    outline-offset: 0px;
-
-    font-size: 17px;
-    line-height: 17px;
-  }
-  .input > input:hover {
-    border: 1px solid #888;
-  }
-  .input > input:focus {
-    border-color: var(--color-secondary-highlight);
-    outline: 3px solid #eee;
-    border: 1px solid #888 !important;
-  }
-</style> -->
-
-<!-- <div class="input">
-  <input type="text" id="text-input-example"required />
-</div> -->
-
-<!-- <script>
-</script> -->
 
 <!-- --- -->
 
@@ -986,34 +860,321 @@ Result:
 
 <!-- --- -->
 
-## [SCSS+JS] How to create tab transitions: Clip-path
+## [SCSS+JS] How to create fancy tab transitions: Clip-path
 
-You can animate the transition from one tab to the other with `clip-path` as well.
+You can animate the transition from one tab to another with a sliding window using `clip-path`.
+
+This creates a smooth sliding effect where the active tab background appears to slide from one tab to another.
 
 ```html
+<nav class="tab-wrapper">
+  <!-- Base buttons -->
+  <ul class="tab-list">
+    <li>
+      <button type="button" class="tab-button active" data-tab="payments">
+        Payments
+      </button>
+    </li>
+    <li>
+      <button type="button" class="tab-button" data-tab="balances">
+        Balances
+      </button>
+    </li>
+    <li>
+      <button type="button" class="tab-button" data-tab="customers">
+        Customers
+      </button>
+    </li>
+  </ul>
 
+  <!-- Copy of the buttons that gets clipped -->
+  <div class="tab-clip-container">
+    <ul class="tab-list tab-list-overlay">
+      <li>
+        <button type="button" class="tab-button tab-button-overlay" data-tab="payments" tabindex="-1">
+          Payments
+        </button>
+      </li>
+      <li>
+        <button type="button" class="tab-button tab-button-overlay" data-tab="balances" tabindex="-1">
+          Balances
+        </button>
+      </li>
+      <li>
+        <button type="button" class="tab-button tab-button-overlay" data-tab="customers" tabindex="-1">
+          Customers
+        </button>
+      </li>
+    </ul>
+  </div>
+</nav>
 ```
 
 ```scss
+.tab-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 32px 0;
+}
 
+.tab-list {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  gap: 2px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tab-list-overlay {
+  background: black; // Color of background for active state
+}
+
+.tab-button {
+  display: flex;
+  flex-direction: row;
+  height: 36px;
+  align-items: center;
+  gap: 8px;
+  border-radius: 18px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  background: transparent;
+  border: none;
+  text-decoration: none;
+  transition: color 0.2s ease-out, background-color 0.2s ease-out;
+
+  &:hover {
+    cursor: pointer;
+    color: #333;
+    background-color: #eee;
+  }
+
+  &.active {
+    color: #333;
+    background-color: transparent;
+  }
+}
+
+.tab-button-overlay {
+  color: white !important; // Change text color if needed
+}
+
+// Default clip-path
+.tab-clip-container {
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  overflow: hidden;
+  transition: clip-path 0.25s ease-out;
+  // Initial clip-path position (will be updated in JS)
+  clip-path: inset(0% 75% 0% 0% round 18px);
+}
 ```
 
 ```js
+// Get all the tab buttons and the clip container
+const tabButtons = document.querySelectorAll('.tab-button:not(.tab-button-overlay)');
+const clipContainer = document.querySelector('.tab-clip-container');
 
+// Track the currently active tab
+let activeTab = 'payments'; // Default active tab
+
+// Function to update the clip-path based on the active tab
+function updateClipPath() {
+  // Find the active tab button (not the overlay one)
+  const activeTabButton = document.querySelector(`.tab-button[data-tab="${activeTab}"]:not(.tab-button-overlay)`);
+  
+  if (activeTabButton && clipContainer) {
+    // Get the position and dimensions of the active tab
+    const { offsetLeft, offsetWidth } = activeTabButton;
+    const containerWidth = clipContainer.offsetWidth;
+    
+    // Calculate the clip-path values as percentages,
+    // and make sure the values are between 0 and 100.
+    const clipLeft = Math.max(0, Math.min(100, (offsetLeft / containerWidth) * 100));
+    const clipRight = Math.max(0, Math.min(100, ((offsetLeft + offsetWidth) / containerWidth) * 100));
+    
+    // Apply the clip-path to show only the active tab area
+    clipContainer.style.clipPath = `inset(0% ${(100 - clipRight).toFixed(1)}% 0% ${clipLeft.toFixed(1)}% round 18px)`;
+  }
+}
+
+// Function to set the active tab
+function setActiveTab(tabName) {
+  // Remove active class from all buttons
+  tabButtons.forEach(button => button.classList.remove('active'));
+  
+  // Add active class to the clicked button
+  const clickedButton = document.querySelector(`.tab-button[data-tab="${tabName}"]:not(.tab-button-overlay)`);
+  if (clickedButton) {
+    clickedButton.classList.add('active');
+  }
+  
+  // Update the active tab and clip-path
+  activeTab = tabName;
+  updateClipPath();
+}
+
+// Add click event listeners to all tab buttons
+tabButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const tabName = button.getAttribute('data-tab');
+    setActiveTab(tabName);
+  });
+});
+
+// Initialize the clip-path on page load
+document.addEventListener('DOMContentLoaded', () => {
+  updateClipPath();
+});
+
+// Update clip-path on window resize to maintain correct positioning
+window.addEventListener('resize', () => {
+  updateClipPath();
+});
 ```
 
 Result:
 
 <style>
+.tab-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 32px 0;
+}
 
+.tab-list {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  gap: 2px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tab-list-overlay {
+  background: var(--blue);
+}
+
+.tab-button {
+  height: 36px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  border-radius: 18px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s ease-out, background-color 0.2s ease-out;
+}
+
+.tab-button:hover {
+  color: #333;
+  background-color: #eee;
+}
+
+.tab-button.active {
+  color: #333;
+  background-color: transparent;
+}
+
+.tab-button-overlay {
+  color: white !important;
+}
+
+/* Default clip-path */
+.tab-clip-container {
+  position: absolute;
+  z-index: 10;
+  pointer-events: none;
+  width: 100%;
+  overflow: hidden;
+  transition: clip-path 0.25s ease-out;
+  clip-path: inset(0% 75% 0% 0% round 18px);
+}
 </style>
 
-<div id="tab-transition-example" class="box">
+<div class="box">
+  <div class="tab-wrapper">
+    <ul class="tab-list">
+      <li><button type="button" class="tab-button active" data-tab="payments">Payments</button></li>
+      <li><button type="button" class="tab-button" data-tab="balances">Balances</button></li>
+      <li><button type="button" class="tab-button" data-tab="customers">Customers</button></li>
+    </ul>
 
+    <div class="tab-clip-container">
+      <ul class="tab-list tab-list-overlay">
+        <li><button type="button" class="tab-button tab-button-overlay" data-tab="payments" tabindex="-1">Payments</button></li>
+        <li><button type="button" class="tab-button tab-button-overlay" data-tab="balances" tabindex="-1">Balances</button></li>
+        <li><button type="button" class="tab-button tab-button-overlay" data-tab="customers" tabindex="-1">Customers</button></li>
+      </ul>
+    </div>
+  </div>
 </div>
 
 <script>
+  const tabButtons = document.querySelectorAll('.tab-button:not(.tab-button-overlay)');
+  const clipContainer = document.querySelector('.tab-clip-container');
+  let activeTab = 'payments';
 
+  function updateClipPath() {
+    const activeTabButton = document.querySelector(`.tab-button[data-tab="${activeTab}"]:not(.tab-button-overlay)`);
+    
+    if (activeTabButton && clipContainer) {
+      const { offsetLeft, offsetWidth } = activeTabButton;
+      const containerWidth = clipContainer.offsetWidth;
+      
+      const clipLeft = Math.max(0, Math.min(100, (offsetLeft / containerWidth) * 100));
+      const clipRight = Math.max(0, Math.min(100, ((offsetLeft + offsetWidth) / containerWidth) * 100));
+      
+      clipContainer.style.clipPath = `inset(0% ${(100 - clipRight).toFixed(1)}% 0% ${clipLeft.toFixed(1)}% round 18px)`;
+    }
+  }
+
+  function setActiveTab(tabName) {
+    tabButtons.forEach(button => button.classList.remove('active'));
+    
+    const clickedButton = document.querySelector(`.tab-button[data-tab="${tabName}"]:not(.tab-button-overlay)`);
+    if (clickedButton) {
+      clickedButton.classList.add('active');
+    }
+    
+    activeTab = tabName;
+    updateClipPath();
+  }
+
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const tabName = button.getAttribute('data-tab');
+      setActiveTab(tabName);
+    });
+  });
+
+  updateClipPath();
+  window.addEventListener('resize', updateClipPath);
 </script>
 
 <!-- --- -->
@@ -1258,7 +1419,7 @@ Result:
 
 <!-- --- -->
 
-## [CSS] How to add scroll margings to elements: scroll-margin-top
+## [CSS] How to add scroll margings to elements: Scroll-margin-top
 
 Usually, websites will have fixed navbars or other elements.
 
@@ -1625,13 +1786,65 @@ Use `align-items: stretch` to do this.
 }
 ```
 
+Result:
+
+With `align-items: stretch;`
+
+<style>
+.parent-class-name {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+}
+#flex-stretch-example {
+  align-items: stretch;
+}
+.child-class-name {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #eee;
+  padding: 10px 0;
+}
+.child-class-name.large {
+  padding: 40px 0;
+}
+</style>
+
+<div class="box box--padding">
+  <div id="flex-stretch-example" class="parent-class-name">
+    <div class="child-class-name large">
+      Child 1
+    </div>
+    <div class="child-class-name">
+      Child 2
+    </div>
+  </div>
+</div>
+
+Without
+
+<div class="box box--padding">
+  <div class="parent-class-name">
+    <div class="child-class-name large">
+      Child 1
+    </div>
+    <div class="child-class-name">
+      Child 2
+    </div>
+  </div>
+</div>
+
+
 <!-- --- -->
 
 ## [CSS] How to add ellipsis for text overflows
 
 **Warning**: The CSS ellipsis only works for a single line of text.
 
-For multiple lines, JavaScript is needed.
+For multiple lines, JavaScript is needed (using `substring()` for example).
 
 ```css
 .element-with-text {
@@ -1668,7 +1881,7 @@ Without
 </div>
 <!-- --- -->
 
-## [CSS] How to format numbers for tables: tabular-nums
+## [CSS] How to format numbers for tables: Tabular-nums
 
 You can format tabular numbers using the `font-variant-numeric` property.
 
@@ -1741,7 +1954,7 @@ With the default `font-variant-numeric: normal;`
 
 <!-- --- -->
 
-## [CSS] How to format centered headlines: text-wrap
+## [CSS] How to format centered headlines: Text-wrap
 
 The `text-wrap: balance` property in CSS ensures that the lines in a text element are visually balanced.
 
