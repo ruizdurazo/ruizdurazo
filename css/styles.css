@@ -212,7 +212,7 @@ body {
   text-decoration: none;
   outline: none;
   list-style-type: none;
-  letter-spacing: -0.005em;
+  letter-spacing: -0.01em;
   border: none;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
