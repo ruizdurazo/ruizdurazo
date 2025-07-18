@@ -197,7 +197,8 @@
   text-wrap: pretty;
 }
 
-#table-of-contents .toc-list ul li a:hover {
+#table-of-contents .toc-list ul li a:hover,
+#table-of-contents .toc-list ul li a:focus-visible {
   color: var(--blue);
   border-bottom: 2px solid var(--blue);
 }
@@ -209,7 +210,8 @@
 }
 
 /* Show dot only if the child `a` is hovered */
-#table-of-contents .toc-list ul li:has(a:hover) {
+#table-of-contents .toc-list ul li:has(a:hover),
+#table-of-contents .toc-list ul li:has(a:focus-visible) {
   color: var(--blue);
 }
 
@@ -273,7 +275,8 @@
   transition: color 0.2s, filter 0.2s;
 }
 
-#floating-table-of-contents .toc-list ul li a:hover {
+#floating-table-of-contents .toc-list ul li a:hover,
+#floating-table-of-contents .toc-list ul li a:focus-visible {
   color: var(--blue);
 }
 
@@ -281,7 +284,7 @@
   color: transparent;
   mix-blend-mode: difference;
   transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out;
-  opacity: 0.2;
+  opacity: 0.1;
 }
 
 /* Style for the active link */
@@ -296,7 +299,8 @@
 }
 
 /* Show dot only if the child `a` is hovered */
-#floating-table-of-contents .toc-list ul li:has(a:hover) {
+#floating-table-of-contents .toc-list ul li:has(a:hover),
+#floating-table-of-contents .toc-list ul li:has(a:focus-visible) {
   list-style: disc;
   color: var(--blue);
   opacity: 1;
@@ -310,11 +314,20 @@
   color: var(--black-900);
 }
 
-#floating-table-of-contents.visible:hover .toc-list ul li:has(a.active:hover) {
+#floating-table-of-contents.visible:hover .toc-list ul li:has(a.active:hover),
+#floating-table-of-contents.visible:hover
+  .toc-list
+  ul
+  li:has(a.active:focus-visible) {
   color: var(--blue);
 }
 
-#floating-table-of-contents.visible:hover .toc-list ul li a.active:hover {
+#floating-table-of-contents.visible:hover .toc-list ul li a.active:hover,
+#floating-table-of-contents.visible:hover
+  .toc-list
+  ul
+  li
+  a.active:focus-visible {
   color: var(--blue);
 }
 

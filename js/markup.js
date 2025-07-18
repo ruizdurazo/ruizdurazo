@@ -1465,12 +1465,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const mainTocRect = mainToc.getBoundingClientRect();
+    const floatingTocLinks = floatingToc.querySelectorAll(".toc-list li a");
 
     // Check if the bottom of the main TOC is above the viewport
     if (mainTocRect.bottom < 0) {
       floatingToc.classList.add("visible");
+      // Set tabindex to 0 (focusable) when floating TOC is visible
+      floatingTocLinks.forEach(link => {
+        link.setAttribute("tabindex", "0");
+      });
     } else {
       floatingToc.classList.remove("visible");
+      // Set tabindex to -1 (not focusable) when floating TOC is not visible
+      floatingTocLinks.forEach(link => {
+        link.setAttribute("tabindex", "-1");
+      });
     }
   };
 
