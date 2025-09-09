@@ -182,7 +182,11 @@ fetch(url)
       wordCounter(element);
       // IDs: lowercase, replace spaces with dashes
       // TODO: track uniqueness of ids
-      const headerText = element.slice(level + 1).trim();
+      let headerText = element.slice(level + 1).trim();
+      // Remove `\` escapes
+      headerText = headerText.replace(/\\(.)/g, "$1");
+
+      // Generate id
       let id = headerText
         .toLowerCase()
         .replaceAll(" ", "-") // Replace all spaces with dashes
@@ -564,7 +568,9 @@ fetch(url)
           if (img_src_capt.length > 1) {
             img_src = img_src_capt[0];
             img_capt = img_src_capt[1].slice(0, -1);
-            wordCounter(img_capt); // Count words
+            if (img_capt) {
+              wordCounter(img_capt); // Count words
+            }
           }
         } else if (img_src_capt.endsWith("'")) {
           // ![Alt text](https://example.com/pic.jpg 'Caption')
@@ -572,7 +578,9 @@ fetch(url)
           if (img_src_capt.length > 1) {
             img_src = img_src_capt[0];
             img_capt = img_src_capt[1].slice(0, -1);
-            wordCounter(img_capt); // Count words
+            if (img_capt) {
+              wordCounter(img_capt); // Count words
+            }
           }
         } else {
           img_src = img_src_capt;
@@ -621,7 +629,7 @@ fetch(url)
             '" height="' +
             img_height +
             '"><small class="img-caption">' +
-            img_capt +
+            (img_capt ? img_capt : "") +
             "</small></div>";
         } else {
           out = img(element, "default");
@@ -1245,103 +1253,106 @@ fetch(url)
     //
     // Further Reading
     //
-    notes
-      .sort((a, b) => (a.date > b.date ? 1 : b.date > a.date ? -1 : 0))
-      .reverse();
+    if (notes.length > 1) {
+      notes
+        .sort((a, b) => (a.date > b.date ? 1 : b.date > a.date ? -1 : 0))
+        .reverse();
 
-    let back;
-    let next;
-    let furtherBack;
-    let furtherNext;
-    notes.map((note, index) => {
-      // Check until you find the article, then takes indexes +1 and -1
-      if (note.folder === window.location.pathname.slice(7, -1)) {
-        next = index - 1;
-        back = index + 1;
+      let back;
+      let next;
+      let furtherBack;
+      let furtherNext;
+      let found = false;
+      notes.map((note, index) => {
+        // Check until you find the article, then takes indexes +1 and -1
+        if (note.folder === window.location.pathname.slice(7, -1)) {
+          next = index - 1;
+          back = index + 1;
+          found = true;
+        }
+      });
+      if (found) {
+        // Use -1 as flag to show 'home' card
+        if (back >= notes.length) {
+          back = -1;
+        }
+        if (back === -1) {
+          furtherBack = `<a href="/" class="further further--back">
+          <div class="further__arrow further__arrow--back">
+            <img src="/assets/icons/icon-arrow_left.svg" alt="" />
+          </div>
+          <div class="further__text">
+            <div class="title">Home</div>
+          </div>
+          <div class="further__arrow further__arrow--next">
+            <img src="/assets/icons/icon-arrow_right.svg" alt="" />
+          </div>
+        </a>`;
+        } else {
+          furtherBack =
+            `<a href="/notes/` +
+            notes[back].folder +
+            `" class="further further--back">
+            <div class="further__arrow further__arrow--back">
+              <img src="/assets/icons/icon-arrow_left.svg" alt="" />
+            </div>
+            <div class="further__text">
+              <div class="label">PREVIOUS</div>
+              <div class="title">` +
+            notes[back].title +
+            `</div>
+              <div class="description">
+                ` +
+            notes[back].description +
+            `
+              </div>
+            </div>
+            <div class="further__arrow further__arrow--next">
+              <img src="/assets/icons/icon-arrow_right.svg" alt="" />
+            </div>
+          </a>`;
+        }
+        if (next === -1) {
+          furtherNext = `<a href="/" class="further further--next">
+          <div class="further__arrow further__arrow--back">
+            <img src="/assets/icons/icon-arrow_left.svg" alt="" />
+          </div>
+          <div class="further__text">
+            <div class="title">Home</div>
+          </div>
+          <div class="further__arrow further__arrow--next">
+            <img src="/assets/icons/icon-arrow_right.svg" alt="" />
+          </div>
+        </a>`;
+        } else {
+          furtherNext =
+            `<a href="/notes/` +
+            notes[next].folder +
+            `" class="further further--next">
+            <div class="further__arrow further__arrow--back">
+              <img src="/assets/icons/icon-arrow_left.svg" alt="" />
+            </div>
+            <div class="further__text">
+              <div class="label">NEXT</div>
+              <div class="title">` +
+            notes[next].title +
+            `</div>
+              <div class="description">
+                ` +
+            notes[next].description +
+            `
+              </div>
+            </div>
+            <div class="further__arrow further__arrow--next">
+              <img src="/assets/icons/icon-arrow_right.svg" alt="" />
+            </div>
+          </a>`;
+        }
+        const furtherReading = furtherNext + furtherBack;
+
+        document.getElementById("further-reading").innerHTML += furtherReading;
       }
-    });
-    // Use -1 as flag to show 'home' card
-    if (back >= notes.length) {
-      back = -1;
     }
-    if (back === -1) {
-      furtherBack = `<a href="/" class="further further--back">
-      <div class="further__arrow further__arrow--back">
-        <img src="/assets/icons/icon-arrow_left.svg" alt="" />
-      </div>
-      <div class="further__text">
-        <div class="title">Home</div>
-      </div>
-      <div class="further__arrow further__arrow--next">
-        <img src="/assets/icons/icon-arrow_right.svg" alt="" />
-      </div>
-    </a>
-`;
-    } else {
-      furtherBack =
-        `<a href="/notes/` +
-        notes[back].folder +
-        `" class="further further--back">
-      <div class="further__arrow further__arrow--back">
-        <img src="/assets/icons/icon-arrow_left.svg" alt="" />
-      </div>
-      <div class="further__text">
-        <div class="label">PREVIOUS</div>
-        <div class="title">` +
-        notes[back].title +
-        `</div>
-        <div class="description">
-          ` +
-        notes[back].description +
-        `
-        </div>
-      </div>
-      <div class="further__arrow further__arrow--next">
-        <img src="/assets/icons/icon-arrow_right.svg" alt="" />
-      </div>
-    </a>
-`;
-    }
-    if (next === -1) {
-      furtherNext = `<a href="/" class="further further--next">
-      <div class="further__arrow further__arrow--back">
-        <img src="/assets/icons/icon-arrow_left.svg" alt="" />
-      </div>
-      <div class="further__text">
-        <div class="title">Home</div>
-      </div>
-      <div class="further__arrow further__arrow--next">
-        <img src="/assets/icons/icon-arrow_right.svg" alt="" />
-      </div>
-    </a>
-`;
-    } else {
-      furtherNext =
-        `<a href="/notes/` +
-        notes[next].folder +
-        `" class="further further--next">
-      <div class="further__arrow further__arrow--back">
-        <img src="/assets/icons/icon-arrow_left.svg" alt="" />
-      </div>
-      <div class="further__text">
-        <div class="label">NEXT</div>
-        <div class="title">` +
-        notes[next].title +
-        `</div>
-        <div class="description">
-          ` +
-        notes[next].description +
-        `
-        </div>
-      </div>
-      <div class="further__arrow further__arrow--next">
-        <img src="/assets/icons/icon-arrow_right.svg" alt="" />
-      </div>
-    </a>`;
-    }
-    const furtherReading = furtherNext + furtherBack;
-
-    document.getElementById("further-reading").innerHTML += furtherReading;
 
     //
     // Footer
@@ -1471,13 +1482,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (mainTocRect.bottom < 0) {
       floatingToc.classList.add("visible");
       // Set tabindex to 0 (focusable) when floating TOC is visible
-      floatingTocLinks.forEach(link => {
+      floatingTocLinks.forEach((link) => {
         link.setAttribute("tabindex", "0");
       });
     } else {
       floatingToc.classList.remove("visible");
       // Set tabindex to -1 (not focusable) when floating TOC is not visible
-      floatingTocLinks.forEach(link => {
+      floatingTocLinks.forEach((link) => {
         link.setAttribute("tabindex", "-1");
       });
     }
@@ -1525,9 +1536,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const floatingTocList = document.querySelector(
       "#floating-table-of-contents .toc-list"
     );
-    const floatingToc = document.getElementById(
-      "floating-table-of-contents"
-    );
+    const floatingToc = document.getElementById("floating-table-of-contents");
 
     if (
       !headings.length ||
@@ -1661,34 +1670,36 @@ document.addEventListener("DOMContentLoaded", () => {
   const contentObserver = new MutationObserver((mutationsList, observer) => {
     // Only check for changes that actually affect TOC structure
     let shouldResetup = false;
-    
+
     for (let mutation of mutationsList) {
       if (mutation.type === "childList") {
         // Check if any added nodes are TOC-related
         const addedNodes = Array.from(mutation.addedNodes);
         const removedNodes = Array.from(mutation.removedNodes);
-        
+
         // Check for TOC headings or TOC containers being added/removed
-        const hasTocChanges = [...addedNodes, ...removedNodes].some(node => {
+        const hasTocChanges = [...addedNodes, ...removedNodes].some((node) => {
           if (node.nodeType === Node.ELEMENT_NODE) {
             // Check if the node itself is a TOC heading or contains TOC headings
-            return node.classList?.contains('toc-heading') ||
-                   node.querySelector?.('.toc-heading') ||
-                   node.id === 'table-of-contents' ||
-                   node.id === 'floating-table-of-contents' ||
-                   node.querySelector?.('#table-of-contents') ||
-                   node.querySelector?.('#floating-table-of-contents');
+            return (
+              node.classList?.contains("toc-heading") ||
+              node.querySelector?.(".toc-heading") ||
+              node.id === "table-of-contents" ||
+              node.id === "floating-table-of-contents" ||
+              node.querySelector?.("#table-of-contents") ||
+              node.querySelector?.("#floating-table-of-contents")
+            );
           }
           return false;
         });
-        
+
         if (hasTocChanges) {
           shouldResetup = true;
           break;
         }
       }
     }
-    
+
     if (shouldResetup) {
       // Clean up previous observer setup if it exists
       if (activeTocSetup && activeTocSetup.cleanup) {

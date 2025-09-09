@@ -64,7 +64,11 @@ Well, because you _write_ them.
 
 But... Why does writing matter? 🤔
 
-Well, because writing is like thinking. Only better. If you want to figure something out, you should probably write about it. As the following quote from PG suggests:
+Well, because writing is like thinking. Only better.
+
+If you want to figure something out, you should probably write about it.
+
+As the following quote from PG suggests:
 
 > quote
 >

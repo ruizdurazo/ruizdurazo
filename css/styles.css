@@ -237,7 +237,10 @@ img {
 
 /* Site */
 #site {
+  display: flex;
+  flex-direction: column;
   min-width: var(--min-width);
+  min-height: 100svh;
 }
 
 /* Navbar */

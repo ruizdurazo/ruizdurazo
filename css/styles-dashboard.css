@@ -5,10 +5,10 @@
 
 /* Content */
 #content {
+  flex: 1;
   max-width: var(--max-width-home);
   margin: 0 auto;
   padding-top: var(--font-size-5);
-  min-height: calc(100% - var(--font-size-6));
 }
 
 /* Section - Quotes */
