@@ -97,7 +97,10 @@
   --offset: 80;
 
   /* Colors - Light Mode (default) */
-  --selection: #00000016;
+  /* --color-selection: #000000;
+  --color-selection-background: #00000016; */
+  --color-selection: #0f4fff;
+  --color-selection-background: #0f4fff12;
 
   --black-900: #101010;
   --black-700: #303030;
@@ -157,7 +160,11 @@
 
 /* Dark Mode */
 /* [data-theme="dark"] {
-  --selection: #ffffff16;
+  // --color-selection: #ffffff;
+  // --color-selection-background: #ffffff16;
+  --color-selection: #0f4fff;
+  --color-selection-background: #0f4fff16;
+
 
   --bg-color: #121212;
   --text-color: #e0e0e0;
@@ -228,11 +235,17 @@ img {
 
 /* Selection */
 ::-moz-selection {
-  background: var(--selection);
+  color: var(--color-selection);
+  background: var(--color-selection-background);
 }
 
 ::selection {
-  background: var(--selection);
+  color: var(--color-selection);
+  background: var(--color-selection-background);
+}
+
+button:active {
+  transform: scale(0.98);
 }
 
 /* Site */
@@ -399,48 +412,48 @@ img {
   height: 100px;
 }
 
-.footer-links {
+.footer .footer-links {
   display: flex;
   flex-direction: row;
   gap: 1em;
 }
 
 .footer #copyright,
-.footer-links a,
-.footer-links button {
+.footer a,
+.footer button {
   color: var(--text-footer);
   font-size: calc(var(--min-font-size) * 1px);
   letter-spacing: 0.01em;
   line-height: calc(var(--min-font-size) * 1.5px);
 }
 
-.footer-links a,
-.footer-links button {
+.footer a,
+.footer button {
   transition: all 0.2s;
   border-radius: 2px;
   background-color: transparent;
   cursor: pointer;
 }
 
-.footer-links a:hover,
-.footer-links a:focus-visible,
-.footer-links button:hover,
-.footer-links button:focus-visible {
+.footer a:hover,
+.footer a:focus-visible,
+.footer button:hover,
+.footer button:focus-visible {
   color: var(--blue);
 }
 
-.footer-links a:focus-visible,
-.footer-links button:focus-visible {
+.footer a:focus-visible,
+.footer button:focus-visible {
   box-shadow: 0 0 0 4px var(--blue);
 }
 
-.footer-links #dashboard-link,
-.footer-links #mode-toggle {
+.footer #dashboard-link,
+.footer #mode-toggle {
   position: relative;
   margin: 0 0 0 var(--font-size);
 }
 
-.footer-links #dashboard-link::before {
+.footer #dashboard-link::before {
   position: absolute;
   top: 50%;
   left: calc(var(--font-size) * -0.9);
@@ -452,12 +465,12 @@ img {
 }
 
 /* Mode toggle */
-/* .footer-links #mode-toggle {
+/* .footer #mode-toggle {
   display: flex;
   align-items: center;
 }
 
-.footer-links #mode-toggle::before {
+.footer #mode-toggle::before {
   position: absolute;
   top: 50%;
   left: calc(var(--font-size) * -0.9);

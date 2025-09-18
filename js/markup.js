@@ -1362,7 +1362,7 @@ fetch(url)
       '<span id="copyright">' +
       "© " +
       yyyy.getFullYear() +
-      " Enrique Ruiz Durazo" +
+      " <a href='/'>Enrique Ruiz Durazo</a>" +
       "</span>" +
       '<div class="footer-links">' +
       '<a href="/dashboard" id="dashboard-link">Dashboard</a>' +

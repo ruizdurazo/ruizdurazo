@@ -840,6 +840,10 @@ p {
   will-change: transform;
 }
 
+.call-link-button::selection {
+  color: #fff;
+}
+
 .call-link-button img {
   height: 32px;
   width: 32px;
@@ -849,6 +853,10 @@ p {
 /* Scale the call link button on hover */
 .call-link-button:hover {
   transform: scale(1.05);
+}
+
+.call-link-button:active {
+  transform: scale(1);
 }
 
 /* Media queries */
