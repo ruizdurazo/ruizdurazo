@@ -97,6 +97,10 @@
 
 /* Section - Quick Links */
 #quick-links-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   margin-bottom: var(--font-size-8);
 }
 
@@ -166,6 +170,10 @@
 
   #quotes {
     padding: 0 var(--font-size-2);
+  }
+
+  #quick-links-section ul {
+    max-width: 640px;
   }
 }
 
