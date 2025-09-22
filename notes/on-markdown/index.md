@@ -16,7 +16,7 @@ _:
 
 ## Intro
 
-So what is [Markdown](https://daringfireball.net/projects/markdown/)? 
+So what is [Markdown](https://daringfireball.net/projects/markdown/)?
 
 Well, according to its creator:
 
@@ -67,26 +67,6 @@ Here is the list of all the most common Markdown elements:
 
 Use one or more (up to 6) pound signs (`#`) followed by the heading text.
 
-Markdown syntax:
-
-```markdown
-# Heading 1
-## Heading 2
-### Heading 3
-#### Heading 4
-##### Heading 5
-###### Heading 6
-
-There is also this alternate syntax for h1 and h2,
-where you underline the heading with equals or dashes:
-
-Heading 1
-=========
-
-Heading 2
----------
-```
-
 Result:
 
 <h1 class="h1">Heading 1</h1>
@@ -95,14 +75,39 @@ Result:
 <h4 class="h4">Heading 4</h4>
 <h5 class="h5">Heading 5</h5>
 <h6 class="h6">Heading 6</h6>
-<p>There is also this alternate syntax for h1 and h2, where you underline the heading with equals or dashes:</p>
-<h1 class="h1">Heading 1</h1>
-<h2 class="h2">Heading 2</h2>
 
+Markdown syntax:
+
+```markdown
+# Heading 1
+
+## Heading 2
+
+### Heading 3
+
+#### Heading 4
+
+##### Heading 5
+
+###### Heading 6
+
+<!-- There is also this alternate syntax for h1 and h2,
+where you underline the heading with equals or dashes: -->
+
+# Heading 1
+
+## Heading 2
+```
 
 ### Horizontal Rules
 
 You can create a horizontal separator, or horizontal rule (`<hr>`) by consecutively using 3 or more asterisks (`*`), hyphens (`-`) or underscores (`_`). They all look the same: a horizontal line.
+
+Result:
+
+<hr>
+<hr>
+<hr>
 
 Markdown syntax:
 
@@ -113,7 +118,7 @@ Markdown syntax:
 
 ___
 
-You can also separate the characters with spaces:
+<!-- You can also separate the characters with spaces: -->
 
 * * * *
 
@@ -121,16 +126,6 @@ You can also separate the characters with spaces:
 
 _ _ _ _ _ _
 ```
-
-Result:
-
-<hr>
-<hr>
-<hr>
-<p>You can also separate the characters with spaces:</p>
-<hr>
-<hr>
-<hr>
 
 ### Emphasis
 
@@ -144,6 +139,16 @@ You can also strikethrough by placing text between double tildes (`~`)
 
 You can also combine the styling. Here are a few examples.
 
+Result:
+
+<p>This is <em>italic text</em>.</p>
+<p>This is <em>also italic text</em>.</p>
+
+<p>This is <strong>bold text</strong>.</p>
+<p>This is <strong>also bold text</strong>.</p>
+
+<p>Use double tildes to <del>strike this</del>.</p>
+
 Markdown syntax:
 
 ```
@@ -156,37 +161,23 @@ This is __also bold text__.
 Use double tildes to ~~strike this~~
 ```
 
-Result:
-
-<p>This is <em>italic text</em>.</p>
-<p>This is <em>also italic text</em>.</p>
-
-<p>This is <strong>bold text</strong>.</p>
-<p>This is <strong>also bold text</strong>.</p>
-
-<p>Use double tildes to <del>strike this</del>.</p>
-
 ### Links
 
 You can create inline links by wrapping some text in brackets `[ ]`, and then wrapping the URL in parentheses `( )` with no space in between. This turns the text and sets the href to the url in the parenthesis.
+
+Result:
+
+<p><a href="https://x.com" class="pa">text to display</a></p>
+
+<p>You can place a <a href="https://x.com" class="pa">link</a> in a sentence.</p>
 
 Markdown syntax:
 
 ```markdown
 [text to display](url)
 
-other syntax...
-
 You can place a [link](url) in a sentence.
 ```
-
-Result:
-
-<p><a href="https://x.com" class="pa">text to display</a></p>
-
-<p>other syntax...</p>
-
-<p>You can place a <a href="https://x.com" class="pa">link</a> in a sentence.</p>
 
 ### Images
 
@@ -195,16 +186,6 @@ Displaying images is similar to links: brackets + parenthesis.
 The difference here is that there must be an exclamation mark at the beginning (`!`).
 
 The image is displayed in its actual size. Markdown does not provide a way to set the image size.
-
-Markdown syntax:
-
-```markdown
-![alt text](url)
-
-![alt text](url “title”)
-
-![](url)
-```
 
 Result:
 
@@ -220,6 +201,16 @@ Result:
 <img src="images/image.jpg" alt="" class="img">
 </div>
 
+Markdown syntax:
+
+```markdown
+![alt text](url)
+
+![alt text](url “title”)
+
+![](url)
+```
+
 ### Lists
 
 You can create **numbered lists** (ordered) and **bulleted lists** (unordered).
@@ -227,20 +218,6 @@ You can create **numbered lists** (ordered) and **bulleted lists** (unordered).
 For ordered lists, you use a number followed by a single period or dot (`.`).
 
 For unordered lists, you use an asterisk (`*`) or hyphen (`-`).
-
-Markdown syntax:
-
-```markdown
-1. Item
-2. Another item
-3. A third item
-
-- Bullet list
-- With an interesting point
-
-* Another way to make a bullet list
-* Yes
-```
 
 Result:
 
@@ -260,18 +237,25 @@ Result:
   <li>Yes</li>
 </ul>
 
+Markdown syntax:
+
+```markdown
+1. Item
+2. Another item
+3. A third item
+
+- Bullet list
+- With an interesting point
+
+* Another way to make a bullet list
+* Yes
+```
+
 ### Blockquotes
 
 Want to quote someone? You can use blockquotes for that.
 
 Blockquotes are indented. You start each line with a "greater than" character (`>`).
-
-Markdown syntax:
-
-```markdown
-> An inspiring quote...
-> By some author
-```
 
 Result:
 
@@ -280,49 +264,62 @@ Result:
   <p>By some author</p>
 </blockquote>
 
+Markdown syntax:
+
+```markdown
+> An inspiring quote...
+> By some author
+```
+
 ### Code
 
 There are two ways to display code: **inline code** and **code blocks**.
 
 For inline code, you must wrap the characters with single backticks (`).
 
-For code blocks, you wrap the code using sets of 3 backticks: 3 to open and 3 to close. 
+For code blocks, you wrap the code using sets of 3 backticks: 3 to open and 3 to close.
 
 In some interpreters you can even specify the name of the programming language after the tickmarks in order to display the corresponding syntax highlighting. This works in GitHub.
+
+Result:
+
+<p>For inline code: <code class="code">someVariable</code></p>
+
+For code blocks:
+
+<pre><div class="pre-header"><span class="pre-lang"></span><button class="pre-copy-button"><img src="/assets/icons/icon-copy.svg" alt="Copy" width="16" height="16">Copy</button></div><code><span class="line">const test = 'hello'</span></code></pre>
+
+<pre><div class="pre-header"><span class="pre-lang">Python</span><button class="pre-copy-button"><img src="/assets/icons/icon-copy.svg" alt="Copy" width="16" height="16">Copy</button></div><code class="language-python"><span class="line"><span><span class="hljs-built_in">print</span>(<span class="hljs-string">'test'</span>)</span></span></code></pre>
 
 Markdown syntax:
 
 ```markdown
 For inline code: `someVariable`
 
-For a simple code block:
+For code blocks:
+
+<!-- For a simple code block: -->
 
 \```
 const test = 'hello'
 \```
 
-For a code block with syntax highlighting (python):
+<!-- For a code block with syntax highlighting (python): -->
 
 \```python
 print('test')
 \```
 ```
 
-Result:
-
-<p>For inline code: <code class="code">someVariable</code></p>
-
-For a simple code block:
-
-<pre><div class="pre-header"><span class="pre-lang"></span><button class="pre-copy-button"><img src="/assets/icons/icon-copy.svg" alt="Copy" width="16" height="16">Copy</button></div><code><span class="line">const test = 'hello'</span></code></pre>
-
-For a code block with syntax highlighting (python):
-
-<pre><div class="pre-header"><span class="pre-lang">Python</span><button class="pre-copy-button"><img src="/assets/icons/icon-copy.svg" alt="Copy" width="16" height="16">Copy</button></div><code class="language-python"><span class="line"><span><span class="hljs-built_in">print</span>(<span class="hljs-string">'test'</span>)</span></span></code></pre>
-
 ### Inline HTML
 
 Finally, you can even write raw HTML code directly into your Markdown document. Useful for adding custom styles and components.
+
+Result:
+
+<div>
+  <p style="color:red;">Some test</p>
+</div>
 
 Markdown syntax:
 
@@ -332,17 +329,11 @@ Markdown syntax:
 </div>
 ```
 
-Result:
-
-<div>
-  <p style="color:red;">Some test</p>
-</div>
-
 ## End
 
-And that’s it. That’s about all there is in *vanilla* Markdown.
+And that’s it. That’s about all there is in _vanilla_ Markdown.
 
-However, there are many other *flavors* of Markdown. These support other features like checklists, tables and even frontend components.
+However, there are several other _flavors_ of Markdown. These support other features like checklists, text highlighting, tables and even frontend components.
 
 If you want to learn more you can visit:
 
@@ -351,7 +342,3 @@ If you want to learn more you can visit:
 - [MDC](https://github.com/nuxt-modules/mdc)
 
 **TLDR**: Markdown can be found in many places. What makes it so successful? It's an easy way to write on the web. Just learn the syntax.
-
----
-
-If you’d like to get in touch, [write me an email](mailto:enrique@ruizdurazo.com) or [dm me on X](https://x.com/ruizdurazo).

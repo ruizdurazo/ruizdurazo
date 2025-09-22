@@ -109,6 +109,7 @@
   margin: 0 auto;
   padding: calc(var(--font-size) * 5) 0;
   min-height: calc(100% - var(--font-size-6));
+  width: 100%;
 }
 
 /* Note Header */
@@ -152,6 +153,10 @@
   margin: calc(var(--font-size) * 0.4) 0 calc(var(--font-size) * 1) 0;
   text-align: center;
   text-wrap: balance;
+  width: 105%;
+  transform: translateX(-50%);
+  position: relative;
+  left: 50%;
 }
 
 #title,
@@ -159,7 +164,7 @@
   font-size: calc(var(--font-size) * 3.45);
   font-weight: 700;
   line-height: 1em;
-  letter-spacing: -0.005em;
+  letter-spacing: -0.01em;
 }
 
 /* Description */
@@ -171,6 +176,7 @@
   line-height: 1.4em;
   letter-spacing: 0;
   color: var(--text-description);
+  text-wrap: balance;
 }
 
 /* 
@@ -598,9 +604,15 @@
   display: block;
   width: 100%;
   height: auto;
-  box-shadow: 0 10px 20px #e4e6e8;
   background-color: #f4f6f8;
   border-radius: 12px;
+  border: 1px solid #eee;
+  box-shadow: 0 8px 24px #00000008;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.img:hover {
+  box-shadow: 0 16px 48px #00000016;
 }
 
 .img--li {
@@ -1011,8 +1023,8 @@ hr {
 
 /* 1040px */
 @media only screen and (max-width: 1040px) {
-  h1,
-  h1 span {
+  #title,
+  #title span {
     font-size: calc((60px) + (69 - 60) * (100vw - 768px) / (1040 - 768));
   }
 
@@ -1031,9 +1043,14 @@ hr {
   }
 
   #header,
-  #table-of-contents,
   .further-reading {
     width: calc(100% - (1px * var(--offset) * 0.75));
+  }
+
+  #header hr,
+  #table-of-contents,
+  #title {
+    width: 100%;
   }
 
   .h2,
@@ -1069,7 +1086,6 @@ hr {
 /* 768px */
 @media only screen and (max-width: 768px) {
   #header,
-  #table-of-contents,
   .further-reading {
     width: calc(
       100% -
@@ -1081,16 +1097,18 @@ hr {
     );
   }
 
-  h1,
-  h1 span {
+  #title,
+  #title span {
     font-size: calc(
-      (2px * var(--min-font-size)) + (60 - 40) * (100vw - 480px) / (768 - 480)
+      (2.375px * var(--min-font-size)) + (60 - 40) * (100vw - 480px) /
+        (768 - 480)
     );
   }
 
   #nope {
     height: calc(
-      (2px * var(--min-font-size)) + (60 - 40) * (100vw - 480px) / (768 - 480)
+      (2.375px * var(--min-font-size)) + (60 - 40) * (100vw - 480px) /
+        (768 - 480)
     );
   }
 
@@ -1167,7 +1185,6 @@ hr {
   }
 
   #header,
-  #table-of-contents,
   .further-reading {
     width: calc(100% - (1px * var(--offset) / 2));
   }
@@ -1176,13 +1193,17 @@ hr {
     width: 100%;
   }
 
-  h1,
-  h1 span {
-    font-size: calc(2.5px * var(--min-font-size));
+  #title {
+    width: 105%;
+  }
+
+  #title,
+  #title span {
+    font-size: calc(2.375px * var(--min-font-size));
   }
 
   #nope {
-    height: calc(2.5px * var(--min-font-size));
+    height: calc(2.375px * var(--min-font-size));
   }
 
   .h2,

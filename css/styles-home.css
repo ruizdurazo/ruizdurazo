@@ -628,29 +628,68 @@ p {
   margin: 0 10px;
 }
 
-/* Section - Portfolio */
-/* #portfolio-section {
-} */
+/* Section - Highlights */
+/* #code-design-highlights-section,
+#photo-video-highlights-section {
+  position: relative;
+  max-width: var(--max-width-home);
+  margin: 0 auto var(--font-size-6);
+}
 
-/* Portfolio - Cards Container */
-/* .cards {
+#code-design-highlights-section a,
+#photo-video-highlights-section a {
+  position: absolute;
+  top: 4px;
+  right: 0;
+  padding: 16px 24px;
+  border-radius: 40px;
+  line-height: 1;
+}
+
+#code-design-highlights-section a:hover,
+#photo-video-highlights-section a:hover {
+  background-color: var(--black);
+  color: #fff;
+}
+
+.highlights-container {
   display: flex;
   flex-direction: row;
   gap: 10px;
+  width: 100%;
+  height: 200px;
+  padding: 10px;
+  background-color: #fafafa;
+  border-radius: 16px;
+}
+
+.highlights-item {
+  background-color: #eee;
+  border-radius: 12px;
+}
+
+.highlights-item--l {
+  width: 320px;
+  height: 100%;
+}
+
+.highlights-item--m {
+  width: 135px;
+  height: 100%;
+}
+
+.highlights-item--s {
+  width: 100px;
+  height: 100%;
 } */
 
-/* Portfolio - Individual Cards */
-/* .card {
-  display: inline-block;
-  width: calc((100% - 20px) / 3);
-  height: 300px;
-  box-shadow: 0 5px 20px -5px #aaaaaa;
-} */
 
-/* .card img {
+/* .highlights-container img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  background-color: #eee;
+  border-radius: 16px;
 } */
 
 /* Section - Notes */
@@ -715,6 +754,7 @@ p {
 .note .title {
   font-size: calc(var(--font-size) * 0.95);
   font-weight: 700;
+  letter-spacing: 0;
   transition: all 0.2s ease;
   line-height: calc(var(--max-font-size) * 1.4px);
 }

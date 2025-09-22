@@ -164,7 +164,3 @@ print('Hello, Universe. ✌️')
 ---
 
 P.S. — On comments. I don’t like blog posts with comments. They make me cringe. So there will be no comments here.
-
----
-
-If you’d like to get in touch, [write me an email](mailto:enrique@ruizdurazo.com) or [dm me on X](https://x.com/ruizdurazo).

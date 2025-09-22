@@ -14,7 +14,9 @@ previousElement.lang = ""; // Language for syntax highlighting
 previousElement.type = "none"; // Type of element
 previousElement.state = "closed"; // State of multi-line element
 previousElement.isFirstElement = false; // Whether the element is the first element in a multi-line element
+previousElement.nestedType = "none"; // Type of nested element
 noteData.word_count = 0;
+
 
 // Date settings
 const date_options = {
@@ -75,14 +77,16 @@ fetch(url)
           if (prop.startsWith("title:")) {
             // Page Title
             hasTitle = true;
-            noteData.title = prop.split(":")[1].trim();
+            const parts = prop.split(":");
+            noteData.title = parts.slice(1).join(":").trim();
             document.title = noteData.title + " — Enrique Ruiz Durazo";
             title = noteData.title
               ? '<h1 id="title">' + noteData.title + "</h1>"
               : "";
           } else if (prop.startsWith("date:")) {
             // Date
-            noteData.date = new Date(prop.split(":")[1].trim());
+            const parts = prop.split(":");
+            noteData.date = new Date(parts.slice(1).join(":").trim());
             date = noteData.date
               ? '<div id="date-ttr"><small id="date">' +
                 noteData.date.getFullYear() +
@@ -96,7 +100,8 @@ fetch(url)
               : "";
           } else if (prop.startsWith("description_short:")) {
             // Short Description
-            noteData.description_short = prop.split(":")[1].trim();
+            const parts = prop.split(":");
+            noteData.description_short = parts.slice(1).join(":").trim();
             description = noteData.description_short
               ? '<span id="description">' +
                 noteData.description_short +
@@ -104,7 +109,8 @@ fetch(url)
               : "";
           } else if (prop.startsWith("description_long:")) {
             // Long Description
-            noteData.description_long = prop.split(":")[1].trim();
+            const parts = prop.split(":");
+            noteData.description_long = parts.slice(1).join(":").trim();
             description = noteData.description_long
               ? '<span id="description">' +
                 noteData.description_long +
@@ -112,19 +118,22 @@ fetch(url)
               : "";
           } else if (prop.startsWith("author_name:")) {
             // Author Name
-            noteData.author_name = prop.split(":")[1].trim();
+            const parts = prop.split(":");
+            noteData.author_name = parts.slice(1).join(":").trim();
             author_name = noteData.author_name
               ? '<span id="author-name">' + noteData.author_name + "</span>"
               : "";
           } else if (prop.startsWith("author_email:")) {
             // Author Email
-            noteData.author_email = prop.split(":")[1].trim();
+            const parts = prop.split(":");
+            noteData.author_email = parts.slice(1).join(":").trim();
             author_email = noteData.author_email
               ? '<span id="author-email">' + noteData.author_email + "</span>"
               : "";
           } else if (prop.startsWith("author_x:")) {
             // Author X
-            noteData.author_x = prop.split(":")[1].trim();
+            const parts = prop.split(":");
+            noteData.author_x = parts.slice(1).join(":").trim();
             author_x = noteData.author_x
               ? '<span id="author-x">' + noteData.author_x + "</span>"
               : "";
@@ -240,7 +249,7 @@ fetch(url)
       // > > more boop
       //
       //
-      // TODO?: nesting lists inside blockquotes?
+      // DONE: nesting lists inside blockquotes/callouts
       //
       // > boop:
       // > * boop 1
@@ -250,17 +259,16 @@ fetch(url)
       // DONE: callouts
       //
       // > callout
-      // >
-      // > example callout
+      // > boop
       //
       // TODO?: nesting callouts?
       //
       // > callout
+      // > boop
       // >
-      // > callout text
       // > > callout
+      // > > boop
       // > >
-      // > > callout text
       //
       let out;
       if (
@@ -268,31 +276,71 @@ fetch(url)
         previousElement.type === "callout"
       ) {
         // Continue callout
-        const p_element = p(element.slice(1).trim());
-        if (p_element.length > 0) {
-          out = "<p>" + p_element + "</p>";
-        } else {
+        const content = element.slice(1).trim();
+        if (content.length === 0) {
           out = "";
+        } else if (content.startsWith("- ") || content.startsWith("* ")) {
+          const item = p(content.slice(2).trim());
+          if (previousElement.nestedType !== "ul") {
+            previousElement.nestedType = "ul";
+            out = '<ul class="ul"><li>' + item + '</li>';
+          } else {
+            out = '<li>' + item + '</li>';
+          }
+        } else if (content.match(/^\d+\. /)) {
+          const match = content.match(/^\d+\. /)[0];
+          const item = p(content.slice(match.length).trim());
+          if (previousElement.nestedType !== "ol") {
+            previousElement.nestedType = "ol";
+            out = '<ol class="ol"><li>' + item + '</li>';
+          } else {
+            out = '<li>' + item + '</li>';
+          }
+        } else {
+          out = (previousElement.nestedType !== "none") ? "</" + previousElement.nestedType + ">" : "";
+          if (previousElement.nestedType !== "none") {
+            previousElement.nestedType = "none";
+          }
+          const p_element = p(content);
+          if (p_element.length > 0) {
+            out += "<p>" + p_element + "</p>";
+          }
         }
       } else if (
         previousElement.state === "open" &&
         previousElement.type === "blockquote"
       ) {
         // Continue default blockquote
-        const p_element = p(element.slice(1).trim());
-        if (p_element.length > 0) {
-          out = "<p>" + p_element + "</p>";
-        } else {
+        const content = element.slice(1).trim();
+        if (content.length === 0) {
           out = "";
+        } else if (content.startsWith("- ") || content.startsWith("* ")) {
+          const item = p(content.slice(2).trim());
+          if (previousElement.nestedType !== "ul") {
+            previousElement.nestedType = "ul";
+            out = '<ul class="ul"><li>' + item + '</li>';
+          } else {
+            out = '<li>' + item + '</li>';
+          }
+        } else if (content.match(/^\d+\. /)) {
+          const match = content.match(/^\d+\. /)[0];
+          const item = p(content.slice(match.length).trim());
+          if (previousElement.nestedType !== "ol") {
+            previousElement.nestedType = "ol";
+            out = '<ol class="ol"><li>' + item + '</li>';
+          } else {
+            out = '<li>' + item + '</li>';
+          }
+        } else {
+          out = (previousElement.nestedType !== "none") ? "</" + previousElement.nestedType + ">" : "";
+          if (previousElement.nestedType !== "none") {
+            previousElement.nestedType = "none";
+          }
+          const p_element = p(content);
+          if (p_element.length > 0) {
+            out += "<p>" + p_element + "</p>";
+          }
         }
-        // If there something started, check if nesting
-        // if (element.slice(1).trim() === 'quote') {
-        // Start nested quote
-        // out = '<blockquote class="quote"><span class="start-quote">"</span>'
-        // out = '<blockquote class="blockquote">' + p(element.slice(1).trim())
-        // } else {
-        // out = p(element.slice(1).trim()) + '\n'
-        // }
       } else if (
         previousElement.state === "open" &&
         previousElement.type === "blockquote-quote"
@@ -337,11 +385,22 @@ fetch(url)
           previousElement.isFirstElement = true;
         } else {
           // Start default blockquote
-          const p_element = p(element.slice(1).trim());
+          const content = element.slice(1).trim();
+          let inner = (previousElement.nestedType !== "none") ? "</" + previousElement.nestedType + ">" : "";
+          if (previousElement.nestedType !== "none") {
+            previousElement.nestedType = "none";
+          }
+          const p_element = p(content);
           if (p_element.length > 0) {
-            out = '<blockquote class="blockquote"><p>' + p_element + "</p>";
+            inner += "<p>" + p_element + "</p>";
+          }
+          if (inner.length > 0) {
+            out = '<blockquote class="blockquote">' + inner;
           } else {
-            out = '<blockquote class="blockquote">';
+            out = "";
+            previousElement.type = "none";
+            previousElement.state = "closed";
+            return out;
           }
           previousElement.type = "blockquote";
           previousElement.state = "open";
@@ -913,14 +972,22 @@ fetch(url)
         previousElement.state === "open" &&
         previousElement.type === "callout"
       ) {
-        out = "</div>";
+        out = (previousElement.nestedType !== "none") ? "</" + previousElement.nestedType + ">" : "";
+        if (previousElement.nestedType !== "none") {
+          previousElement.nestedType = "none";
+        }
+        out += "</div>";
         previousElement.type = "none";
         previousElement.state = "closed";
       } else if (
         previousElement.state === "open" &&
         previousElement.type === "blockquote"
       ) {
-        out = "</blockquote>";
+        out = (previousElement.nestedType !== "none") ? "</" + previousElement.nestedType + ">" : "";
+        if (previousElement.nestedType !== "none") {
+          previousElement.nestedType = "none";
+        }
+        out += "</blockquote>";
         previousElement.type = "none";
         previousElement.state = "closed";
       } else if (
@@ -1179,6 +1246,12 @@ fetch(url)
       }
     });
 
+    // Add author's contact details if available
+    if (noteData.author_email && noteData.author_x) {
+      noteArticle += '<hr>';
+      noteArticle += '<p>If you’d like to get in touch, <a href="mailto:' + noteData.author_email + '" class="pa">write me an email</a> or <a href="https://x.com/' + noteData.author_x + '" class="pa" target="_blank" rel="noopener noreferrer">dm me on X</a>.</p>';
+    }
+
     // Helper function to generate the Table of Contents
     function generateTableOfContents() {
       // If there are no headers, return an empty string
@@ -1207,8 +1280,11 @@ fetch(url)
           "</a></li>";
       });
       tocList += "</ul></div>";
+
+      let floatingTocList = '<div class="toc-list"><ul><li><a href="#">Top &uarr;</a></li>' + tocList.slice(26, -11) + '</ul></div>';
+
       toc += tocList + "</div><hr/>";
-      floatingToc += tocList + "</div>";
+      floatingToc += floatingTocList + "</div>";
       return toc + floatingToc;
     }
 

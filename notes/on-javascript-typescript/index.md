@@ -33,7 +33,7 @@ let y = 20 // let is used for variables that can be reassigned
 y = 30 // Valid
 x = 40 // Invalid, will throw an error
 const z = x + y
-const name = 'Spike'
+const name = "Spike"
 const isBountyHunter = true
 
 // Functions or methods
@@ -51,14 +51,14 @@ console.log(result)
 
 // Objects (dictionaries in Python)
 const user = {
-  name: 'John',
+  name: "John",
   age: 30,
-  email: 'john@example.com'
+  email: "john@example.com",
 }
 
 // Arrays (or lists)
 const numbers = [1, 2, 3, 4, 5]
-const words = ['hello', 'there', 'space', 'cowboy']
+const words = ["hello", "there", "space", "cowboy"]
 
 // Looping
 // There's `for`, `while`, and `forEach` (for arrays),
@@ -66,25 +66,24 @@ const words = ['hello', 'there', 'space', 'cowboy']
 // which go through every item in an array,
 // and apply a function to it.
 // For example, if you want to square every item in an array:
-const squared = numbers.map(x => x * x)
+const squared = numbers.map((x) => x * x)
 console.log(squared)
 // Expected output: Array [1, 4, 9, 16, 25]
 
 // Conditionals
 if (x > 0) {
-  console.log('x is positive')
+  console.log("x is positive")
 } else if (x === 0) {
-  console.log('x is zero')
+  console.log("x is zero")
 } else {
-  console.log('x is negative')
+  console.log("x is negative")
 }
 // Expected output: 'x is positive'
 
-// That's it. 
-// (There's a bit more, of course, 
+// That's it.
+// (There's a bit more, of course,
 // but that's already like 80% of it.)
 ```
-
 
 ## [JS] Typical headaches: Callback hell, Undefined, NaN, Type coercion, Truthiness, Shallow copies
 
@@ -99,9 +98,9 @@ If you thought JS was going to be easy, you're in for a couple (unpleasant) surp
 
 // Example:
 // The timeout runs *after* the synchronous code, even with a delay of 0.
-console.log('Start')
-setTimeout(() => console.log('Timeout'), 0)
-console.log('End')
+console.log("Start")
+setTimeout(() => console.log("Timeout"), 0)
+console.log("End")
 // Expected output: 'Start' 'End' 'Timeout'
 
 // - - - - - - - - - -
@@ -135,7 +134,7 @@ console.log(foo.bar)
 // Expected output: undefined
 
 // And that isn't an error.
-// You can already see how it'll hit the fan 
+// You can already see how it'll hit the fan
 // when working with JSON data, for example.
 // Welcome to JS :)
 
@@ -169,18 +168,18 @@ console.log(isNaN(NaN))
 // Examples:
 // Addition and subtraction
 // Adds strings
-console.log(5 + '5')
+console.log(5 + "5")
 // Expected output: '55'
 // Subtracts numbers
-console.log('5' - 2)
+console.log("5" - 2)
 // Expected output: 3
 
 // Equality operators
 // `==` with type coercion
-console.log(5 == '5')
+console.log(5 == "5")
 // Expected output: true
 // `===` without type coercion (for strict comparison)
-console.log(5 === '5')
+console.log(5 === "5")
 // Expected output: false
 
 // - - - - - - - - - -
@@ -195,7 +194,7 @@ console.log(5 === '5')
 // Examples:
 console.log(Boolean(0))
 // Expected output: false
-console.log(Boolean('0'))
+console.log(Boolean("0"))
 // Expected output: true
 
 // - - - - - - - - - -
@@ -253,20 +252,20 @@ num.toFixed(2) // Round to 2 decimal places as string ('10.12')
 const phrase = "You're a wizard, Harry. "
 phrase.toUpperCase() // "YOU'RE A WIZARD, HARRY. "
 phrase.toLowerCase() // "you're a wizard, harry. "
-phrase.split(',') // ["You're a wizard", "' Harry. "]
+phrase.split(",") // ["You're a wizard", "' Harry. "]
 // Remove whitespace at start and end
 phrase.trim() // "You're a wizard, Harry."
 // Editing
-phrase.replace('Harry', 'Ron') // "You're a wizard, Ron. "
-phrase.replaceAll('r', 'x') // "You'xe a wizaxd, Haxxy. "
+phrase.replace("Harry", "Ron") // "You're a wizard, Ron. "
+phrase.replaceAll("r", "x") // "You'xe a wizaxd, Haxxy. "
 // Substrings
 phrase.substring(0, 10) // "You're a wizar"
 phrase.slice(0, 10) // "You're a wizar"
 phrase.slice(-10) // 'rd, Harry. '
 // True/false checks
-phrase.startsWith('You') // true
-phrase.endsWith('Harry') // true
-phrase.includes('wizard') // true
+phrase.startsWith("You") // true
+phrase.endsWith("Harry") // true
+phrase.includes("wizard") // true
 // Regex matching
 phrase.match(/wizard/g) // ['wizard']
 
@@ -282,11 +281,11 @@ numbers.reverse() // ([5, 4, 3, 2, 1])
 // Splice: remove n items from an array at some starting point
 numbers.splice(2, 1) // Remove 1 item at index 2 ([1, 2, 4, 5])
 // Slice: get part of an array with a start (and end)
-letters = ['a', 'b', 'c', 'd', 'e'] // Reset
+letters = ["a", "b", "c", "d", "e"] // Reset
 letters.slice(1) // Items from index 1 to end (['b', 'c', 'd', 'e'])
-letters = ['a', 'b', 'c', 'd', 'e'] // Reset
+letters = ["a", "b", "c", "d", "e"] // Reset
 letters.slice(1, 3) // Items from index 1 to 3, not including 3 (['b', 'c'])
-letters = ['a', 'b', 'c', 'd', 'e'] // Reset
+letters = ["a", "b", "c", "d", "e"] // Reset
 letters.slice(0, -1) // Items from start to end-1 (['a', 'b', 'c', 'd'])
 // ... and other array methods like `map()`, `filter()`, `sort()`, `every()`, `some()`, etc.
 // (more on those below)
@@ -295,8 +294,8 @@ letters.slice(0, -1) // Items from start to end-1 (['a', 'b', 'c', 'd'])
 
 // 5. Objects
 const user = {
-  name: 'Harry Potter',
-  email: 'harry.potter@hogwarts.com',
+  name: "Harry Potter",
+  email: "harry.potter@hogwarts.com",
   age: 30,
 }
 Object.keys(user) // ['name', 'email', 'age']
@@ -309,7 +308,7 @@ Object.entries(user) // [['name', 'Harry Potter'], ['email', 'harry.potter@hogwa
 // 6. Dates
 // Date time string format:
 // YYYY-MM-DDTHH:mm:ss.sssZ
-const date = new Date('2025-01-01')
+const date = new Date("2025-01-01")
 const now = new Date()
 // Get parts of the date
 date.getFullYear() // 2025
@@ -325,57 +324,56 @@ date.setDate(date.getDate() + 1) // 2026-01-02
 // 7. Intl
 // `Intl.DateTimeFormat` or directly on the date object
 // Formatting dates
-const options = { 
-  year: 'numeric', 
-  month: 'long', 
-  day: 'numeric'
+const options = {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
   // ... and more
 }
-date.toLocaleDateString('en-US', options) // 'January 2, 2026'
-date.toLocaleDateString('de', options) // '1. Januar 2026'
+date.toLocaleDateString("en-US", options) // 'January 2, 2026'
+date.toLocaleDateString("de", options) // '1. Januar 2026'
 // Formatting time (hours, minutes, seconds)
-const timeOptions = { hour: '2-digit', minute: '2-digit' }
-date.toLocaleTimeString('en-US', timeOptions) // '12:00 AM'
-date.toLocaleTimeString('de', timeOptions) // '00:00'
+const timeOptions = { hour: "2-digit", minute: "2-digit" }
+date.toLocaleTimeString("en-US", timeOptions) // '12:00 AM'
+date.toLocaleTimeString("de", timeOptions) // '00:00'
 
 // `Intl.NumberFormat` or directly on the number
 // Formatting numbers ('currency', 'decimal', 'percent', 'unit')
 const number = 1000
 // Currency
 const numberCurrencyDollarOptions = {
-  style: 'currency', 
-  currency: 'USD'
+  style: "currency",
+  currency: "USD",
 }
-number.toLocaleString('en-US', numberCurrencyDollarOptions) // '$1,000.00'
+number.toLocaleString("en-US", numberCurrencyDollarOptions) // '$1,000.00'
 const numberCurrencyEuroOptions = {
-  style: 'currency', 
-  currency: 'EUR',
-  currencyDisplay: 'name'
+  style: "currency",
+  currency: "EUR",
+  currencyDisplay: "name",
 }
-number.toLocaleString('de', numberCurrencyEuroOptions) // '1.000,00 Euro'
+number.toLocaleString("de", numberCurrencyEuroOptions) // '1.000,00 Euro'
 // Decimal
 const numberDecimalOptions = {
-  style: 'decimal',
+  style: "decimal",
   minimumFractionDigits: 2,
-  maximumFractionDigits: 2
+  maximumFractionDigits: 2,
 }
-number.toLocaleString('en-US', numberDecimalOptions) // '1,000.00'
-number.toLocaleString('de', numberDecimalOptions) // '1.000,00'
+number.toLocaleString("en-US", numberDecimalOptions) // '1,000.00'
+number.toLocaleString("de", numberDecimalOptions) // '1.000,00'
 // Percent
 const percentNumber = 0.5
-const numberPercentOptions = { style: 'percent' }
-percentNumber.toLocaleString('en-US', numberPercentOptions) // '50%'
+const numberPercentOptions = { style: "percent" }
+percentNumber.toLocaleString("en-US", numberPercentOptions) // '50%'
 // Unit
 const numberUnitOptions = {
-  style: 'unit',
-  unit: 'kilogram',
-  unitDisplay: 'short'
+  style: "unit",
+  unit: "kilogram",
+  unitDisplay: "short",
 }
-number.toLocaleString('en-US', numberUnitOptions) // '1,000 kg'
-
-// For `Intl.RelativeTimeFormat` (e.g. "1 day ago"),
-// you can check my "On CSS/SCSS & Styling" notes.
+number.toLocaleString("en-US", numberUnitOptions) // '1,000 kg'
 ```
+
+For `Intl.RelativeTimeFormat` (e.g. "1 day ago"), you can check the [On CSS/SCSS & Styling](/notes/on-css-scss-styling) notes.
 
 <!-- --- -->
 
@@ -390,7 +388,7 @@ number.toLocaleString('en-US', numberUnitOptions) // '1,000 kg'
 
 // Real example:
 const someValue = 3
-const result = someValue > 5 ? 'Yes' : 'No'
+const result = someValue > 5 ? "Yes" : "No"
 
 console.log(result)
 // Expected output: 'No'
@@ -439,13 +437,13 @@ Filter is a method that arrays have. You provide a callback that will be execute
 // Array of objects
 const words = [
   //
-  { word: 'spray' },
-  { word: 'juice' },
-  { word: 'boop' },
+  { word: "spray" },
+  { word: "juice" },
+  { word: "boop" },
 ]
 
 // Filter items
-const result = words.filter((word) => word.word === 'boop')
+const result = words.filter((word) => word.word === "boop")
 
 console.log(result)
 // Expected output: Array [{word: 'boop'}]
@@ -455,12 +453,12 @@ console.log(result)
 // Array of strings
 const words = [
   //
-  'spray',
-  'limit',
-  'elite',
-  'exuberant',
-  'destruction',
-  'present',
+  "spray",
+  "limit",
+  "elite",
+  "exuberant",
+  "destruction",
+  "present",
 ]
 
 // Filter items
@@ -488,7 +486,7 @@ console.log(result)
 ```js
 // Use dollar sign and curly brackets within backticks `${}`
 
-const someVariable = 'more string text'
+const someVariable = "more string text"
 
 console.log(`string text ${someVariable} string text`)
 // Expected output: 'string text more string text string text'
@@ -527,7 +525,7 @@ console.log(items)
 const someData = {
   example: 12,
   anotherExample: false,
-  something: 'hi',
+  something: "hi",
 }
 
 // Spread syntax for an object
@@ -535,7 +533,7 @@ const someData = {
 // If the key already exists, it's value will be overwritten
 const otherItems = {
   ...someData,
-  something: 'hello',
+  something: "hello",
   somethingElse: 10,
 }
 
@@ -551,8 +549,8 @@ console.log(otherItems)
 ```js
 // You can merge objects using the spread syntax
 
-const obj1 = { foo: 'bar', x: 42 }
-const obj2 = { foo: 'baz', y: 13 }
+const obj1 = { foo: "bar", x: 42 }
+const obj2 = { foo: "baz", y: 13 }
 
 const clonedObj = { ...obj1 }
 console.log(clonedObj)
@@ -571,7 +569,7 @@ Destructuring is a complex topic, but these are the basics:
 
 ```js
 // Example with an array
-const foo = ['one', 'two', 'three']
+const foo = ["one", "two", "three"]
 
 // Destructuring for an array
 // Extract one or more values (in order)
@@ -633,7 +631,7 @@ console.log(itemsTransformed)
 // Sorting an array of strings
 // Default sort order is ascending
 
-const example = ['abc', 'xyz', 'sdf']
+const example = ["abc", "xyz", "sdf"]
 
 example.sort()
 // Expected output: Array ['abc', 'sdf', 'xyz']
@@ -673,7 +671,12 @@ Sort the objects in an array according to the value of a single key.
 // or use something like lodash orderBy or sortBy
 
 // For strings
-const objs = [{ varName: 'abc' }, { varName: 'xyz' }, { varName: 'sdf' }]
+const objs = [
+  // 
+  { varName: "abc" }, 
+  { varName: "xyz" }, 
+  { varName: "sdf" },
+]
 
 const sorted = objs.sort((a, b) =>
   a.varName > b.varName ? 1 : b.varName > a.varName ? -1 : 0
@@ -692,7 +695,12 @@ console.log(sorted)
 
 ```js
 // For numbers
-const objs = [{ varName: 0 }, { varName: 30 }, { varName: 10 }]
+const objs = [
+  // 
+  { varName: 0 }, 
+  { varName: 30 }, 
+  { varName: 10 },
+]
 
 const sorted = objs.sort((a, b) =>
   a.varName > b.varName ? 1 : b.varName > a.varName ? -1 : 0
@@ -705,7 +713,7 @@ console.log(sorted)
 // Expected output: Array [
 //   { varName: 0 },
 //   { varName: 10 },
-//   { varName: 30 },
+//   { varName: 30 }
 // ]
 ```
 
@@ -744,7 +752,7 @@ console.log(sortedObj)
 // Expected output: Object {
 //   varName1: 0,
 //   varName3: 10,
-//   varName2: 30,
+//   varName2: 30
 // }
 
 // Creating a sorted array of arrays from the original object
@@ -759,16 +767,16 @@ console.log(sortedArr)
 // Expected output: Array [
 //   [varName1: 0],
 //   [varName3: 10],
-//   [varName2: 30],
+//   [varName2: 30]
 // ]
 ```
 
 ```js
 // For strings
 const obj = {
-  varName1: 'asd',
-  varName2: 'zxc',
-  varName3: 'qwe',
+  varName1: "asd",
+  varName2: "zxc",
+  varName3: "qwe",
 }
 
 // Literally creating a "sorted" object
@@ -788,7 +796,7 @@ console.log(sortedObj)
 // Expected output: Object {
 //   varName1: 'asd',
 //   varName3: 'qwe',
-//   varName2: 'zxc',
+//   varName2: 'zxc'
 // }
 
 // Creating a sorted array of arrays from the original object
@@ -803,7 +811,7 @@ console.log(sortedArr)
 // Expected output: Array [
 //   [varName1: 'asd'],
 //   [varName3: 'qwe'],
-//   [varName2: 'zxc'],
+//   [varName2: 'zxc']
 // ]
 ```
 
@@ -818,15 +826,14 @@ Lots of data analysis tools have a way to aggregate data. They often have some t
 
 // Example 1:
 const products = [
-  { name: 'apple', price: 10, category: 'fruit' },
-  { name: 'banana', price: 20, category: 'fruit' },
-  { name: 'carrot', price: 30, category: 'vegetable' },
-  { name: 'orange', price: 40, category: 'fruit' },
+  { name: "apple", price: 10, category: "fruit" },
+  { name: "banana", price: 20, category: "fruit" },
+  { name: "carrot", price: 30, category: "vegetable" },
+  { name: "orange", price: 40, category: "fruit" },
 ]
 
 // Group them by category name
 const groupedProducts = Object.groupBy(products, (product) => product.category)
-
 console.log(groupedProducts)
 // Expected output: Object {
 //   fruit: [
@@ -843,20 +850,21 @@ console.log(groupedProducts)
 
 // Example 2:
 const countries = [
-  { name: 'USA', population: 330, continent: 'North America' },
-  { name: 'Canada', population: 37, continent: 'North America' },
-  { name: 'Mexico', population: 126, continent: 'North America' },
-  { name: 'France', population: 67, continent: 'Europe' },
-  { name: 'Germany', population: 83, continent: 'Europe' },
-  { name: 'Italy', population: 60, continent: 'Europe' },
-  { name: 'Japan', population: 126, continent: 'Asia' },
-  { name: 'China', population: 1402, continent: 'Asia' },
-  { name: 'India', population: 1380, continent: 'Asia' },
+  { name: "USA", population: 330, continent: "North America" },
+  { name: "Canada", population: 37, continent: "North America" },
+  { name: "Mexico", population: 126, continent: "North America" },
+  { name: "France", population: 67, continent: "Europe" },
+  { name: "Germany", population: 83, continent: "Europe" },
+  { name: "Italy", population: 60, continent: "Europe" },
+  { name: "Japan", population: 126, continent: "Asia" },
+  { name: "China", population: 1402, continent: "Asia" },
+  { name: "India", population: 1380, continent: "Asia" },
 ]
 
 // Group them by population size (you can obviously do more complex conditions)
-const groupedCountries = Object.groupBy(countries, ((country) => country.population > 100 ? 'Large' : 'Small'))
-
+const groupedCountries = Object.groupBy(countries, (country) =>
+  country.population > 100 ? "Large" : "Small"
+)
 console.log(groupedCountries)
 // Expected output: Object {
 //   Large: [
@@ -884,7 +892,6 @@ const reducedCountries = countries.reduce((acc, country) => {
   acc[country.continent] = (acc[country.continent] || 0) + country.population
   return acc
 }, {})
-
 console.log(reducedCountries)
 // Expected output: Object {
 //   'North America': 493,
@@ -900,7 +907,7 @@ console.log(reducedCountries)
 ```js
 // Copying something, for example, when clicking a button
 // Trigger this within the method you want:
-navigator.clipboard.writeText('some text you want to copy')
+navigator.clipboard.writeText("some text you want to copy")
 ```
 
 <!-- --- -->
@@ -966,24 +973,24 @@ You typically use `localStorage` to save data like user preferences: light/dark 
 
 ```js
 // Storing a simple string
-localStorage.setItem('username', 'john_doe')
+localStorage.setItem("username", "john_doe")
 
 // Storing an object (must be converted to string first)
-const userPreferences = { theme: 'dark', fontSize: 'large' }
-localStorage.setItem('preferences', JSON.stringify(userPreferences))
+const userPreferences = { theme: "dark", fontSize: "large" }
+localStorage.setItem("preferences", JSON.stringify(userPreferences))
 
 // Retrieving a simple string
-const username = localStorage.getItem('username')
+const username = localStorage.getItem("username")
 console.log(username)
 // Expected output: 'john_doe'
 
 // Retrieving an object (must be parsed from string)
-const preferences = JSON.parse(localStorage.getItem('preferences'))
+const preferences = JSON.parse(localStorage.getItem("preferences"))
 console.log(preferences)
 // Expected output: Object { theme: 'dark', fontSize: 'large' }
 
 // Removing an item
-localStorage.removeItem('username')
+localStorage.removeItem("username")
 
 // Clearing all items
 localStorage.clear()
@@ -993,7 +1000,7 @@ localStorage.clear()
 
 ## [JS] How to prevent typing certain characters in form inputs
 
-You can prevent users from typing certain characters in an input by checking the `event.key` property. There are a couple of ways to do this. 
+You can prevent users from typing certain characters in an input by checking the `event.key` property. There are a couple of ways to do this.
 
 I prefer the second method, because it's more flexible, readable, and sets explicit control over what characters are allowed.
 
@@ -1001,36 +1008,40 @@ I prefer the second method, because it's more flexible, readable, and sets expli
 // Example assuming HTML: <input type="text" id="numericInput">
 
 // Method 1: Using regex to allow only numbers
-document.getElementById('numericInput').addEventListener('input', function(event) {
-  // Replace any non-numeric characters with empty string
-  event.target.value = event.target.value.replace(/[^0-9]/g, '')
-})
+document
+  .getElementById("numericInput")
+  .addEventListener("input", function (event) {
+    // Replace any non-numeric characters with empty string
+    event.target.value = event.target.value.replace(/[^0-9]/g, "")
+  })
 
 // Method 2: Using keydown event to prevent character entry
-document.getElementById('numericInput').addEventListener('keydown', function(event) {
-  // Allow: backspace, delete, tab, escape, enter, and numbers
-  if (
-    event.key === 'Backspace' ||
-    event.key === 'Delete' ||
-    event.key === 'Tab' ||
-    event.key === 'Escape' ||
-    event.key === 'Enter' ||
-    /^[0-9]$/.test(event.key)
-  ) {
-    // Do nothing
-    return
-  } else {
-    // Prevent the default action (typing the character)
-    event.preventDefault()
-  }
-})
+document
+  .getElementById("numericInput")
+  .addEventListener("keydown", function (event) {
+    // Allow: backspace, delete, tab, escape, enter, and numbers
+    if (
+      event.key === "Backspace" ||
+      event.key === "Delete" ||
+      event.key === "Tab" ||
+      event.key === "Escape" ||
+      event.key === "Enter" ||
+      /^[0-9]$/.test(event.key)
+    ) {
+      // Do nothing
+      return
+    } else {
+      // Prevent the default action (typing the character)
+      event.preventDefault()
+    }
+  })
 ```
 
 <!-- --- -->
 
 ## [JS] How to chain functions / methods: Pipe, Reduce
 
-A `pipe` is a functional programming concept that allows you to pass a value through a series or chain of functions, from left to right. 
+A `pipe` is a functional programming concept that allows you to pass a value through a series or chain of functions, from left to right.
 
 It automatically passes the result of each function as the argument to the next function in the chain. I think it's not very commonly used, but I think it looks cool.
 
@@ -1047,9 +1058,9 @@ pipe =
 // pipe(function1, function2, function3, etc.)(element)
 
 // Example usage:
-const add2 = x => x + 2
-const multiply3 = x => x * 3
-const toString = x => `Result: ${x}`
+const add2 = (x) => x + 2
+const multiply3 = (x) => x * 3
+const toString = (x) => `Result: ${x}`
 
 // Create a pipeline of operations
 const calculate = pipe(add2, multiply3, toString)
@@ -1067,13 +1078,13 @@ console.log(calculate(5))
 
 ## [TS] TypeScript 101
 
-JavaScript is famous for its ease, flexibility, *and the errors and headaches that can come with it!*
+JavaScript is famous for its ease, flexibility, _and the errors and headaches that can come with it!_
 
-This is because JavaScript is *dynamically typed*, which means that variables can hold values of different types at different times. The errors that this flexibility can lead to are then only caught at runtime, and can be difficult to catch and annoying to debug.
+This is because JavaScript is _dynamically typed_, which means that variables can hold values of different types at different times. The errors that this flexibility can lead to are then only caught at runtime, and can be difficult to catch and annoying to debug.
 
-TypeScript tries to fix this. 
+TypeScript tries to fix this.
 
-TypeScript is a *statically typed* language that is a *superset* of JavaScript. So it ultimately compiles down to JavaScript, and that's why we can catch errors ahead of time.
+TypeScript is a _statically typed_ language that is a _superset_ of JavaScript. So it ultimately compiles down to JavaScript, and that's why we can catch errors ahead of time.
 
 It makes your code more robust, and makes your coding more enjoyable.
 
@@ -1084,19 +1095,18 @@ Key benefits of TypeScript:
 - Tooling for better visibility and confidence with type inference and intellisense in IDEs
 - Providing better documentation and clarity through type annotations
 
-
 ```js
 // JavaScript examples
 
 // 1. Variables in JS
 const x = 10
-x = 'hello' // No error
-x = '10' // No error
+x = "hello" // No error
+x = "10" // No error
 
-const user = { name: "Alice", age: 25 };
+const user = { name: "Alice", age: 25 }
 
 // IDE may not know what `user` contains without explicit comments or runtime inspection.
-console.log(user.email); // Undefined but no warning.
+console.log(user.email) // Undefined but no warning.
 
 // - - - - - - - - - -
 
@@ -1105,8 +1115,8 @@ function add(a, b) {
   return a + b
 }
 
-console.log(add(10, '20'))
-// Expected output: '1020' 
+console.log(add(10, "20"))
+// Expected output: '1020'
 // No error, unexpected concatenation
 ```
 
@@ -1115,19 +1125,19 @@ console.log(add(10, '20'))
 
 // 1. Variables in TS
 const x = 10
-x = 'hello' // Error: Type 'string' is not assignable to type 'number'.
-x = '10' // Error: Type 'string' is not assignable to type 'number'.
+x = "hello" // Error: Type 'string' is not assignable to type 'number'.
+x = "10" // Error: Type 'string' is not assignable to type 'number'.
 
 interface User {
-  name: string;
-  age: number;
-  email?: string; // Optional property
+  name: string
+  age: number
+  email?: string // Optional property
 }
 
-const user: User = { name: "Alice", age: 25 };
+const user: User = { name: "Alice", age: 25 }
 
 // Error: Property 'email' does not exist on type 'User'.
-console.log(user.email?.toUpperCase());
+console.log(user.email?.toUpperCase())
 
 // - - - - - - - - - -
 
@@ -1137,7 +1147,7 @@ function add(a: number, b: number): number {
 }
 
 // Error: Argument of type 'string' is not assignable to parameter of type 'number'.
-console.log(add(10, '20'))
+console.log(add(10, "20"))
 ```
 
 <!-- --- -->
@@ -1147,9 +1157,9 @@ console.log(add(10, '20'))
 In TypeScript, `type` is what you'll use the most (duh). But `type` and `interface` can be slightly confusing since they can look very similar when dealing with objects. They are usually interchangeable, and in general, you'll probably default to using `type` as much as possible.
 
 ```ts
-// 
+//
 // 1. Type
-// 
+//
 // Use for:
 // - Simple types (primitives)
 // - Complex types (objects)
@@ -1187,14 +1197,14 @@ type People = Person[]
 type Coordinates = [number, number]
 
 // - Unions
-type ID = string | number  
+type ID = string | number
 
 // - - - - - - - - - -
 
-// 
+//
 // 2. Interface
-// 
-// Use for: 
+//
+// Use for:
 // - Objects that may need to be extended later
 
 // Interface examples:
@@ -1208,12 +1218,13 @@ interface User {
 
 // Simple type annotation
 const count: number = 0
+
 // Complex type annotation
-const person: Person = { name: 'John', age: 30 }
+const person: Person = { name: "John", age: 30 }
 
 // Declaring what type a function will return
 function getId(): ID {
-  return Math.random() > 0.5 ? 123 : 'abc123'
+  return Math.random() > 0.5 ? 123 : "abc123"
 }
 
 // Function parameters with types
@@ -1239,7 +1250,7 @@ interface BaseUser {
 
 // Extend with interface extends keyword
 interface AdminUser extends BaseUser {
-  role: 'admin'
+  role: "admin"
   permissions: string[]
 }
 
@@ -1268,9 +1279,9 @@ type DomesticDog = Dog & Pet
 
 // Example usage
 const myDog: DomesticDog = {
-  name: 'Rex',
-  breed: 'German Shepherd',
-  owner: 'John'
+  name: "Rex",
+  breed: "German Shepherd",
+  owner: "John",
 }
 ```
 
@@ -1300,10 +1311,10 @@ type PartialUser = Partial<User>
 type RequiredUser = Required<User>
 
 // Pick specific properties
-type PickedUser = Pick<User, 'id' | 'name'>
+type PickedUser = Pick<User, "id" | "name">
 
 // Exclude certain properties
-type OmittedUser = Omit<User, 'email'>
+type OmittedUser = Omit<User, "email">
 
 // Make all properties readonly
 type ReadonlyUser = Readonly<User>
@@ -1315,23 +1326,23 @@ type ReadonlyUser = Readonly<User>
 
 ```ts
 // 1. Literal types
-type DirectionLiteral = 'up' | 'down' | 'left' | 'right'
+type DirectionLiteral = "up" | "down" | "left" | "right"
 
 function moveLiteral(direction: DirectionLiteral) {
   console.log(`Moving ${direction}`)
 }
 
-moveLiteral('up') // You can literally only pass one of the values
+moveLiteral("up") // You can literally only pass one of the values
 // Expected output: 'Moving up'
 
 // - - - - - - - - - -
 
 // 2. Enums
 enum DirectionEnum {
-  Up = 'UP',
-  Down = 'DOWN',
-  Left = 'LEFT',
-  Right = 'RIGHT',
+  Up = "UP",
+  Down = "DOWN",
+  Left = "LEFT",
+  Right = "RIGHT",
 }
 
 function moveEnum(direction: DirectionEnum) {
@@ -1348,10 +1359,10 @@ moveEnum(DirectionEnum.Up) // You have to literally pass the enum type
 // You mix them interchangeably.
 // You can't pass a literal to a function that expects an enum, and vice versa.
 moveLiteral(DirectionEnum.Up) // Error: Type 'DirectionEnum' is not assignable to type 'DirectionLiteral'.
-moveEnum('up') // Error: Type 'string' is not assignable to type 'DirectionEnum'.
+moveEnum("up") // Error: Type 'string' is not assignable to type 'DirectionEnum'.
 
 // You can't use a value that's not part of the literal type.
-moveLiteral('sideways') // Error: Type 'string' is not assignable to type 'DirectionLiteral'.
+moveLiteral("sideways") // Error: Type 'string' is not assignable to type 'DirectionLiteral'.
 ```
 
 <!-- --- -->
@@ -1359,12 +1370,14 @@ moveLiteral('sideways') // Error: Type 'string' is not assignable to type 'Direc
 ## [TS] How to check or enforce types: Typeof, Instanceof, Keyof, In, As
 
 Checking:
+
 - **typeof**: Check primitive types: `string`, `number`, `boolean`, etc.
 - **instanceof**: Check class instances.
 - **keyof**: Check object keys.
 - **in**: Check property existence.
 
 Enforcing:
+
 - **as**: Assert a type.
 
 ```ts
@@ -1440,12 +1453,12 @@ let unknownValue: unknown = 4
 // If we check or prove that `unknownValue` is a number,
 // then TypeScript will let us call `toFixed` (or other number methods)
 // without an error.
-if (typeof unknownValue === 'number') {
+if (typeof unknownValue === "number") {
   console.log(unknownValue.toFixed(2))
 }
 // Expected output: '4.00'
 
-// If we don't check or prove that it's a number first, 
+// If we don't check or prove that it's a number first,
 // we will get an error.
 unknownValue.toFixed(2) // Error: Object is of type 'unknown'.
 
@@ -1455,13 +1468,9 @@ unknownValue.toFixed(2) // Error: Object is of type 'unknown'.
 // If there's an error or unexpected behavior,
 // you'll only find out at runtime, not compile-time
 let anyValue: any = 4
-anyValue = 'hello' // No error
+anyValue = "hello" // No error
 anyValue = true // No error
 
 console.log(anyValue)
 // Expected output: true
 ```
-
----
-
-If you'd like to get in touch, [write me an email](mailto:enrique@ruizdurazo.com) or [dm me on X](https://x.com/ruizdurazo).
