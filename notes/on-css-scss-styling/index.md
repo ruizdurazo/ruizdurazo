@@ -1192,24 +1192,24 @@ You can resize the `textarea` input box to fit the content dynamically. Chat and
 // Resizing function
 function resizeTextarea(event) {
   // Reset the height
-  event.target.style.height = "auto";
+  event.target.style.height = "auto"
   // Set it to the scrollHeight (and probably account for border width)
-  event.target.style.height = event.target.scrollHeight + 2 + "px";
+  event.target.style.height = event.target.scrollHeight + 2 + "px"
 }
 
 // Get the textarea element
-const textarea = document.getElementById("message");
+const textarea = document.getElementById("message")
 
 // [HTML] Add event listener for the input event
-textarea.addEventListener("input", resizeTextarea);
+textarea.addEventListener("input", resizeTextarea)
 
 // - - - - - - - - - -
 
 // Directly in the event listener
 textarea.addEventListener("input", (e) => {
-  e.target.style.height = "auto";
-  e.target.style.height = e.target.scrollHeight + 2 + "px";
-});
+  e.target.style.height = "auto"
+  e.target.style.height = e.target.scrollHeight + 2 + "px"
+})
 ```
 
 ```scss
@@ -1719,43 +1719,43 @@ And in the example below, the comparison slider swipes horizontally, but you can
 
 // Get by class or id
 // Get the container
-const container = document.querySelector(".container");
+const container = document.querySelector(".container")
 // Get the handle
-const handle = document.querySelector(".handle");
+const handle = document.querySelector(".handle")
 // Get the before image (container)
-const beforeImage = document.querySelector(".before");
+const beforeImage = document.querySelector(".before")
 
 // Track if the user is dragging the handle
-let isDragging = false;
+let isDragging = false
 
 // Function to update the slider,
 // and the clip-path of the before image.
 function updateSlider(x) {
-  const rect = container.getBoundingClientRect();
+  const rect = container.getBoundingClientRect()
   const percentage = Math.max(
     0,
     Math.min(100, ((x - rect.left) / rect.width) * 100)
-  );
+  )
   // Update the clip-path of the before image
-  beforeImage.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+  beforeImage.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`
   // Update the handle position
-  handle.style.left = `${percentage}%`;
+  handle.style.left = `${percentage}%`
 }
 
 // Listen to the click and drag events on the handle and container,
 // and update the slider and the clip-path of the before image.
 handle.addEventListener("mousedown", (e) => {
-  isDragging = true;
-  updateSlider(e.clientX);
-});
+  isDragging = true
+  updateSlider(e.clientX)
+})
 container.addEventListener("mousemove", (e) => {
   if (isDragging) {
-    updateSlider(e.clientX);
+    updateSlider(e.clientX)
   }
-});
+})
 container.addEventListener("mouseup", () => {
-  isDragging = false;
-});
+  isDragging = false
+})
 ```
 
 <!-- --- -->
@@ -2032,77 +2032,77 @@ This creates a smooth sliding effect where the active tab background appears to 
 // Get all the tab buttons and the clip container
 const tabButtons = document.querySelectorAll(
   ".tab-button:not(.tab-button-overlay)"
-);
-const clipContainer = document.querySelector(".tab-clip-container");
+)
+const clipContainer = document.querySelector(".tab-clip-container")
 
 // Track the currently active tab
-let activeTab = "payments"; // Default active tab
+let activeTab = "payments" // Default active tab
 
 // Function to update the clip-path based on the active tab
 function updateClipPath() {
   // Find the active tab button (not the overlay one)
   const activeTabButton = document.querySelector(
     `.tab-button[data-tab="${activeTab}"]:not(.tab-button-overlay)`
-  );
+  )
 
   if (activeTabButton && clipContainer) {
     // Get the position and dimensions of the active tab
-    const { offsetLeft, offsetWidth } = activeTabButton;
-    const containerWidth = clipContainer.offsetWidth;
+    const { offsetLeft, offsetWidth } = activeTabButton
+    const containerWidth = clipContainer.offsetWidth
 
     // Calculate the clip-path values as percentages,
     // and make sure the values are between 0 and 100.
     const clipLeft = Math.max(
       0,
       Math.min(100, (offsetLeft / containerWidth) * 100)
-    );
+    )
     const clipRight = Math.max(
       0,
       Math.min(100, ((offsetLeft + offsetWidth) / containerWidth) * 100)
-    );
+    )
 
     // Apply the clip-path to show only the active tab area
     clipContainer.style.clipPath = `inset(0% ${(100 - clipRight).toFixed(
       1
-    )}% 0% ${clipLeft.toFixed(1)}% round 18px)`;
+    )}% 0% ${clipLeft.toFixed(1)}% round 18px)`
   }
 }
 
 // Function to set the active tab
 function setActiveTab(tabName) {
   // Remove active class from all buttons
-  tabButtons.forEach((button) => button.classList.remove("active"));
+  tabButtons.forEach((button) => button.classList.remove("active"))
 
   // Add active class to the clicked button
   const clickedButton = document.querySelector(
     `.tab-button[data-tab="${tabName}"]:not(.tab-button-overlay)`
-  );
+  )
   if (clickedButton) {
-    clickedButton.classList.add("active");
+    clickedButton.classList.add("active")
   }
 
   // Update the active tab and clip-path
-  activeTab = tabName;
-  updateClipPath();
+  activeTab = tabName
+  updateClipPath()
 }
 
 // Add click event listeners to all tab buttons
 tabButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    const tabName = button.getAttribute("data-tab");
-    setActiveTab(tabName);
-  });
-});
+    const tabName = button.getAttribute("data-tab")
+    setActiveTab(tabName)
+  })
+})
 
 // Initialize the clip-path on page load
 document.addEventListener("DOMContentLoaded", () => {
-  updateClipPath();
-});
+  updateClipPath()
+})
 
 // Update clip-path on window resize to maintain correct positioning
 window.addEventListener("resize", () => {
-  updateClipPath();
-});
+  updateClipPath()
+})
 ```
 
 <!-- --- -->
@@ -2321,19 +2321,19 @@ body {
 // add/remove the class to the navbar.
 
 // Get the navbar element
-const navbar = document.getElementById("navbar");
+const navbar = document.getElementById("navbar")
 // Get the scrollable container, in this case body
-const scrollContainer = document.body;
+const scrollContainer = document.body
 
 // Listen to the scroll events
 scrollContainer.addEventListener("scroll", function () {
   // Check if the scroll value is past a certain threshold
   if (scrollContainer.scrollTop > 0) {
-    navbar.classList.add("scrolled");
+    navbar.classList.add("scrolled")
   } else {
-    navbar.classList.remove("scrolled");
+    navbar.classList.remove("scrolled")
   }
-});
+})
 ```
 
 If you're using a framework, you could add something like this to a method that tracks the scroll value and updates the state accordingly. It'll depend if it's some computed variable (Vue), or some sort of hook (React), or if you'll manage it in the global state. It's up to you.
@@ -2580,28 +2580,28 @@ const phrases = [
   "Hufflepuff",
   "Ravenclaw",
   "<del>Slytherin</del>",
-];
+]
 const words = [
   "Harry", // You can add or exclude the initial word
   "Ron",
   "Hermione",
   "Ginny",
-];
+]
 
 // 2. Get the elements and define the setting and helper variables
-const phrase_element = document.getElementById("phrase");
-const word_element = document.getElementById("word");
+const phrase_element = document.getElementById("phrase")
+const word_element = document.getElementById("word")
 
 // Animation settings
-let anim_delay = 3500; // ms (3.5 seconds)
-let anim_duration = 500; // ms (0.5 seconds)
-let counter = 0; // helper
+let anim_delay = 3500 // ms (3.5 seconds)
+let anim_duration = 500 // ms (0.5 seconds)
+let counter = 0 // helper
 
 // 2. Add a setInterval that will increment a counter
 document.addEventListener("DOMContentLoaded", function (event) {
   setInterval(() => {
     // Increment the counter either before or after updating the elements
-    counter++;
+    counter++
 
     // [Optional] Update the elements directly (no animation)
     // 1. Whole element
@@ -2619,30 +2619,30 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     // First, add the out class to current elements
     // 1. Whole element
-    phrase_element.classList.add("fade-out");
+    phrase_element.classList.add("fade-out")
     // 2. Single word
-    word_element.classList.add("fade-out");
+    word_element.classList.add("fade-out")
 
     // Then, remove the out class from current elements,
     // replace the inner HTML of `phrase_element` or `word_element`,
     // and add the in class to new elements
     setTimeout(() => {
       // 1. Whole element
-      phrase_element.classList.remove("fade-out");
-      phrase_element.innerHTML = phrases[counter % phrases.length];
-      phrase_element.classList.add("fade-in");
+      phrase_element.classList.remove("fade-out")
+      phrase_element.innerHTML = phrases[counter % phrases.length]
+      phrase_element.classList.add("fade-in")
       // 2. Single word
-      word_element.classList.remove("fade-out");
-      word_element.innerHTML = words[counter % words.length];
-      word_element.classList.add("fade-in");
-    }, anim_duration);
+      word_element.classList.remove("fade-out")
+      word_element.innerHTML = words[counter % words.length]
+      word_element.classList.add("fade-in")
+    }, anim_duration)
     // Finally, remove the in class from new elements
     // 1. Whole element
-    phrase_element.classList.remove("fade-in");
+    phrase_element.classList.remove("fade-in")
     // 2. Single word
-    word_element.classList.remove("fade-in");
-  }, anim_delay);
-});
+    word_element.classList.remove("fade-in")
+  }, anim_delay)
+})
 ```
 
 ```css
@@ -2953,64 +2953,64 @@ To show time differences in a human readable way (like "1 day ago", "in 2 weeks"
 
 // Create a RelativeTimeFormat instance for English
 // Use 'auto' for natural language formatting
-const rtf = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
+const rtf = new Intl.RelativeTimeFormat("en", { numeric: "auto" })
 
 // Days
-console.log(rtf.format(-1, "day"));
+console.log(rtf.format(-1, "day"))
 // Expected output: "yesterday"
-console.log(rtf.format(1, "day"));
+console.log(rtf.format(1, "day"))
 // Expected output: "tomorrow"
-console.log(rtf.format(0, "day"));
+console.log(rtf.format(0, "day"))
 // Expected output: "today"
 
 // Other units
-console.log(rtf.format(-5, "minute"));
+console.log(rtf.format(-5, "minute"))
 // Expected output: "5 minute ago"
-console.log(rtf.format(-10, "hour"));
+console.log(rtf.format(-10, "hour"))
 // Expected output: "10 hours ago"
-console.log(rtf.format(-2, "month"));
+console.log(rtf.format(-2, "month"))
 // Expected output: "2 months ago"
-console.log(rtf.format(-1, "year"));
+console.log(rtf.format(-1, "year"))
 // Expected output: "1 year ago"
 
 // - - - - - - - - - -
 
 // Create a RelativeTimeFormat instance for German
-const rtfGerman = new Intl.RelativeTimeFormat("de", { numeric: "auto" });
+const rtfGerman = new Intl.RelativeTimeFormat("de", { numeric: "auto" })
 
-console.log(rtfGerman.format(-2, "week"));
+console.log(rtfGerman.format(-2, "week"))
 // Expected output: "vor 2 Wochen"
-console.log(rtfGerman.format(1, "hour"));
+console.log(rtfGerman.format(1, "hour"))
 // Expected output: "in 1 Stunde"
 
 // - - - - - - - - - -
 
 // Default is 'always' for precise numeric formatting
-const rtfAlways = new Intl.RelativeTimeFormat("en", { numeric: "always" });
+const rtfAlways = new Intl.RelativeTimeFormat("en", { numeric: "always" })
 
-console.log(rtfAlways.format(-1, "day"));
+console.log(rtfAlways.format(-1, "day"))
 // Expected output: "1 day ago"
-console.log(rtfAlways.format(1, "day"));
+console.log(rtfAlways.format(1, "day"))
 // Expected output: "in 1 day"
 
 // - - - - - - - - - -
 
 // Using 'short' for shorter formatting
-const rtfShort = new Intl.RelativeTimeFormat("en", { style: "short" });
+const rtfShort = new Intl.RelativeTimeFormat("en", { style: "short" })
 
-console.log(rtfShort.format(-1, "day"));
+console.log(rtfShort.format(-1, "day"))
 // Expected output: "1 day ago"
-console.log(rtfShort.format(2, "week"));
+console.log(rtfShort.format(2, "week"))
 // Expected output: "in 2 wk"
 
 // - - - - - - - - - -
 
 // Using 'narrow' for the most compact formatting
-const rtfNarrow = new Intl.RelativeTimeFormat("en", { style: "narrow" });
+const rtfNarrow = new Intl.RelativeTimeFormat("en", { style: "narrow" })
 
-console.log(rtfNarrow.format(-1, "day"));
+console.log(rtfNarrow.format(-1, "day"))
 // Expected output: "1d ago"
-console.log(rtfNarrow.format(2, "week"));
+console.log(rtfNarrow.format(2, "week"))
 // Expected output: "in 2w"
 ```
 
@@ -3018,36 +3018,36 @@ console.log(rtfNarrow.format(2, "week"));
 // Real-world example
 
 // 1. Create a RelativeTimeFormat instance
-const rtf = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
+const rtf = new Intl.RelativeTimeFormat("en", { numeric: "auto" })
 
 // 2. Set date
-const eventDate = new Date(); // or some createAt/updatedAt date
+const eventDate = new Date() // or some createAt/updatedAt date
 
 // 3. Calculate the difference between the dates
 function getTimeDifference(from, to = new Date()) {
   // Get the difference in seconds
-  const difference = Math.round((from - to) / 1000); // round to nearest second
-  const abs = Math.abs(difference); // absolute value
+  const difference = Math.round((from - to) / 1000) // round to nearest second
+  const abs = Math.abs(difference) // absolute value
   // Return the difference and the corresponding unit
-  if (abs < 60) return [difference, "second"];
-  if (abs < 3600) return [Math.round(difference / 60), "minute"];
-  if (abs < 86400) return [Math.round(difference / 3600), "hour"];
-  if (abs < 604800) return [Math.round(difference / 86400), "day"];
-  if (abs < 2629800) return [Math.round(difference / 604800), "week"];
-  if (abs < 31557600) return [Math.round(difference / 2629800), "month"];
-  return [Math.round(difference / 31557600), "year"];
+  if (abs < 60) return [difference, "second"]
+  if (abs < 3600) return [Math.round(difference / 60), "minute"]
+  if (abs < 86400) return [Math.round(difference / 3600), "hour"]
+  if (abs < 604800) return [Math.round(difference / 86400), "day"]
+  if (abs < 2629800) return [Math.round(difference / 604800), "week"]
+  if (abs < 31557600) return [Math.round(difference / 2629800), "month"]
+  return [Math.round(difference / 31557600), "year"]
 }
 
 // 4) Function to update the time difference
 function update() {
-  const [value, unit] = getTimeDifference(eventDate);
+  const [value, unit] = getTimeDifference(eventDate)
   document.getElementById("relative-time-format-example").textContent =
-    rtf.format(value, unit);
+    rtf.format(value, unit)
 }
 
 // 5) Start it, and update it every second
-update(); // Initialize
-setInterval(update, 1000); // Update every second
+update() // Initialize
+setInterval(update, 1000) // Update every second
 ```
 
 <!-- --- -->
