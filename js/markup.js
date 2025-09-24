@@ -4,47 +4,46 @@
  */
 
 // Markdown document, an array of lines (strings)
-let md = [];
+let md = []
 
 // Note objects and helpers
-let noteData = {};
-let noteArticle = {};
-let previousElement = {};
-previousElement.lang = ""; // Language for syntax highlighting
-previousElement.type = "none"; // Type of element
-previousElement.state = "closed"; // State of multi-line element
-previousElement.isFirstElement = false; // Whether the element is the first element in a multi-line element
-previousElement.nestedType = "none"; // Type of nested element
-noteData.word_count = 0;
-
+let noteData = {}
+let noteArticle = {}
+let previousElement = {}
+previousElement.lang = "" // Language for syntax highlighting
+previousElement.type = "none" // Type of element
+previousElement.state = "closed" // State of multi-line element
+previousElement.isFirstElement = false // Whether the element is the first element in a multi-line element
+previousElement.nestedType = "none" // Type of nested element
+noteData.word_count = 0
 
 // Date settings
 const date_options = {
   year: "numeric",
   month: "long",
   day: "numeric",
-};
+}
 
 // Helper for piping functions in sequential order
 pipe =
   (...fns) =>
   (x) =>
-    fns.reduce((v, f) => f(v), x);
+    fns.reduce((v, f) => f(v), x)
 
 // Account for 'index.html'
-let pathname = document.location.pathname;
+let pathname = document.location.pathname
 if (pathname.endsWith("index.html")) {
-  pathname = pathname.slice(0, -10);
+  pathname = pathname.slice(0, -10)
 }
 
 // Helper for fetch url
-let url = document.location.href;
+let url = document.location.href
 
 // Check for 'local' vs 'prod'
 if (url.startsWith("https://ruizdurazo.com")) {
-  url = `https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master${pathname}index.md`;
+  url = `https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master${pathname}index.md`
 } else {
-  url = `http://127.0.0.1:5500${pathname}index.md`;
+  url = `http://127.0.0.1:5500${pathname}index.md`
 }
 
 // Fetch the Markdown document and parse it
@@ -63,30 +62,30 @@ fetch(url)
 
     // Check if Markdown document has note post metadata
     if (text.startsWith("---")) {
-      let metadataPattern = /---[^]*?---/;
-      let metadataBlock = text.match(metadataPattern);
+      let metadataPattern = /---[^]*?---/
+      let metadataBlock = text.match(metadataPattern)
       if (metadataBlock) {
-        let hasTitle = false;
-        let hasThumbnailImage = false;
+        let hasTitle = false
+        let hasThumbnailImage = false
         // If metadata found, split on new lines
-        const metadata = metadataBlock[0].trim().split("\n");
-        metadata.shift();
-        metadata.pop();
+        const metadata = metadataBlock[0].trim().split("\n")
+        metadata.shift()
+        metadata.pop()
         // Iterate through meta properties
         metadata.forEach((prop) => {
           if (prop.startsWith("title:")) {
             // Page Title
-            hasTitle = true;
-            const parts = prop.split(":");
-            noteData.title = parts.slice(1).join(":").trim();
-            document.title = noteData.title + " — Enrique Ruiz Durazo";
+            hasTitle = true
+            const parts = prop.split(":")
+            noteData.title = parts.slice(1).join(":").trim()
+            document.title = noteData.title + " — Enrique Ruiz Durazo"
             title = noteData.title
               ? '<h1 id="title">' + noteData.title + "</h1>"
-              : "";
+              : ""
           } else if (prop.startsWith("date:")) {
             // Date
-            const parts = prop.split(":");
-            noteData.date = new Date(parts.slice(1).join(":").trim());
+            const parts = prop.split(":")
+            noteData.date = new Date(parts.slice(1).join(":").trim())
             date = noteData.date
               ? '<div id="date-ttr"><small id="date">' +
                 noteData.date.getFullYear() +
@@ -97,76 +96,76 @@ fetch(url)
                 " " +
                 noteData.date.getDate() +
                 "</small></div>"
-              : "";
+              : ""
           } else if (prop.startsWith("description_short:")) {
             // Short Description
-            const parts = prop.split(":");
-            noteData.description_short = parts.slice(1).join(":").trim();
+            const parts = prop.split(":")
+            noteData.description_short = parts.slice(1).join(":").trim()
             description = noteData.description_short
               ? '<span id="description">' +
                 noteData.description_short +
                 "</span>"
-              : "";
+              : ""
           } else if (prop.startsWith("description_long:")) {
             // Long Description
-            const parts = prop.split(":");
-            noteData.description_long = parts.slice(1).join(":").trim();
+            const parts = prop.split(":")
+            noteData.description_long = parts.slice(1).join(":").trim()
             description = noteData.description_long
               ? '<span id="description">' +
                 noteData.description_long +
                 "</span>"
-              : "";
+              : ""
           } else if (prop.startsWith("author_name:")) {
             // Author Name
-            const parts = prop.split(":");
-            noteData.author_name = parts.slice(1).join(":").trim();
+            const parts = prop.split(":")
+            noteData.author_name = parts.slice(1).join(":").trim()
             author_name = noteData.author_name
               ? '<span id="author-name">' + noteData.author_name + "</span>"
-              : "";
+              : ""
           } else if (prop.startsWith("author_email:")) {
             // Author Email
-            const parts = prop.split(":");
-            noteData.author_email = parts.slice(1).join(":").trim();
+            const parts = prop.split(":")
+            noteData.author_email = parts.slice(1).join(":").trim()
             author_email = noteData.author_email
               ? '<span id="author-email">' + noteData.author_email + "</span>"
-              : "";
+              : ""
           } else if (prop.startsWith("author_x:")) {
             // Author X
-            const parts = prop.split(":");
-            noteData.author_x = parts.slice(1).join(":").trim();
+            const parts = prop.split(":")
+            noteData.author_x = parts.slice(1).join(":").trim()
             author_x = noteData.author_x
               ? '<span id="author-x">' + noteData.author_x + "</span>"
-              : "";
+              : ""
           }
-        });
+        })
         // Add header elements
         // Add date to header
         if (date) {
-          document.getElementById("header").innerHTML += date;
+          document.getElementById("header").innerHTML += date
         }
         // Add title to header
         if (title) {
-          document.getElementById("header").innerHTML += title;
+          document.getElementById("header").innerHTML += title
         }
         // Add description to header
         if (description) {
-          document.getElementById("header").innerHTML += description;
+          document.getElementById("header").innerHTML += description
         }
 
         if (hasTitle && hasThumbnailImage) {
           // TODO: Add thumbnail image, if present and title is present
         } else if (hasTitle) {
           // Add hr, if title is present
-          document.getElementById("header").innerHTML += "<hr/>";
+          document.getElementById("header").innerHTML += "<hr/>"
         }
 
         // Remove metadata block from original document
-        text = text.replace(metadataBlock[0], "");
+        text = text.replace(metadataBlock[0], "")
       }
     }
 
     // Table of Contents (TOC) helper container
-    let tableOfContents = [];
+    let tableOfContents = []
 
     //
     // Note
@@ -188,26 +187,26 @@ fetch(url)
     // Section Headings
     h = (element, level = 2) => {
       // Count words
-      wordCounter(element);
+      wordCounter(element)
       // IDs: lowercase, replace spaces with dashes
       // TODO: track uniqueness of ids
-      let headerText = element.slice(level + 1).trim();
+      let headerText = element.slice(level + 1).trim()
       // Remove `\` escapes
-      headerText = headerText.replace(/\\(.)/g, "$1");
+      headerText = headerText.replace(/\\(.)/g, "$1")
 
       // Generate id
       let id = headerText
         .toLowerCase()
         .replaceAll(" ", "-") // Replace all spaces with dashes
         .replace(/[^\w\-]/g, "") // Remove special chars except dashes
-        .replace(/^[-]+|[-]+$/g, ""); // Remove dashes at the start or end
+        .replace(/^[-]+|[-]+$/g, "") // Remove dashes at the start or end
 
       // Add to table of contents list with appropriate nesting level
       tableOfContents.push({
         level: level,
         text: headerText,
         id: id,
-      });
+      })
 
       return (
         "<h" +
@@ -224,8 +223,8 @@ fetch(url)
         "</h" +
         level +
         ">"
-      );
-    };
+      )
+    }
 
     // Blockquotes, quotes, and callouts
     blockquote = (element) => {
@@ -270,40 +269,43 @@ fetch(url)
       // > > boop
       // > >
       //
-      let out;
+      let out
       if (
         previousElement.state === "open" &&
         previousElement.type === "callout"
       ) {
         // Continue callout
-        const content = element.slice(1).trim();
+        const content = element.slice(1).trim()
         if (content.length === 0) {
-          out = "";
+          out = ""
         } else if (content.startsWith("- ") || content.startsWith("* ")) {
-          const item = p(content.slice(2).trim());
+          const item = p(content.slice(2).trim())
           if (previousElement.nestedType !== "ul") {
-            previousElement.nestedType = "ul";
-            out = '<ul class="ul"><li>' + item + '</li>';
+            previousElement.nestedType = "ul"
+            out = '<ul class="ul"><li>' + item + "</li>"
           } else {
-            out = '<li>' + item + '</li>';
+            out = "<li>" + item + "</li>"
           }
         } else if (content.match(/^\d+\. /)) {
-          const match = content.match(/^\d+\. /)[0];
-          const item = p(content.slice(match.length).trim());
+          const match = content.match(/^\d+\. /)[0]
+          const item = p(content.slice(match.length).trim())
           if (previousElement.nestedType !== "ol") {
-            previousElement.nestedType = "ol";
-            out = '<ol class="ol"><li>' + item + '</li>';
+            previousElement.nestedType = "ol"
+            out = '<ol class="ol"><li>' + item + "</li>"
           } else {
-            out = '<li>' + item + '</li>';
+            out = "<li>" + item + "</li>"
           }
         } else {
-          out = (previousElement.nestedType !== "none") ? "</" + previousElement.nestedType + ">" : "";
+          out =
+            previousElement.nestedType !== "none"
+              ? "</" + previousElement.nestedType + ">"
+              : ""
           if (previousElement.nestedType !== "none") {
-            previousElement.nestedType = "none";
+            previousElement.nestedType = "none"
           }
-          const p_element = p(content);
+          const p_element = p(content)
           if (p_element.length > 0) {
-            out += "<p>" + p_element + "</p>";
+            out += "<p>" + p_element + "</p>"
           }
         }
       } else if (
@@ -311,34 +313,37 @@ fetch(url)
         previousElement.type === "blockquote"
       ) {
         // Continue default blockquote
-        const content = element.slice(1).trim();
+        const content = element.slice(1).trim()
         if (content.length === 0) {
-          out = "";
+          out = ""
         } else if (content.startsWith("- ") || content.startsWith("* ")) {
-          const item = p(content.slice(2).trim());
+          const item = p(content.slice(2).trim())
           if (previousElement.nestedType !== "ul") {
-            previousElement.nestedType = "ul";
-            out = '<ul class="ul"><li>' + item + '</li>';
+            previousElement.nestedType = "ul"
+            out = '<ul class="ul"><li>' + item + "</li>"
           } else {
-            out = '<li>' + item + '</li>';
+            out = "<li>" + item + "</li>"
           }
         } else if (content.match(/^\d+\. /)) {
-          const match = content.match(/^\d+\. /)[0];
-          const item = p(content.slice(match.length).trim());
+          const match = content.match(/^\d+\. /)[0]
+          const item = p(content.slice(match.length).trim())
           if (previousElement.nestedType !== "ol") {
-            previousElement.nestedType = "ol";
-            out = '<ol class="ol"><li>' + item + '</li>';
+            previousElement.nestedType = "ol"
+            out = '<ol class="ol"><li>' + item + "</li>"
           } else {
-            out = '<li>' + item + '</li>';
+            out = "<li>" + item + "</li>"
           }
         } else {
-          out = (previousElement.nestedType !== "none") ? "</" + previousElement.nestedType + ">" : "";
+          out =
+            previousElement.nestedType !== "none"
+              ? "</" + previousElement.nestedType + ">"
+              : ""
           if (previousElement.nestedType !== "none") {
-            previousElement.nestedType = "none";
+            previousElement.nestedType = "none"
           }
-          const p_element = p(content);
+          const p_element = p(content)
           if (p_element.length > 0) {
-            out += "<p>" + p_element + "</p>";
+            out += "<p>" + p_element + "</p>"
           }
         }
       } else if (
@@ -348,18 +353,18 @@ fetch(url)
         // Continue quote blockquote
         if (element.slice(1).trim() === "byline") {
           // End the quote body with `"`
-          out = '<span class="end-quote"> "</span></p>';
-          previousElement.type = "blockquote-byline";
+          out = '<span class="end-quote"> "</span></p>'
+          previousElement.type = "blockquote-byline"
         } else {
           // Continue the quote body
-          const p_element = p(element.slice(1).trim());
+          const p_element = p(element.slice(1).trim())
           if (p_element.length > 0 && previousElement.isFirstElement) {
-            out = p_element;
-            previousElement.isFirstElement = false;
+            out = p_element
+            previousElement.isFirstElement = false
           } else if (p_element.length > 0) {
-            out = "</p><p>" + p_element;
+            out = "</p><p>" + p_element
           } else {
-            out = "";
+            out = ""
           }
         }
       } else if (
@@ -367,68 +372,70 @@ fetch(url)
         previousElement.type === "blockquote-byline"
       ) {
         // Finish blockquote by adding author byline
-        out =
-          '<span class="byline">— ' + p(element.slice(1).trim()) + "</span>";
+        out = '<span class="byline">— ' + p(element.slice(1).trim()) + "</span>"
       } else if (previousElement.state === "closed") {
         // if there is nothing started, start
         if (element.slice(1).trim() === "callout") {
           // Start callout
-          out = '<div class="callout">';
-          previousElement.type = "callout";
-          previousElement.state = "open";
+          out = '<div class="callout">'
+          previousElement.type = "callout"
+          previousElement.state = "open"
         } else if (element.slice(1).trim() === "quote") {
           // Start quote blockquote
           out =
-            '<blockquote class="quote"><span class="start-quote">"</span><p>';
-          previousElement.type = "blockquote-quote";
-          previousElement.state = "open";
-          previousElement.isFirstElement = true;
+            '<blockquote class="quote"><span class="start-quote">"</span><p>'
+          previousElement.type = "blockquote-quote"
+          previousElement.state = "open"
+          previousElement.isFirstElement = true
         } else {
           // Start default blockquote
-          const content = element.slice(1).trim();
-          let inner = (previousElement.nestedType !== "none") ? "</" + previousElement.nestedType + ">" : "";
+          const content = element.slice(1).trim()
+          let inner =
+            previousElement.nestedType !== "none"
+              ? "</" + previousElement.nestedType + ">"
+              : ""
           if (previousElement.nestedType !== "none") {
-            previousElement.nestedType = "none";
+            previousElement.nestedType = "none"
           }
-          const p_element = p(content);
+          const p_element = p(content)
           if (p_element.length > 0) {
-            inner += "<p>" + p_element + "</p>";
+            inner += "<p>" + p_element + "</p>"
           }
           if (inner.length > 0) {
-            out = '<blockquote class="blockquote">' + inner;
+            out = '<blockquote class="blockquote">' + inner
           } else {
-            out = "";
-            previousElement.type = "none";
-            previousElement.state = "closed";
-            return out;
+            out = ""
+            previousElement.type = "none"
+            previousElement.state = "closed"
+            return out
           }
-          previousElement.type = "blockquote";
-          previousElement.state = "open";
+          previousElement.type = "blockquote"
+          previousElement.state = "open"
         }
       } else {
-        out = element;
+        out = element
       }
-      return out;
-    };
+      return out
+    }
 
     // Code Blocks
     pre = (element) => {
       // ...
-      let out;
+      let out
       if (previousElement.state === "open" && previousElement.type === "pre") {
         if (element.trim().startsWith("\\```")) {
           out =
             '<span class="line"><span>```' +
             element.slice(4).trim() +
-            "</span></span>";
-          return out;
+            "</span></span>"
+          return out
         }
         if (element.trim() === "```") {
           // Close
-          out = "</code></pre>";
-          previousElement.lang = "";
-          previousElement.type = "none";
-          previousElement.state = "closed";
+          out = "</code></pre>"
+          previousElement.lang = ""
+          previousElement.type = "none"
+          previousElement.state = "closed"
         } else {
           // Continue
           // Need to escape <> for html elements,
@@ -441,7 +448,7 @@ fetch(url)
             .replace(/</g, "&lt;")
             .replace(/>/g, "&gt;")
             .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
+            .replace(/'/g, "&#039;")
 
           if (previousElement.lang !== "") {
             // Apply syntax highlighting if language is specified
@@ -452,7 +459,7 @@ fetch(url)
                 hljs.highlight(element, { language: previousElement.lang })
                   .value +
                 "</span>" +
-                "</span>";
+                "</span>"
             } catch (e) {
               // Fallback to no highlighting if language is invalid
               out =
@@ -460,7 +467,7 @@ fetch(url)
                 "<span>" +
                 escapedElement +
                 "</span>" +
-                "</span>";
+                "</span>"
             }
           } else {
             // No language specified, just output escaped text
@@ -469,75 +476,75 @@ fetch(url)
               "<span>" +
               escapedElement +
               "</span>" +
-              "</span>";
+              "</span>"
           }
         }
       } else if (previousElement.state === "closed") {
         // Start new code block
         // Get language name
-        const langMatch = element.match(/^```(\S*)/);
-        previousElement.lang = langMatch && langMatch[1] ? langMatch[1] : "";
-        const langName = hljs.getLanguage(previousElement.lang)?.name || "";
+        const langMatch = element.match(/^```(\S*)/)
+        previousElement.lang = langMatch && langMatch[1] ? langMatch[1] : ""
+        const langName = hljs.getLanguage(previousElement.lang)?.name || ""
         const langDisplay = langName
           ? '<span class="pre-lang">' + langName + "</span>"
-          : '<span class="pre-lang"></span>'; // Empty span if no lang
+          : '<span class="pre-lang"></span>' // Empty span if no lang
 
-        out = "<pre>";
-        out += '<div class="pre-header">';
-        out += langDisplay;
+        out = "<pre>"
+        out += '<div class="pre-header">'
+        out += langDisplay
         out +=
-          '<button class="pre-copy-button"><img src="/assets/icons/icon-copy.svg" alt="Copy" width="16" height="16" />Copy</button>';
-        out += "</div>";
+          '<button class="pre-copy-button"><img src="/assets/icons/icon-copy.svg" alt="Copy" width="16" height="16" />Copy</button>'
+        out += "</div>"
 
         // Add the appropriate code class for styling/highlighting
         const codeClass = previousElement.lang
           ? ' class="language-' + previousElement.lang + '"'
-          : ' class="nohighlight"'; // Or a class indicating no highlighting
-        out += "<code" + codeClass + ">";
+          : ' class="nohighlight"' // Or a class indicating no highlighting
+        out += "<code" + codeClass + ">"
 
-        previousElement.type = "pre";
-        previousElement.state = "open";
+        previousElement.type = "pre"
+        previousElement.state = "open"
       }
-      return out;
-    };
+      return out
+    }
 
     // Unordered lists
     ul = (element) => {
       // TODO?: nesting?
-      let out;
+      let out
       if (previousElement.state === "open" && previousElement.type === "ul") {
         // Continue
-        out = "<li>" + p(element.slice(2).trim()) + "</li>";
+        out = "<li>" + p(element.slice(2).trim()) + "</li>"
       } else if (previousElement.state === "closed") {
         // Start
-        out = '<ul class="ul"><li>' + p(element.slice(1).trim()) + "</li>";
-        previousElement.type = "ul";
-        previousElement.state = "open";
+        out = '<ul class="ul"><li>' + p(element.slice(1).trim()) + "</li>"
+        previousElement.type = "ul"
+        previousElement.state = "open"
       }
-      return out;
-    };
+      return out
+    }
 
     // Ordered lists
     ol = (element) => {
       // TODO?: nesting?
-      let out;
+      let out
       if (previousElement.state === "open" && previousElement.type === "ol") {
         // Continue
         out =
           "<li>" +
           p(element.slice(element.match(/^\d+\. /)[0].length).trim()) +
-          "</li>";
+          "</li>"
       } else if (previousElement.state === "closed") {
         // Start
         out =
           '<ol class="ol"><li>' +
           p(element.slice(element.match(/^\d+\. /)[0].length).trim()) +
-          "</li>";
-        previousElement.type = "ol";
-        previousElement.state = "open";
+          "</li>"
+        previousElement.type = "ol"
+        previousElement.state = "open"
       }
-      return out;
-    };
+      return out
+    }
 
     // Images
     img = (element, syntax_style = "default") => {
@@ -558,22 +565,22 @@ fetch(url)
       // Image gallery
       // Image slideshow
       //
-      let out;
+      let out
       if (syntax_style == "default") {
         // Default Markdown syntax
         let components = element
           .match(/\!\[[^]*?\)/g)[0]
           .slice(2, -1)
-          .split("](");
-        const img_alt = components[0];
-        const img_src_capt = components[1];
+          .split("](")
+        const img_alt = components[0]
+        const img_src_capt = components[1]
         if (img_src_capt.endsWith('"')) {
           // ![Alt text](https://example.com/pic.jpg "Caption")
-          img_src_capt = img_src_capt.split(' "');
+          img_src_capt = img_src_capt.split(' "')
           if (img_src_capt.length > 1) {
-            const img_src = img_src_capt[0];
-            const img_capt = img_src_capt[1].slice(0, -1);
-            wordCounter(img_capt); // Count words
+            const img_src = img_src_capt[0]
+            const img_capt = img_src_capt[1].slice(0, -1)
+            wordCounter(img_capt) // Count words
             out =
               '<div class="img-size-m"><img class="img" src="' +
               img_src +
@@ -581,15 +588,15 @@ fetch(url)
               img_alt +
               '" draggable="false"><small class="img-caption">' +
               img_capt +
-              "</small></div>";
+              "</small></div>"
           }
         } else if (img_src_capt.endsWith("'")) {
           // ![Alt text](https://example.com/pic.jpg 'Caption')
-          img_src_capt = img_src_capt.split(" '");
+          img_src_capt = img_src_capt.split(" '")
           if (img_src_capt.length > 1) {
-            const img_src = img_src_capt[0];
-            const img_capt = img_src_capt[1].slice(0, -1);
-            wordCounter(img_capt); // Count words
+            const img_src = img_src_capt[0]
+            const img_capt = img_src_capt[1].slice(0, -1)
+            wordCounter(img_capt) // Count words
             out =
               '<div class="img-size-m"><img class="img" src="' +
               img_src +
@@ -597,85 +604,85 @@ fetch(url)
               img_alt +
               '" draggable="false"><small class="img-caption">' +
               img_capt +
-              "</small></div>";
+              "</small></div>"
           }
         } else {
-          const img_src = img_src_capt;
+          const img_src = img_src_capt
           out =
             '<div> class="img-size-m"<img class="img" src="' +
             img_src +
             '" alt="' +
             img_alt +
-            '" draggable="false"></div>';
+            '" draggable="false"></div>'
         }
       } else if (syntax_style == "markup") {
         // Markup syntax
         let components = element
           .match(/\!\[[^]*?\)\[[^]*?\]/g)[0]
           .slice(2, -1)
-          .split("](");
-        const img_alt = components[0];
-        let img_src_capt_sizing = components[1];
-        img_src_capt_sizing = img_src_capt_sizing.split(")[");
+          .split("](")
+        const img_alt = components[0]
+        let img_src_capt_sizing = components[1]
+        img_src_capt_sizing = img_src_capt_sizing.split(")[")
         // First do src_capt split
-        let img_src_capt = img_src_capt_sizing[0];
-        let img_src;
-        let img_capt;
+        let img_src_capt = img_src_capt_sizing[0]
+        let img_src
+        let img_capt
         if (img_src_capt.endsWith('"')) {
           // ![Alt text](https://example.com/pic.jpg "Caption")[]
-          img_src_capt = img_src_capt.split(' "');
+          img_src_capt = img_src_capt.split(' "')
           if (img_src_capt.length > 1) {
-            img_src = img_src_capt[0];
-            img_capt = img_src_capt[1].slice(0, -1);
+            img_src = img_src_capt[0]
+            img_capt = img_src_capt[1].slice(0, -1)
             if (img_capt) {
-              wordCounter(img_capt); // Count words
+              wordCounter(img_capt) // Count words
             }
           }
         } else if (img_src_capt.endsWith("'")) {
           // ![Alt text](https://example.com/pic.jpg 'Caption')
-          img_src_capt = img_src_capt.split(" '");
+          img_src_capt = img_src_capt.split(" '")
           if (img_src_capt.length > 1) {
-            img_src = img_src_capt[0];
-            img_capt = img_src_capt[1].slice(0, -1);
+            img_src = img_src_capt[0]
+            img_capt = img_src_capt[1].slice(0, -1)
             if (img_capt) {
-              wordCounter(img_capt); // Count words
+              wordCounter(img_capt) // Count words
             }
           }
         } else {
-          img_src = img_src_capt;
+          img_src = img_src_capt
         }
         // Then do sizing split
-        let img_sizing = img_src_capt_sizing[1];
-        img_sizing = img_sizing.split(",");
-        let img_size;
-        let img_width;
-        let img_height;
+        let img_sizing = img_src_capt_sizing[1]
+        img_sizing = img_sizing.split(",")
+        let img_size
+        let img_width
+        let img_height
         if (img_sizing.length === 2) {
           img_sizing.forEach((part) => {
             if (part.trim().startsWith("size:")) {
               // Sizing
-              part = part.split(":")[1].trim().toLowerCase();
+              part = part.split(":")[1].trim().toLowerCase()
               if (["s", "m", "l", "xl"].includes(part)) {
-                img_size = part;
+                img_size = part
               } else {
-                out = img(element, "default");
+                out = img(element, "default")
               }
             } else if (part.trim().startsWith("aspect:")) {
               // Aspect
-              part = part.split(":")[1].trim();
-              let img_aspect = part.split("x");
+              part = part.split(":")[1].trim()
+              let img_aspect = part.split("x")
               if (
                 img_aspect.length === 2 &&
                 Number(img_aspect[0]) > 0 &&
                 Number(img_aspect[1]) > 0
               ) {
-                img_width = Number(img_aspect[0]);
-                img_height = Number(img_aspect[1]);
+                img_width = Number(img_aspect[0])
+                img_height = Number(img_aspect[1])
               } else {
-                out = img(element, "default");
+                out = img(element, "default")
               }
             }
-          });
+          })
           out =
             '<div class="img-size-' +
             img_size +
@@ -689,43 +696,43 @@ fetch(url)
             img_height +
             '"><small class="img-caption">' +
             (img_capt ? img_capt : "") +
-            "</small></div>";
+            "</small></div>"
         } else {
-          out = img(element, "default");
+          out = img(element, "default")
         }
       }
-      return out;
-    };
+      return out
+    }
 
     // Code
     code = (element) => {
-      let out;
-      const match = element.match(/\u0060[^]*?\u0060/g);
+      let out
+      const match = element.match(/\u0060[^]*?\u0060/g)
       if (match) {
         match.forEach((i) => {
           let code_element =
             '<code class="code">' +
             i.slice(1, -1).replace(/\</g, "&lt;").replace(/\>/g, "&gt;") +
-            "</code>";
-          element = element.replace(i, code_element);
-          out = element;
-        });
+            "</code>"
+          element = element.replace(i, code_element)
+          out = element
+        })
       } else {
-        out = element;
+        out = element
       }
-      return out;
-    };
+      return out
+    }
 
     // Anchors
     a = (element) => {
       // Check for pattern
       // If it exists, create external links and anchor links
       // Warning: Important to detect <em> and <strong> elements
-      let out;
-      let match = element.match(/\[[^]*?\](\([^]*?\))/g);
+      let out
+      let match = element.match(/\[[^]*?\](\([^]*?\))/g)
       if (match) {
         match.forEach((i) => {
-          let a_element;
+          let a_element
           // Turn string => "[text](link "title")"
           // Into array => ["text", "link 'title'"]
           const a_components = i
@@ -734,13 +741,13 @@ fetch(url)
             .replace(/<\/em>/g, "_")
             .replace(/<strong>/g, "_")
             .replace(/<\/strong>/g, "_")
-            .split("](");
-          const a_text = a_components[0];
+            .split("](")
+          const a_text = a_components[0]
           if (a_components[1].endsWith('"')) {
-            const a_href_title = a_components[1].split(' "');
+            const a_href_title = a_components[1].split(' "')
             if (a_href_title.length > 1) {
-              const a_href = a_href_title[0];
-              const a_title = a_href_title[1].slice(0, -1);
+              const a_href = a_href_title[0]
+              const a_title = a_href_title[1].slice(0, -1)
               a_element =
                 '<a href="' +
                 a_href +
@@ -748,15 +755,15 @@ fetch(url)
                 a_title +
                 '" class="pa" target="_blank" rel="noopener noreferrer">' +
                 a_text +
-                "</a>";
-              element = element.replace(i, a_element);
-              out = element;
+                "</a>"
+              element = element.replace(i, a_element)
+              out = element
             }
           } else if (a_components[1].endsWith("'")) {
-            const a_href_title = a_components[1].split(" '");
+            const a_href_title = a_components[1].split(" '")
             if (a_href_title.length > 1) {
-              const a_href = a_href_title[0];
-              const a_title = a_href_title[1].slice(0, -1);
+              const a_href = a_href_title[0]
+              const a_title = a_href_title[1].slice(0, -1)
               a_element =
                 '<a href="' +
                 a_href +
@@ -764,291 +771,335 @@ fetch(url)
                 a_title +
                 '" class="pa" target="_blank" rel="noopener noreferrer">' +
                 a_text +
-                "</a>";
-              element = element.replace(i, a_element);
-              out = element;
+                "</a>"
+              element = element.replace(i, a_element)
+              out = element
             }
           } else {
-            const a_href = a_components[1].trim();
+            const a_href = a_components[1].trim()
             if (a_href.startsWith("#")) {
               a_element =
-                '<a href="' + a_href + '" class="pa">' + a_text + "</a>";
+                '<a href="' + a_href + '" class="pa">' + a_text + "</a>"
             } else {
               a_element =
                 '<a href="' +
                 a_href +
                 '" class="pa" target="_blank" rel="noopener noreferrer">' +
                 a_text +
-                "</a>";
+                "</a>"
             }
-            element = element.replace(i, a_element);
-            out = element;
+            element = element.replace(i, a_element)
+            out = element
           }
-        });
+        })
       } else {
-        out = element;
+        out = element
       }
-      return out;
-    };
+      return out
+    }
+
+    // Helper: apply a formatter only to text outside inline code blocks
+    function applyOutsideCode(element, formatter) {
+      const codeRegex = /<code\b[^>]*>[\s\S]*?<\/code>/g
+      let lastIndex = 0
+      let result = ""
+      let m
+      while ((m = codeRegex.exec(element)) !== null) {
+        const before = element.slice(lastIndex, m.index)
+        if (before) {
+          result += formatter(before)
+        }
+        // Preserve the code segment as-is
+        result += m[0]
+        lastIndex = m.index + m[0].length
+      }
+      const after = element.slice(lastIndex)
+      if (after) {
+        result += formatter(after)
+      }
+      // If there were no matches, result will be the formatted whole string
+      return result || formatter(element)
+    }
 
     // Bold
     strong = (element) => {
-      // Check for one of two patterns
-      // If they exist, apply emphasis to all elements
-      let out;
-      const match1 = element.match(/\*\*[^]*?\*\*/g);
-      const match2 = element.match(/__[^]*?__/g);
-      if (match1 || match2) {
-        if (match1 && match2) {
-          match1.forEach((i) => {
-            const strong_element = "<strong>" + i.slice(2, -2) + "</strong>";
-            element = element.replace(i, strong_element);
-            out = element;
-          });
-          match2.forEach((i) => {
-            const strong_element = "<strong>" + i.slice(2, -2) + "</strong>";
-            element = element.replace(i, strong_element);
-            out = element;
-          });
-        } else if (match1) {
-          match1.forEach((i) => {
-            const strong_element = "<strong>" + i.slice(2, -2) + "</strong>";
-            element = element.replace(i, strong_element);
-            out = element;
-          });
-        } else if (match2) {
-          match2.forEach((i) => {
-            const strong_element = "<strong>" + i.slice(2, -2) + "</strong>";
-            element = element.replace(i, strong_element);
-            out = element;
-          });
+      const formatter = (input) => {
+        let out
+        const match1 = input.match(/\*\*[^]*?\*\*/g)
+        const match2 = input.match(/__[^]*?__/g)
+        if (match1 || match2) {
+          if (match1 && match2) {
+            match1.forEach((i) => {
+              const strong_element = "<strong>" + i.slice(2, -2) + "</strong>"
+              input = input.replace(i, strong_element)
+            })
+            match2.forEach((i) => {
+              const strong_element = "<strong>" + i.slice(2, -2) + "</strong>"
+              input = input.replace(i, strong_element)
+            })
+            out = input
+          } else if (match1) {
+            match1.forEach((i) => {
+              const strong_element = "<strong>" + i.slice(2, -2) + "</strong>"
+              input = input.replace(i, strong_element)
+            })
+            out = input
+          } else if (match2) {
+            match2.forEach((i) => {
+              const strong_element = "<strong>" + i.slice(2, -2) + "</strong>"
+              input = input.replace(i, strong_element)
+            })
+            out = input
+          }
+        } else {
+          out = input
         }
-      } else {
-        out = element;
+        return out
       }
-      return out;
-    };
+      return applyOutsideCode(element, formatter)
+    }
 
     // Italic
     em = (element) => {
-      // Check for one of two patterns
-      // If they exist, apply emphasis to all elements
-      let out;
-      const match1 = element.match(/\*[^]*?\*/g);
-      const match2 = element.match(/_[^]*?_/g);
-      if (match1 || match2) {
-        if (match1 && match2) {
-          match1.forEach((i) => {
-            const em_element = "<em>" + i.slice(1, -1) + "</em>";
-            element = element.replace(i, em_element);
-            out = element;
-          });
-          match2.forEach((i) => {
-            const em_element = "<em>" + i.slice(1, -1) + "</em>";
-            element = element.replace(i, em_element);
-            out = element;
-          });
-        } else if (match1) {
-          match1.forEach((i) => {
-            const em_element = "<em>" + i.slice(1, -1) + "</em>";
-            element = element.replace(i, em_element);
-            out = element;
-          });
-        } else if (match2) {
-          match2.forEach((i) => {
-            const em_element = "<em>" + i.slice(1, -1) + "</em>";
-            element = element.replace(i, em_element);
-            out = element;
-          });
+      const formatter = (input) => {
+        let out
+        const match1 = input.match(/\*[^]*?\*/g)
+        const match2 = input.match(/_[^]*?_/g)
+        if (match1 || match2) {
+          if (match1 && match2) {
+            match1.forEach((i) => {
+              const em_element = "<em>" + i.slice(1, -1) + "</em>"
+              input = input.replace(i, em_element)
+            })
+            match2.forEach((i) => {
+              const em_element = "<em>" + i.slice(1, -1) + "</em>"
+              input = input.replace(i, em_element)
+            })
+            out = input
+          } else if (match1) {
+            match1.forEach((i) => {
+              const em_element = "<em>" + i.slice(1, -1) + "</em>"
+              input = input.replace(i, em_element)
+            })
+            out = input
+          } else if (match2) {
+            match2.forEach((i) => {
+              const em_element = "<em>" + i.slice(1, -1) + "</em>"
+              input = input.replace(i, em_element)
+            })
+            out = input
+          }
+        } else {
+          out = input
         }
-      } else {
-        out = element;
+        return out
       }
-      return out;
-    };
+      return applyOutsideCode(element, formatter)
+    }
 
     // Strikethrough
     del = (element) => {
-      // Check for pattern
-      // If it exists, apply emphasis to all elements
-      let out;
-      const match = element.match(/~~[^]*?~~/g);
-      if (match) {
-        match.forEach((i) => {
-          const del_element = "<del>" + i.slice(2, -2) + "</del>";
-          element = element.replace(i, del_element);
-          out = element;
-        });
-      } else {
-        out = element;
+      const formatter = (input) => {
+        // Check for pattern
+        // If it exists, apply emphasis to all elements
+        let out
+        const match = input.match(/~~[^]*?~~/g)
+        if (match) {
+          match.forEach((i) => {
+            const del_element = "<del>" + i.slice(2, -2) + "</del>"
+            input = input.replace(i, del_element)
+            out = input
+          })
+        } else {
+          out = input
+        }
+        return out
       }
-      return out;
-    };
+      return applyOutsideCode(element, formatter)
+    }
 
     // Underline
     ins = (element) => {
-      // Check for pattern
-      // If it exists, apply emphasis to all elements
-      let out;
-      const match = element.match(/\+\+[^]*?\+\+/g);
-      if (match) {
-        match.forEach((i) => {
-          const ins_element = "<ins>" + i.slice(2, -2) + "</ins>";
-          element = element.replace(i, ins_element);
-          out = element;
-        });
-      } else {
-        out = element;
+      const formatter = (input) => {
+        // Check for pattern
+        // If it exists, apply emphasis to all elements
+        let out
+        const match = input.match(/\+\+[^]*?\+\+/g)
+        if (match) {
+          match.forEach((i) => {
+            const ins_element = "<ins>" + i.slice(2, -2) + "</ins>"
+            input = input.replace(i, ins_element)
+            out = input
+          })
+        } else {
+          out = input
+        }
+        return out
       }
-      return out;
-    };
+      return applyOutsideCode(element, formatter)
+    }
 
     // Highlight
     mark = (element) => {
-      // Check for pattern
-      // If it exists, apply emphasis to all elements
-      let out;
-      const match = element.match(/==[^]*?==/g);
-      if (match) {
-        match.forEach((i) => {
-          const mark_element = "<mark>" + i.slice(2, -2) + "</mark>";
-          element = element.replace(i, mark_element);
-          out = element;
-        });
-      } else {
-        out = element;
+      const formatter = (input) => {
+        // Check for pattern
+        // If it exists, apply emphasis to all elements
+        let out
+        const match = input.match(/==[^]*?==/g)
+        if (match) {
+          match.forEach((i) => {
+            const mark_element = "<mark>" + i.slice(2, -2) + "</mark>"
+            input = input.replace(i, mark_element)
+            out = input
+          })
+        } else {
+          out = input
+        }
+        return out
       }
-      return out;
-    };
+      return applyOutsideCode(element, formatter)
+    }
 
     // Superscript
     sup = (element) => {
-      // Check for pattern
-      // If it exists, apply emphasis to all elements
-      let out;
-      const match = element.match(/\^[^]*?\^/g);
-      if (match) {
-        match.forEach((i) => {
-          const sup_element = "<sup>" + i.slice(1, -1) + "</sup>";
-          element = element.replace(i, sup_element);
-          out = element;
-        });
-      } else {
-        out = element;
+      const formatter = (input) => {
+        // Check for pattern
+        // If it exists, apply emphasis to all elements
+        let out
+        const match = input.match(/\^[^]*?\^/g)
+        if (match) {
+          match.forEach((i) => {
+            const sup_element = "<sup>" + i.slice(1, -1) + "</sup>"
+            input = input.replace(i, sup_element)
+            out = input
+          })
+        } else {
+          out = input
+        }
+        return out
       }
-      return out;
-    };
+      return applyOutsideCode(element, formatter)
+    }
 
     // Subscript
     sub = (element) => {
-      // Check for pattern
-      // If it exists, apply emphasis to all elements
-      let out;
-      const match = element.match(/~[^]*?~/g);
-      if (match) {
-        match.forEach((i) => {
-          const sub_element = "<sub>" + i.slice(1, -1) + "</sub>";
-          element = element.replace(i, sub_element);
-          out = element;
-        });
-      } else {
-        out = element;
+      const formatter = (input) => {
+        // Check for pattern
+        // If it exists, apply emphasis to all elements
+        let out
+        const match = input.match(/~[^]*?~/g)
+        if (match) {
+          match.forEach((i) => {
+            const sub_element = "<sub>" + i.slice(1, -1) + "</sub>"
+              input = input.replace(i, sub_element)
+            out = input
+          })
+        } else {
+          out = input
+        }
+        return out
       }
-      return out;
-    };
+      return applyOutsideCode(element, formatter)
+    }
 
     // Paragraph / Text
     p = (element) => {
       // Count words
-      wordCounter(element);
+      wordCounter(element)
       // Parse text for links and emphasis
-      return pipe(code, strong, em, a, del, ins, mark, sup, sub)(element);
-    };
+      return pipe(code, strong, em, a, del, ins, mark, sup, sub)(element)
+    }
 
     // Newlines
     newline = (element) => {
-      let out;
+      let out
       if (
         previousElement.state === "open" &&
         previousElement.type === "callout"
       ) {
-        out = (previousElement.nestedType !== "none") ? "</" + previousElement.nestedType + ">" : "";
+        out =
+          previousElement.nestedType !== "none"
+            ? "</" + previousElement.nestedType + ">"
+            : ""
         if (previousElement.nestedType !== "none") {
-          previousElement.nestedType = "none";
+          previousElement.nestedType = "none"
         }
-        out += "</div>";
-        previousElement.type = "none";
-        previousElement.state = "closed";
+        out += "</div>"
+        previousElement.type = "none"
+        previousElement.state = "closed"
       } else if (
         previousElement.state === "open" &&
         previousElement.type === "blockquote"
       ) {
-        out = (previousElement.nestedType !== "none") ? "</" + previousElement.nestedType + ">" : "";
+        out =
+          previousElement.nestedType !== "none"
+            ? "</" + previousElement.nestedType + ">"
+            : ""
         if (previousElement.nestedType !== "none") {
-          previousElement.nestedType = "none";
+          previousElement.nestedType = "none"
         }
-        out += "</blockquote>";
-        previousElement.type = "none";
-        previousElement.state = "closed";
+        out += "</blockquote>"
+        previousElement.type = "none"
+        previousElement.state = "closed"
       } else if (
         previousElement.state === "open" &&
         previousElement.type === "blockquote-quote"
       ) {
-        out = "</blockquote>";
-        previousElement.type = "none";
-        previousElement.state = "closed";
+        out = "</blockquote>"
+        previousElement.type = "none"
+        previousElement.state = "closed"
       } else if (
         previousElement.state === "open" &&
         previousElement.type === "blockquote-byline"
       ) {
-        out = "</blockquote>";
-        previousElement.type = "none";
-        previousElement.state = "closed";
+        out = "</blockquote>"
+        previousElement.type = "none"
+        previousElement.state = "closed"
       } else if (
         previousElement.state === "open" &&
         previousElement.type === "ul"
       ) {
-        out = "</ul>";
-        previousElement.type = "none";
-        previousElement.state = "closed";
+        out = "</ul>"
+        previousElement.type = "none"
+        previousElement.state = "closed"
       } else if (
         previousElement.state === "open" &&
         previousElement.type === "ol"
       ) {
-        out = "</ol>";
-        previousElement.type = "none";
-        previousElement.state = "closed";
+        out = "</ol>"
+        previousElement.type = "none"
+        previousElement.state = "closed"
       } else if (
         previousElement.state === "open" &&
         previousElement.type === "pre"
       ) {
-        out = '<span class="line"></span>';
+        out = '<span class="line"></span>'
       } else {
-        out = element;
+        out = element
       }
-      return out;
-    };
+      return out
+    }
 
     // Word count for Time-to-read
     // ttr = word_count / 250 (wpm) (round to nearest) Math.round()
     // 6m13s
     function wordCounter(element) {
-      const words = element.split(/\s+/);
+      const words = element.split(/\s+/)
       words.forEach((word) => {
-        noteData.word_count += 1;
-      });
+        noteData.word_count += 1
+      })
     }
 
     // Style and script tag handling state
-    previousElement.inHtmlBlock = false;
-    previousElement.htmlBlockType = null; // Will be "style", "script", or null
-    previousElement.htmlTagStack = []; // Track open HTML tags
+    previousElement.inHtmlBlock = false
+    previousElement.htmlBlockType = null // Will be "style", "script", or null
+    previousElement.htmlTagStack = [] // Track open HTML tags
 
     // Parse Body / Article Content
     // First, split Markdown document's body content into lines
-    md = text.split("\n");
+    md = text.split("\n")
     // Update note post article object, declare helper
-    noteArticle = document.getElementById("note").innerHTML;
+    noteArticle = document.getElementById("note").innerHTML
     // Then, begin parsing line by line
     md.forEach((element) => {
       //
@@ -1056,16 +1107,16 @@ fetch(url)
       //
       if (element.trim().match(/^<style(\s|>)/i)) {
         // Opening style tag
-        noteArticle += element;
-        previousElement.inHtmlBlock = true;
-        previousElement.htmlBlockType = "style";
-        return;
+        noteArticle += element
+        previousElement.inHtmlBlock = true
+        previousElement.htmlBlockType = "style"
+        return
       } else if (element.trim().match(/^<script(\s|>)/i)) {
         // Opening script tag
-        noteArticle += element;
-        previousElement.inHtmlBlock = true;
-        previousElement.htmlBlockType = "script";
-        return;
+        noteArticle += element
+        previousElement.inHtmlBlock = true
+        previousElement.htmlBlockType = "script"
+        return
       } else if (previousElement.inHtmlBlock) {
         // Inside an HTML block
         if (
@@ -1075,26 +1126,26 @@ fetch(url)
             element.trim().match(/<\/script>/i))
         ) {
           // Closing tag for the current style or script block
-          noteArticle += element;
-          previousElement.inHtmlBlock = false;
-          previousElement.htmlBlockType = null;
-          return;
+          noteArticle += element
+          previousElement.inHtmlBlock = false
+          previousElement.htmlBlockType = null
+          return
         }
         // If the line is not a closing tag,
         // just add the line as-is within the block
-        noteArticle += element + "\n";
-        return;
+        noteArticle += element + "\n"
+        return
       }
 
       if (element.trim() === "") {
         // If the element is an empty newline...
-        noteArticle += newline(element);
+        noteArticle += newline(element)
       } else if (
         element.startsWith("```") ||
         (previousElement.type === "pre" && previousElement.state === "open")
       ) {
         // Code Blocks
-        noteArticle += pre(element);
+        noteArticle += pre(element)
       } else if (
         (element.trim().startsWith("<") &&
           !(previousElement.state === "open")) ||
@@ -1106,52 +1157,52 @@ fetch(url)
         // Start HTML checks
         // 1. Check for tag types
         // Check for 1 or more opening HTML tags
-        const openTags = [];
+        const openTags = []
         const openTagMatches = element
           .trim()
-          .matchAll(/<([a-z][a-z0-9]*)\b[^>]*>/g);
+          .matchAll(/<([a-z][a-z0-9]*)\b[^>]*>/g)
         openTagMatches.forEach((i) => {
-          openTags.push(i[1]);
-        });
+          openTags.push(i[1])
+        })
         // Check for 1 or more closing HTML tags
-        const closeTags = [];
+        const closeTags = []
         const closeTagMatches = element
           .trim()
-          .matchAll(/<\/([a-z][a-z0-9]*)\b[^>]*>/g);
+          .matchAll(/<\/([a-z][a-z0-9]*)\b[^>]*>/g)
         closeTagMatches.forEach((i) => {
-          closeTags.push(i[1]);
-        });
+          closeTags.push(i[1])
+        })
         // Check for 1 or more self-closing HTML tags
-        const selfClosingTags = [];
-        const selfClosingTagMatches = element.trim().matchAll(/<[^>]+\/>/g);
+        const selfClosingTags = []
+        const selfClosingTagMatches = element.trim().matchAll(/<[^>]+\/>/g)
         selfClosingTagMatches.forEach((i) => {
-          selfClosingTags.push(i[1]);
-        });
+          selfClosingTags.push(i[1])
+        })
 
         // 2. Parse the line to find all opening and closing tags we know exist, sequentially
         // Split the string by `<`
-        const listOfTags = element.trim().split("<");
+        const listOfTags = element.trim().split("<")
         // Iterate through the split string
         listOfTags.forEach((tag) => {
           if (tag === "") {
-            return;
+            return
           }
-          let fullTag = "<" + tag;
+          let fullTag = "<" + tag
 
           // 3. Do another regex to find the tag name, even if there's class or id attributes
-          let openingTag = fullTag.match(/<([a-z][a-z0-9]*)\b[^>]*>/i);
+          let openingTag = fullTag.match(/<([a-z][a-z0-9]*)\b[^>]*>/i)
           if (openingTag) {
-            openingTag = openingTag[1];
+            openingTag = openingTag[1]
           }
-          let closingTag = fullTag.match(/<\/([a-z][a-z0-9]*)\b[^>]*>/i);
+          let closingTag = fullTag.match(/<\/([a-z][a-z0-9]*)\b[^>]*>/i)
           if (closingTag) {
-            closingTag = closingTag[1];
+            closingTag = closingTag[1]
           }
-          let selfClosingTag = fullTag.match(/<[^>]+\/>/i);
+          let selfClosingTag = fullTag.match(/<[^>]+\/>/i)
           if (selfClosingTag) {
-            selfClosingTag = selfClosingTag[1];
+            selfClosingTag = selfClosingTag[1]
           } else {
-            selfClosingTag = "";
+            selfClosingTag = ""
           }
 
           // If the tag is a comment, br, hr, or self-closing tag, don't do anything
@@ -1162,114 +1213,119 @@ fetch(url)
             fullTag.startsWith("<img ") ||
             selfClosingTags.includes(selfClosingTag)
           ) {
-            noteArticle += fullTag;
-            return;
+            noteArticle += fullTag
+            return
           }
 
           // 4. Handle opening and closing tags
           // If the tag is a closing tag, pop it from the stack
           if (closingTag) {
-            previousElement.htmlTagStack.pop();
-            noteArticle += fullTag;
-            return;
+            previousElement.htmlTagStack.pop()
+            noteArticle += fullTag
+            return
           }
           if (openingTag) {
             // If the tag is an opening tag, add it to the stack
-            previousElement.htmlTagStack.push(openingTag);
-            noteArticle += fullTag;
-            return;
+            previousElement.htmlTagStack.push(openingTag)
+            noteArticle += fullTag
+            return
           }
-          noteArticle += tag;
-          return;
-        });
+          noteArticle += tag
+          return
+        })
         // End HTML checks
       } else if (element.startsWith("## ")) {
         // Section Heading 2
-        noteArticle += h(element, 2);
+        noteArticle += h(element, 2)
       } else if (element.startsWith("### ")) {
         // Section Heading 3
-        noteArticle += h(element, 3);
+        noteArticle += h(element, 3)
       } else if (element.startsWith("#### ")) {
         // Section Heading 4
-        noteArticle += h(element, 4);
+        noteArticle += h(element, 4)
       } else if (element.startsWith("##### ")) {
         // Section Heading 5
-        noteArticle += h(element, 5);
+        noteArticle += h(element, 5)
       } else if (element.startsWith("###### ")) {
         // Section Heading 6
-        noteArticle += h(element, 6);
+        noteArticle += h(element, 6)
       } else if (
         element.startsWith("-") &&
         "".concat(...new Set(element.replace(/\s/g, ""))).length === 1 &&
         element.replace(/\s/g, "").length >= 3
       ) {
         // Horizontal Rule (using Hyphens)
-        noteArticle += "<hr>";
+        noteArticle += "<hr>"
       } else if (
         element.startsWith("*") &&
         "".concat(...new Set(element.replace(/\s/g, ""))).length === 1 &&
         element.replace(/\s/g, "").length >= 3
       ) {
         // Horizontal Rule (using Asterisks)
-        noteArticle += "<hr>";
+        noteArticle += "<hr>"
       } else if (
         element.startsWith("_") &&
         "".concat(...new Set(element.replace(/\s/g, ""))).length === 1 &&
         element.replace(/\s/g, "").length >= 3
       ) {
         // Horizontal Rule (using Underscores)
-        noteArticle += "<hr>";
+        noteArticle += "<hr>"
       } else if (element.startsWith(">")) {
         // Blockquotes (Standard / Default syntax), quotes, and callouts
-        noteArticle += blockquote(element);
+        noteArticle += blockquote(element)
       } else if (element.startsWith("- ") || element.startsWith("* ")) {
         // Unordered lists
-        noteArticle += ul(element);
+        noteArticle += ul(element)
       } else if (element.match(/^\d+\. /)) {
         // Ordered lists
-        noteArticle += ol(element);
+        noteArticle += ol(element)
       } else if (
         element.startsWith("![") &&
         element.match(/\!\[[^]*?\)\[[^]*?\]/g)
       ) {
         // Images (Markup syntax)
-        noteArticle += img(element, "markup");
+        noteArticle += img(element, "markup")
       } else if (element.startsWith("![") && element.match(/\!\[[^]*?\)/g)) {
         // Images (Standard / Default syntax)
-        noteArticle += img(element, "default");
+        noteArticle += img(element, "default")
       } else if (element.trim().startsWith("<")) {
         // If the element contains plain html...
-        noteArticle += element;
+        noteArticle += element
       } else if (element) {
         // If the element is simply text
-        noteArticle += "<p>" + p(element) + "</p>";
+        noteArticle += "<p>" + p(element) + "</p>"
       }
-    });
+    })
 
     // Add author's contact details if available
     if (noteData.author_email && noteData.author_x) {
-      noteArticle += '<hr>';
-      noteArticle += '<p>If you’d like to get in touch, <a href="mailto:' + noteData.author_email + '" class="pa">write me an email</a> or <a href="https://x.com/' + noteData.author_x + '" class="pa" target="_blank" rel="noopener noreferrer">dm me on X</a>.</p>';
+      noteArticle += "<hr>"
+      noteArticle +=
+        '<p>If you’d like to get in touch, <a href="mailto:' +
+        noteData.author_email +
+        '" class="pa">write me an email</a> or <a href="https://x.com/' +
+        noteData.author_x +
+        '" class="pa" target="_blank" rel="noopener noreferrer">dm me on X</a>.</p>'
     }
 
     // Helper function to generate the Table of Contents
     function generateTableOfContents() {
       // If there are no headers, return an empty string
-      if (tableOfContents.length === 0) return "";
+      if (tableOfContents.length === 0) return ""
 
       // Create the Table of Contents container
-      let toc = '<div id="table-of-contents">';
-      let floatingToc = '<div id="floating-table-of-contents">';
-      let tocList = '<div class="toc-list">';
+      let toc = '<div id="table-of-contents">'
+      let floatingToc = '<div id="floating-table-of-contents">'
+      let tocList = '<div class="toc-list">'
       // toc += '<div class="toc-title">Table of Contents</div>';
-      tocList += "<ul>";
+      tocList += "<ul>"
       // Iterate through the headers and create the Table of Contents
       tableOfContents.forEach((header) => {
         // Indent based on header level (h2 = no indent, h3 = 1x indent, h4 = 2x indent, etc.)
         const indent =
           header.level > 2
             ? ' style="margin-left: ' + (header.level - 2) * 20 + 'px;"'
-            : "";
+            : ""
         tocList +=
           "<li" +
           indent +
@@ -1277,22 +1333,25 @@ fetch(url)
           header.id +
           '">' +
           header.text +
-          "</a></li>";
-      });
-      tocList += "</ul></div>";
+          "</a></li>"
+      })
+      tocList += "</ul></div>"
 
-      let floatingTocList = '<div class="toc-list"><ul><li><a href="#">Top &uarr;</a></li>' + tocList.slice(26, -11) + '</ul></div>';
+      let floatingTocList =
+        '<div class="toc-list"><ul><li><a href="#">Top &uarr;</a></li>' +
+        tocList.slice(26, -11) +
+        "</ul></div>"
 
-      toc += tocList + "</div><hr/>";
-      floatingToc += floatingTocList + "</div>";
-      return toc + floatingToc;
+      toc += tocList + "</div><hr/>"
+      floatingToc += floatingTocList + "</div>"
+      return toc + floatingToc
     }
 
     // Generate the Table of Contents after all headers have been parsed
-    const tocHTML = generateTableOfContents();
+    const tocHTML = generateTableOfContents()
     // If the TOC is not empty, insert it into the header, before the article content
     if (tocHTML) {
-      document.getElementById("header").innerHTML += tocHTML;
+      document.getElementById("header").innerHTML += tocHTML
     }
 
     // Add Time-To-Read
@@ -1302,29 +1361,29 @@ fetch(url)
     //   ' minute read</small>'
 
     // Finally, push parsed Markup to DOM
-    document.getElementById("note").innerHTML += noteArticle;
+    document.getElementById("note").innerHTML += noteArticle
 
     // Execute any script tags that were added via innerHTML
     function executeInlineScripts() {
-      const scripts = document.querySelectorAll("#note script");
+      const scripts = document.querySelectorAll("#note script")
       scripts.forEach((oldScript) => {
-        const newScript = document.createElement("script");
+        const newScript = document.createElement("script")
 
         // Copy all attributes
         Array.from(oldScript.attributes).forEach((attr) => {
-          newScript.setAttribute(attr.name, attr.value);
-        });
+          newScript.setAttribute(attr.name, attr.value)
+        })
 
         // Copy the script content
-        newScript.textContent = oldScript.textContent;
+        newScript.textContent = oldScript.textContent
 
         // Replace the old script with the new one
-        oldScript.parentNode.replaceChild(newScript, oldScript);
-      });
+        oldScript.parentNode.replaceChild(newScript, oldScript)
+      })
     }
 
     // Execute scripts once DOM has loaded
-    setTimeout(executeInlineScripts, 0);
+    setTimeout(executeInlineScripts, 0)
 
     //
     // Further Reading
@@ -1332,25 +1391,25 @@ fetch(url)
     if (notes.length > 1) {
       notes
         .sort((a, b) => (a.date > b.date ? 1 : b.date > a.date ? -1 : 0))
-        .reverse();
+        .reverse()
 
-      let back;
-      let next;
-      let furtherBack;
-      let furtherNext;
-      let found = false;
+      let back
+      let next
+      let furtherBack
+      let furtherNext
+      let found = false
       notes.map((note, index) => {
         // Check until you find the article, then takes indexes +1 and -1
         if (note.folder === window.location.pathname.slice(7, -1)) {
-          next = index - 1;
-          back = index + 1;
-          found = true;
+          next = index - 1
+          back = index + 1
+          found = true
         }
-      });
+      })
       if (found) {
         // Use -1 as flag to show 'home' card
         if (back >= notes.length) {
-          back = -1;
+          back = -1
         }
         if (back === -1) {
           furtherBack = `<a href="/" class="further further--back">
@@ -1363,7 +1422,7 @@ fetch(url)
           <div class="further__arrow further__arrow--next">
             <img src="/assets/icons/icon-arrow_right.svg" alt="" />
           </div>
-        </a>`;
+        </a>`
         } else {
           furtherBack =
             `<a href="/notes/` +
@@ -1386,7 +1445,7 @@ fetch(url)
             <div class="further__arrow further__arrow--next">
               <img src="/assets/icons/icon-arrow_right.svg" alt="" />
             </div>
-          </a>`;
+          </a>`
         }
         if (next === -1) {
           furtherNext = `<a href="/" class="further further--next">
@@ -1399,7 +1458,7 @@ fetch(url)
           <div class="further__arrow further__arrow--next">
             <img src="/assets/icons/icon-arrow_right.svg" alt="" />
           </div>
-        </a>`;
+        </a>`
         } else {
           furtherNext =
             `<a href="/notes/` +
@@ -1422,18 +1481,18 @@ fetch(url)
             <div class="further__arrow further__arrow--next">
               <img src="/assets/icons/icon-arrow_right.svg" alt="" />
             </div>
-          </a>`;
+          </a>`
         }
-        const furtherReading = furtherNext + furtherBack;
+        const furtherReading = furtherNext + furtherBack
 
-        document.getElementById("further-reading").innerHTML += furtherReading;
+        document.getElementById("further-reading").innerHTML += furtherReading
       }
     }
 
     //
     // Footer
     //
-    let yyyy = new Date();
+    let yyyy = new Date()
     document.getElementById("footer").innerHTML +=
       '<span id="copyright">' +
       "© " +
@@ -1443,7 +1502,7 @@ fetch(url)
       '<div class="footer-links">' +
       '<a href="/dashboard" id="dashboard-link">Dashboard</a>' +
       '<a href="https://github.com/ruizdurazo/ruizdurazo" target="_blank" id="source">Source &nearr;</a>' +
-      "</div>";
+      "</div>"
 
     //
     // Other
@@ -1452,43 +1511,43 @@ fetch(url)
     // Redirect if there is an anchor in the url.
     // HTML doc is empty on load, so this must take place once content is generated.
     if (window.location.href.split("#").length > 1) {
-      window.location.href = window.location.href;
+      window.location.href = window.location.href
     }
 
     // Add copy button functionality
     document.querySelectorAll(".pre-copy-button").forEach((button) => {
       button.addEventListener("click", () => {
-        const pre = button.closest("pre");
-        const code = pre.querySelector("code");
-        const text = code.innerText; // Use innerText to get raw text
+        const pre = button.closest("pre")
+        const code = pre.querySelector("code")
+        const text = code.innerText // Use innerText to get raw text
 
         navigator.clipboard
           .writeText(text)
           .then(() => {
-            button.innerHTML = "Copied!";
-            button.classList.add("copied");
+            button.innerHTML = "Copied!"
+            button.classList.add("copied")
             setTimeout(() => {
               button.innerHTML =
-                "<img src='/assets/icons/icon-copy.svg' alt='Copy' width='16' height='16' />Copy";
-              button.classList.remove("copied");
-            }, 2000); // Reset after 2 seconds
+                "<img src='/assets/icons/icon-copy.svg' alt='Copy' width='16' height='16' />Copy"
+              button.classList.remove("copied")
+            }, 2000) // Reset after 2 seconds
           })
           .catch((err) => {
-            console.error("Failed to copy text: ", err);
-            button.innerHTML = "Error";
+            console.error("Failed to copy text: ", err)
+            button.innerHTML = "Error"
             setTimeout(() => {
               button.innerHTML =
-                "<img src='/assets/icons/icon-copy.svg' alt='Copy' width='16' height='16' />Copy";
-            }, 2000);
-          });
-      });
-    });
+                "<img src='/assets/icons/icon-copy.svg' alt='Copy' width='16' height='16' />Copy"
+            }, 2000)
+          })
+      })
+    })
 
     // Add email bubble to all mailto links (requires handleEmailBubble function)
     document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
-      const email = link.href.replace("mailto:", "");
-      handleEmailBubble(link, email);
-    });
+      const email = link.href.replace("mailto:", "")
+      handleEmailBubble(link, email)
+    })
 
     // TODO?: For extracting metadata
     // if (text.startsWith('---')) {
@@ -1535,46 +1594,46 @@ fetch(url)
     //     })
     //   }
     // }
-  });
+  })
 
 // START: Floating TOC visibility logic
 document.addEventListener("DOMContentLoaded", () => {
   // Function to check visibility and toggle class for the floating TOC container
   const checkTocVisibility = () => {
-    const mainToc = document.getElementById("table-of-contents");
-    const floatingToc = document.getElementById("floating-table-of-contents");
+    const mainToc = document.getElementById("table-of-contents")
+    const floatingToc = document.getElementById("floating-table-of-contents")
 
     // Ensure both elements exist before proceeding
     if (!mainToc || !floatingToc) {
       // If elements don't exist yet (e.g., still loading), exit
       // or potentially retry later if using MutationObserver
-      return;
+      return
     }
 
-    const mainTocRect = mainToc.getBoundingClientRect();
-    const floatingTocLinks = floatingToc.querySelectorAll(".toc-list li a");
+    const mainTocRect = mainToc.getBoundingClientRect()
+    const floatingTocLinks = floatingToc.querySelectorAll(".toc-list li a")
 
     // Check if the bottom of the main TOC is above the viewport
     if (mainTocRect.bottom < 0) {
-      floatingToc.classList.add("visible");
+      floatingToc.classList.add("visible")
       // Set tabindex to 0 (focusable) when floating TOC is visible
       floatingTocLinks.forEach((link) => {
-        link.setAttribute("tabindex", "0");
-      });
+        link.setAttribute("tabindex", "0")
+      })
     } else {
-      floatingToc.classList.remove("visible");
+      floatingToc.classList.remove("visible")
       // Set tabindex to -1 (not focusable) when floating TOC is not visible
       floatingTocLinks.forEach((link) => {
-        link.setAttribute("tabindex", "-1");
-      });
+        link.setAttribute("tabindex", "-1")
+      })
     }
-  };
+  }
 
   // Initial check in case the page loads scrolled down
-  checkTocVisibility();
+  checkTocVisibility()
 
   // Check visibility on scroll
-  window.addEventListener("scroll", checkTocVisibility);
+  window.addEventListener("scroll", checkTocVisibility)
 
   // Optional: Use MutationObserver to ensure elements are ready
   // This is more robust if the TOCs are added dynamically after initial load
@@ -1582,7 +1641,7 @@ document.addEventListener("DOMContentLoaded", () => {
     for (let mutation of mutationsList) {
       if (mutation.type === "childList") {
         // Check if our specific TOC elements were added
-        const addedNodes = Array.from(mutation.addedNodes);
+        const addedNodes = Array.from(mutation.addedNodes)
         if (
           addedNodes.some(
             (node) =>
@@ -1591,28 +1650,28 @@ document.addEventListener("DOMContentLoaded", () => {
           )
         ) {
           // Re-run the check once elements are potentially added
-          checkTocVisibility();
+          checkTocVisibility()
         }
       }
     }
-  });
+  })
 
   // Start observing the container where TOCs are added (e.g., #header or document.body)
-  const headerElement = document.getElementById("header");
+  const headerElement = document.getElementById("header")
   if (headerElement) {
-    observer.observe(headerElement, { childList: true, subtree: true });
+    observer.observe(headerElement, { childList: true, subtree: true })
   }
 
   // START: Floating TOC active link logic
   const setupActiveTocLinkObserver = () => {
-    const headings = document.querySelectorAll("#note .toc-heading");
+    const headings = document.querySelectorAll("#note .toc-heading")
     const tocLinks = document.querySelectorAll(
       "#floating-table-of-contents .toc-list li a"
-    );
+    )
     const floatingTocList = document.querySelector(
       "#floating-table-of-contents .toc-list"
-    );
-    const floatingToc = document.getElementById("floating-table-of-contents");
+    )
+    const floatingToc = document.getElementById("floating-table-of-contents")
 
     if (
       !headings.length ||
@@ -1621,137 +1680,137 @@ document.addEventListener("DOMContentLoaded", () => {
       !floatingToc
     ) {
       // Don't run if elements aren't ready
-      return;
+      return
     }
 
-    let currentActiveLink = null; // Keep track of the currently active link
-    let isHoveringToc = false; // Track if cursor is hovering over floating TOC
+    let currentActiveLink = null // Keep track of the currently active link
+    let isHoveringToc = false // Track if cursor is hovering over floating TOC
 
     // Add hover event listeners to track mouse state
     floatingToc.addEventListener("mouseenter", () => {
-      isHoveringToc = true;
-    });
+      isHoveringToc = true
+    })
 
     floatingToc.addEventListener("mouseleave", () => {
-      isHoveringToc = false;
-    });
+      isHoveringToc = false
+    })
 
     // Store headings in an array to track their order and positions
-    const headingsList = Array.from(headings);
+    const headingsList = Array.from(headings)
 
     // Trigger point (in pixels from top of viewport)
-    const triggerPoint = 240; // Adjust as needed
+    const triggerPoint = 240 // Adjust as needed
 
     // Function to update the active TOC link based on scroll position
     const updateActiveTocLink = () => {
       // Get current scroll position
-      const scrollPosition = window.scrollY;
+      const scrollPosition = window.scrollY
 
       // Find the last heading that is above or at the trigger point
-      let activeHeadingIndex = -1;
+      let activeHeadingIndex = -1
 
       for (let i = 0; i < headingsList.length; i++) {
         const headingTop =
-          headingsList[i].getBoundingClientRect().top + scrollPosition;
+          headingsList[i].getBoundingClientRect().top + scrollPosition
 
         // If the heading is above or at the trigger point relative to current scroll
         if (headingTop <= scrollPosition + triggerPoint) {
-          activeHeadingIndex = i;
+          activeHeadingIndex = i
         } else {
           // Once we find a heading below the trigger, we can stop
-          break;
+          break
         }
       }
 
       // Clear current active link
       if (currentActiveLink) {
-        currentActiveLink.classList.remove("active");
+        currentActiveLink.classList.remove("active")
       }
 
       // Set new active link if a valid heading was found
       if (activeHeadingIndex >= 0) {
-        const activeHeadingId = headingsList[activeHeadingIndex].id;
+        const activeHeadingId = headingsList[activeHeadingIndex].id
         const newActiveLink = floatingTocList.querySelector(
           `a[href="#${activeHeadingId}"]`
-        );
+        )
 
         if (newActiveLink) {
-          newActiveLink.classList.add("active");
-          currentActiveLink = newActiveLink;
+          newActiveLink.classList.add("active")
+          currentActiveLink = newActiveLink
 
           // START: Scrolling active link in the floating TOC container
           // Only scroll if the cursor is not hovering over the floating TOC
           if (!isHoveringToc) {
             // Scroll the active link into view within the toc-list inside the floating TOC container
             if (floatingTocList) {
-              const containerRect = floatingTocList.getBoundingClientRect();
-              const linkRect = newActiveLink.getBoundingClientRect();
+              const containerRect = floatingTocList.getBoundingClientRect()
+              const linkRect = newActiveLink.getBoundingClientRect()
 
               // Check if the active link is fully visible within the container
               const isLinkVisible =
                 linkRect.top >= containerRect.top - 1 &&
-                linkRect.bottom <= containerRect.bottom + 1;
+                linkRect.bottom <= containerRect.bottom + 1
 
               if (!isLinkVisible) {
                 // Scroll the link into view within the floating TOC container
                 // Calculate the scroll position to top-align the link in the container
-                const containerScrollTop = floatingTocList.scrollTop;
-                const linkOffsetTop = newActiveLink.offsetTop;
-                const containerHeight = floatingTocList.clientHeight;
-                const linkHeight = newActiveLink.offsetHeight;
+                const containerScrollTop = floatingTocList.scrollTop
+                const linkOffsetTop = newActiveLink.offsetTop
+                const containerHeight = floatingTocList.clientHeight
+                const linkHeight = newActiveLink.offsetHeight
 
                 // Top-align the link in the container
-                const targetScrollTop = linkOffsetTop - containerHeight / 2;
+                const targetScrollTop = linkOffsetTop - containerHeight / 2
 
                 // Smooth scroll to the target position
                 // Wait for the # anchor link scroll to complete
                 floatingTocList.scrollTo({
                   top: Math.max(0, targetScrollTop), // Ensure we don't scroll to negative position
                   behavior: "smooth",
-                });
+                })
               }
             }
           }
           // END: Scrolling active link in the floating TOC container
         }
       }
-    };
+    }
 
     // Update active link on scroll
-    window.addEventListener("scroll", updateActiveTocLink, { passive: true });
+    window.addEventListener("scroll", updateActiveTocLink, { passive: true })
 
     // Initial update
-    updateActiveTocLink();
+    updateActiveTocLink()
 
     return {
       cleanup: () => {
-        window.removeEventListener("scroll", updateActiveTocLink);
+        window.removeEventListener("scroll", updateActiveTocLink)
         floatingToc.removeEventListener("mouseenter", () => {
-          isHoveringToc = true;
-        });
+          isHoveringToc = true
+        })
         floatingToc.removeEventListener("mouseleave", () => {
-          isHoveringToc = false;
-        });
+          isHoveringToc = false
+        })
       },
-    };
-  };
+    }
+  }
 
   // Keep track of the observer setup to clean up if needed
-  let activeTocSetup = null;
+  let activeTocSetup = null
 
   // Call setup function initially
-  activeTocSetup = setupActiveTocLinkObserver();
+  activeTocSetup = setupActiveTocLinkObserver()
 
   // Re-run setup if MutationObserver detects changes that might affect headings/TOC
   const contentObserver = new MutationObserver((mutationsList, observer) => {
     // Only check for changes that actually affect TOC structure
-    let shouldResetup = false;
+    let shouldResetup = false
 
     for (let mutation of mutationsList) {
       if (mutation.type === "childList") {
         // Check if any added nodes are TOC-related
-        const addedNodes = Array.from(mutation.addedNodes);
-        const removedNodes = Array.from(mutation.removedNodes);
+        const addedNodes = Array.from(mutation.addedNodes)
+        const removedNodes = Array.from(mutation.removedNodes)
 
         // Check for TOC headings or TOC containers being added/removed
         const hasTocChanges = [...addedNodes, ...removedNodes].some((node) => {
@@ -1764,14 +1823,14 @@ document.addEventListener("DOMContentLoaded", () => {
               node.id === "floating-table-of-contents" ||
               node.querySelector?.("#table-of-contents") ||
               node.querySelector?.("#floating-table-of-contents")
-            );
+            )
           }
-          return false;
-        });
+          return false
+        })
 
         if (hasTocChanges) {
-          shouldResetup = true;
-          break;
+          shouldResetup = true
+          break
         }
       }
     }
@@ -1779,28 +1838,28 @@ document.addEventListener("DOMContentLoaded", () => {
     if (shouldResetup) {
       // Clean up previous observer setup if it exists
       if (activeTocSetup && activeTocSetup.cleanup) {
-        activeTocSetup.cleanup();
+        activeTocSetup.cleanup()
       }
 
       // Re-run setup
-      activeTocSetup = setupActiveTocLinkObserver();
+      activeTocSetup = setupActiveTocLinkObserver()
     }
-  });
+  })
 
   // Observe the main note container and the floating TOC container for changes
-  const noteElement = document.getElementById("note");
+  const noteElement = document.getElementById("note")
   const floatingTocElement = document.getElementById(
     "floating-table-of-contents"
-  );
+  )
   if (noteElement) {
-    contentObserver.observe(noteElement, { childList: true, subtree: true });
+    contentObserver.observe(noteElement, { childList: true, subtree: true })
   }
   if (floatingTocElement) {
     contentObserver.observe(floatingTocElement, {
       childList: true,
       subtree: true,
-    });
+    })
   }
   // END: Floating TOC active link logic
-});
+})
 // END: Floating TOC visibility logic
