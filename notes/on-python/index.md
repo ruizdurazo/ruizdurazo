@@ -360,12 +360,18 @@ print(next(squares_gen))
 
 ### [PY] How to type hint your code: Type annotations
 
-Type hints make your code more readable and catch bugs early with tools like mypy.
+Python is a dynamically typed language, so you'll want to use type hints to make your code more robust, and be able to catch bugs as early as linting with something like `ruff` or `pyright`.
 
 ```python
+# You don't have to import simple types like `str`,  
+# `int`, `float`, `bool`, etc.
+# But you'll want to import more type hints from
+# the built-in `typing` module.
 from typing import List, Dict, Optional, Union, Tuple, Callable, Any
 
-# Basic type hints
+# - - - - - - - - - -
+
+# 1. Basic type hints (like strings, numbers, booleans)
 def greet(name: str) -> str:
     return f"Hello, {name}!"
 
@@ -375,17 +381,18 @@ is_active: bool = True
 
 # - - - - - - - - - -
 
-# Collection types
+# 2. Collection types (lists, dictionaries, tuples)
 def process_numbers(numbers: List[int]) -> float:
     return sum(numbers) / len(numbers)
 
 user_scores: Dict[str, int] = {"Alice": 95, "Bob": 87}
 
-# Tuple with specific types
 def get_coordinates() -> Tuple[float, float]:
     return (40.7128, -74.0060)
 
 # - - - - - - - - - -
+
+# 3. Optional and Union types
 
 # Optional (can be None)
 def find_user(user_id: int) -> Optional[str]:
@@ -398,7 +405,7 @@ def process_id(user_id: Union[int, str]) -> str:
 
 # - - - - - - - - - -
 
-# Callable types
+# 4. Callable types
 def apply_function(
     func: Callable[[int], int],
     value: int
@@ -412,7 +419,7 @@ print(result)
 
 # - - - - - - - - - -
 
-# Type aliases
+# 5. Type aliases
 UserId = int
 UserDict = Dict[UserId, Dict[str, Any]]
 
@@ -421,7 +428,7 @@ def get_user_info(users: UserDict, user_id: UserId) -> Optional[Dict[str, Any]]:
 
 # - - - - - - - - - -
 
-# Generic types
+# 6. Generic types (advanced)
 from typing import TypeVar, Generic
 
 T = TypeVar('T')
@@ -436,7 +443,6 @@ class Stack(Generic[T]):
     def pop(self) -> T:
         return self._items.pop()
 
-# Usage
 int_stack: Stack[int] = Stack()
 int_stack.push(1)
 int_stack.push(2)
@@ -452,7 +458,7 @@ int_stack.push(2)
 
 Testing is crucial in the age of AI and vibe-coding.
 
-The bottleneck in software development used to be writing code, but now it's mostly reviewing, testing, and debugging because it has to be done manually. 
+The bottleneck in software development used to be writing code, but now it's mostly reviewing, testing, and debugging because it has to be done manually.
 
 Having tests makes you go faster and more confidently.
 
