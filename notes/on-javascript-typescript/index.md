@@ -1,6 +1,6 @@
 ---
 title: On JavaScript & TypeScript
-date: 2024-11-29
+date: 2025-09-23
 description_short: Snippets and tips on JavaScript and TypeScript.
 description_long: Snippets and tips on JavaScript and TypeScript.
 image:

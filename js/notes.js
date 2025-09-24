@@ -20,7 +20,7 @@ const notes = [
   },
   {
     folder: "on-css-scss-styling",
-    date: "2025-05-23",
+    date: "2025-09-24",
     title: "On CSS/SCSS & Styling",
     description: "Snippets and tips on CSS/SCSS and styling in general.",
     thumbnail: false,

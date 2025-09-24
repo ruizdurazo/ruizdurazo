@@ -1,6 +1,6 @@
 ---
 title: On CSS/SCSS & Styling
-date: 2024-11-29
+date: 2025-09-24
 description_short: Snippets and tips on CSS/SCSS and styling in general.
 description_long: Snippets and tips on CSS/SCSS and styling in general.
 image:
@@ -16,13 +16,13 @@ _:
 
 ## Intro
 
-Styling and visual design is incredibly important. It makes or breaks a user's experience. The problem is that default styles and most UI libraries are aggressively ugly. 
+Styling and visual design is incredibly important. It makes or breaks a user's experience. The problem is that default styles and most UI libraries are aggressively ugly.
 
 You need to know how to bend styles to your will.
 
 You need to learn CSS.
 
-![CSS](./images/css.png "")[size: m, aspect: 860x720]
+![CSS](./images/css.png)[size: m, aspect: 860x720]
 
 Here's a list of snippets I've found useful.
 
@@ -228,7 +228,7 @@ $font-stack: "Inter", sans-serif;
 
 Personally, I like: 1) to stick the media queries inside the element's styles, and 2) to start the media queries from large to small using `max-width`.
 
-And I like to cover all the cases. Adding breakpoints wherever the design breaks (sometimes even in a seemingly random width value if needed). It's work, but it makes the design so much nicer and much more robust.
+And I like to cover _all_ the cases, adding breakpoints wherever the design breaks (sometimes even in a seemingly random width value if needed). It's work, but it makes the design so much nicer and much more robust.
 
 ```scss
 .element {
@@ -244,16 +244,736 @@ And I like to cover all the cases. Adding breakpoints wherever the design breaks
 }
 ```
 
+> callout
+>
+> Lesson: _do it once, do it yourself_.
+>
+> When making elements responsive across different screen sizes, I _hate_ it when people set breakpoints arbitrarily, and force them onto all elements. Or worse still, using a UI framework that's completely out of your control.
+>
+> People often optimize for a list of fixed breakpoints `375px`, `414px`, `768px`, `1024px`, `1440px`, etc.
+>
+> And then some new device comes out that uses some other dimension, and now you have to go add that number to your list, and check that every single page and component works for that new breakpoint. And it doesn't.
+>
+> I've seen it happen. People using `425px` as the limit, and then the newest iPhones come out with a `428px` screen and all of a sudden all your designs look crap on the most expensive devices. And now you have to go check every single page and component to make sure things aren't broken. That's stupid.
+>
+> Instead, just use a breakpoint when the design breaks. It's in the name. Add a breakpoint only when you need it. Again just scope it to the component and use nesting.
+>
+> **It won't matter what project you're on. It won't matter what new screen sizes come out. And it won't matter where you drop in the component. Your design will just work. And that's the point.**
+>
+> But maybe that's just me.
+>
+> You do you. It's the wild west out there.
+
+> callout
+>
+> These are the ranges I like to work with, taking into account the level of importance and usage:
+>
+> - ░░░░░ XXS: 360px or less
+> - ▓▓▓░░ XS: 360-480px (Phones)
+> - ░░░░░ S: 480-720px
+> - ▓░░░░ M: 720-1200px (Tablets)
+> - ▓▓░░░ L: 1200-1560px (Laptops, smaller desktops)
+> - ▓▓░░░ XL: 1560-2400px (Larger desktops)
+> - ▓░░░░ XXL: 2400px or more (Ultrawide desktops)
+>
+> It obviously depends on the project (and end user), but for typical marketing websites and consumer apps, mobile is king.
+
+<!-- --- -->
+
+## [SCSS] How to apply styles: Naming conventions
+
+Recently, [styling frameworks](https://tailwindcss.com/) have started a trend of writing your CSS directly as class names.
+
+You even specify the breakpoints there. 😆😱
+
+To me, this is truly disgusting. 🤮
+
+Whatever happened to code readability? I mean, I thought developers cared about that shit…
+
+How the hell can you understand this at a glance??
+
+![Cringe](./images/cringe.png "Kill me now")[size: m, aspect: 860x720]
+
+These frameworks are made for developers that suck at design and CSS. They work fine for run-of-the-mill websites and dashboards, or for vibe-coding. But for anyone that actually cares about craft, beauty, and control, they're absolutely disgusting.
+
+Just name your things properly instead. Scope them to what they are. Scope them to the component. Create CSS variables. Make it readable dammit.
+
+And you don’t even have to know CSS. There are no excuses. You can vibe-code it. Just make your code more readable. It’s not that hard…
+
+```html
+<!-- Simple card example (optional BEM naming) -->
+<!-- BEM naming: -->
+<!-- + Block (card) -->
+<!-- + Element (card__header) -->
+<!-- + Modifier (card--large) -->
+<!-- Benefits: -->
+<!-- + Clear naming-->
+<!-- + The HTML template is clean and readable-->
+<!-- + You can immediately understand the structure-->
+<div class="card card--large">
+  <div class="card__header">
+    <h1 class="card__title">{{ item.title }}</h1>
+  </div>
+  <div class="card__body">
+    <p class="card__text">{{ item.description }}</p>
+  </div>
+</div>
+```
+
+```scss
+// Simple card example (optional BEM naming)
+// Benefits:
+// + Reflects the HTML structure 1:1
+// + BEM and/or nesting ensures scoping
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
+  max-width: 300px;
+
+  &:hover {
+    background-color: #eee;
+  }
+
+  &.card--large {
+    max-width: 600px;
+  }
+
+  & .card__header {
+    background-color: #eee;
+
+    & .card__title {
+      font-size: 20px;
+      font-weight: 600;
+
+      @media screen and (max-width: 768px) {
+        font-size: 16px;
+      }
+    }
+  }
+
+  & .card__body {
+    background-color: #f5f5f5;
+
+    & .card__text {
+      font-size: 16px;
+      font-weight: 400;
+    }
+  }
+}
+```
+
+Easy. Simple. Elegant.
+
+But I digress…
+
+Worst case, nobody really has to know that cringe CSS framework because we can just vibe-code it as well.
+
+<!-- --- -->
+
+## [SCSS] How to style simple, beautiful buttons
+
+Things I value in buttons:
+
+- Clean, minimal look that _feels_ like a button
+- Feedback on hover, focus (with keyboard tab), disabled, and loading states so that it _feels_ interactive or responsive
+
+<style>
+  #button-example {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  #button-example .buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+  }
+  #button-example .button {
+    background-color: #eee;
+    border-radius: 40px;
+    padding: 8px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    color: #000;
+    border: none;
+    transition: all 0.2s ease-out;
+  }
+  #button-example .button:hover {
+    cursor: pointer;
+    background-color: #eee;
+  }
+  #button-example .button:focus-visible {
+    box-shadow: 0 0 0 4px var(--blue);
+  }
+  #button-example .button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  /*  */
+  #button-example .button--primary {
+    background-color: var(--black);
+    color: #fff;
+  }
+  #button-example .button--primary:hover {
+    background-color: #000000cc;
+    color: #fff;
+  }
+  #button-example .button--primary--blue {
+    background-color: var(--blue);
+    color: #fff;
+  }
+  #button-example .button--primary--blue:hover {
+    background-color: #0f4fffcc;
+    color: #fff;
+  }
+  #button-example .button--primary--black {
+    background-color: var(--black);
+    color: #fff;
+  }
+  #button-example .button--primary--black:hover {
+    background-color: #000000cc;
+    color: #fff;
+  }
+  /*  */
+  #button-example .button--secondary {
+    background-color: #00000010;
+    color: var(--black);
+  }
+  #button-example .button--secondary:hover {
+    background-color: var(--black);
+    color: var(--white-900);
+  }
+  #button-example .button--secondary--blue {
+    background-color: #0f4fff10;
+    color: var(--blue);
+  }
+  #button-example .button--secondary--blue:hover {
+    background-color: var(--blue);
+    color: var(--white-900);
+  }
+  #button-example .button--secondary--black {
+    background-color: #00000010;
+    color: var(--black);
+  }
+  #button-example .button--secondary--black:hover {
+    background-color: var(--black);
+    color: var(--white-900);
+  }
+  /*  */
+  #button-example .button--outline {
+    background-color: transparent;
+    color: #000;
+    border: 1px solid #ddd;
+  }
+  #button-example .button--outline:hover {
+    background-color: #00000004;
+    color: #000;
+    border: 1px solid #bbb;
+  }
+  /*  */
+  #button-example .button--ghost {
+    background-color: transparent;
+    color: #000;
+  }
+  #button-example .button--ghost:hover {
+    background-color: #00000010;
+    color: #000;
+  }
+  /*  */
+  #button-example .button:disabled {
+    opacity: 0.5 !important;
+  }
+  #button-example .button:disabled:hover {
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+  }
+  /*  */
+  #button-example .button-example-options {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  #button-example #button-example-options-colors,
+  #button-example #button-example-options-corners {
+    background-color: var(--white-900);
+    border: 1px solid var(--white-300);
+    padding: 4px;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  #button-example #button-example-options-colors > span,
+  #button-example #button-example-options-corners > span {
+    padding: 0 4px 0 8px;
+    color: var(--black-500);
+    font-weight: 400;
+  }
+  @media screen and (max-width: 767px) {
+    #button-example #button-example-options-colors > span,
+    #button-example #button-example-options-corners > span {
+      display: none;
+    }
+  }
+  #button-example .button--small {
+    font-size: 15px;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  #button-example .button-example-options span {
+    font-size: 15px;
+    font-weight: 500;
+  }
+  #button-example .button--selected {
+    background-color: var(--black);
+    color: var(--white-900);
+  }
+  #button-example .button--selected:hover {
+    background-color: var(--black);
+    color: var(--white-900);
+  }
+  #button-example .button--small:focus-visible {
+    box-shadow: 0 0 0 4px var(--blue) !important;
+  }
+</style>
+
+<div id="button-example" class="box box--padding">
+  <div class="buttons">
+    <button type="button" class="button button--primary">Button</button>
+    <a href="#scss-how-to-style-simple-beautiful-buttons" class="button button--primary">Link</a>
+    <button type="button" class="button button--secondary">Secondary</button>
+    <button type="button" class="button button--outline">Outline</button>
+    <button type="button" class="button button--ghost">Ghost</button>
+    <button type="button" class="button button--ghost" disabled>Disabled</button>
+  </div>
+  <div class="button-example-options">
+    <div id="button-example-options-colors">
+      <span>Colors: </span>
+      <button id="button-example-black" type="button" class="button--ghost button--small button--selected">Black</button>
+      <button id="button-example-blue" type="button" class="button--ghost button--small">Blue</button>
+    </div>
+    <div id="button-example-options-corners">
+      <span>Corners: </span> 
+      <button id="button-example-rounded" type="button" class="button--ghost button--small button--selected">Round</button>
+      <button id="button-example-soft" type="button" class="button--ghost button--small">Soft</button>
+      <button id="button-example-sharp" type="button" class="button--ghost button--small">Sharp</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const buttons = document.querySelectorAll('#button-example .button');
+  const primaryButtons = document.querySelectorAll('#button-example .button--primary');
+  const secondaryButtons = document.querySelectorAll('#button-example .button--secondary');
+  const colorButtons = document.querySelectorAll('#button-example-options-colors .button--ghost');
+  const cornerButtons = document.querySelectorAll('#button-example-options-corners .button--ghost');
+
+  const blackButton = document.getElementById('button-example-black');
+  blackButton.addEventListener('click', (e) => {
+    primaryButtons.forEach(button => {
+      button.classList.remove('button--primary--blue');
+      button.classList.add('button--primary--black');
+    });
+    secondaryButtons.forEach(button => {
+      button.classList.remove('button--secondary--blue');
+      button.classList.add('button--secondary--black');
+    });
+    colorButtons.forEach(button => {
+      button.classList.remove('button--selected');
+    });
+    blackButton.classList.add('button--selected');
+  });
+  const blueButton = document.getElementById('button-example-blue');
+  blueButton.addEventListener('click', (e) => {
+    primaryButtons.forEach(button => {
+      button.classList.remove('button--primary--black');
+      button.classList.add('button--primary--blue');
+    });
+    secondaryButtons.forEach(button => {
+      button.classList.remove('button--secondary--black');
+      button.classList.add('button--secondary--blue');
+    });
+    colorButtons.forEach(button => {
+      button.classList.remove('button--selected');
+    });
+    blueButton.classList.add('button--selected');
+  });
+
+  const sharpButton = document.getElementById('button-example-sharp');
+  sharpButton.addEventListener('click', (e) => {
+    buttons.forEach(button => {
+      button.style.borderRadius = '0px';
+    });
+    cornerButtons.forEach(button => {
+        button.classList.remove('button--selected');
+    });
+    sharpButton.classList.add('button--selected');
+  });
+  const softButton = document.getElementById('button-example-soft');
+  softButton.addEventListener('click', (e) => {
+    buttons.forEach(button => {
+      button.style.borderRadius = '10px';
+    });
+    cornerButtons.forEach(button => {
+      button.classList.remove('button--selected');
+    });
+    softButton.classList.add('button--selected');
+  });
+  const roundedButton = document.getElementById('button-example-rounded');
+  roundedButton.addEventListener('click', (e) => {
+    buttons.forEach(button => {
+      button.style.borderRadius = '20px';
+    });
+    cornerButtons.forEach(button => {
+      button.classList.remove('button--selected');
+    });
+    roundedButton.classList.add('button--selected');
+  });
+</script>
+
+```html
+<!-- 1. Button -->
+<button type="button" class="button button--primary">Button</button>
+
+<!-- 2. Link button -->
+<a href="/" class="button button--primary">Link</a>
+
+<!-- 3. Secondary button -->
+<button type="button" class="button button--secondary">Secondary</button>
+
+<!-- 4. Outline button -->
+<button type="button" class="button button--outline">Outline</button>
+
+<!-- 5. Ghost button -->
+<button type="button" class="button button--ghost">Ghost</button>
+
+<!-- 6. Disabled button -->
+<button type="button" class="button button--ghost" disabled>Disabled</button>
+```
+
+```scss
+// Button base styles
+.button {
+  background-color: #eee;
+  border-radius: 40px;
+  padding: 8px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  color: #000;
+  border: none;
+  transition: all 0.2s ease-out;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #eee;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 4px #00f;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// Primary button styles
+.button--primary {
+  background-color: var(--black);
+  color: #fff;
+
+  &:hover {
+    background-color: #000000cc;
+    color: #fff;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// Secondary button styles
+.button--secondary {
+  background-color: #00000010;
+  color: var(--black);
+
+  &:hover {
+    background-color: var(--black);
+    color: var(--white-900);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// Outline button styles
+.button--outline {
+  background-color: transparent;
+  color: #000;
+  border: 1px solid #ddd;
+
+  &:hover {
+    background-color: #00000004;
+    color: #000;
+    border: 1px solid #bbb;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// Ghost button styles
+.button--ghost {
+  background-color: transparent;
+  color: #000;
+
+  &:hover {
+    background-color: #00000010;
+    color: #000;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+```
+
 <!-- --- -->
 
 ## [SCSS] How to make fancy buttons with radar borders
 
 This is how you can create a fancy animation for a button's border so that it sweeps around like a radar.
 
+<style>
+#radar-button-example {
+  background-color: #101010;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+:root {
+  --main-color-rgb: 29, 185, 84;
+  --transition-speed: 150ms;
+  --button-size: 230px;
+  --button-offset: calc(var(--button-size) / 10);
+}
+
+.radar-button {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+
+  width: var(--button-size);
+  height: calc(var(--button-size) / 5);
+
+  border-radius: 99999px;
+  background-color: rgba(var(--main-color-rgb), 0.05);
+
+  backdrop-filter: blur(5px);
+  transition: transform var(--transition-speed) ease, box-shadow 300ms ease, background-color var(--transition-speed) ease;
+  border: none;
+  transform: scale(1);
+}
+
+.radar-button:hover {
+  cursor: pointer;
+  transform: scale(1.025);
+  box-shadow: 0 0 40px 0 rgba(var(--main-color-rgb), 0.2);
+  background-color: rgba(var(--main-color-rgb), 0.1);
+}
+
+.radar-button__text {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.radar-button__border {
+  position: absolute;
+  inset: 0;
+  border-radius: calc(var(--button-size) / 5);
+  pointer-events: none;
+  
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  border: 2px solid rgba(var(--main-color-rgb), 0.2);
+
+  background: conic-gradient(
+      from calc(var(--border-rotation) - 90deg) at var(--border-x) 23px,
+      rgba(var(--main-color-rgb), 0) 0%,
+      rgba(var(--main-color-rgb), 0.8) 25%,
+      rgba(177, 177, 177, 0) 35%
+    )
+    border-box;
+  /* background: conic-gradient(
+      from calc(var(--border-rotation) - 90deg) at var(--border-x) calc(var(--button-size) / 10),
+      rgba(var(--main-color-rgb), 0) 0%,
+      rgba(var(--main-color-rgb), 0.8) 30%,
+      rgba(177, 177, 177, 0) 45%
+    )
+    border-box; */
+
+  animation: border-rotation 6s linear infinite,
+             border-x 6s linear infinite;
+}
+
+.radar-button__border-simple {
+  position: absolute;
+  inset: 0;
+  border-radius: calc(var(--button-size) / 5);
+  pointer-events: none;
+  
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  border: 2px solid rgba(var(--main-color-rgb), 0.2);
+
+  background: conic-gradient(
+      from calc(var(--border-rotation-simple) - 90deg) at calc(var(--button-size) / 2) calc(var(--button-size) / 10),
+      rgba(var(--main-color-rgb), 0) 0%,
+      rgba(var(--main-color-rgb), 0.8) 25%,
+      rgba(177, 177, 177, 0) 35%
+    )
+    border-box;
+  /* background: conic-gradient(
+      from calc(var(--border-rotation) - 90deg) at var(--border-x) calc(var(--button-size) / 10),
+      rgba(var(--main-color-rgb), 0) 0%,
+      rgba(var(--main-color-rgb), 0.8) 30%,
+      rgba(177, 177, 177, 0) 45%
+    )
+    border-box; */
+
+  animation: border-rotation-simple 6s linear infinite;
+}
+
+/*
+ * Thanks, @shuding_
+ * https://x.com/shuding_/status/1655999450672660482
+ */
+
+@property --border-x {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --border-rotation {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@property --border-rotation-simple {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes border-x {
+  0% {
+    /* --border-x: var(--button-offset); */
+    --border-x: 23px;
+  }
+  32.82275711% {
+    /* --border-x: calc(var(--button-size) - var(--button-offset)); */
+    --border-x: 207px;
+  }
+  50% {
+    /* --border-x: calc(var(--button-size) - var(--button-offset)); */
+    --border-x: 207px;
+  }
+  82.82275711% {
+    /* --border-x: var(--button-offset); */
+    --border-x: 23px;
+  }
+  100% {
+    /* --border-x: var(--button-offset); */
+    --border-x: 23px;
+  }
+}
+
+@keyframes border-rotation {
+  0% {
+    --border-rotation: 0deg;
+  }
+  32.82275711% {
+    --border-rotation: 0deg;
+  }
+  50% {
+    --border-rotation: 180deg;
+  }
+  82.82275711% {
+    --border-rotation: 180deg;
+  }
+  100% {
+    --border-rotation: 360deg;
+  }
+}
+
+@keyframes border-rotation-simple {
+  0% {
+    --border-rotation-simple: 0deg;
+  }
+  100% {
+    --border-rotation-simple: 360deg;
+  }
+}
+</style>
+
+<div id="radar-button-example" class="box box--padding">
+  <button type="button" class="radar-button">
+    <span class="radar-button__text">Try for free</span>
+    <span class="radar-button__border-simple"></span>
+  </button>
+  <button type="button" class="radar-button">
+    <span class="radar-button__text">Try for free</span>
+    <span class="radar-button__border"></span>
+  </button>
+</div>
+
 ```html
-<button class="btn">
-  <span class="btn__text">Click here</span>
-  <span class="btn__border"></span>
+<button class="radar-button">
+  <span class="radar-button__text">Try for free</span>
+  <span class="radar-button__border"></span>
 </button>
 ```
 
@@ -268,9 +988,10 @@ This is how you can create a fancy animation for a button's border so that it sw
 
 // CSS Custom Properties for animations
 @property --border-x {
-  syntax: "<length>";
+  // syntax: "<length>";
+  syntax: "<number>";
   inherits: false;
-  initial-value: 0px;
+  initial-value: 0;
 }
 
 @property --border-rotation {
@@ -279,7 +1000,7 @@ This is how you can create a fancy animation for a button's border so that it sw
   initial-value: 0deg;
 }
 
-.btn {
+.radar-button {
   position: relative;
   display: flex;
   align-items: center;
@@ -298,18 +1019,18 @@ This is how you can create a fancy animation for a button's border so that it sw
   }
 }
 
-.btn__text {
+.radar-button__text {
   color: rgb(var(--main-color-rgb));
   font-weight: 500;
   padding: calc(var(--unit) * 2) calc(var(--unit) * 3);
 }
 
-.btn__border {
+.radar-button__border {
   position: absolute;
   inset: 0;
   border-radius: 99999px;
   pointer-events: none;
-  
+
   // Create a mask to show only the border
   -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: destination-out;
@@ -318,34 +1039,38 @@ This is how you can create a fancy animation for a button's border so that it sw
 
   // Animated conic gradient that creates the radar effect
   background: conic-gradient(
-      from calc(var(--border-rotation) - 80deg) at var(--border-x) 22px,
+      from calc(var(--border-rotation) - 80deg) at calc(var(--border-x) * 1px)
+        22px,
       rgba(var(--main-color-rgb), 0) 0%,
       rgba(var(--main-color-rgb), 0.8) 30%,
       rgba(177, 177, 177, 0) 45%
-    )
-    border-box;
+    ) border-box;
 
   // Apply the animations
-  animation: border-rotation 6s linear infinite,
-             border-x 6s linear infinite;
+  animation: border-rotation 6s linear infinite, border-x 6s linear infinite;
 }
 
 // Animation for the x position of the gradient
 @keyframes border-x {
   0% {
-    --border-x: var(--button-offset);
+    // --border-x: var(--button-offset);
+    --border-x: 23;
   }
   32.82275711% {
-    --border-x: var(--button-size);
+    // --border-x: var(--button-size);
+    --border-x: 230;
   }
   50% {
-    --border-x: var(--button-size);
+    // --border-x: var(--button-size);
+    --border-x: 230;
   }
   82.82275711% {
-    --border-x: var(--button-offset);
+    // --border-x: var(--button-offset);
+    --border-x: 23;
   }
   100% {
-    --border-x: var(--button-offset);
+    // --border-x: var(--button-offset);
+    --border-x: 23;
   }
 }
 
@@ -369,149 +1094,69 @@ This is how you can create a fancy animation for a button's border so that it sw
 }
 ```
 
-Result:
-
-<style>
-#radar-button-example {
-  background-color: #101010;
-  height: 200px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-:root {
-  --main-color-rgb: 29, 185, 84;
-  --transition-speed: 150ms;
-  --button-size: 230px;
-  --button-offset: calc(var(--button-size) / 10);
-}
-
-.btn {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-  /* padding: 10px 20px; */
-  /* width: calc(var(--button-size) + var(--button-offset) * 2); */
-  width: var(--button-size);
-  height: calc(var(--button-size) / 5);
-
-  border-radius: 99999px;
-  background: none;
-  /* background: rgba(var(--main-color-rgb), 0.05); */
-  backdrop-filter: blur(5px);
-  transition: background var(--transition-speed) ease;
-  border: none;
-  cursor: pointer;
-}
-
-.btn__text {
-  color: rgb(var(--main-color-rgb));
-  font-weight: 500;
-  /* padding: calc(var(--unit) * 2) calc(var(--unit) * 3); */
-}
-
-.btn__border {
-  position: absolute;
-  inset: 0;
-  border-radius: calc(var(--button-size) / 5);
-  pointer-events: none;
-  
-  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: destination-out;
-  mask-composite: exclude;
-  border: 2px solid rgba(var(--main-color-rgb), 0.2);
-
-  background: conic-gradient(
-      from calc(var(--border-rotation) - 90deg) at var(--border-x) 22px,
-      rgba(var(--main-color-rgb), 0) 0%,
-      rgba(var(--main-color-rgb), 0.8) 25%,
-      rgba(177, 177, 177, 0) 35%
-    )
-    border-box;
-  /* background: conic-gradient(
-      from calc(var(--border-rotation) - 90deg) at var(--border-x) 22px,
-      rgba(var(--main-color-rgb), 0) 0%,
-      rgba(var(--main-color-rgb), 0.8) 30%,
-      rgba(177, 177, 177, 0) 45%
-    )
-    border-box; */
-
-  animation: border-rotation 6s linear infinite,
-             border-x 6s linear infinite;
-}
-
-/*
- * Thanks, @shuding_
- * https://x.com/shuding_/status/1655999450672660482
- */
-
-@property --border-x {
-  syntax: "<length>";
-  inherits: false;
-  initial-value: 0px;
-}
-
-@property --border-rotation {
-  syntax: "<angle>";
-  inherits: false;
-  initial-value: 0deg;
-}
-
-@keyframes border-x {
-  0% {
-    --border-x: var(--button-offset);
-  }
-  32.82275711% {
-    --border-x: calc(var(--button-size) - var(--button-offset));
-  }
-  50% {
-    --border-x: calc(var(--button-size) - var(--button-offset));
-  }
-  82.82275711% {
-    --border-x: var(--button-offset);
-  }
-  100% {
-    --border-x: var(--button-offset);
-  }
-}
-
-@keyframes border-rotation {
-  0% {
-    --border-rotation: 0deg;
-  }
-  32.82275711% {
-    --border-rotation: 0deg;
-  }
-  50% {
-    --border-rotation: 180deg;
-  }
-  82.82275711% {
-    --border-rotation: 180deg;
-  }
-  100% {
-    --border-rotation: 360deg;
-  }
-}
-</style>
-
-<div id="radar-button-example" class="box box--padding">
-  <button class="btn">
-    <span class="btn__text">Try for free</span>
-    <span class="btn__border"></span>
-  </button>
-</div>
-
-
 <!-- --- -->
 
 ## [SCSS+JS] How to automatically resize textareas on input
 
 You can resize the `textarea` input box to fit the content dynamically. Chat and LLM input boxes do this.
+
+<style>
+  .input {
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-width: 300px;
+    
+  }
+  .input > textarea {
+    overflow: hidden;
+    resize: none;
+
+    border-color: #ddd;
+    width: 100% !important;
+
+    outline: none;
+    appearance: none;
+    transition:
+      background-color 0.2s,
+      border-color 0.2s;
+
+    padding: 12px 12px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    outline-offset: 0px;
+
+    font-size: 17px;
+    line-height: 17px;
+  }
+  .input > textarea:hover {
+    border: 1px solid #888;
+  }
+  .input > textarea:focus {
+    border-color: var(--color-secondary-highlight);
+    outline: 3px solid #eee;
+    border: 1px solid #888 !important;
+  }
+  .input > textarea::placeholder {
+    color: #909090;
+  }
+</style>
+
+<div class="input">
+  <textarea id="textarea-example" rows="2" placeholder="Write something long"></textarea>
+</div>
+
+<script>
+  const textarea = document.getElementById('textarea-example');
+  textarea.addEventListener('input', (e) => {
+    e.target.style.height = 'auto';
+    e.target.style.height = e.target.scrollHeight + 2 + 'px';
+  });
+</script>
 
 ```html
 <!-- Plain HTML + JS -->
@@ -575,66 +1220,6 @@ textarea {
 }
 ```
 
-Result:
-
-<style>
-  .input {
-    margin: 0 auto;
-    padding: 0;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    max-width: 300px;
-    
-  }
-  .input > textarea {
-    overflow: hidden;
-    resize: none;
-
-    border-color: #ddd;
-    width: 100% !important;
-
-    outline: none;
-    appearance: none;
-    transition:
-      background-color 0.2s,
-      border-color 0.2s;
-
-    padding: 12px 12px;
-    width: 100%;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    outline-offset: 0px;
-
-    font-size: 17px;
-    line-height: 17px;
-  }
-  .input > textarea:hover {
-    border: 1px solid #888;
-  }
-  .input > textarea:focus {
-    border-color: var(--color-secondary-highlight);
-    outline: 3px solid #eee;
-    border: 1px solid #888 !important;
-  }
-  .input > textarea::placeholder {
-    color: #909090;
-  }
-</style>
-
-<div class="input">
-  <textarea id="textarea-example" rows="2" placeholder="Write something"></textarea>
-</div>
-
-<script>
-  const textarea = document.getElementById('textarea-example');
-  textarea.addEventListener('input', (e) => {
-    e.target.style.height = 'auto';
-    e.target.style.height = e.target.scrollHeight + 2 + 'px';
-  });
-</script>
-
 <!-- --- -->
 
 ## [SCSS] How to add a custom font or web font: @font-face
@@ -678,25 +1263,6 @@ For best performance and user experience:
 
 Sometimes you see websites with quirky custom cursors. That's usually done with `cursor: url()` and an SVG.
 
-```scss
-// The source url can be local or remote.
-// The image can be an SVG or a PNG, but SVGs render better.
-// You need a fallback, the browser will try to load the first one,
-// and if it's not available, it'll try the second one as a fallback, etc.
-
-/* Custom default cursor */
-.some-class-name {
-  cursor: url("../assets/images/cursor.svg"), auto;
-}
-
-/* Custom hover state */
-.some-class-name:hover {
-  cursor: url("../assets/images/cursor-hover.svg"), pointer;
-}
-```
-
-Result:
-
 <style>
 .custom-cursor-example {
   display: flex;
@@ -730,6 +1296,23 @@ Result:
   </div>
 </div>
 
+```scss
+// The source url can be local or remote.
+// The image can be an SVG or a PNG, but SVGs render better.
+// You need a fallback, the browser will try to load the first one,
+// and if it's not available, it'll try the second one as a fallback, etc.
+
+/* Custom default cursor */
+.some-class-name {
+  cursor: url("../assets/images/cursor.svg"), auto;
+}
+
+/* Custom hover state */
+.some-class-name:hover {
+  cursor: url("../assets/images/cursor-hover.svg"), pointer;
+}
+```
+
 <!-- --- -->
 
 ## [CSS] How to make a shimmering text effect
@@ -737,6 +1320,50 @@ Result:
 Nowadays, you can see a sort of _shimmering_ text effect when something is loading or when an AI model is thinking.
 
 You can do this animation with a combination of `background-clip: text` and `background-image: linear-gradient()` (or you can also use `mask-image` with some gradient).
+
+<style>
+@keyframes shimmer {
+  from {
+    background-position-x: 200%;
+  }
+  to {
+    background-position-x: -200%;
+  }
+}
+.shimmer-text-example-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+}
+.shimmer-text-example {
+  display: inline-block;
+  background-clip: text;
+  background-image: linear-gradient(to right, black, #ccc, black);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 100%;
+  background-repeat: repeat;
+  animation: shimmer 2s linear both infinite;
+  position: relative;
+}
+.shimmer-text-example::before {
+  display: block;
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #666;
+  z-index: -1;
+}
+</style>
+
+<div class="box">
+  <div class="shimmer-text-example-container">
+    <div class="shimmer-text-example">Thinking...</div>
+  </div>
+</div>
 
 ```html
 <div class="shimmer-text">Loading...</div>
@@ -769,57 +1396,9 @@ You can do this animation with a combination of `background-clip: text` and `bac
   background-size: 200% 100%;
   background-repeat: repeat;
   // Important: Add animation.
-  animation: shimmer 2s ease-in-out both infinite;
+  animation: shimmer 2s linear both infinite;
 }
 ```
-
-Result:
-
-<style>
-@keyframes shimmer {
-  from {
-    background-position-x: 200%;
-  }
-  to {
-    background-position-x: -200%;
-  }
-}
-.shimmer-text-example-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  height: 200px;
-}
-.shimmer-text-example {
-  display: inline-block;
-  background-clip: text;
-  background-image: linear-gradient(to right, black, #ccc, black);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-size: 200% 100%;
-  background-repeat: repeat;
-  /* background-repeat: no-repeat; */
-  animation: shimmer 2s linear both infinite;
-  /* animation: shimmer 2s ease-in-out both infinite; */
-  position: relative;
-}
-.shimmer-text-example::before {
-  display: block;
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  color: #666;
-  z-index: -1;
-}
-</style>
-
-<div class="box">
-  <div class="shimmer-text-example-container">
-    <div class="shimmer-text-example">Loading...</div>
-  </div>
-</div>
 
 <!-- --- -->
 
@@ -827,40 +1406,12 @@ Result:
 
 This is also a combination of `background-clip: text` and `background-image: linear-gradient()`.
 
-```html
-<!-- Single text element -->
-<div class="gradient-text">
-  Gradient Title
-</div>
-
-<!-- Text inside a title or paragraph -->
-<div>Text with
-  <span class="gradient-text">
-    gradient
-  </span>
-  inside a title or paragraph.
-</div>
-```
-
-```scss
-// Add the gradient and background-clip
-.gradient-text {
-  background-image: linear-gradient(97deg, #0096ff, #bb64ff 42%, #f2416b 74%, #eb7500);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-```
-
-Result:
-
 <style>
 .gradient-text-example {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-image: linear-gradient(97deg, #0096ff, #bb64ff 42%, #f2416b 74%, #eb7500);
-  /* background-image: linear-gradient(72.44deg, #ffd600 9.9%, #ff7a00 41%, #ff0169 89.43%); */
 }
 .gradient-text-example-2 {
   background-image: linear-gradient(35deg, rgb(250, 193, 255) 0%, rgb(180, 74, 255) 45%, rgb(103, 75, 255) 100%);
@@ -892,26 +1443,39 @@ Result:
   </div>
 </div>
 
+```html
+<!-- Single text element -->
+<div class="gradient-text">Gradient Title</div>
+
+<!-- Text inside a title or paragraph -->
+<div>
+  Text with
+  <span class="gradient-text"> gradient </span>
+  inside a title or paragraph.
+</div>
+```
+
+```scss
+// Add the gradient and background-clip
+.gradient-text {
+  background-image: linear-gradient(
+    97deg,
+    #0096ff,
+    #bb64ff 42%,
+    #f2416b 74%,
+    #eb7500
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+```
+
 <!-- --- -->
 
 ## [SCSS] How to hide scrollbars
 
 Add these styles to the element that overflows.
-
-```scss
-.scroll {
-  /* IE and Edge */
-  -ms-overflow-style: none;
-  /* Firefox */
-  scrollbar-width: none;
-  /* Chrome, Safari */
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
-```
-
-Result:
 
 <style>
 #scrollbar-example {
@@ -941,6 +1505,19 @@ Result:
   </div>
 </div>
 
+```scss
+.scroll {
+  /* IE and Edge */
+  -ms-overflow-style: none;
+  /* Firefox */
+  scrollbar-width: none;
+  /* Chrome, Safari */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+```
+
 <!-- --- -->
 
 ## [SCSS+JS] How to create a comparison slider: Clip-path
@@ -952,113 +1529,6 @@ You can compare 2 images (jpgs, pngs) of course, but you can also compare 2 SVGs
 Just change the contents of the `before` and `after` divs.
 
 And in the example below, the comparison slider swipes horizontally, but you can also swipe vertically if you want.
-
-```html
-<!-- Some container to overlay the images -->
-<div class="container">
-  <!-- Image 1 -->
-  <div class="after">
-    <img src="image-1.jpg" alt="After" />
-  </div>
-  <!-- Image 2 (the image that will be clipped) -->
-  <div class="before">
-    <img src="image-2.jpg" alt="Before" />
-  </div>
-  <!-- Can be simple or complicated -->
-  <button type="button" class="handle">
-    <div class="handle-line"></div>
-  </button>
-</div>
-```
-
-```scss
-.container {
-  position: relative; // Important
-  overflow: hidden;
-  // Sizing of container
-  width: 100%;
-  height: 100%;
-  // More styles...
-  
-  // Sizing of images
-  & img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  // Positioning of images
-  & .before,
-  & .after {
-    position: absolute; // Important
-    top: 0;
-    left: 0;
-    width: 100%;
-  }
-
-  // Default position
-  & .before {
-    clip-path: inset(0 50% 0 0);
-  }
-
-  // Handle
-  & .handle {
-    position: absolute; // Important
-    top: 0;
-    left: 50%;
-    width: 4px;
-    height: 100%;
-    background: white;
-    cursor: ew-resize;
-    transform: translateX(-50%);
-    // More styles...
-  }
-}
-```
-
-```js
-// When the user clicks and dragsthe handle,
-// we update the clip-path of the before image (container).
-
-// Get by class or id
-// Get the container
-const container = document.querySelector('.container');
-// Get the handle
-const handle = document.querySelector('.handle');
-// Get the before image (container)
-const beforeImage = document.querySelector('.before');
-
-// Track if the user is dragging the handle
-let isDragging = false;
-
-// Function to update the slider, 
-// and the clip-path of the before image.
-function updateSlider(x) {
-  const rect = container.getBoundingClientRect();
-  const percentage = Math.max(0, Math.min(100, ((x - rect.left) / rect.width) * 100));
-  // Update the clip-path of the before image
-  beforeImage.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
-  // Update the handle position
-  handle.style.left = `${percentage}%`;
-}
-
-// Listen to the click and drag events on the handle and container,
-// and update the slider and the clip-path of the before image.
-handle.addEventListener('mousedown', (e) => {
-  isDragging = true;
-  updateSlider(e.clientX);
-});
-container.addEventListener('mousemove', (e) => {
-  if (isDragging) {
-    updateSlider(e.clientX);
-  }
-});
-container.addEventListener('mouseup', () => {
-  isDragging = false;
-});
-```
-
-Result:
 
 <style>
   #comparison-slider-example {
@@ -1180,6 +1650,114 @@ Result:
   });
 </script>
 
+```html
+<!-- Some container to overlay the images -->
+<div class="container">
+  <!-- Image 1 -->
+  <div class="after">
+    <img src="image-1.jpg" alt="After" />
+  </div>
+  <!-- Image 2 (the image that will be clipped) -->
+  <div class="before">
+    <img src="image-2.jpg" alt="Before" />
+  </div>
+  <!-- Can be simple or complicated -->
+  <button type="button" class="handle">
+    <div class="handle-line"></div>
+  </button>
+</div>
+```
+
+```scss
+.container {
+  position: relative; // Important
+  overflow: hidden;
+  // Sizing of container
+  width: 100%;
+  height: 100%;
+  // More styles...
+
+  // Sizing of images
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  // Positioning of images
+  & .before,
+  & .after {
+    position: absolute; // Important
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  // Default position
+  & .before {
+    clip-path: inset(0 50% 0 0);
+  }
+
+  // Handle
+  & .handle {
+    position: absolute; // Important
+    top: 0;
+    left: 50%;
+    width: 4px;
+    height: 100%;
+    background: white;
+    cursor: ew-resize;
+    transform: translateX(-50%);
+    // More styles...
+  }
+}
+```
+
+```js
+// When the user clicks and dragsthe handle,
+// we update the clip-path of the before image (container).
+
+// Get by class or id
+// Get the container
+const container = document.querySelector(".container");
+// Get the handle
+const handle = document.querySelector(".handle");
+// Get the before image (container)
+const beforeImage = document.querySelector(".before");
+
+// Track if the user is dragging the handle
+let isDragging = false;
+
+// Function to update the slider,
+// and the clip-path of the before image.
+function updateSlider(x) {
+  const rect = container.getBoundingClientRect();
+  const percentage = Math.max(
+    0,
+    Math.min(100, ((x - rect.left) / rect.width) * 100)
+  );
+  // Update the clip-path of the before image
+  beforeImage.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+  // Update the handle position
+  handle.style.left = `${percentage}%`;
+}
+
+// Listen to the click and drag events on the handle and container,
+// and update the slider and the clip-path of the before image.
+handle.addEventListener("mousedown", (e) => {
+  isDragging = true;
+  updateSlider(e.clientX);
+});
+container.addEventListener("mousemove", (e) => {
+  if (isDragging) {
+    updateSlider(e.clientX);
+  }
+});
+container.addEventListener("mouseup", () => {
+  isDragging = false;
+});
+```
+
 <!-- --- -->
 
 ## [SCSS+JS] How to create fancy tab transitions: Clip-path
@@ -1187,186 +1765,6 @@ Result:
 You can animate the transition from one tab to another with a sliding window using `clip-path`.
 
 This creates a smooth sliding effect where the active tab background appears to slide from one tab to another.
-
-```html
-<nav class="tab-wrapper">
-  <!-- Base buttons -->
-  <ul class="tab-list">
-    <li>
-      <button type="button" class="tab-button active" data-tab="payments">
-        Payments
-      </button>
-    </li>
-    <li>
-      <button type="button" class="tab-button" data-tab="balances">
-        Balances
-      </button>
-    </li>
-    <li>
-      <button type="button" class="tab-button" data-tab="customers">
-        Customers
-      </button>
-    </li>
-  </ul>
-
-  <!-- Copy of the buttons that gets clipped -->
-  <div class="tab-clip-container">
-    <ul class="tab-list tab-list-overlay">
-      <li>
-        <button type="button" class="tab-button tab-button-overlay" data-tab="payments" tabindex="-1">
-          Payments
-        </button>
-      </li>
-      <li>
-        <button type="button" class="tab-button tab-button-overlay" data-tab="balances" tabindex="-1">
-          Balances
-        </button>
-      </li>
-      <li>
-        <button type="button" class="tab-button tab-button-overlay" data-tab="customers" tabindex="-1">
-          Customers
-        </button>
-      </li>
-    </ul>
-  </div>
-</nav>
-```
-
-```scss
-.tab-wrapper {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: fit-content;
-  margin: 0 auto;
-  padding: 32px 0;
-}
-
-.tab-list {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: center;
-  gap: 2px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.tab-list-overlay {
-  background: black; // Color of background for active state
-}
-
-.tab-button {
-  display: flex;
-  flex-direction: row;
-  height: 36px;
-  align-items: center;
-  gap: 8px;
-  border-radius: 18px;
-  padding: 8px 16px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #666;
-  background: transparent;
-  border: none;
-  text-decoration: none;
-  transition: color 0.2s ease-out, background-color 0.2s ease-out;
-
-  &:hover {
-    cursor: pointer;
-    color: #333;
-    background-color: #eee;
-  }
-
-  &.active {
-    color: #333;
-    background-color: transparent;
-  }
-}
-
-.tab-button-overlay {
-  color: white !important; // Change text color if needed
-}
-
-// Default clip-path
-.tab-clip-container {
-  position: absolute;
-  z-index: 10;
-  width: 100%;
-  overflow: hidden;
-  transition: clip-path 0.25s ease-out;
-  // Initial clip-path position (will be updated in JS)
-  clip-path: inset(0% 75% 0% 0% round 18px);
-}
-```
-
-```js
-// Get all the tab buttons and the clip container
-const tabButtons = document.querySelectorAll('.tab-button:not(.tab-button-overlay)');
-const clipContainer = document.querySelector('.tab-clip-container');
-
-// Track the currently active tab
-let activeTab = 'payments'; // Default active tab
-
-// Function to update the clip-path based on the active tab
-function updateClipPath() {
-  // Find the active tab button (not the overlay one)
-  const activeTabButton = document.querySelector(`.tab-button[data-tab="${activeTab}"]:not(.tab-button-overlay)`);
-  
-  if (activeTabButton && clipContainer) {
-    // Get the position and dimensions of the active tab
-    const { offsetLeft, offsetWidth } = activeTabButton;
-    const containerWidth = clipContainer.offsetWidth;
-    
-    // Calculate the clip-path values as percentages,
-    // and make sure the values are between 0 and 100.
-    const clipLeft = Math.max(0, Math.min(100, (offsetLeft / containerWidth) * 100));
-    const clipRight = Math.max(0, Math.min(100, ((offsetLeft + offsetWidth) / containerWidth) * 100));
-    
-    // Apply the clip-path to show only the active tab area
-    clipContainer.style.clipPath = `inset(0% ${(100 - clipRight).toFixed(1)}% 0% ${clipLeft.toFixed(1)}% round 18px)`;
-  }
-}
-
-// Function to set the active tab
-function setActiveTab(tabName) {
-  // Remove active class from all buttons
-  tabButtons.forEach(button => button.classList.remove('active'));
-  
-  // Add active class to the clicked button
-  const clickedButton = document.querySelector(`.tab-button[data-tab="${tabName}"]:not(.tab-button-overlay)`);
-  if (clickedButton) {
-    clickedButton.classList.add('active');
-  }
-  
-  // Update the active tab and clip-path
-  activeTab = tabName;
-  updateClipPath();
-}
-
-// Add click event listeners to all tab buttons
-tabButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    const tabName = button.getAttribute('data-tab');
-    setActiveTab(tabName);
-  });
-});
-
-// Initialize the clip-path on page load
-document.addEventListener('DOMContentLoaded', () => {
-  updateClipPath();
-});
-
-// Update clip-path on window resize to maintain correct positioning
-window.addEventListener('resize', () => {
-  updateClipPath();
-});
-```
-
-Result:
 
 <style>
 .tab-wrapper {
@@ -1454,6 +1852,7 @@ Result:
         <li><button type="button" class="tab-button tab-button-overlay" data-tab="customers" tabindex="-1">Customers</button></li>
       </ul>
     </div>
+
   </div>
 </div>
 
@@ -1499,6 +1898,213 @@ Result:
   window.addEventListener('resize', updateClipPath);
 </script>
 
+```html
+<nav class="tab-wrapper">
+  <!-- Base buttons -->
+  <ul class="tab-list">
+    <li>
+      <button type="button" class="tab-button active" data-tab="payments">
+        Payments
+      </button>
+    </li>
+    <li>
+      <button type="button" class="tab-button" data-tab="balances">
+        Balances
+      </button>
+    </li>
+    <li>
+      <button type="button" class="tab-button" data-tab="customers">
+        Customers
+      </button>
+    </li>
+  </ul>
+
+  <!-- Copy of the buttons that gets clipped -->
+  <div class="tab-clip-container">
+    <ul class="tab-list tab-list-overlay">
+      <li>
+        <button
+          type="button"
+          class="tab-button tab-button-overlay"
+          data-tab="payments"
+          tabindex="-1"
+        >
+          Payments
+        </button>
+      </li>
+      <li>
+        <button
+          type="button"
+          class="tab-button tab-button-overlay"
+          data-tab="balances"
+          tabindex="-1"
+        >
+          Balances
+        </button>
+      </li>
+      <li>
+        <button
+          type="button"
+          class="tab-button tab-button-overlay"
+          data-tab="customers"
+          tabindex="-1"
+        >
+          Customers
+        </button>
+      </li>
+    </ul>
+  </div>
+</nav>
+```
+
+```scss
+.tab-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 32px 0;
+}
+
+.tab-list {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  gap: 2px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tab-list-overlay {
+  background: black; // Color of background for active state
+}
+
+.tab-button {
+  display: flex;
+  flex-direction: row;
+  height: 36px;
+  align-items: center;
+  gap: 8px;
+  border-radius: 18px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  background: transparent;
+  border: none;
+  text-decoration: none;
+  transition: color 0.2s ease-out, background-color 0.2s ease-out;
+
+  &:hover {
+    cursor: pointer;
+    color: #333;
+    background-color: #eee;
+  }
+
+  &.active {
+    color: #333;
+    background-color: transparent;
+  }
+}
+
+.tab-button-overlay {
+  color: white !important; // Change text color if needed
+}
+
+// Default clip-path
+.tab-clip-container {
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  overflow: hidden;
+  transition: clip-path 0.25s ease-out;
+  // Initial clip-path position (will be updated in JS)
+  clip-path: inset(0% 75% 0% 0% round 18px);
+}
+```
+
+```js
+// Get all the tab buttons and the clip container
+const tabButtons = document.querySelectorAll(
+  ".tab-button:not(.tab-button-overlay)"
+);
+const clipContainer = document.querySelector(".tab-clip-container");
+
+// Track the currently active tab
+let activeTab = "payments"; // Default active tab
+
+// Function to update the clip-path based on the active tab
+function updateClipPath() {
+  // Find the active tab button (not the overlay one)
+  const activeTabButton = document.querySelector(
+    `.tab-button[data-tab="${activeTab}"]:not(.tab-button-overlay)`
+  );
+
+  if (activeTabButton && clipContainer) {
+    // Get the position and dimensions of the active tab
+    const { offsetLeft, offsetWidth } = activeTabButton;
+    const containerWidth = clipContainer.offsetWidth;
+
+    // Calculate the clip-path values as percentages,
+    // and make sure the values are between 0 and 100.
+    const clipLeft = Math.max(
+      0,
+      Math.min(100, (offsetLeft / containerWidth) * 100)
+    );
+    const clipRight = Math.max(
+      0,
+      Math.min(100, ((offsetLeft + offsetWidth) / containerWidth) * 100)
+    );
+
+    // Apply the clip-path to show only the active tab area
+    clipContainer.style.clipPath = `inset(0% ${(100 - clipRight).toFixed(
+      1
+    )}% 0% ${clipLeft.toFixed(1)}% round 18px)`;
+  }
+}
+
+// Function to set the active tab
+function setActiveTab(tabName) {
+  // Remove active class from all buttons
+  tabButtons.forEach((button) => button.classList.remove("active"));
+
+  // Add active class to the clicked button
+  const clickedButton = document.querySelector(
+    `.tab-button[data-tab="${tabName}"]:not(.tab-button-overlay)`
+  );
+  if (clickedButton) {
+    clickedButton.classList.add("active");
+  }
+
+  // Update the active tab and clip-path
+  activeTab = tabName;
+  updateClipPath();
+}
+
+// Add click event listeners to all tab buttons
+tabButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const tabName = button.getAttribute("data-tab");
+    setActiveTab(tabName);
+  });
+});
+
+// Initialize the clip-path on page load
+document.addEventListener("DOMContentLoaded", () => {
+  updateClipPath();
+});
+
+// Update clip-path on window resize to maintain correct positioning
+window.addEventListener("resize", () => {
+  updateClipPath();
+});
+```
+
 <!-- --- -->
 
 ## [CSS] How to create sticky elements: Sticky
@@ -1510,44 +2116,6 @@ Usually, use `fixed` for **navbars**, **sidebars**, or other fixed elements.
 Usually, use `sticky` for **section headers** or similar elements.
 
 Also, `sticky` is tied directly to its parent container, and not some grandparent element. In order to make a nested element sticky (in relation to some grandparent element or other react/vue component), JavaScript is needed.
-
-```html
-<!-- Example HTML Template -->
-<div class="parent">
-  ...
-  <div class="sticky">
-    Something sticky
-  </div>
-  ...
-</div>
-```
-
-```css
-/* Works */
-/* Parent is scrollable */
-.sticky {
-  position: -webkit-sticky; /* Safari */
-  position: sticky;
-  top: 0;
-}
-```
-
-```css
-/* Doesn't work */
-/* Parent must be scrollable, overflow: 'hidden' would prevent this. */
-/* Note - parent must also be taller than the sticky child. */
-.parent {
-  overflow: hidden;
-}
-
-.sticky {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-}
-```
-
-Result:
 
 <style>
 .sticky-example-parent {
@@ -1590,6 +2158,40 @@ Result:
   </div>
 </div>
 
+```html
+<!-- Example HTML Template -->
+<div class="parent">
+  ...
+  <div class="sticky">Something sticky</div>
+  ...
+</div>
+```
+
+```css
+/* Works */
+/* Parent is scrollable */
+.sticky {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+}
+```
+
+```css
+/* Doesn't work */
+/* Parent must be scrollable, overflow: 'hidden' would prevent this. */
+/* Note - parent must also be taller than the sticky child. */
+.parent {
+  overflow: hidden;
+}
+
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+```
+
 <!-- --- -->
 
 ## [SCSS+JS] How to change the styling of the navbar on scroll
@@ -1597,69 +2199,6 @@ Result:
 On some websites, you may notice that the navbar's appearance changes when you scroll. For example, you could make it smaller and/or trigger animating certain elements.
 
 Here's how to add a drop shadow, and shrink the height of the navbar once the user scrolls down using vanilla JavaScript:
-
-```html
-<body>
-  <nav id="navbar">
-    <!-- Navbar items... -->
-  </nav>  
-  <main>
-    <!-- Content... -->
-  </main>
-</body>
-```
-
-```scss
-body {
-  position: relative;
-}
-#navbar {
-  position: fixed; // Fixed or sticky
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100; // Move to top
-  // Default styles
-  background-color: transparent;
-  padding: 10px;
-  // Add transitions for the styles that change
-  transition: background-color 0.3s ease-out, color 0.3s ease-out, padding 0.3s ease-out;
-  // More styles...
-  
-  // Class to add when scrolled
-  &.scrolled {
-    background-color: white;
-    padding: 0 10px;
-    // More styles...
-  }
-}
-```
-
-
-```js
-// You track the scroll value, and then
-// add/remove the class to the navbar.
-
-// Get the navbar element
-const navbar = document.getElementById('navbar');
-// Get the scrollable container, in this case body
-const scrollContainer = document.body;
-
-// Listen to the scroll events
-scrollContainer.addEventListener('scroll', function() {
-  // Check if the scroll value is past a certain threshold
-  if (scrollContainer.scrollTop > 0) {
-    navbar.classList.add('scrolled');
-  } else {
-    navbar.classList.remove('scrolled');
-  }
-});
-```
-
-
-If you're using a framework, you could add something like this to a method that tracks the scroll value and updates the state accordingly. It'll depend if it's some computed variable (Vue), or some sort of hook (React), or if you'll manage it in the global state. It's up to you.
-
-Result:
 
 <style>
 #navbar-example {
@@ -1738,6 +2277,66 @@ Result:
     }
   });
 </script>
+
+```html
+<body>
+  <nav id="navbar">
+    <!-- Navbar items... -->
+  </nav>
+  <main>
+    <!-- Content... -->
+  </main>
+</body>
+```
+
+```scss
+body {
+  position: relative;
+}
+#navbar {
+  position: fixed; // Fixed or sticky
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100; // Move to top
+  // Default styles
+  background-color: transparent;
+  padding: 10px;
+  // Add transitions for the styles that change
+  transition: background-color 0.3s ease-out, color 0.3s ease-out,
+    padding 0.3s ease-out;
+  // More styles...
+
+  // Class to add when scrolled
+  &.scrolled {
+    background-color: white;
+    padding: 0 10px;
+    // More styles...
+  }
+}
+```
+
+```js
+// You track the scroll value, and then
+// add/remove the class to the navbar.
+
+// Get the navbar element
+const navbar = document.getElementById("navbar");
+// Get the scrollable container, in this case body
+const scrollContainer = document.body;
+
+// Listen to the scroll events
+scrollContainer.addEventListener("scroll", function () {
+  // Check if the scroll value is past a certain threshold
+  if (scrollContainer.scrollTop > 0) {
+    navbar.classList.add("scrolled");
+  } else {
+    navbar.classList.remove("scrolled");
+  }
+});
+```
+
+If you're using a framework, you could add something like this to a method that tracks the scroll value and updates the state accordingly. It'll depend if it's some computed variable (Vue), or some sort of hook (React), or if you'll manage it in the global state. It's up to you.
 
 <!-- --- -->
 
@@ -1846,6 +2445,121 @@ All you need to do is:
 - add a `setInterval` that will increment a counter
 - check which index of the array should be shown with modulo `%`
 - define the animation styles
+
+<style>
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes slide-in {
+  from {
+    transform: translateY(50px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes slide-out {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50px);
+  }
+}
+#phrase-example {
+  opacity: 1;
+}
+#phrase-example.fade-in {
+  animation: fade-in 0.5s ease-in-out both;
+}
+#phrase-example.fade-out {
+  animation: fade-out 0.5s ease-in-out both;
+}
+#word-example-container {
+  overflow: hidden;
+}
+#word-example {
+  display: inline-block;
+  transform: translateY(0);
+}
+#word-example.slide-in {
+  animation: slide-in 0.5s ease-in-out both;
+}
+#word-example.slide-out {
+  animation: slide-out 0.5s ease-in-out both;
+}
+</style>
+
+<div class="box box--padding">
+  <p id="phrase-example">Starting phrase</p>
+  <p id="word-example-container">Welcome, <span id="word-example">Harry!</span></p>
+</div>
+
+<script>
+  // 1. Define the array of strings
+  // Can be a list of simple strings or actual HTML elements
+  const phrases = [
+    // "Starting phrase", // You can add or exclude the initial word
+    "<ins>Gryffindor</ins>",
+    "Hufflepuff",
+    "Ravenclaw",
+    "<del>Slytherin</del>",
+  ];
+  const words = [
+    "Harry!", // You can add or exclude the initial word
+    "Ron!",
+    "Hermione!",
+    "Ginny!",
+  ];
+
+  // 2. Get the elements and define the setting and helper variables
+  const phrase_element = document.getElementById('phrase-example')
+  const word_element = document.getElementById('word-example')
+
+  // Animation settings
+  let anim_delay = 3500 // ms (3.5 seconds)
+  let anim_duration = 500 // ms (0.5 seconds)
+  let counter = 0 // helper
+
+  // 2. Add a setInterval that will increment a counter
+  setInterval(() => {
+    counter++;
+    // 1. Whole element
+    phrase_element.classList.add('fade-out')
+    // 2. Single word
+    word_element.classList.add('slide-out')
+
+    setTimeout(() => {
+      // 1. Whole element
+      phrase_element.classList.remove('fade-out')
+      phrase_element.innerHTML = phrases[counter % phrases.length]
+      phrase_element.classList.add('fade-in')
+      // 2. Single word
+      word_element.classList.remove('slide-out')
+      word_element.innerHTML = words[counter % words.length]
+      word_element.classList.add('slide-in')
+    }, anim_duration)
+
+    // Finally, remove the in class from new elements
+    // 1. Whole element
+    phrase_element.classList.remove('fade-in')
+    // 2. Single word
+    word_element.classList.remove('slide-in')
+  }, anim_delay)
+</script>
 
 ```html
 <!-- Add an `id` to the element you want to animate -->
@@ -1972,143 +2686,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
 }
 ```
 
-Result:
-
-<style>
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@keyframes fade-out {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-@keyframes slide-in {
-  from {
-    transform: translateY(50px);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-@keyframes slide-out {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-50px);
-  }
-}
-#phrase-example {
-  opacity: 1;
-}
-#phrase-example.fade-in {
-  animation: fade-in 0.5s ease-in-out both;
-}
-#phrase-example.fade-out {
-  animation: fade-out 0.5s ease-in-out both;
-}
-#word-example-container {
-  overflow: hidden;
-}
-#word-example {
-  display: inline-block;
-  transform: translateY(0);
-}
-#word-example.slide-in {
-  animation: slide-in 0.5s ease-in-out both;
-}
-#word-example.slide-out {
-  animation: slide-out 0.5s ease-in-out both;
-}
-</style>
-
-<div class="box box--padding">
-  <p id="phrase-example">Starting phrase</p>
-  <p id="word-example-container">Welcome, <span id="word-example">Harry!</span></p>
-</div>
-
-<script>
-  // 1. Define the array of strings
-  // Can be a list of simple strings or actual HTML elements
-  const phrases = [
-    // "Starting phrase", // You can add or exclude the initial word
-    "<ins>Gryffindor</ins>",
-    "Hufflepuff",
-    "Ravenclaw",
-    "<del>Slytherin</del>",
-  ];
-  const words = [
-    "Harry!", // You can add or exclude the initial word
-    "Ron!",
-    "Hermione!",
-    "Ginny!",
-  ];
-
-  // 2. Get the elements and define the setting and helper variables
-  const phrase_element = document.getElementById('phrase-example')
-  const word_element = document.getElementById('word-example')
-
-  // Animation settings
-  let anim_delay = 3500 // ms (3.5 seconds)
-  let anim_duration = 500 // ms (0.5 seconds)
-  let counter = 0 // helper
-
-  // 2. Add a setInterval that will increment a counter
-  setInterval(() => {
-    counter++;
-    // 1. Whole element
-    phrase_element.classList.add('fade-out')
-    // 2. Single word
-    word_element.classList.add('slide-out')
-
-    setTimeout(() => {
-      // 1. Whole element
-      phrase_element.classList.remove('fade-out')
-      phrase_element.innerHTML = phrases[counter % phrases.length]
-      phrase_element.classList.add('fade-in')
-      // 2. Single word
-      word_element.classList.remove('slide-out')
-      word_element.innerHTML = words[counter % words.length]
-      word_element.classList.add('slide-in')
-    }, anim_duration)
-
-    // Finally, remove the in class from new elements
-    // 1. Whole element
-    phrase_element.classList.remove('fade-in')
-    // 2. Single word
-    word_element.classList.remove('slide-in')
-  }, anim_delay)
-</script>
-
 <!-- --- -->
 
 ## [SCSS] How to fill a child's height to its parent: Flex stretch
 
 Use `align-items: stretch` to do this.
-
-```scss
-.parent-class-name {
-  display: flex;
-  flex-direction: row;
-  /* Add this: */
-  align-items: stretch;
-
-  & .child-class-name {
-    /* Styles... */
-  }
-}
-```
-
-Result:
 
 With `align-items: stretch;`
 
@@ -2159,6 +2741,18 @@ Without
   </div>
 </div>
 
+```scss
+.parent-class-name {
+  display: flex;
+  flex-direction: row;
+  /* Add this: */
+  align-items: stretch;
+
+  & .child-class-name {
+    /* Styles... */
+  }
+}
+```
 
 <!-- --- -->
 
@@ -2167,16 +2761,6 @@ Without
 **Warning**: The CSS ellipsis only works for a single line of text.
 
 For multiple lines, JavaScript is needed (using `substring()` for example).
-
-```css
-.element-with-text {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-```
-
-Result:
 
 With ellipsis
 
@@ -2201,6 +2785,15 @@ Without
 
   </div>
 </div>
+
+```css
+.element-with-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+```
+
 <!-- --- -->
 
 ## [CSS] How to format numbers for tables: Tabular-nums
@@ -2208,15 +2801,6 @@ Without
 You can format tabular numbers using the `font-variant-numeric` property.
 
 Specifically, the `tabular-nums` value ensures that all numbers in the text have the same width (monospaced), making them align neatly. Useful for displaying data and prices in tables, for example.
-
-```css
-.some-class-name {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-```
-
-Result:
 
 With `font-variant-numeric: tabular-nums;`
 
@@ -2274,6 +2858,13 @@ With the default `font-variant-numeric: normal;`
   <div>20:34:56</div>
 </div>
 
+```css
+.some-class-name {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+```
+
 <!-- --- -->
 
 ## [CSS] How to format centered headlines: Text-wrap
@@ -2283,15 +2874,6 @@ The `text-wrap: balance` property in CSS ensures that the lines in a text elemen
 It achieves this by distributing text more evenly across lines, rather than prioritizing the natural flow of text or the default line break behavior based on the element's width.
 
 In certain multi-line elements like titles, headlines, or quotes, balanced wrapping really improves visual harmony, ensuring that the text appears well-distributed.
-
-```css
-.some-class-name {
-  text-align: center;
-  text-wrap: balance;
-}
-```
-
-Result:
 
 With `text-wrap: balance;`
 
@@ -2321,11 +2903,50 @@ With the default `text-wrap: wrap;`
   </h3>
 </div>
 
+```css
+.some-class-name {
+  text-align: center;
+  text-wrap: balance;
+}
+```
+
 <!-- --- -->
 
-## [JS] How show human readable times: RelativeTimeFormat
+## [JS] How to show human readable times: RelativeTimeFormat
 
 To show time differences in a human readable way (like "1 day ago", "in 2 weeks", etc.), you can use `Intl.RelativeTimeFormat`.
+
+<div class="box box--padding">
+  <p>Time since you visited this page: <strong id="relative-time-format-example"></strong></p>
+  <p>Time since Jan 1 this year: <strong id="relative-time-format-example-1"></strong></p>
+  <p>Time to Jan 1 next year: <strong id="relative-time-format-example-2"></strong></p>
+</div>
+
+<script>
+  const eventDate = new Date();
+  const eventDate1 = new Date(new Date().getFullYear(), 0, 1); 
+  const eventDate2 = new Date(new Date().getFullYear() + 1, 0, 1);
+  const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
+  function getTimeDifference(from, to = new Date()) {
+    const difference = Math.round((from - to) / 1000);
+    const abs = Math.abs(difference);
+    if (abs < 60)   return [difference, 'second'];
+    if (abs < 3600) return [Math.round(difference / 60), 'minute'];
+    if (abs < 86400) return [Math.round(difference / 3600), 'hour'];
+    if (abs < 604800) return [Math.round(difference / 86400), 'day'];
+    if (abs < 2629800) return [Math.round(difference / 604800), 'week'];
+    if (abs < 31557600) return [Math.round(difference / 2629800), 'month'];
+    return [Math.round(difference / 31557600), 'year'];
+  }
+  function update(id, date) {
+    const [value, unit] = getTimeDifference(date);
+    document.getElementById(id).textContent = rtf.format(value, unit);
+  }
+  update('relative-time-format-example', eventDate);
+  setInterval(() => update('relative-time-format-example', eventDate), 1000);
+  update('relative-time-format-example-1', eventDate1);
+  update('relative-time-format-example-2', eventDate2);
+</script>
 
 ```js
 // Basics
@@ -2429,40 +3050,6 @@ update(); // Initialize
 setInterval(update, 1000); // Update every second
 ```
 
-Result:
-
-<div class="box box--padding">
-  <p>Time since you visited this page: <strong id="relative-time-format-example"></strong></p>
-  <p>Time since Jan 1 this year: <strong id="relative-time-format-example-1"></strong></p>
-  <p>Time to Jan 1 next year: <strong id="relative-time-format-example-2"></strong></p>
-</div>
-
-<script>
-  const eventDate = new Date();
-  const eventDate1 = new Date(new Date().getFullYear(), 0, 1); 
-  const eventDate2 = new Date(new Date().getFullYear() + 1, 0, 1);
-  const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
-  function getTimeDifference(from, to = new Date()) {
-    const difference = Math.round((from - to) / 1000);
-    const abs = Math.abs(difference);
-    if (abs < 60)   return [difference, 'second'];
-    if (abs < 3600) return [Math.round(difference / 60), 'minute'];
-    if (abs < 86400) return [Math.round(difference / 3600), 'hour'];
-    if (abs < 604800) return [Math.round(difference / 86400), 'day'];
-    if (abs < 2629800) return [Math.round(difference / 604800), 'week'];
-    if (abs < 31557600) return [Math.round(difference / 2629800), 'month'];
-    return [Math.round(difference / 31557600), 'year'];
-  }
-  function update(id, date) {
-    const [value, unit] = getTimeDifference(date);
-    document.getElementById(id).textContent = rtf.format(value, unit);
-  }
-  update('relative-time-format-example', eventDate);
-  setInterval(() => update('relative-time-format-example', eventDate), 1000);
-  update('relative-time-format-example-1', eventDate1);
-  update('relative-time-format-example-2', eventDate2);
-</script>
-
 <!-- --- -->
 
 ## [HTML] How to set break points for words and lines
@@ -2472,6 +3059,20 @@ Three main options:
 - `<br>` for setting where to break a line, can be disabled with CSS using `display: none;`
 - `&&shy;shy;` for setting where words whould be split and hyphenated
 - `&&shy;nbsp;` for setting blank spaces that should not be broken into multiple lines
+
+Example (try resizing the box):
+
+<div class="box box--padding box--resizable">
+  <p>
+    Some text that will be broken <br> into 2 lines.
+  </p>
+  <p>
+    Some long word that can be <strong>hyphen&shy;ated</strong> exactly where we want.
+  </p>
+  <p>
+    Some term that shouldn't be on 2 lines like <strong>know&nbsp;how</strong>.
+  </p>
+</div>
 
 ```html
 <p>
@@ -2489,20 +3090,6 @@ Three main options:
 </p>
 ```
 
-Result (try resizing the box):
-
-<div class="box box--padding box--resizable">
-  <p>
-    Some text that will be broken <br> into 2 lines.
-  </p>
-  <p>
-    Some long word that can be <strong>hyphen&shy;ated</strong> exactly where we want.
-  </p>
-  <p>
-    Some term that shouldn't be on 2 lines like <strong>know&nbsp;how</strong>.
-  </p>
-</div>
-
 <!-- --- -->
 
 ## [HTML] Ampersands (&)
@@ -2511,13 +3098,11 @@ Use `&amp;amp;` for adding an ampersand (&).
 
 The ampersand is a special character in HTML.
 
+<div class="box box--padding"><span>Romeo &amp; Juliet</span></div>
+
 ```html
 <div>Romeo &amp; Juliet</div>
 ```
-
-Result:
-
-<div class="box box--padding"><span>Romeo &amp; Juliet</span></div>
 
 <!-- --- -->
 
@@ -2534,7 +3119,3 @@ And there are many other HTML symbols that can be used:
 
 - `©` is replaced with `&&shy;copy;` (copyright)
 - `↗` is replaced with `&&shy;nearr;` (northeast arrow)
-
----
-
-If you'd like to get in touch, [write me an email](mailto:enrique@ruizdurazo.com) or [dm me on X](https://x.com/ruizdurazo).
