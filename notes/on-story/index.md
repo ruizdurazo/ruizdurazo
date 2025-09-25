@@ -197,8 +197,8 @@ Stories have 6 primary arcs:
 
 From this, we can basically conclude that there are 2 main arc types:
 
-- **Ascending** (Happy end)
-- **Descending** (Tragic end)
+- **Ascending** (Happy ending)
+- **Descending** (Tragic ending)
 
 With this framework, you can either:
 
