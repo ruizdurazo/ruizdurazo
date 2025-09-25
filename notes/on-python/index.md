@@ -156,44 +156,15 @@ print(a is c)
 
 <!-- --- -->
 
-### [PY] How to work with virtual environments: venv, pip, uv
+### [PY] How to work with virtual environments: uv, venv, pip
 
 Virtual environments keep your project dependencies isolated.
 
-Right now you basically have two options to create and manage them: `venv` + `pip`, or `uv`.
-
-**venv + pip**
-
-Using `venv` + `pip` is the standard, old-school way to work with virtual environments.
-
-```bash
-# Create a virtual environment with `venv`
-python -m venv venv
-# or
-python3 -m venv venv
-
-# Activate the virtual environment
-# On Mac/Linux:
-source venv/bin/activate
-
-# You'll see `(venv)` in your terminal prompt
-
-# Install packages using `pip` or `pip3`
-pip install requests pandas fastapi
-
-# Save dependencies to a `requirements.txt` file
-pip freeze > requirements.txt
-
-# Install from `requirements.txt`
-pip install -r requirements.txt
-
-# Deactivate the virtual environment
-deactivate
-```
+Right now you basically have two options to create and manage them: `uv`, or `venv`&nbsp;+&nbsp;`pip`.
 
 **uv (newer, faster Rust-based tool)**
 
-`uv` is a fast alternative to `pip` and `venv` for managing dependencies and virtual environments.
+`uv` is a newer, faster alternative way to manage Python dependencies and virtual environments.
 
 `uv` is cool because it has a `pyproject.toml` file that looks like the `package.json` file in the JS world. The versions of the dependencies get saved in the `uv.lock` file. You can specify the Python version in the `pyproject.toml` file. And you can specify the Python version of the venv with a `.python-version` file.
 
@@ -243,6 +214,35 @@ uv pip install -r requirements.txt
 
 # Run a script
 uv run my-script.py
+
+# Deactivate the virtual environment
+deactivate
+```
+
+**venv + pip**
+
+Using `venv` + `pip` is the standard, old-school way to work with virtual environments.
+
+```bash
+# Create a virtual environment with `venv`
+python -m venv venv
+# or
+python3 -m venv venv
+
+# Activate the virtual environment
+# On Mac/Linux:
+source venv/bin/activate
+
+# You'll see `(venv)` in your terminal prompt
+
+# Install packages using `pip` or `pip3`
+pip install requests pandas fastapi
+
+# Save dependencies to a `requirements.txt` file
+pip freeze > requirements.txt
+
+# Install from `requirements.txt`
+pip install -r requirements.txt
 
 # Deactivate the virtual environment
 deactivate
