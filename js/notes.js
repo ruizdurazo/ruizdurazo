@@ -38,7 +38,7 @@ const notes = [
   // },
   {
     folder: "on-python",
-    date: "2025-09-24",
+    date: "2025-09-25",
     title: "On Python",
     description: "Snippets and tips on Python.",
     thumbnail: false,

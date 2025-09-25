@@ -1,6 +1,6 @@
 ---
 title: On Python
-date: 2025-09-24
+date: 2025-09-25
 description_short: Snippets and tips on Python.
 description_long: Snippets and tips on Python.
 image:
@@ -35,14 +35,16 @@ Here's a list of snippets I've found useful.
 Python is simple and readable. But like JavaScript, it's a bit quirky.
 
 ```python
-# Variables
+# 1. Variables
 x = 10  # No need to declare type
 y = "hello"  # Dynamic typing
 z = [1, 2, 3]  # Lists (mutable)
 t = (1, 2, 3)  # Tuples (immutable)
 d = {"key": "value"}  # Dictionaries
 
-# Functions
+# - - - - - - - - - -
+
+# 2. Functions
 def greet(name="World"):
     return f"Hello, {name}!"
 
@@ -54,26 +56,34 @@ result = greet("Python")
 print(result)
 # Expected output: Hello, Python!
 
-# Classes
+# - - - - - - - - - -
+
+# 3. Classes
 class Dog:
+    # The constructor method
     def __init__(self, name):
         self.name = name
 
+    # Class method
     def bark(self):
         return f"{self.name} says woof!"
 
-# Creating instances
+# Creating class instances
 my_dog = Dog("Buddy")
 print(my_dog.bark())
 # Expected output: Buddy says woof!
 
-# Lists and list comprehensions
+# - - - - - - - - - -
+
+# 4. Lists and list comprehensions
 numbers = [1, 2, 3, 4, 5]
 squared = [x ** 2 for x in numbers]
 print(squared)
 # Expected output: [1, 4, 9, 16, 25]
 
-# Conditionals
+# - - - - - - - - - -
+
+# 5. Conditionals
 if x > 0:
     print("x is positive")
 elif x == 0:
@@ -82,7 +92,10 @@ else:
     print("x is negative")
 # Expected output: x is positive
 
-# Loops
+# - - - - - - - - - -
+
+# 6. Loops
+# For loops
 for num in numbers:
     print(num, end=" ")
 # Expected output: 1 2 3 4 5
@@ -145,9 +158,13 @@ print(a is c)
 
 ### [PY] How to work with virtual environments: venv, pip, uv
 
-Virtual environments keep your project dependencies isolated. If you don't want headaches, you'll use them. Right now you basically have two options: `venv` + `pip`, or `uv`.
+Virtual environments keep your project dependencies isolated.
 
-Using `venv` + `pip` is the standard, old-school way to create virtual environments.
+Right now you basically have two options to create and manage them: `venv` + `pip`, or `uv`.
+
+**venv + pip**
+
+Using `venv` + `pip` is the standard, old-school way to work with virtual environments.
 
 ```bash
 # Create a virtual environment with `venv`
@@ -174,11 +191,11 @@ pip install -r requirements.txt
 deactivate
 ```
 
-**Alternative: uv (faster Rust-based tool)**
+**uv (newer, faster Rust-based tool)**
 
-`uv` is a fast alternative to `pip` and `venv` for managing packages and virtual environments.
+`uv` is a fast alternative to `pip` and `venv` for managing dependencies and virtual environments.
 
-`uv` is cool because it has a `pyproject.toml` file that looks like the `package.json` file in JS. Then the versions of the dependencies get saved in the `uv.lock` file. You can specify the Python version in the `pyproject.toml` file. And you can specify the Python version of the venv with a `.python-version` file.
+`uv` is cool because it has a `pyproject.toml` file that looks like the `package.json` file in the JS world. The versions of the dependencies get saved in the `uv.lock` file. You can specify the Python version in the `pyproject.toml` file. And you can specify the Python version of the venv with a `.python-version` file.
 
 ```bash
 # Create a virtual environment (creates a `.venv` directory by default)
@@ -243,16 +260,20 @@ print(sys.prefix != sys.base_prefix)
 ### [PY] How to handle imports and modules: \_\_init\_\_.py, relative imports
 
 ```python
-# Basic imports
+# 1. Basic imports
 import os
 import json
 from datetime import datetime
 from pathlib import Path
 
-# Import specific functions
+# - - - - - - - - - -
+
+# 2. Import specific functions
 from math import sqrt, pi
 
-# Import with alias
+# - - - - - - - - - -
+
+# 3. Import with alias
 import pandas as pd
 import numpy as np
 
@@ -260,7 +281,9 @@ import numpy as np
 np.sqrt(2)
 pd.read_csv("data.csv")
 
-# Import everything with `*` (avoid doing this)
+# - - - - - - - - - -
+
+# 4. Import everything with `*` (avoid doing this)
 # This is cringe because you'll import stuff you don't even need,
 # and when you use a method you imported, you won't immediately
 # know from which module it came from.
@@ -273,7 +296,7 @@ In order to make your own code more cleanly importable, you can use packages. Ad
 # Working with packages
 
 # 1. Structure your project to use packages.
-# 2. Adding a `__init__.py` file makes a directory a package.
+# 2. Add `__init__.py` files to make directories packages.
 
 # Assuming this project structure:
 # mypackage/
