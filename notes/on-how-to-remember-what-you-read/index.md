@@ -16,11 +16,13 @@ _:
 
 ## Intro
 
+Reading is cool.
+
 A few years ago, I started to read more books. 📚
 
-Reading is cool. When I read, I can be inspired, surprised, mind-blown.
+If you're reading this, then you probably like to read too. 
 
-If you're reading this, then you probably like to read too. And maybe you’re reading some great book right now. Perhaps the ideas in the book are truly life-changing. Or perhaps the story is so good you almost can't put the book down.
+Maybe you’re reading some great book right now. Perhaps the ideas in the book are insightful and truly life-changing. Or perhaps the story is so good you can't put the book down.
 
 In any case, you might be thinking that it's so good that you'll never forget it.
 
