@@ -16,7 +16,9 @@ _:
 
 ## Intro
 
-Good stories matter. But the best stories rule the world.
+The best stories rule the world.
+
+Whether it's culture, history, politics, business, or even science and technology and anything in between.
 
 That's why understanding the DNA of stories matters.
 

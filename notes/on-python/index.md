@@ -386,7 +386,7 @@ print(next(squares_gen))
 Python is a dynamically typed language, so you'll want to use type hints to make your code more robust, and be able to catch bugs as early as linting with something like `ruff` or `pyright`.
 
 ```python
-# You don't have to import simple types like `str`,  
+# You don't have to import simple types like `str`,
 # `int`, `float`, `bool`, etc.
 # But you'll want to import more type hints from
 # the built-in `typing` module.
@@ -475,17 +475,17 @@ int_stack.push(2)
 
 ## Testing
 
-<!-- --- -->
-
-### [PY] How to write unit tests: pytest
-
 Testing is crucial in the age of AI and vibe-coding.
 
 The bottleneck in software development used to be writing code, but now it's mostly reviewing, testing, and debugging because it has to be done manually.
 
 Having tests makes you go faster and more confidently.
 
-Say you have a calculator you want to test. You can write tests for it like this:
+<!-- --- -->
+
+### [PY] How to write unit tests: pytest
+
+Say you have a calculator you want to test.
 
 ```python
 # `calculator.py`
@@ -505,13 +505,21 @@ def subtract(a, b):
     return a - b
 ```
 
+You can write tests for the functions like this.
+
+You generally write a test function for each test case. Inside the test function, you can use `assert` to test a boolean condition, and if the condition is true, the test passes.
+
+The naming convention of the test function is `test_function_name()`, and of the test file is `test_file_name.py`. Testing tools can detect all these files and help you run and monitor the tests automatically.
+
+As for where to put the files, you basically have 2 options: either right next to the code in the same directory, or in a completely separate, project-level `tests` directory where all test files will reside. Up to you.
+
 ```python
 # `test_calculator.py`
 import pytest
 from calculator import add, divide
 
 # Basic tests
-# You can use the `assert` keyword to test your code.
+# Use the `assert` keyword to test your code.
 def test_add():
     # Add as many test cases as you need.
     assert add(2, 3) == 5
@@ -527,7 +535,10 @@ def test_divide_by_zero():
     with pytest.raises(ValueError, match="Cannot divide by zero"):
         divide(10, 0)
 
-# Run with: `pytest test_calculator.py -v`
 ```
+
+Run this file with: `pytest test_calculator.py -v`
+
+Run all tests in the project with: `pytest -v`
 
 <!-- --- -->
