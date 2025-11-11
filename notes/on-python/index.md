@@ -18,7 +18,7 @@ _:
 
 Python is easy and useful for many different things.
 
-It's popular in a lot of fields including 3D design software, science, and AI research. It was the first language I learned, and I still use it for some backend development and data analysis stuff.
+It was the first language I learned, and I still use it for some backend development and data analysis stuff. It's popular in a lot of fields including 3D design software, science, and AI research.
 
 ![Python](./images/sssss.png "Sssss")[size: l, aspect: 860x540]
 
@@ -164,7 +164,7 @@ Right now you basically have two options to create and manage them: `uv`, or `ve
 
 **uv (newer, faster Rust-based tool)**
 
-`uv` is a newer, faster alternative way to manage Python dependencies and virtual environments.
+[uv](https://docs.astral.sh/uv/) is a newer, faster alternative way to manage Python dependencies and virtual environments.
 
 `uv` is cool because it has a `pyproject.toml` file that looks like the `package.json` file in the JS world. The versions of the dependencies get saved in the `uv.lock` file. You can specify the Python version in the `pyproject.toml` file. And you can specify the Python version of the venv with a `.python-version` file.
 
@@ -473,6 +473,23 @@ int_stack.push(2)
 
 <!-- --- -->
 
+### [PY] How to lint and format your code: Ruff
+
+[Ruff](https://docs.astral.sh/ruff/) is the modern, fast linter and formatter for Python. It's like ESLint for Python. And you can install the IDE extensions for it as well.
+
+```bash
+# Install ruff
+uv add --dev ruff
+
+# Linting
+ruff check
+
+# Formatting
+ruff format
+```
+
+<!-- --- -->
+
 ## Testing
 
 Testing is crucial in the age of AI and vibe-coding.
@@ -516,13 +533,19 @@ As for where to put the files, you basically have 2 options: either right next t
 ```python
 # `test_calculator.py`
 import pytest
+
+# Import the code or functions you want to test.
 from calculator import add, divide
 
 # Basic tests
-# Use the `assert` keyword to test your code.
+# Add a test function for each test case.
+# You can add a test per function, or a test per test case.
+# (e.g. testing a specific behavior of a function)
 def test_add():
-    # Add as many test cases as you need.
+    # Use the `assert` keyword to test the code.
+    # For example, 2 + 3 should be 5:
     assert add(2, 3) == 5
+    # Add as many test cases as you want/need...
     assert add(-1, 1) == 0
     assert add(0, 0) == 0
 
