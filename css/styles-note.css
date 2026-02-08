@@ -6,7 +6,8 @@
 /* Fonts */
 @font-face {
   font-family: "Inter";
-  src: url("../assets/fonts/Inter-ExtraBold.woff") format("woff"),
+  src:
+    url("../assets/fonts/Inter-ExtraBold.woff") format("woff"),
     url("https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/assets/fonts/Inter-ExtraBold.woff")
       format("woff");
   font-weight: 800;
@@ -16,7 +17,8 @@
 
 @font-face {
   font-family: "Inter";
-  src: url("../assets/fonts/Inter-BoldItalic.woff") format("woff"),
+  src:
+    url("../assets/fonts/Inter-BoldItalic.woff") format("woff"),
     url("https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/assets/fonts/Inter-BoldItalic.woff")
       format("woff");
   font-weight: 700;
@@ -26,7 +28,8 @@
 
 @font-face {
   font-family: "Inter";
-  src: url("../assets/fonts/Inter-SemiBoldItalic.woff") format("woff"),
+  src:
+    url("../assets/fonts/Inter-SemiBoldItalic.woff") format("woff"),
     url("https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/assets/fonts/Inter-SemiBoldItalic.woff")
       format("woff");
   font-weight: 600;
@@ -36,7 +39,8 @@
 
 @font-face {
   font-family: "Inter";
-  src: url("../assets/fonts/Inter-MediumItalic.woff") format("woff"),
+  src:
+    url("../assets/fonts/Inter-MediumItalic.woff") format("woff"),
     url("https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/assets/fonts/Inter-MediumItalic.woff")
       format("woff");
   font-weight: 500;
@@ -46,7 +50,8 @@
 
 @font-face {
   font-family: "Inter";
-  src: url("../assets/fonts/Inter-Italic.woff") format("woff"),
+  src:
+    url("../assets/fonts/Inter-Italic.woff") format("woff"),
     url("https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/assets/fonts/Inter-Italic.woff")
       format("woff");
   font-weight: 400;
@@ -56,7 +61,8 @@
 
 @font-face {
   font-family: "Charter";
-  src: url("../assets/fonts/Charter-Bold.woff") format("woff"),
+  src:
+    url("../assets/fonts/Charter-Bold.woff") format("woff"),
     url("https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/assets/fonts/Charter-Bold.woff")
       format("woff");
   font-weight: 700;
@@ -66,7 +72,8 @@
 
 @font-face {
   font-family: "Charter";
-  src: url("../assets/fonts/Charter-BoldItalic.woff") format("woff"),
+  src:
+    url("../assets/fonts/Charter-BoldItalic.woff") format("woff"),
     url("https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/assets/fonts/Charter-BoldItalic.woff")
       format("woff");
   font-weight: 700;
@@ -76,7 +83,8 @@
 
 @font-face {
   font-family: "Charter";
-  src: url("../assets/fonts/Charter-Italic.woff") format("woff"),
+  src:
+    url("../assets/fonts/Charter-Italic.woff") format("woff"),
     url("https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/assets/fonts/Charter-Italic.woff")
       format("woff");
   font-weight: 400;
@@ -86,7 +94,8 @@
 
 @font-face {
   font-family: "Charter";
-  src: url("../assets/fonts/Charter-Regular.woff") format("woff"),
+  src:
+    url("../assets/fonts/Charter-Regular.woff") format("woff"),
     url("https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/assets/fonts/Charter-Regular.woff")
       format("woff");
   font-weight: 400;
@@ -96,7 +105,8 @@
 
 @font-face {
   font-family: "Menlo";
-  src: url("../assets/fonts/Menlo-Regular.woff") format("woff"),
+  src:
+    url("../assets/fonts/Menlo-Regular.woff") format("woff"),
     url("https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/assets/fonts/Menlo-Regular.woff")
       format("woff");
   font-weight: 400;
@@ -278,7 +288,9 @@
   line-height: calc(var(--font-size) * 1);
   border-bottom: none;
   text-decoration: none;
-  transition: color 0.2s, filter 0.2s;
+  transition:
+    color 0.2s,
+    filter 0.2s;
 }
 
 #floating-table-of-contents .toc-list ul li a:hover,
@@ -289,7 +301,9 @@
 #floating-table-of-contents .toc-list ul li {
   color: transparent;
   mix-blend-mode: difference;
-  transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  transition:
+    color 0.2s ease-in-out,
+    opacity 0.2s ease-in-out;
   opacity: 0.1;
 }
 
@@ -393,7 +407,9 @@
   text-decoration: none;
   font-weight: 500;
   font-size: inherit;
-  transition: opacity 0.2s ease, color 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    color 0.2s ease;
 }
 
 .toc-heading:hover .heading-anchor {
@@ -415,13 +431,15 @@
 
 .blockquote {
   font-family: var(--font-main);
-  font-size: calc(var(--font-size) * 1.1);
-  line-height: calc(var(--font-size) * 1.8);
+  /* font-size: calc(var(--font-size) * 1.1); */
+  /* line-height: calc(var(--font-size) * 1.8); */
   letter-spacing: 0;
   background-color: transparent;
-  padding: calc(var(--font-size) * 1) calc(var(--font-size) * 1.5);
+  padding: calc(var(--font-size) * 0.25) calc(var(--font-size) * 1.25);
   border-left: 3px solid var(--_50);
-  transition: border 0.2s, background-color 0.2s;
+  transition:
+    border 0.2s,
+    background-color 0.2s;
 }
 
 /* .blockquote:hover {
@@ -514,7 +532,10 @@
   border: 1px solid #d5d8da;
   margin: calc(var(--font-size) * 2) auto;
   box-shadow: 0 10px 20px #e4e6e840;
-  transition: border 0.2s, background-color 0.2s, box-shadow 0.2s;
+  transition:
+    border 0.2s,
+    background-color 0.2s,
+    box-shadow 0.2s;
 }
 
 .callout {
@@ -582,22 +603,22 @@
 /* Images */
 .img-size-s {
   width: calc(var(--grid-unit) * 2);
-  margin: calc(var(--font-size) * 4) auto;
+  margin: calc(var(--font-size) * 3) auto calc(var(--font-size) * 4);
 }
 
 .img-size-m {
   width: calc(var(--grid-unit) * 4);
-  margin: calc(var(--font-size) * 4) auto;
+  margin: calc(var(--font-size) * 3) auto calc(var(--font-size) * 4);
 }
 
 .img-size-l {
   width: calc(var(--grid-unit) * 6);
-  margin: calc(var(--font-size) * 4) auto;
+  margin: calc(var(--font-size) * 3) auto calc(var(--font-size) * 4);
 }
 
 .img-size-xl {
   width: calc(var(--grid-unit) * 8);
-  margin: calc(var(--font-size) * 4) auto;
+  margin: calc(var(--font-size) * 3) auto calc(var(--font-size) * 4);
 }
 
 .img {
@@ -645,13 +666,14 @@ sup,
 sub {
   font-family: var(--font-main);
   letter-spacing: -0.005em;
+  font-size: inherit;
   color: var(--text);
-  font-size: calc(var(--font-size) * 1);
   line-height: 1.8em;
   min-height: 1em;
 }
 
 p {
+  font-size: calc(var(--font-size) * 1);
   width: calc(var(--grid-unit) * 6);
   margin: 0 auto;
   margin-bottom: calc(var(--font-size) * 1.8);
@@ -663,7 +685,9 @@ p {
   position: relative;
   border-bottom: 2px solid #ddd;
   padding-bottom: 1px;
-  transition: color 0.2s, border 0.2s;
+  transition:
+    color 0.2s,
+    border 0.2s;
   font-weight: 400;
 }
 
@@ -679,6 +703,7 @@ p {
 }
 
 strong {
+  font-family: inherit;
   font-weight: 700;
 }
 
@@ -691,22 +716,26 @@ em {
 }
 
 del {
+  font-family: inherit;
   text-decoration: line-through;
   color: var(--text);
 }
 
 ins {
+  font-family: inherit;
   text-decoration: underline var(--text);
 }
 
 sup,
 sub {
+  font-family: inherit;
   font-size: calc(var(--font-size) * 0.65);
 }
 
 mark {
+  font-family: inherit;
   border-radius: 2px;
-  background-color: #fff7b6;
+  background-color: #fbf4ba;
   padding: 2px 4px;
 }
 
@@ -732,7 +761,10 @@ pre {
   box-shadow: 0 10px 20px #e4e6e840;
   border: 1px solid #d5d8da;
   counter-reset: line;
-  transition: color 0.2s, border 0.2s, box-shadow 0.2s;
+  transition:
+    color 0.2s,
+    border 0.2s,
+    box-shadow 0.2s;
   overflow: auto;
 }
 
@@ -818,7 +850,9 @@ pre .line:before {
   width: calc(var(--font-size) * 1);
   text-align: right;
   color: #d2d4d6;
-  transition: color 0.2s, border 0.2s;
+  transition:
+    color 0.2s,
+    border 0.2s;
 }
 
 pre .line:hover:before {
@@ -903,7 +937,9 @@ hr {
   align-items: center;
   min-height: 160px;
   border: 1px solid #ddd;
-  transition: background-color 0.2s, border 0.2s;
+  transition:
+    background-color 0.2s,
+    border 0.2s;
   width: 100%;
   padding: 40px;
   box-sizing: border-box;

@@ -1,6 +1,6 @@
 ---
 title: On How to Remember What You Read: The 5 Levels of Reading
-date: 2025-09-19
+date: 2026-02-07
 description_short: A system to never forget what you read.
 description_long: A system to never forget what you read.
 image:
@@ -20,7 +20,7 @@ Reading is cool.
 
 A few years ago, I started to read more books. 📚
 
-If you're reading this, then you probably like to read too. 
+If you're reading this, then you probably like to read too.
 
 Maybe you’re reading some great book right now. Perhaps the ideas in the book are insightful and truly life-changing. Or perhaps the story is so good you can't put the book down.
 
@@ -42,27 +42,27 @@ It helps me catalog all the great lessons from these great books, and now I have
 
 There are 5 levels to get there.
 
-## Levels
-
-There are basically 5 levels of reading:
+## The 5 Levels of Reading
 
 1. **Just reading**
 2. **Adding highlights**
-3. **Reviewing the highlights**
-4. **Creating a collection of all your highlights**
+3. **Reviewing highlights**
+4. **Creating a collection of all highlights**
 5. **Writing your own notes and summaries**
 
 The levels are cumulative and interconnected. Meaning, in each level you need to do what that level says, plus what all the previous ones say as well.
 
+![Levels of Reading](./images/levels-of-reading.png)[size: m, aspect: 680x945]
+
 ### Level 1: Just reading
 
-Most people don’t read books. And most of the few who do, stay at this level. Meaning they only read the book once, and inevitably forget about it.
+Most people don’t read books. And the few who do, mostly stay at this level. Meaning they only read the book once, and inevitably forget about it.
 
 This level is easy enough to understand, so let’s just move on to the next.
 
 ### Level 2: Adding highlights
 
-At this level, you read the book, but you also ==start adding highlights==.
+At this level, you read the book, but you also ==add highlights==.
 
 The highlights can take any shape. Whether it’s literally using a highlight marker on the book, or underlining with a pen or pencil, or highlighting an e-book. It doesn’t matter. What matters is that you do it.
 
@@ -72,7 +72,7 @@ But if you simply do this, you’ll still forget! So let’s go to the next leve
 
 ### Level 3: Reviewing your highlights
 
-Here, you have your highlights and you review them and reread them!
+Here, you have your highlights and you review them and re-read them!
 
 It can help you to speed-read a book, focusing on the parts that you found most interesting, entertaining, or thought-provoking.
 
