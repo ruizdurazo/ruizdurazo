@@ -186,7 +186,7 @@ The Arabian Desert is dotted with many, many oil complexes like this one.
 
 **Aramco Shaybah Complex, Saudi Arabia**
 
-Real life spice harvesting in the middle of the sand dunes. The ~~spice~~ oil must flow.
+Real-life spice harvesting in ~~Arrakis~~ Saudi Arabia in the middle of the sand dunes. The ~~spice~~ oil must flow.
 
 [https://www.google.com/maps/@22.4930922,53.9180052,55248m](https://www.google.com/maps/@22.4930922,53.9180052,55248m)
 
@@ -212,7 +212,9 @@ Real life spice harvesting in the middle of the sand dunes. The ~~spice~~ oil mu
 
 **Prudhoe Bay Oil Field, Alaska, USA**
 
-One of the largest and most insane oil fields ever. Located in the middle of nowhere in the frozen tundra within the Arctic Circle, it is a huge, sprawling network of wells and pipes.
+One of the largest and most insane oil fields ever. 
+
+Prudhoe Bay is located in the middle of nowhere in the frozen tundra within the Arctic Circle, it is a huge, sprawling network of wells and pipelines.
 
 [https://www.google.com/maps/@70.2730577,-149.2943,23521m](https://www.google.com/maps/@70.2730577,-149.2943,23521m)
 

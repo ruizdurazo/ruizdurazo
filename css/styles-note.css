@@ -1,6 +1,6 @@
 /* 
  * Enrique Ruiz Durazo
- * 2019-2025
+ * 2019-2026
  */
 
 /* Fonts */
@@ -236,7 +236,7 @@
   position: fixed;
   left: 0; /* Adjust horizontal position as needed */
   top: 50%; /* Adjust vertical position (consider header height) */
-  width: 300px; /* Adjust width */
+  width: 272px; /* Adjust width */
   padding: 25svh 0;
   height: 100%;
   transform: translateY(-50%);
@@ -264,7 +264,7 @@
 #floating-table-of-contents .toc-list {
   max-height: 100%;
   overflow-y: auto;
-  padding: 0 40px;
+  padding: 0 36px;
   /* IE and Edge */
   -ms-overflow-style: none;
   /* Firefox */
@@ -364,13 +364,12 @@
 .h6 {
   width: var(--max-width-note);
   font-weight: 700;
-  margin: calc(var(--font-size) * 7) auto calc(var(--font-size) * 1.8) auto;
+  margin: calc(var(--font-size) * 5) auto calc(var(--font-size) * 1.8) auto;
   letter-spacing: -0.005em;
-  scroll-margin-top: calc(var(--font-size) * 1);
   text-wrap: pretty;
   position: relative;
   /* Important: add scroll margin */
-  scroll-margin-top: calc(var(--font-size) * 6);
+  scroll-margin-top: calc(var(--font-size) * 4);
 }
 
 .h1 {

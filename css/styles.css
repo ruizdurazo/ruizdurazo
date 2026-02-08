@@ -1,6 +1,6 @@
 /* 
  * Enrique Ruiz Durazo
- * 2019-2025
+ * 2019-2026
  */
 
 /* Fonts */
@@ -21,7 +21,8 @@
 
 @font-face {
   font-family: "Inter";
-  src: url("../assets/fonts/Inter-Bold.woff"),
+  src:
+    url("../assets/fonts/Inter-Bold.woff"),
     url("https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/assets/fonts/Inter-Bold.woff");
   font-weight: 700;
   font-style: normal;
@@ -30,7 +31,8 @@
 
 @font-face {
   font-family: "Inter";
-  src: url("../assets/fonts/Inter-SemiBold.woff"),
+  src:
+    url("../assets/fonts/Inter-SemiBold.woff"),
     url("https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/assets/fonts/Inter-SemiBold.woff");
   font-weight: 600;
   font-style: normal;
@@ -39,7 +41,8 @@
 
 @font-face {
   font-family: "Inter";
-  src: url("../assets/fonts/Inter-Medium.woff") format("woff"),
+  src:
+    url("../assets/fonts/Inter-Medium.woff") format("woff"),
     url("https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/assets/fonts/Inter-Medium.woff")
       format("woff");
   font-weight: 500;
@@ -49,7 +52,8 @@
 
 @font-face {
   font-family: "Inter";
-  src: url("../assets/fonts/Inter-Regular.woff") format("woff"),
+  src:
+    url("../assets/fonts/Inter-Regular.woff") format("woff"),
     url("https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master/assets/fonts/Inter-Regular.woff")
       format("woff");
   font-weight: 400;
@@ -59,8 +63,8 @@
 
 /* Variables */
 :root {
-  --font-main: "Inter", -apple-system, "Helvetica Neue", Helvetica, Arial,
-    sans-serif;
+  --font-main:
+    "Inter", -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-serif: "Charter", serif;
   --font-mono: "Menlo", monospace;
   --font-size: 20px;
@@ -223,7 +227,9 @@ body {
   border: none;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  transition: color 0.3s ease, background-color 0.3s ease,
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease,
     border-color 0.3s ease;
 }
 
@@ -296,18 +302,23 @@ button:active {
 
 .navbar--elements {
   display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: space-between;
   width: calc(100% - (1px * var(--offset)));
   height: var(--font-size-5);
   margin: 0 auto;
+  transition:
+    height 0.3s ease-out,
+    width 0.3s ease-out;
+}
+
+#navbar.scrolled .navbar--elements {
+  width: calc(100% - var(--font-size-3));
+  height: var(--font-size-3);
 }
 
 /* Logo */
-.logo {
-  margin: 39px 0;
-  height: 24px;
-}
-
 .logo a {
   display: flex;
   flex-direction: row;
@@ -364,7 +375,16 @@ button:active {
   left: 0;
   right: 0;
   background-color: var(--menu-bg-color);
-  transition: max-height 0.3s ease-out 0.1s, background-color 0.3s ease;
+  transition:
+    max-height 0.3s ease-out 0.1s,
+    background-color 0.3s ease,
+    top 0.3s ease-out,
+    height 0.3s ease-out;
+}
+
+#navbar.scrolled #menu-overlay {
+  top: var(--font-size-3);
+  height: calc(100svh - var(--font-size) * 3);
 }
 
 /* List of menu items */
@@ -523,8 +543,9 @@ button:active {
     width: calc(
       100% -
         (
-          (1px * var(--offset) * 0.75) + (var(--offset) - var(--offset) * 0.75) *
-            (100vw - 768px) / (1040 - 768)
+          (1px * var(--offset) * 0.75) +
+            (var(--offset) - var(--offset) * 0.75) * (100vw - 768px) /
+            (1040 - 768)
         )
     );
   }

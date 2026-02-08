@@ -1,6 +1,6 @@
 /*
  * Enrique Ruiz Durazo
- * 2021-2025
+ * 2021-2026
  */
 
 // Markdown document, an array of lines (strings)
@@ -91,7 +91,7 @@ fetch(url)
                 noteData.date.getFullYear() +
                 " " +
                 Intl.DateTimeFormat("en-US", { month: "long" }).format(
-                  noteData.date
+                  noteData.date,
                 ) +
                 " " +
                 noteData.date.getDate() +
@@ -991,7 +991,7 @@ fetch(url)
         if (match) {
           match.forEach((i) => {
             const sub_element = "<sub>" + i.slice(1, -1) + "</sub>"
-              input = input.replace(i, sub_element)
+            input = input.replace(i, sub_element)
             out = input
           })
         } else {
@@ -1646,7 +1646,7 @@ document.addEventListener("DOMContentLoaded", () => {
           addedNodes.some(
             (node) =>
               node.id === "table-of-contents" ||
-              node.id === "floating-table-of-contents"
+              node.id === "floating-table-of-contents",
           )
         ) {
           // Re-run the check once elements are potentially added
@@ -1666,10 +1666,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const setupActiveTocLinkObserver = () => {
     const headings = document.querySelectorAll("#note .toc-heading")
     const tocLinks = document.querySelectorAll(
-      "#floating-table-of-contents .toc-list li a"
+      "#floating-table-of-contents .toc-list li a",
     )
     const floatingTocList = document.querySelector(
-      "#floating-table-of-contents .toc-list"
+      "#floating-table-of-contents .toc-list",
     )
     const floatingToc = document.getElementById("floating-table-of-contents")
 
@@ -1731,7 +1731,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (activeHeadingIndex >= 0) {
         const activeHeadingId = headingsList[activeHeadingIndex].id
         const newActiveLink = floatingTocList.querySelector(
-          `a[href="#${activeHeadingId}"]`
+          `a[href="#${activeHeadingId}"]`,
         )
 
         if (newActiveLink) {
@@ -1849,7 +1849,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Observe the main note container and the floating TOC container for changes
   const noteElement = document.getElementById("note")
   const floatingTocElement = document.getElementById(
-    "floating-table-of-contents"
+    "floating-table-of-contents",
   )
   if (noteElement) {
     contentObserver.observe(noteElement, { childList: true, subtree: true })

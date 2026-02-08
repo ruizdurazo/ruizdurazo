@@ -29,11 +29,11 @@ Mostly, this is an appreciation post for what others have said so much better th
 
 Below, you will find a word-for-word copy of the writing advice from these great thinkers and writers:
 
-- Scott Adams: The Day You Became A Better Writer
-- David Ogilvy: How to Write
-- Paul Graham: Write like you talk
-- Winston Churchill: Brevity
-- David Perell: The Best Sentences Are CLEAR
+- **Scott Adams**: The Day You Became A Better Writer
+- **David Ogilvy**: How to Write
+- **Paul Graham**: Write like you talk
+- **Winston Churchill**: Brevity
+- **David Perell**: The Best Sentences Are CLEAR
 
 ## Advice
 
@@ -72,7 +72,7 @@ Below, you will find a word-for-word copy of the writing advice from these great
 > 1. Read the Roman-Raphaelson book on writing. Read it three times.
 > 2. Write the way you talk. Naturally.
 > 3. Use short words, short sentences and short paragraphs
-> 4. Never use jargon words like reconceptualize, demassification, attitudinally, judgmentally. They are hallmarks of a pretentious ass.
+> 4. Never use jargon words like _reconceptualize_, _demassification_, _attitudinally_, _judgmentally_. They are hallmarks of a pretentious ass.
 > 5. Never write more than two pages on any subject.
 > 6. Check your quotations.
 > 7. Never send a letter or a memo on the day you write it. Read it aloud the next morning—and then edit it.
@@ -90,7 +90,7 @@ Below, you will find a word-for-word copy of the writing advice from these great
 >
 > The last straw for me was a sentence I read a couple days ago:
 >
-> The mercurial Spaniard himself declared: "After Altamira, all is decadence."
+> _The mercurial Spaniard himself declared: "After Altamira, all is decadence."_
 >
 > It's from Neil Oliver's A History of Ancient Britain. I feel bad making an example of this book, because it's no worse than lots of others. But just imagine calling Picasso "the mercurial Spaniard" when talking to a friend. Even one sentence of this would raise eyebrows in conversation. And yet people write whole books of it.
 >
@@ -132,9 +132,7 @@ Below, you will find a word-for-word copy of the writing advice from these great
 >
 > (iii) Often the occasion is best met by submitting not a full-dress Report, but an Aide-memoire consisting of headings only, which can be expanded orally if needed.
 >
-> (iv) Let us have an end of such phrases as these:
-> "It is also of importance to beer in mind the following considerations......", or "Consideration should be given to the possibility of carrying into effect.....".
-> Most of these woolly phrases are mere padding, which can be left out altogether, or replaced by a single word. Let us not shrink from using the short expressive phrase, even if it is conversational.
+> (iv) Let us have an end of such phrases as these: "_It is also of importance to beer in mind the following considerations......_", or "_Consideration should be given to the possibility of carrying into effect....._". Most of these woolly phrases are mere padding, which can be left out altogether, or replaced by a single word. Let us not shrink from using the short expressive phrase, even if it is conversational.
 >
 > Reports drawn up on the lines I propose may at first seem rough as compared with the flat surface of officialese jargon. But the saving in time will be great, while the discipline of setting out the real points concisely will prove an aid to clearer thinking.
 >
@@ -156,11 +154,15 @@ Below, you will find a word-for-word copy of the writing advice from these great
 
 ## Conclusion
 
-So as you can see, most of the advice is to write using simple words and simple sentences.
+So as you can see, most of the advice is to write clearly using simple words and simple sentences.
 
-I have no particular insights into writing beyond just doing it, and struggling through it. Having a collection of notes and quotes that you constantly grow and prune is great too.
+Though of course, not always. 
 
-And yes, in the age of AI, writing (and thinking) still matters.
+Knowing exactly _when_ and _how_ to break this rule is what separates poor writing from great writing.
+
+As for me, I have no particular insights into writing beyond [just doing it, and struggling through it](/notes/hello-universe/#write). Having a _garden_ of drafts, notes, and quotes that you constantly grow and prune is great too.
+
+And yes, even in the age of AI, writing still matters.
 
 Clear writing is clear thinking.
 

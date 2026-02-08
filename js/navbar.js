@@ -1,11 +1,11 @@
 /*
  * Enrique Ruiz Durazo
- * 2021-2025
+ * 2021-2026
  */
 
-const navbar = document.getElementById("navbar");
-const menuSVG = document.getElementById("menu-svg");
-const menuOverlay = document.getElementById("menu-overlay");
+const navbar = document.getElementById("navbar")
+const menuSVG = document.getElementById("menu-svg")
+const menuOverlay = document.getElementById("menu-overlay")
 
 menuOverlay.innerHTML =
   '<div class="menu-list">' +
@@ -14,45 +14,54 @@ menuOverlay.innerHTML =
   '<a class="menu-list-item" href="https://x.com/ruizdurazo" target="_blank" rel="noopener noreferrer" tabindex="-1">X (Twitter)</a>' +
   '<a class="menu-list-item" href="https://github.com/ruizdurazo" target="_blank" rel="noopener noreferrer" tabindex="-1">GitHub</a>' +
   '<a class="menu-list-item" href="/lol" rel="noopener noreferrer" tabindex="-1">LinkedIn</a>' +
-  "</div>";
+  "</div>"
+
+// Navbar scroll effect
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 0) {
+    navbar.classList.add("scrolled")
+  } else {
+    navbar.classList.remove("scrolled")
+  }
+})
 
 document.getElementById("menu-button").addEventListener("click", (event) => {
   if (menuSVG.alt === "Menu") {
-    document.getElementById("menu-button").blur();
+    document.getElementById("menu-button").blur()
     // Update navbar classes
-    navbar.classList.remove("menu-close");
-    navbar.classList.add("menu-open");
+    navbar.classList.remove("menu-close")
+    navbar.classList.add("menu-open")
     // Open menu tray
-    menuOverlay.setAttribute("style", "max-height: 100svh;");
-    menuOverlay.children[0].style.display = "flex";
+    menuOverlay.setAttribute("style", "max-height: 100svh;")
+    menuOverlay.children[0].style.display = "flex"
     // Change menu icon
-    menuSVG.src = "/assets/icons/icon-close.svg";
-    menuSVG.alt = "Close";
-    menuSVG.width = "60";
-    menuSVG.height = "60";
+    menuSVG.src = "/assets/icons/icon-close.svg"
+    menuSVG.alt = "Close"
+    menuSVG.width = "60"
+    menuSVG.height = "60"
     // Make menu items focusable
     menuOverlay.querySelectorAll(".menu-list-item").forEach((item) => {
-      item.tabIndex = 0;
-    });
+      item.tabIndex = 0
+    })
   } else {
-    document.getElementById("menu-button").blur();
+    document.getElementById("menu-button").blur()
     // Update navbar classes
-    navbar.classList.remove("menu-open");
-    navbar.classList.add("menu-close");
+    navbar.classList.remove("menu-open")
+    navbar.classList.add("menu-close")
     // Close menu tray
-    menuOverlay.setAttribute("style", "max-height: 0;");
-    menuOverlay.children[0].style.display = "none";
+    menuOverlay.setAttribute("style", "max-height: 0;")
+    menuOverlay.children[0].style.display = "none"
     // Change menu icon
-    menuSVG.src = "/assets/icons/icon-menu.svg";
-    menuSVG.alt = "Menu";
-    menuSVG.width = "60";
-    menuSVG.height = "60";
+    menuSVG.src = "/assets/icons/icon-menu.svg"
+    menuSVG.alt = "Menu"
+    menuSVG.width = "60"
+    menuSVG.height = "60"
     // Make menu items not focusable
     menuOverlay.querySelectorAll(".menu-list-item").forEach((item) => {
-      item.tabIndex = -1;
-    });
+      item.tabIndex = -1
+    })
   }
-});
+})
 
 // Close menu tray on escape key
 document.addEventListener(
@@ -60,32 +69,32 @@ document.addEventListener(
   (event) => {
     if (event.key === "Escape") {
       if (document.getElementById("menu-svg").alt === "Close") {
-        document.getElementById("menu-button").click();
+        document.getElementById("menu-button").click()
       }
     }
   },
-  true
-);
+  true,
+)
 
 // Add email bubble to email menu list item (requires handleEmailBubble function)
-const menuListItemEmail = document.getElementById("menu-list-item-email");
-const email = menuListItemEmail.href.replace("mailto:", "");
-handleEmailBubble(menuListItemEmail, email);
+const menuListItemEmail = document.getElementById("menu-list-item-email")
+const email = menuListItemEmail.href.replace("mailto:", "")
+handleEmailBubble(menuListItemEmail, email)
 
 // TODO / WIP
 // // Dark/Light Mode Toggle Functionality
 // // Available modes: "system" (default), "light", "dark"
 // const modeToggleBtn = document.getElementById("mode-toggle");
-
+//
 // // Function to get the user's current preferred color scheme
 // function getPreferredColorScheme() {
 //   // Check if user has previously set a preference
 //   const savedPreference = localStorage.getItem("color-theme");
-
+//
 //   if (savedPreference) {
 //     return savedPreference;
 //   }
-
+//
 //   // If no saved preference, check system preference
 //   if (
 //     window.matchMedia &&
@@ -96,7 +105,7 @@ handleEmailBubble(menuListItemEmail, email);
 //     return "system-light";
 //   }
 // }
-
+//
 // // Function to update the UI based on the current theme
 // function updateThemeUI(mode) {
 //   // Update button text
@@ -116,7 +125,7 @@ handleEmailBubble(menuListItemEmail, email);
 //     document.documentElement.removeAttribute("data-theme");
 //   }
 // }
-
+//
 // // Listen for system color scheme changes
 // window
 //   .matchMedia("(prefers-color-scheme: dark)")
@@ -133,18 +142,18 @@ handleEmailBubble(menuListItemEmail, email);
 //       updateThemeUI(newMode);
 //     }
 //   });
-
+//
 // // Initialize theme based on saved preference or system default
 // document.addEventListener("DOMContentLoaded", () => {
 //   const currentTheme = getPreferredColorScheme();
 //   localStorage.setItem("color-theme", currentTheme);
 //   updateThemeUI(currentTheme);
 // });
-
+//
 // // Toggle between system, light, and dark mode
 // modeToggleBtn.addEventListener("click", () => {
 //   const currentMode = localStorage.getItem("color-theme");
-
+//
 //   let newMode;
 //   if (currentMode === "system-dark" || currentMode === "system-light") {
 //     newMode = "light";
@@ -156,11 +165,11 @@ handleEmailBubble(menuListItemEmail, email);
 //       ? "system-dark"
 //       : "system-light";
 //   }
-
+//
 //   localStorage.setItem("color-theme", newMode);
 //   updateThemeUI(newMode);
 // });
-
+//
 // // Apply theme on page load without waiting for DOMContentLoaded
 // // to prevent flash of incorrect theme
 // (function () {

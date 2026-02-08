@@ -32,7 +32,7 @@ I thought I'd never forget either. But, of course, I eventually had to admit to 
 
 The mistake? I simply read the books.
 
-Once I finished them, I put them down, moved on, and, eventually, I inevitably forgot most of those great ideas and insights.
+Once I finished them, I would put them down, move on, and eventually, inevitably, I would forget most of those great ideas and insights.
 
 When I realized that this was happening, it made me really frustrated and a bit sad. So I decided to completely change the way I read.
 
@@ -78,9 +78,9 @@ It can help you to speed-read a book, focusing on the parts that you found most 
 
 It’s really cool because you can:
 
-- quickly pick up any book in your library,
-- flip through until you find one of your highlights,
-- and be delightfully surprised by finding a great passage or insight.
+1. Pick up any book in your library.
+2. Flip through it until you find one of your highlights.
+3. Be delightfully surprised when you find a great quote or passage.
 
 It’s a really nice way to rediscover the books in your library, or even a fun way to start a conversation: just pick up a book, flip through, and see what highlighted excerpt you can start discussing!
 
@@ -98,7 +98,9 @@ Having a collection of highlights is cool because not only do you have them all 
 
 It’s a bit more work, but it pays off.
 
-But there’s still something missing. Even at this level, the effort has been quite passive. This is when you’re ready to reach the final level.
+But there’s still something missing. 
+
+Even at this level, the effort has been rather passive. Now, you’re ready to reach the final level.
 
 ### Level 5: Writing your own notes and summaries
 
@@ -124,9 +126,9 @@ Note taking doesn’t have to be insanely complicated.
 Here are some examples of what you can add in your notes:
 
 - Add a short summary in your own words.
-- Add a note explaining why you found a highlight interesting, funny, or enraging.
+- Add a note explaining why you found a highlight interesting, insightful, or funny.
+- Point out the stuff you didn't like, don’t agree with, don’t understand, or find incorrect.
 - Add references (or links) to other books and ideas you were reminded of.
-- Point out the stuff you didn't like, don’t agree with, or don’t understand.
 
 And keep it simple!!
 
