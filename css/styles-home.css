@@ -488,10 +488,20 @@ p {
 
 .more--navbar--elements {
   display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: space-between;
   width: calc(100% - (1px * var(--offset)));
   height: calc(var(--font-size) * 5);
   margin: 0 auto;
+  transition:
+    height 0.3s ease-out,
+    width 0.3s ease-out;
+}
+
+html.scrolled .more--navbar--elements {
+  width: calc(100% - var(--font-size-3));
+  height: var(--font-size-3);
 }
 
 #more--logo,
@@ -505,6 +515,10 @@ p {
 /* Logo */
 #more--logo {
   height: 22px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 #more--logo svg {
@@ -515,7 +529,7 @@ p {
 /* Close */
 #more--close svg {
   display: block;
-  width: 48px;
+  width: 60px;
   height: auto;
   padding: 6px;
 }
@@ -579,6 +593,10 @@ p {
 }
 
 .more--bottom {
+  position: absolute;
+  bottom: var(--font-size-3);
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: row;
   justify-content: center;

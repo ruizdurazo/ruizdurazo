@@ -20,8 +20,10 @@ menuOverlay.innerHTML =
 window.addEventListener("scroll", () => {
   if (window.scrollY > 0) {
     navbar.classList.add("scrolled")
+    document.documentElement.classList.add("scrolled")
   } else {
     navbar.classList.remove("scrolled")
+    document.documentElement.classList.remove("scrolled")
   }
 })
 

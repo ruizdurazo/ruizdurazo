@@ -677,7 +677,7 @@ p {
   margin: 0 auto;
   margin-bottom: calc(var(--font-size) * 1.8);
   font-weight: 400;
-  text-wrap: pretty;
+  /* text-wrap: pretty; */
 }
 
 .pa {
@@ -688,6 +688,7 @@ p {
     color 0.2s,
     border 0.2s;
   font-weight: 400;
+  overflow-wrap: break-word;
 }
 
 .pa:hover {

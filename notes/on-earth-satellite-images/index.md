@@ -224,7 +224,7 @@ Prudhoe Bay is located in the middle of nowhere in the frozen tundra within the 
 
 ![](./images/prudhoe-2.png)[size: xl, aspect: 1280x900]
 
-[https://www.google.com/maps/@70.3361128,-148.9623496,1788m,-149.2943,23521m](https://www.google.com/maps/@70.3361128,-148.9623496,1788m,-149.2943,23521m)
+[https://www.google.com/maps/@70.3361128,-148.9623496,1788m](https://www.google.com/maps/@70.3361128,-148.9623496,1788m)
 
 ![](./images/prudhoe-3.png)[size: xl, aspect: 1280x900]
 
@@ -247,6 +247,8 @@ Prudhoe Bay is located in the middle of nowhere in the frozen tundra within the 
 <!-- --- -->
 
 ### Solar
+
+<!-- --- -->
 
 **Middle East**
 
@@ -347,7 +349,7 @@ Over 3,500MW capacity.
 
 <!-- --- -->
 
-<!-- ## Political -->
+<!-- ## Geopolitical -->
 
 ## Credits
 
