@@ -304,7 +304,7 @@ Elon has an answer for himself: "Be less dumb. Delete. Simplify. Accelerate. Aut
 
 Also, simplicity matters because, past a certain point of complexity, it becomes cognitively exhausting to keep a clear overview of information and org structure.
 
-In software, UI design, code bases, and file systems, one can measure how many levels down the tree it takes to get to a certain piece of information, or how many clicks it takes to accomplish a certain task. One can then optimize for reasonable thresholds, where 3-4 steps might be the easy, cognitive limit.
+In software, UI design, codebases, and file systems, one can measure how many levels down the tree it takes to get to a certain piece of information, or how many clicks it takes to accomplish a certain task. One can then optimize for reasonable thresholds, where 3-4 steps might be the easy, cognitive limit.
 
 Just as AI LLMs have a context window limit, humans have a cognitive load limit. As a leader, strive to keep the complexity of your organization within analogous cognitive bounds. Otherwise, you’ll lose understanding, you’ll lose control, you’ll lose visibility, and you’ll lose the ability to steer the ship.
 
