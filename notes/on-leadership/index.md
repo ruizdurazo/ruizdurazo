@@ -76,7 +76,7 @@ Read Andrew Grove’s **High Output Management**. And then read it again. But he
 
 > **This book contains 3 basic ideas**. **The first is an output-oriented approach to management**. That is to say, we apply some of the principles and the discipline of the most output-oriented of endeavors—manufacturing—to other forms of business enterprise, including most emphatically the work of managers.
 
-> **The second idea is that the work of a business, of a government bureacracy, of most forms of human activity, is something pursued not by individuals but by teams**. This idea is summed up in what I regard as the single most important sentence of this book: **_The output of a manager is the output of the organizational units under his or her supervision or influence_**.
+> **The second idea is that the work of a business, of a government bureaucracy, of most forms of human activity, is something pursued not by individuals but by teams**. This idea is summed up in what I regard as the single most important sentence of this book: **_The output of a manager is the output of the organizational units under his or her supervision or influence_**.
 >
 > I introduce the concept of **_managerial leverage_**, which measures the impact of what managers do to increase the output of their teams. **High managerial productivity, I argue, depends largely on choosing to perform tasks that possess high leverage**.
 
@@ -229,7 +229,7 @@ The secret is that **great people only want to work on great things with great p
 >
 > So the neatest thing happens is when you get a core group of 10 great people, it becomes self-policing as to who they let in to that group.
 >
-> So I consider the most important job of someone like myself is recruiting.”
+> So I consider the most important job of someone like myself is recruiting.
 >
 > byline
 > Steve Jobs
