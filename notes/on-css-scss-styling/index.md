@@ -16,7 +16,7 @@ _:
 
 ## Intro
 
-Styling and visual design is incredibly important. It makes or breaks a user's experience. The problem is that default styles and most UI libraries are aggressively ugly.
+Styling and visual design is incredibly important. It makes or breaks a user’s experience. The problem is that default styles and most UI libraries are aggressively ugly.
 
 You need to know how to bend styles to your will.
 
@@ -24,13 +24,13 @@ You need to learn CSS.
 
 ![CSS](./images/css.png)[size: m, aspect: 860x720]
 
-Here's a list of snippets I've found useful.
+Here’s a list of snippets I’ve found useful.
 
 <!-- --- -->
 
 ## [CSS] CSS 101
 
-Some people say that CSS is hard. But it's not.
+Some people say that CSS is hard. But it’s not.
 
 > callout
 >
@@ -149,7 +149,7 @@ div {
 
 SCSS/Sass is a _preprocessor_ for CSS. Basically, it makes CSS better.
 
-Its most obvious feature is nested rules (but they are so good, that now [they're a part of CSS too](https://developer.mozilla.org/en-US/docs/Web/CSS/Nesting_selector)). I love nesting because it makes the code more readable, and it groups styles together in a way that can reflect the HTML structure.
+Its most obvious feature is nested rules (but they are so good, that now [they’re a part of CSS too](https://developer.mozilla.org/en-US/docs/Web/CSS/Nesting_selector)). I love nesting because it makes the code more readable, and it groups styles together in a way that can reflect the HTML structure.
 
 Besides that, you get a different syntax for variables (`$`, as opposed to the `--` and `var()` combo), and the ability to import styles (`@use`), and a couple of other things.
 
@@ -226,9 +226,9 @@ $font-stack: "Inter", sans-serif;
 
 ## [SCSS] How to do responsive design: Media queries
 
-Personally, I like: 1) to stick the media queries inside the element's styles, and 2) to start the media queries from large to small using `max-width`.
+Personally, I like: 1) to stick the media queries inside the element’s styles, and 2) to start the media queries from large to small using `max-width`.
 
-And I like to cover _all_ the cases, adding breakpoints wherever the design breaks (sometimes even in a seemingly random width value if needed). It's work, but it makes the design so much nicer and much more robust.
+And I like to cover _all_ the cases, adding breakpoints wherever the design breaks (sometimes even in a seemingly random width value if needed). It’s work, but it makes the design so much nicer and much more robust.
 
 ```scss
 .element {
@@ -248,21 +248,21 @@ And I like to cover _all_ the cases, adding breakpoints wherever the design brea
 >
 > Lesson: _do it once, do it yourself_.
 >
-> When making elements responsive across different screen sizes, I _hate_ it when people set breakpoints arbitrarily, and force them onto all elements. Or worse still, using a UI framework that's completely out of your control.
+> When making elements responsive across different screen sizes, I _hate_ it when people set breakpoints arbitrarily, and force them onto all elements. Or worse still, using a UI framework that’s completely out of your control.
 >
 > People often optimize for a list of fixed breakpoints `375px`, `414px`, `768px`, `1024px`, `1440px`, etc.
 >
-> And then some new device comes out that uses some other dimension, and now you have to go add that number to your list, and check that every single page and component works for that new breakpoint. And it doesn't.
+> And then some new device comes out that uses some other dimension, and now you have to go add that number to your list, and check that every single page and component works for that new breakpoint. And it doesn’t.
 >
-> I've seen it happen. People using `425px` as the limit, and then the newest iPhones come out with a `428px` screen and all of a sudden all your designs look crap on the most expensive devices. And now you have to go check every single page and component to make sure things aren't broken. That's stupid.
+> I’ve seen it happen. People using `425px` as the limit, and then the newest iPhones come out with a `428px` screen and all of a sudden all your designs look crap on the most expensive devices. And now you have to go check every single page and component to make sure things aren’t broken. That’s stupid.
 >
-> Instead, just use a breakpoint when the design breaks. It's in the name. Add a breakpoint only when you need it. Again just scope it to the component and use nesting.
+> Instead, just use a breakpoint when the design breaks. It’s in the name. Add a breakpoint only when you need it. Again just scope it to the component and use nesting.
 >
-> **It won't matter what project you're on. It won't matter what new screen sizes come out. And it won't matter where you drop in the component. Your design will just work. And that's the point.**
+> **It won’t matter what project you’re on. It won’t matter what new screen sizes come out. And it won’t matter where you drop in the component. Your design will just work. And that’s the point.**
 >
-> But maybe that's just me.
+> But maybe that’s just me.
 >
-> You do you. It's the wild west out there.
+> You do you. It’s the wild west out there.
 
 > callout
 >
@@ -294,7 +294,7 @@ How the hell can you understand this at a glance??
 
 ![Cringe](./images/cringe.png "Kill me now")[size: m, aspect: 860x720]
 
-These frameworks are made for developers that suck at design and CSS. They work fine for run-of-the-mill websites and dashboards, or for vibe-coding. But for anyone that actually cares about craft, beauty, and control, they're absolutely disgusting.
+These frameworks are made for developers that suck at design and CSS. They work fine for run-of-the-mill websites and dashboards, or for vibe-coding. But for anyone that actually cares about craft, beauty, and control, they’re absolutely disgusting.
 
 Just name your things properly instead. Scope them to what they are. Scope them to the component. Create CSS variables. Make it readable dammit.
 
@@ -774,7 +774,7 @@ Things I value in buttons:
 
 ## [SCSS] How to make fancy buttons with radar borders
 
-This is how you can create a fancy animation for a button's border so that it sweeps around like a radar.
+This is how you can create a fancy animation for a button’s border so that it sweeps around like a radar.
 
 <style>
 #radar-button-example {
@@ -1224,7 +1224,7 @@ textarea {
 
 ## [SCSS] How to add a custom font or web font: @font-face
 
-If you want to use a custom font, and if you want to make sure that users see that font (even if they don't have it on their device), you have to add it yourself.
+If you want to use a custom font, and if you want to make sure that users see that font (even if they don’t have it on their device), you have to add it yourself.
 
 Cross-site caching no longer works. So you really do have to add it yourself (and cache it yourself).
 
@@ -1261,7 +1261,7 @@ For best performance and user experience:
 
 ## [SCSS] How to replace the default cursor with a custom one: Cursor SVG
 
-Sometimes you see websites with quirky custom cursors. That's usually done with `cursor: url()` and an SVG.
+Sometimes you see websites with quirky custom cursors. That’s usually done with `cursor: url()` and an SVG.
 
 <style>
 .custom-cursor-example {
@@ -1524,7 +1524,7 @@ Add these styles to the element that overflows.
 
 If you overlay 2 images, you can compare them with `clip-path`.
 
-You can compare 2 images (jpgs, pngs) of course, but you can also compare 2 SVGs, and even 2 entire pages or components (if you don't mind duplicating them entirely!). You can also compare filters over an image (like black and white, blur, and others).
+You can compare 2 images (jpgs, pngs) of course, but you can also compare 2 SVGs, and even 2 entire pages or components (if you don’t mind duplicating them entirely!). You can also compare filters over an image (like black and white, blur, and others).
 
 Just change the contents of the `before` and `after` divs.
 
@@ -2196,9 +2196,9 @@ Also, `sticky` is tied directly to its parent container, and not some grandparen
 
 ## [SCSS+JS] How to change the styling of the navbar on scroll
 
-On some websites, you may notice that the navbar's appearance changes when you scroll. For example, you could make it smaller and/or trigger animating certain elements.
+On some websites, you may notice that the navbar’s appearance changes when you scroll. For example, you could make it smaller and/or trigger animating certain elements.
 
-Here's how to add a drop shadow, and shrink the height of the navbar once the user scrolls down using vanilla JavaScript:
+Here’s how to add a drop shadow, and shrink the height of the navbar once the user scrolls down using vanilla JavaScript:
 
 <style>
 #navbar-example {
@@ -2336,7 +2336,7 @@ scrollContainer.addEventListener("scroll", function () {
 })
 ```
 
-If you're using a framework, you could add something like this to a method that tracks the scroll value and updates the state accordingly. It'll depend if it's some computed variable (Vue), or some sort of hook (React), or if you'll manage it in the global state. It's up to you.
+If you’re using a framework, you could add something like this to a method that tracks the scroll value and updates the state accordingly. It’ll depend if it’s some computed variable (Vue), or some sort of hook (React), or if you’ll manage it in the global state. It’s up to you.
 
 <!-- --- -->
 
@@ -2346,7 +2346,7 @@ Usually, websites will have fixed navbars or other elements.
 
 When using anchors `<a href="#section">` to scroll to a section of the page (using an href with a pound sign `#`), the navbar might overlap and hide the anchor.
 
-This might be a problem especially if the element is a heading and it's hidden. You can account for this using `scroll-margin-top`.
+This might be a problem especially if the element is a heading and it’s hidden. You can account for this using `scroll-margin-top`.
 
 ```css
 /* Add scroll margings */
@@ -2385,7 +2385,7 @@ Especially relevant for buttons.
 
 ## [SCSS] How to do animations: Transition, Animation
 
-Not all CSS attributes can be animated (e.g. `background` can't, but `background-color` can, `width` can't, but `max-width` can).
+Not all CSS attributes can be animated (e.g. `background` can’t, but `background-color` can, `width` can’t, but `max-width` can).
 
 It is more performant to animate **colors**, **opacity**, **positions**, **transforms**.
 
@@ -2437,7 +2437,7 @@ There are two ways to do animations:
 
 ## [CSS+JS] How to animate cycling through a list of words or phrases
 
-I use this on the home page. It's the common text animation that loops through a list of words or phrases.
+I use this on the home page. It’s the common text animation that loops through a list of words or phrases.
 
 All you need to do is:
 
@@ -2688,7 +2688,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 <!-- --- -->
 
-## [SCSS] How to fill a child's height to its parent: Flex stretch
+## [SCSS] How to fill a child’s height to its parent: Flex stretch
 
 Use `align-items: stretch` to do this.
 
@@ -2871,7 +2871,7 @@ With the default `font-variant-numeric: normal;`
 
 The `text-wrap: balance` property in CSS ensures that the lines in a text element are visually balanced.
 
-It achieves this by distributing text more evenly across lines, rather than prioritizing the natural flow of text or the default line break behavior based on the element's width.
+It achieves this by distributing text more evenly across lines, rather than prioritizing the natural flow of text or the default line break behavior based on the element’s width.
 
 In certain multi-line elements like titles, headlines, or quotes, balanced wrapping really improves visual harmony, ensuring that the text appears well-distributed.
 
@@ -3070,7 +3070,7 @@ Example (try resizing the box):
     Some long word that can be <strong>hyphen&shy;ated</strong> exactly where we want.
   </p>
   <p>
-    Some term that shouldn't be on 2 lines like <strong>know&nbsp;how</strong>.
+    Some term that shouldn’t be on 2 lines like <strong>know&nbsp;how</strong>.
   </p>
 </div>
 

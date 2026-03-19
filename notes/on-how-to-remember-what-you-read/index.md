@@ -20,15 +20,15 @@ Reading is cool.
 
 A few years ago, I started to read more books. 📚
 
-If you're reading this, then you probably like to read too.
+If you’re reading this, then you probably like to read too.
 
-Maybe you’re reading some great book right now. Perhaps the ideas in the book are insightful and truly life-changing. Or perhaps the story is so good you can't put the book down.
+Maybe you’re reading some great book right now. Perhaps the ideas in the book are insightful and truly life-changing. Or perhaps the story is so good you can’t put the book down.
 
-In any case, you might be thinking that it's so good that you'll never forget it.
+In any case, you might be thinking that it’s so good that you’ll never forget it.
 
 Rookie mistake.
 
-I thought I'd never forget either. But, of course, I eventually had to admit to myself that I'm only human. I've forgotten a ton of material that I've read.
+I thought I’d never forget either. But, of course, I eventually had to admit to myself that I’m only human. I’ve forgotten a ton of material that I’ve read.
 
 The mistake? I simply read the books.
 
@@ -36,7 +36,7 @@ Once I finished them, I would put them down, move on, and eventually, inevitably
 
 When I realized that this was happening, it made me really frustrated and a bit sad. So I decided to completely change the way I read.
 
-Now, I’ve landed on a system that helps me remember what I’ve read. It's quite simple, but very effective.
+Now, I’ve landed on a system that helps me remember what I’ve read. It’s quite simple, but very effective.
 
 It helps me catalog all the great lessons from these great books, and now I have a place where I can easily find them and go through them from time to time.
 
@@ -106,7 +106,7 @@ Even at this level, the effort has been rather passive. Now, you’re ready to r
 
 This is the god level.
 
-And yet, the only thing you're doing is reading, taking a minute to mark the location of an interesting quote (or idea, or passage), and then adding a few more notes to paraphrase, summarize, or make a link to other thoughts and references that come to mind.
+And yet, the only thing you’re doing is reading, taking a minute to mark the location of an interesting quote (or idea, or passage), and then adding a few more notes to paraphrase, summarize, or make a link to other thoughts and references that come to mind.
 
 That’s it. You basically just add some notes and summaries in your own words.
 
@@ -127,30 +127,30 @@ Here are some examples of what you can add in your notes:
 
 - Add a short summary in your own words.
 - Add a note explaining why you found a highlight interesting, insightful, or funny.
-- Point out the stuff you didn't like, don’t agree with, don’t understand, or find incorrect.
+- Point out the stuff you didn’t like, don’t agree with, don’t understand, or find incorrect.
 - Add references (or links) to other books and ideas you were reminded of.
 
 And keep it simple!!
 
-- **Bonus points** if you're able to write your notes and summaries using very simple words.
+- **Bonus points** if you’re able to write your notes and summaries using very simple words.
 - **Extra bonus points** if you can write those being concise, yet complete.
 
 In short, **if you can’t explain it simply, you simply don’t understand it**.
 
-The end result is that you'll have a great document containing everything that you found interesting or relevant from the book, and if you come back to your notes every now and then, you'll never forget what you've read ever again (spaced repetition). 🧠
+The end result is that you’ll have a great document containing everything that you found interesting or relevant from the book, and if you come back to your notes every now and then, you’ll never forget what you’ve read ever again (spaced repetition). 🧠
 
 ## How I Read IRL
 
-If you want a real world example, here's how I do it:
+If you want a real world example, here’s how I do it:
 
 1. **Read**. I like to read on the Kindle app on my iPad mini. And I mostly read in the morning. For some 15-30 minutes. And I try to do this daily. I also usually use Kindle + Audible simultaneously (yes, I buy both if both are available, reading and listening at the same time helps me focus).
 2. **Highlight**. While reading, if anything interesting comes up, I’ll highlight it. If needed, I’ll add a quick note or comment (Kindle makes this easy) of why I found it interesting, any other ideas that come to mind, or why I disagree. Then, I continue reading.
-3. **Copy & Write**. When I finish the book, I'll eventually take about an hour to review the highlights on Kindle, I’ll copy them to Notion and add them to the physical book using post-its as well. In Notion I’ll make like a short summary and review, and sometimes (not always) I’ll add some more notes or commentary to tie everything together.
+3. **Copy & Write**. When I finish the book, I’ll eventually take about an hour to review the highlights on Kindle, I’ll copy them to Notion and add them to the physical book using post-its as well. In Notion I’ll make like a short summary and review, and sometimes (not always) I’ll add some more notes or commentary to tie everything together.
 4. **Review**. Every now and then I’ll go back to the notes in Notion and quickly review them. Or simply pick out a book in my library and speed-read it by looking for the highlights.
 
 Of course, this is all very personal. This works for me, and might not for you. Perhaps you read at a different time of day, or use different tools. That’s fine. The system is flexible to accommodate all of us (all of our tools and all of our reading preferences).
 
-Just make sure to take the time to read, add your markings, collect them, and write your notes. You'll be all the wiser for doing so.
+Just make sure to take the time to read, add your markings, collect them, and write your notes. You’ll be all the wiser for doing so.
 
 But never forget:
 

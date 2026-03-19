@@ -18,9 +18,9 @@ _:
 
 The best stories rule the world.
 
-Whether it's culture, history, politics, business, or even science and technology and anything in between.
+Whether it’s culture, history, politics, business, or even science and technology and anything in between.
 
-That's why understanding the DNA of stories matters.
+That’s why understanding the DNA of stories matters.
 
 The Oxford English Dictionary defines **_narrative_** as:
 
@@ -34,7 +34,7 @@ But at a deeper level, stories can essentially be seen through the lens of three
 
 ## Structures (Good)
 
-There's plenty of material out there about analyzing stories through the lens of their structure.
+There’s plenty of material out there about analyzing stories through the lens of their structure.
 
 But, honestly, most story structures are basically the same. They fit the typical pattern of: beginning, middle, and end.
 
@@ -56,17 +56,17 @@ But, honestly, most story structures are basically the same. They fit the typica
 - Having **changed**
 
 > callout
-> The _Story Circle_ works well for cyclical or episodic content, or for when someone goes on an eventful adventure or holiday, for example, but have to go back to their “normal” lives and routine afterward.
+> The _Story Circle_ works well for cyclical or episodic content, or for when someone goes on an eventful adventure or holiday, for example, but then have to go back to their "normal" lives and routine afterward.
 
-There’s many more structures, but they’re all basically the same:
+There are many more structures, but they’re all basically the same:
 
 ![Story Structures](./images/story-structures.png)[size: l, aspect: 860x540]
 
-The problem is that structures don't actually explain _why_ a story works well, or why it doesn't (and what to do about it). That's where "elements" come in.
+The problem is that structures don’t actually explain _why_ a story works well, or why it doesn’t (and what to do about it). That’s where "elements" come in.
 
 ## Elements (Best)
 
-A more profound and flexible way of understanding and crafting stories is with its individual parts, its _elements_.
+A more profound and flexible way of understanding and crafting stories is with their individual parts, their _elements_.
 
 **_Elements of Story_** (John Yorke)
 
@@ -105,14 +105,14 @@ And you can obviously also use them to write great stories too! ✍️
 And so, roughly, a good story looks something like this:
 
 1. A **protagonist** has a strong **desire** either inherently, or as a result of an **inciting incident**.
-2. But there's a formidable **antagonist** in the way.
-3. The protagonist tries to chase their desire, but faces a **crisis**. It's not easy. They must make tough choices and sacrifices.
+2. But there’s a formidable **antagonist** in the way.
+3. The protagonist tries to chase their desire, but faces a **crisis**. It’s not easy. They must make tough choices and sacrifices.
 4. The protagonist faces the antagonist in a **climactic** way.
-5. The protagonist gets what they originally desired (or doesn't). There's **resolution**. If there is no resolution, you get a cliffhanger for the next part of the story.
+5. The protagonist gets what they originally desired (or doesn’t). There’s **resolution**. If there is no resolution, you get a cliffhanger for the next part of the story.
 6. The protagonist (and perhaps the world around them) has changed. The story has **consequences**.
 7. End of story.
 
-That's more or less what a good story looks like. And importantly, you can easily fit this into any structure you like. It's the elements, not the structure, that make or break a story.
+That’s more or less what a good story looks like. And importantly, you can easily fit this into any structure you like. It’s the elements, not the structure, that make or break a story.
 
 That being said, there are a couple more things you should constantly be thinking about when using the elements of story.
 
@@ -135,14 +135,14 @@ The greater the gap between the protagonist and their desire, the better the sto
 The larger, badder, more powerful the antagonist, the better the story.
 
 > quote
-> “If there isn’t a great villain, there isn’t a good story.”
+> "If there isn’t a great villain, there isn’t a good story."
 >
 > byline
 > Steven Pressfield
 
 There has to be a formidable antagonist to be defeated (or overcome). An antagonist isn’t necessarily an evil person, but simply an adversary, or hurdle: something in the way of the protagonist and their desire.
 
-The antagonist can be something physical (like a door that's locked, or boulder that's in the way), or even something abstract (like time running out, or a personality weakness like self-doubt or arrogance).
+The antagonist can be something physical (like a door that’s locked, or a boulder that’s in the way), or even something abstract (like time running out, or a personality weakness like self-doubt or arrogance).
 
 A great antagonist forces the protagonist into making difficult choices to get what they desire.
 
@@ -152,48 +152,48 @@ The hero must struggle, and even suffer. But try to make the suffering worthwhil
 
 #### 3. Consequentiality
 
-Link story elements with **“therefore”** or **“but”**. Never just **“and then”**.
+Link story elements with **"therefore"** or **"but"**. Never just **"and then"**.
 
 _A_ → _B_
 
-_A_ leads to _B_, and there's no going back.
+_A_ leads to _B_, and there’s no going back.
 
 Make it _feel_ consequential.
 
-Never tell a story using “and then”, “and then”, “and then” because that’s just horrible storytelling. Usually, that’s just a list of inconsequential elements that you can rearrange without changing the quality of the story.
+Never tell a story using "and then", "and then", "and then" because that’s just horrible storytelling. Usually, that’s just a list of inconsequential elements that you can rearrange without changing the quality of the story.
 
 Make sure that each of the parts of your story create, or respond to, _consequences_ (even if they are out of chronological order).
 
 #### 4. Multiple plot lines
 
-If you have a complex story with several plot lines, you can use “**meanwhile back at the ranch**” to switch between them.
+If you have a complex story with several plot lines, you can use "**meanwhile back at the ranch**" to switch between them.
 
 Meaning: start with one plot line and build suspense, and then cut to the other one in order to avoid it feeling drawn out, to skip boring parts, or to just keep it interesting.
 
 Maybe they cross at some point (as they usually do).
 
-Examples: _Girl with the Dragon Tattoo_, _Star Wars_, and many, many TV series.
+Examples: _The Girl with the Dragon Tattoo_, _Star Wars_, and many, many TV series.
 
 #### Bonus tip: Instability & Loss of Control
 
 Every now and then, unsettling, tense, inevitable outcomes spice up a story.
 
-For most people, it’s an uneasy feeling to lose control. But the interesting thing is that they will want to endure the dispair, being fully engaged, hoping for catharsis and regaining control, no matter if the ending is happy or terribly tragic. They might know that they're in the middle of witnessing a trainwreck that can't be stopped, but they won't look away.
+For most people, it’s an uneasy feeling to lose control. But the interesting thing is that they will want to endure the despair, being fully engaged, hoping for catharsis and regaining control, no matter if the ending is happy or terribly tragic. They might know that they’re in the middle of witnessing a trainwreck that can’t be stopped, but they won’t look away.
 
 ## Shapes & Arcs
 
 Beyond story structures and elements, stories also have a shape, an arc.
 
-It's what determines the path the protagonist will go on, and whether there'll be a happy ending or a tragic one.
+It’s what determines the path the protagonist will go on, and whether there’ll be a happy ending or a tragic one.
 
 Stories have 6 primary arcs:
 
-- **“Rags-to-riches”** (Rise)
-- **“Tragedy”** (Fall)
-- **“Man-in-a-hole”** (Fall-Rise)
-- **“Icarus”** (Rise-Fall)
-- **“Cinderella”** (Rise-Fall-Rise)
-- **“Oedipus”** (Fall-Rise-Fall)
+- **"Rags-to-riches"** (Rise)
+- **"Tragedy"** (Fall)
+- **"Man-in-a-hole"** (Fall-Rise)
+- **"Icarus"** (Rise-Fall)
+- **"Cinderella"** (Rise-Fall-Rise)
+- **"Oedipus"** (Fall-Rise-Fall)
 
 ![Story Arcs](./images/story-arcs.png)[size: l, aspect: 720x540]
 

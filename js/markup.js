@@ -43,7 +43,8 @@ let url = document.location.href
 if (url.startsWith("https://ruizdurazo.com")) {
   url = `https://raw.githubusercontent.com/ruizdurazo/ruizdurazo/master${pathname}index.md`
 } else {
-  url = `http://127.0.0.1:5500${pathname}index.md`
+  // Same host as the page (localhost vs 127.0.0.1 are different origins for CORS)
+  url = `${pathname}index.md`
 }
 
 // Fetch the Markdown document and parse it

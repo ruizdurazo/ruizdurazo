@@ -18,11 +18,11 @@ _:
 
 Python is easy and useful for many different things.
 
-It was the first language I learned, and I still use it for some backend development and data analysis stuff. It's popular in a lot of fields including 3D design software, science, and AI research.
+It was the first language I learned, and I still use it for some backend development and data analysis stuff. It’s popular in a lot of fields including 3D design software, science, and AI research.
 
 ![Python](./images/sssss.png "Sssss")[size: l, aspect: 860x540]
 
-Here's a list of snippets I've found useful.
+Here’s a list of snippets I’ve found useful.
 
 <!-- --- -->
 
@@ -32,7 +32,7 @@ Here's a list of snippets I've found useful.
 
 ### [PY] Python 101
 
-Python is simple and readable. But like JavaScript, it's a bit quirky.
+Python is simple and readable. But like JavaScript, it’s a bit quirky.
 
 ```python
 # 1. Variables
@@ -112,7 +112,7 @@ while count < 3:
 
 ### [PY] Typical headaches: Mutable defaults, `is` vs `==`
 
-Python will bite you if you're not careful.
+Python will bite you if you’re not careful.
 
 ```python
 # 1. Mutable default arguments
@@ -383,7 +383,7 @@ print(next(squares_gen))
 
 ### [PY] How to type hint your code: Type annotations
 
-Python is a dynamically typed language, so you'll want to use type hints to make your code more robust, and be able to catch bugs as early as linting with something like `ruff` or `pyright`.
+Python is a dynamically typed language, so you’ll want to use type hints to make your code more robust, and be able to catch bugs as early as linting with something like `ruff` or `pyright`.
 
 ```python
 # You don't have to import simple types like `str`,
@@ -475,7 +475,7 @@ int_stack.push(2)
 
 ### [PY] How to lint and format your code: Ruff
 
-[Ruff](https://docs.astral.sh/ruff/) is the modern, fast linter and formatter for Python. It's like ESLint for Python. And you can install the IDE extensions for it as well.
+[Ruff](https://docs.astral.sh/ruff/) is the modern, fast linter and formatter for Python. It’s like ESLint for Python. And you can install the IDE extensions for it as well.
 
 ```bash
 # Install ruff
@@ -494,7 +494,7 @@ ruff format
 
 Testing is crucial in the age of AI and vibe-coding.
 
-The bottleneck in software development used to be writing code, but now it's mostly reviewing, testing, and debugging because it has to be done manually.
+The bottleneck in software development used to be writing code, but now it’s mostly reviewing, testing, and debugging because it has to be done manually.
 
 Having tests makes you go faster and more confidently.
 

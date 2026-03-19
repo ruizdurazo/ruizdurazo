@@ -20,7 +20,7 @@ The whole world runs on JavaScript.
 
 ![JavaScript](./images/javascript.png "It do be like that")[size: l, aspect: 672x840]
 
-Here's a list of notes and snippets I've found useful.
+Here’s a list of notes and snippets I’ve found useful.
 
 <!-- --- -->
 
@@ -87,7 +87,7 @@ if (x > 0) {
 
 ## [JS] Typical headaches: Callback hell, Undefined, NaN, Type coercion, Truthiness, Shallow copies
 
-If you thought JS was going to be easy, you're in for a couple (unpleasant) surprises.
+If you thought JS was going to be easy, you’re in for a couple (unpleasant) surprises.
 
 ```js
 // 1. Async code: Callback hell and race conditions
@@ -721,7 +721,7 @@ console.log(sorted)
 
 ## [JS] How to sort an object: Sort
 
-This is kind of dumb, but it can be done. This is impossible in Python because dictionaries in Python don't care about the order of the keys, they get stored in a hash tree.
+This is kind of dumb, but it can be done. This is impossible in Python because dictionaries in Python don’t care about the order of the keys, they get stored in a hash tree.
 
 ```js
 // For numbers
@@ -819,7 +819,7 @@ console.log(sortedArr)
 
 ## [JS] How to aggregate data in an array of objects: GroupBy, Reduce
 
-Lots of data analysis tools have a way to aggregate data. They often have some tools called `groupBy` and `reduce`, and JS has them too. You can use them to group data by a key's value or some condition.
+Lots of data analysis tools have a way to aggregate data. They often have some tools called `groupBy` and `reduce`, and JS has them too. You can use them to group data by a key’s value or some condition.
 
 ```js
 // Grouping by a single key
@@ -965,7 +965,7 @@ console.log(correct2)
 
 ## [JS] How to save data on the browser: Local Storage
 
-You can save data on the browser itself using `localStorage`. It's a key-value store that persists across browser sessions. It can only store strings, so objects need to be stringified with `JSON.stringify()`.
+You can save data on the browser itself using `localStorage`. It’s a key-value store that persists across browser sessions. It can only store strings, so objects need to be stringified with `JSON.stringify()`.
 
 You typically use `localStorage` to save data like user preferences: light/dark mode, locale, etc.
 
@@ -1002,7 +1002,7 @@ localStorage.clear()
 
 You can prevent users from typing certain characters in an input by checking the `event.key` property. There are a couple of ways to do this.
 
-I prefer the second method, because it's more flexible, readable, and sets explicit control over what characters are allowed.
+I prefer the second method, because it’s more flexible, readable, and sets explicit control over what characters are allowed.
 
 ```js
 // Example assuming HTML: <input type="text" id="numericInput">
@@ -1043,7 +1043,7 @@ document
 
 A `pipe` is a functional programming concept that allows you to pass a value through a series or chain of functions, from left to right.
 
-It automatically passes the result of each function as the argument to the next function in the chain. I think it's not very commonly used, but I think it looks cool.
+It automatically passes the result of each function as the argument to the next function in the chain. I think it’s not very commonly used, but I think it looks cool.
 
 ```js
 // The pipe function takes any number of functions as arguments,
@@ -1084,7 +1084,7 @@ This is because JavaScript is _dynamically typed_, which means that variables ca
 
 TypeScript tries to fix this.
 
-TypeScript is a _statically typed_ language that is a _superset_ of JavaScript. So it ultimately compiles down to JavaScript, and that's why we can catch errors ahead of time.
+TypeScript is a _statically typed_ language that is a _superset_ of JavaScript. So it ultimately compiles down to JavaScript, and that’s why we can catch errors ahead of time.
 
 It makes your code more robust, and makes your coding more enjoyable.
 
@@ -1154,7 +1154,7 @@ console.log(add(10, "20"))
 
 ## [TS] How and when to declare Types and Interfaces
 
-In TypeScript, `type` is what you'll use the most (duh). But `type` and `interface` can be slightly confusing since they can look very similar when dealing with objects. They are usually interchangeable, and in general, you'll probably default to using `type` as much as possible.
+In TypeScript, `type` is what you’ll use the most (duh). But `type` and `interface` can be slightly confusing since they can look very similar when dealing with objects. They are usually interchangeable, and in general, you’ll probably default to using `type` as much as possible.
 
 ```ts
 //
@@ -1237,7 +1237,7 @@ function greet(user: User): string {
 
 ## [TS] How to extend a Type or Interface: Extends, &
 
-You'll probably have to extend a type or interface from time to time. It's easy to do, but it's slightly annoying because it can easily get messy and unnecessarily hard to read.
+You’ll probably have to extend a type or interface from time to time. It’s easy to do, but it’s slightly annoying because it can easily get messy and unnecessarily hard to read.
 
 You can extend an `interface` with `extends`, and combine a `type` with `&`.
 
@@ -1434,13 +1434,13 @@ console.log(strLength)
 
 <!-- --- -->
 
-## [TS] How to say you don't know or don't care: Unknown, Any
+## [TS] How to say you don’t know or don’t care: Unknown, Any
 
-Sometimes you don't know what type of data you're going to get, or you don't care.
+Sometimes you don’t know what type of data you’re going to get, or you don’t care.
 
-`unknown` is still type checked. So it's what you should use whenever you don't know what type of data you're going to get, like when you're getting data from an external API.
+`unknown` is still type checked. So it’s what you should use whenever you don’t know what type of data you’re going to get, like when you’re getting data from an external API.
 
-`any` skips all type checks, so it's YOLO. It basically defeats the purpose of TypeScript. So use wisely, as a last resort.
+`any` skips all type checks, so it’s YOLO. It basically defeats the purpose of TypeScript. So use wisely, as a last resort.
 
 ```ts
 // 1. `unknown` is still type checked
