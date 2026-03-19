@@ -23,11 +23,11 @@ This post is an edited transcript of the video essay(s): “**The Most Profound 
 
 It analyzes the final codec conversation from [Metal Gear Solid 2](https://en.wikipedia.org/wiki/Metal_Gear_Solid_2:_Sons_of_Liberty).
 
-I remember playing Metal Gear Solid as a kid, but it’s deep philosophical themes flew right over my head. Now, I find myself revisiting this conversation over and over again.
+I remember playing Metal Gear Solid as a kid, but its deep philosophical themes flew right over my head. Now, I find myself revisiting this conversation over and over again.
 
 It is mind-blowing, thought-provoking, and ultimately terrifying.
 
-Procede with caution. ⚠️
+Proceed with caution. ⚠️
 
 ![GW](./images/gw.png)[size: l, aspect: 860x500]
 
@@ -35,13 +35,13 @@ Procede with caution. ⚠️
 
 […] Video game narratives have been demonstrating a capacity to confuse, entice, and emotionally manipulate their audience in the most positive of ways.
 
-Most recently, in fact, […] video game narratives have demonstrated such sufficient profundity, that they sometimes have matched the greatest stories told in other mediums.
+Most recently, in fact, […] video game narratives have demonstrated such sufficient profundity, that they sometimes have matched the greatest stories told in other media.
 
 […] I would finally like to give full attention to a game which, I would argue, has the most profound moment in gaming history: I refer to the final codec conversation from [Metal Gear Solid 2: Sons of Liberty] (aka MGS2, released in 2001).
 
 ![Metal Gear Solid 2: Sons of Liberty](./images/mgs2.png)[size: s, aspect: 480x670]
 
-[…] The advent of subjects like “Fake News”, the resurgence of rampant political correctness, and our tendency towards online tribalism has imbued this conversation with a much denser sense of meaning.
+[…] The advent of subjects like “Fake News”, the resurgence of rampant political correctness, and our tendency towards online tribalism have imbued this conversation with a much denser sense of meaning.
 
 […] **You are obligated to at least listen to this final conversation.**
 
@@ -61,7 +61,7 @@ At the end of Metal Gear Solid 2, Raiden learned that his Colonel was in fact an
 
 During the first part of this conversation, the audience learns how this AI came to be, and surprisingly, it is similar to the way human beings as a species came to be. Unlike the origin of human life in the oceans, the AI’s "life" had its basis in American idealism, hence the AI’s referencing of the White House as a symbol.
 
-In the mind of the AI, their purpose is to push forward American values things like freedom, equality, and healthy competition. However, Raiden points out what should be an obvious contradiction in the AI’s thought process: that the AI wants to take away those freedoms via censorship.
+In the mind of the AI, their purpose is to push forward American values (things like freedom, equality, and healthy competition). However, Raiden points out what should be an obvious contradiction in the AI’s thought process: that the AI wants to take away those freedoms via censorship.
 
 > Raiden / Jack:<br>**Cut the crap! If you’re immortal, why would you take away individual freedoms and censor the Net?**
 > Rose (AI):<br>**Jack, don’t be silly.**
@@ -90,7 +90,7 @@ Like genes, memes are also subject to a process called “natural selection.” 
 
 Similarly, if certain memes seemingly hold enough meaning or logic, then supposedly they survive better than memes that do not.
 
-What distinguishes memes from genes is the nature of the selection process. Genes are more-or-less subject to the amoral discretion of nature, but memes can we analyzed and weeded out via moral discretion.
+What distinguishes memes from genes is the nature of the selection process. Genes are more-or-less subject to the amoral discretion of nature, but memes can be analyzed and weeded out via moral discretion.
 
 However, the AI will now illustrate how the natural selection of memes bears a unique problem in the Internet age compared to the past few centuries.
 
@@ -142,7 +142,7 @@ For instance, is it right to be "pro-choice", or "pro-life"? Instead of consider
 
 These low-resolution assumptions exacerbate tensions between political parties and can potentially lead to violent conflict. Most people will avoid these difficult conversations to preserve order, but if you ignore them long enough, political positions become cemented, and people will kill each other before they admit that they’re wrong about something.
 
-The AI then present a future where human bias corrupts the flow of information.
+The AIs then present a future where human bias corrupts the flow of information.
 
 > Col. R. Campbell (AI):<br>**The untested truths spun by different interests continue to churn and accumulate in the sandbox of political correctness and value systems.**
 > Rose (AI):<br>**Everyone withdraws into their own small gated community, afraid of a larger forum. They stay inside their little ponds, leaking whatever “truth” suits them into the growing cesspool of society at large.**
@@ -166,7 +166,7 @@ Unlike the reality of MGS2, where a supposedly benevolent AI can make the hard d
 
 > Rose (AI):<br>**We’re trying to stop that from happening.**
 > Col. R. Campbell (AI):<br>**It’s our responsibility as rulers. Just as in genetics, unnecessary information and memory must be filtered out to stimulate the evolution of the species.**
-> Raiden / Jack:<br>**And you thing you’re qualified to decide what’s necessary and not!?**
+> Raiden / Jack:<br>**And you think you’re qualified to decide what’s necessary and not!?**
 > Col. R. Campbell (AI):<br>**Absolutely. Who else could wade through the sea of garbage you people produce, retrieve valuable truths and even interpret their meaning for later generations?**
 > Rose (AI):<br>**That’s what it means to create context.**
 
@@ -174,7 +174,7 @@ Unlike the reality of MGS2, where a supposedly benevolent AI can make the hard d
 
 I want to remind you all that Metal Gear Solid 2 came out in 2001.
 
-This game was warning us about the advent of “Fake News”, misinformation and half truths, roughly two decades before the issue captured our collective attention. Worse yet, not only do the AIs describe a potentially dystopian future for both our reality and the reality of the game, but they also make us inadvertently realize that we currently have no constructive solution to the problem.
+This game was warning us about the advent of “Fake News”, misinformation and half-truths, roughly two decades before the issue captured our collective attention. Worse yet, not only do the AIs describe a potentially dystopian future for both our reality and the reality of the game, but they also make us inadvertently realize that we currently have no constructive solution to the problem.
 
 The only tactic available at the moment is for individuals to strengthen their moral compass, and call out misinformation where possible. However, given humanity’s inherent imperfection, even the best of us are prone to mistakes. Worse yet, instead of bolstering the best among us despite their mistakes, we will feverishly exacerbate the mistakes of our opponents for political gain.
 
@@ -190,9 +190,9 @@ The AI (will) go into more detail regarding this solution as the conversation go
 
 […] [Thus far,] the Patriot AI argues that in the Internet age, the flow of information has become far too complex and grandiose. The natural outcome of this overabundance of information is that human beings, on account of their natural fallibility, are unable to separate factual and valuable information from information that is at best incomplete, and at worst filled with outright lies.
 
-On account of our tribal instincts, our political biases our emotional fragility and flawed intellect, we will potentially embrace information that conforms to our worldview best, rather than information that is true. In the era of Fake News, this has undoubtedly been demonstrated as fact as we build up echo chambers that confirm our political leanings and demonize those who express dissent.
+On account of our tribal instincts, our political biases, our emotional fragility, and flawed intellect, we will potentially embrace information that conforms to our worldview best, rather than information that is true. In the era of Fake News, this has undoubtedly been demonstrated as fact as we build up echo chambers that confirm our political leanings and demonize those who express dissent.
 
-In response to the inherent truth of this argument, the AI proposed a frightening solution: Create a system that controls human will and consciousness. A system that compromises a human beings quote unquote "free will" to come to their own conclusions.
+In response to the inherent truth of this argument, the AI proposed a frightening solution: Create a system that controls human will and consciousness. A system that compromises a human being’s quote-unquote “free will” to come to their own conclusions.
 
 Though such a system is repulsive to myself and hopefully many of you, the AIs will demonstrate how human beings might abuse their freedom so much that such a system might be inevitable. Worse yet, they demonstrate how easily a system could be implemented without protest, as the main character Raiden so clearly proves.
 
@@ -216,7 +216,7 @@ Put aside just for a second whether or not quote unquote "free will" is a valid 
 
 For example, if you believe that abortion is an unethical practice, or an ethical practice, did you come to that conclusion yourself?
 
-Did you put together a bunch of arguments from opposing sides and decide for yourself what the best answer was? Or did you hear one person's argument and close yourself off to opposing arguments? (Much like an ideologue tends to do). In regards to Raiden, the AI goes on to demonstrate that he, like billions of people on the planet, tend to embrace ideas and actions not necessarily based on their adherence to truth, but rather based on how effectively they promote a certain way of being.
+Did you put together a bunch of arguments from opposing sides and decide for yourself what the best answer was? Or did you hear one person's argument and close yourself off to opposing arguments? (Much like an ideologue tends to do). In regards to Raiden, the AI goes on to demonstrate that he, like billions of people on the planet, tends to embrace ideas and actions not necessarily based on their adherence to truth, but rather based on how effectively they promote a certain way of being.
 
 This goes back to Nietzsche's famous criticism of philosophers and Beyond Good and Evil.
 
@@ -234,7 +234,7 @@ Raiden then desperately protests that he is not a product of the mindless masses
 
 > Raiden / Jack:<br>**That’s not true! I have the right —**
 > Rose (AI):<br>**Does something like the “self” exist inside of you?**
-> Col. R. Campbell (AI):<br>**That which you call “self” serves as nothing more that a mask to cover your own being.**
+> Col. R. Campbell (AI):<br>**That which you call “self” serves as nothing more than a mask to cover your own being.**
 > Rose (AI):<br>**In this era of ready-made “truths”, “self” is just something used to preserve those positive emotions you occasionally feel…**
 > Col. R. Campbell (AI):<br>**…Another possibility is that “self” is a concept you conveniently borrowed under the logic that it would endow you with some sense of strength…**
 > Raiden / Jack:<br>**That’s crap!**
@@ -250,7 +250,7 @@ For Raiden to find out that he was not in fact a legendary mercenary, but rather
 
 However, it is when the AI offers the more ideal fiction to Raiden that he is "simply the best", that the insult has its greatest effect.
 
-Raiden cringes and hold back a scream because he sees the truth inherent in the AI's argument.
+Raiden cringes and holds back a scream because he sees the truth inherent in the AI's argument.
 
 That argument being that Raiden is not his own person. His actions and emotions are all controlled by a higher power.
 
@@ -258,7 +258,7 @@ He's not Raiden. He's not even Jack.
 
 He's something else's creation.
 
-The AI then go on to show how Raiden's lack of self is endemic to billions of people.
+The AIs then go on to show how Raiden's lack of self is endemic to billions of people.
 
 > Col. R. Campbell (AI):<br>**Oh, what happened? Do you feel lost? Why not try a little bit of soul-searching?**
 > Rose (AI):<br>**Don’t think you’ll find anything, though…**
@@ -267,7 +267,7 @@ The AI then go on to show how Raiden's lack of self is endemic to billions of pe
 > Col. R. Campbell (AI):<br>**In denial, you simply resort to looking for another, more convenient “truth” in order to make yourself feel better.**
 > Rose (AI):<br>**…Leaving behind in an instant the so-called “truth” you once embraced.**
 
-Once again, the AI demonstrate how people will gravitate to quote-unquote "truths" not because they are based entirely on empirical fact, but because they satisfy the instinctual need for structure and stability.
+Once again, the AIs demonstrate how people will gravitate to quote-unquote "truths" not because they are based entirely on empirical fact, but because they satisfy the instinctual need for structure and stability.
 
 For argument's sake, let's imagine somebody who has spent half their life advocating a belief that the earth was flat; that the government wants people to believe it is round for territorial reasons.
 
@@ -312,7 +312,7 @@ In the social media age, this ruination becomes all the more likely as almost an
 
 ![](./images/liberty.png)[size: l, aspect: 860x480]
 
-[…] Before [ending], I wish to summarize with the AI accomplished.
+[…] Before [ending], I wish to summarize what the AI accomplished.
 
 They created a scenario where Raiden, and by extension the player, had to obey several different orders from their commanding officer. It did not matter if many of those orders seemed unjustifiable; what mattered to Raiden and the gamer was being able to live out a fantasy as a legendary mercenary.
 
