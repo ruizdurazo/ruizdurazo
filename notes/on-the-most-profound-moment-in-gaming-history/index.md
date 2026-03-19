@@ -53,11 +53,11 @@ Most recently, in fact, […] video game narratives have demonstrated such suffi
 > Raiden / Jack:<br>**How’s that possible? The AI was destroyed!**
 > Col. R. Campbell (AI):<br>**Only GW…**
 > Raiden / Jack:<br>**Who are you?**
-> Col. R. Campbell (AI):<br>**To begin with — we’re not what you’d call — human.**<br>**Over the past 200 years, a kind of consciousness formed layer by layer in the crucible of the White House. It’s not unlike the way life started in the oceans four billion years ago.**<br>**The White House was our promordial soup, a base of evolution — We are formless. We are the very discipline and morality that Americans invoke so often. How can anyone hope to eliminate us? As long as this nation exists, so will we.**
+> Col. R. Campbell (AI):<br>**To begin with — we’re not what you’d call — human.**<br>**Over the past 200 years, a kind of consciousness formed layer by layer in the crucible of the White House. It’s not unlike the way life started in the oceans four billion years ago.**<br>**The White House was our primordial soup, a base of evolution — We are formless. We are the very discipline and morality that Americans invoke so often. How can anyone hope to eliminate us? As long as this nation exists, so will we.**
 
 Up until the end of the game, the main character Raiden believed he was receiving orders from a man named Colonel Roy Campbell, a man who was also Solid Snake’s commander throughout Metal Gear Solid 1.
 
-At the end of Metal Gear Solid 2, Raiden learned that his Colonel was in fact an artificial intelligence manipulating Raiden to perform its political bidding. The bidding in question refers to the AI’s desire to control the human race by controlling the spread of information via the press and the Internet but we’ll focus on that more in a moment.
+At the end of Metal Gear Solid 2, Raiden learned that his Colonel was in fact an artificial intelligence manipulating Raiden to perform its political bidding. The bidding in question refers to the AI’s desire to control the human race by controlling the spread of information via the press and the Internet, but we’ll focus on that more in a moment.
 
 During the first part of this conversation, the audience learns how this AI came to be, and surprisingly, it is similar to the way human beings as a species came to be. Unlike the origin of human life in the oceans, the AI’s "life" had its basis in American idealism, hence the AI’s referencing of the White House as a symbol.
 
@@ -111,14 +111,14 @@ If it sounds like I am engaging in apologetics for censorship, I am not. I would
 
 > Col. R. Campbell (AI):<br>**Raiden, you seem to think that our plan is one of censorship.**
 > Raiden / Jack:<br>**Are you telling me it’s not!?**
-> Rose (AI):<br>**You’re bing silly! What we propose to do is not to control content, but to create context.**
+> Rose (AI):<br>**You’re being silly! What we propose to do is not to control content, but to create context.**
 > Raiden / Jack:<br>**Create context?**
 
 The AI argues that because they are not prone to human error and have inner CPUs with greater processing power than the human brain, they would know how to curate information and present it to the human race in a way that doesn’t slow human evolution.
 
 Unlike your average political body which might censor information that is inconvenient to their cause, the AI would simply present information in the most factual way possible so that political bias would not intervene, thus cooling political tensions across the political spectrum.
 
-Of course, if something like the AI’s censorship program came into place, ethical questions would arise regarding whether or not this compromises human freedom… specifically our “free will”. Ideally, human beings should have the autonomy to make their own decisions, no matter what mistakes may follow. In response, the AI argues why the problems that arise from that freedom, supposedly necessitate censorship.
+Of course, if something like the AI’s censorship program came into place, ethical questions would arise regarding whether or not this compromises human freedom (specifically our “free will”). Ideally, human beings should have the autonomy to make their own decisions, no matter what mistakes may follow. In response, the AI argues why the problems that arise from that freedom, supposedly necessitate censorship.
 
 > Col. R. Campbell (AI):<br>**The digital society furthers human flaws and selectively rewards development of convenient half-truths. Just look at the strange juxtapositions of morality around you.**
 > Rose (AI):<br>**Billions spent on new weapons in order to humanely murder other humans.**
@@ -127,10 +127,10 @@ Of course, if something like the AI’s censorship program came into place, ethi
 > Col. R. Campbell (AI):<br>**Be nice to other people.**
 > Rose (AI):<br>**But beat out the competition!**
 > Col. R. Campbell (AI):<br>**”You’re special.” “Believe in yourself and you will succeed.”**
-> Rose (AI):<br>**But it’s obvious from start that only a few can succeed…**
+> Rose (AI):<br>**But it’s obvious from the start that only a few can succeed…**
 > Col. R. Campbell (AI):<br>**You exercise your right to “freedom” and this is the result. All rhetoric to avoid conflict and protect each other from hurt.**
 
-Here, the AI illustrates the various ways in which human error corrupts truth. That human error arises from an instinctual drive to protect ourselves emotionally and physically, which truth tends to threaten.
+**Here, the AI illustrates the various ways in which human error corrupts truth. That human error arises from an instinctual drive to protect ourselves emotionally and physically, which truth tends to threaten.**
 
 For instance, let’s say a religious fundamentalist is confronted with various scientific truths that challenge their worldview. Let’s say the fundamentalist loses faith when confronted by those truths. What happens psychologically is that because the fundamentalist no longer has a belief system to make sense of the world, they are thrown into a mental pit of confusion and resentment.
 
@@ -138,7 +138,7 @@ That loss of structure and certainty is so painful to the ideologue that it seem
 
 This is why we separate ourselves into political tribes and won’t consider the ethical implications of our positions.
 
-For instance, is it right to be pro-choice, or pro-life? Instead of considering the validity of either side’s argument, the pro-life crowd will chastise the pro-choice crowd as being on par with murderers, and the pro-choice crowd will chastise the pro-life crowd as being misogynist, religious zealots that want to control women.
+For instance, is it right to be "pro-choice", or "pro-life"? Instead of considering the validity of either side’s argument, the "pro-life" crowd will chastise the "pro-choice" crowd as being on par with murderers, and the "pro-choice" crowd will chastise the "pro-life" crowd as being misogynist, religious zealots that want to control women.
 
 These low-resolution assumptions exacerbate tensions between political parties and can potentially lead to violent conflict. Most people will avoid these difficult conversations to preserve order, but if you ignore them long enough, political positions become cemented, and people will kill each other before they admit that they’re wrong about something.
 
@@ -146,7 +146,7 @@ The AI then present a future where human bias corrupts the flow of information.
 
 > Col. R. Campbell (AI):<br>**The untested truths spun by different interests continue to churn and accumulate in the sandbox of political correctness and value systems.**
 > Rose (AI):<br>**Everyone withdraws into their own small gated community, afraid of a larger forum. They stay inside their little ponds, leaking whatever “truth” suits them into the growing cesspool of society at large.**
-> Col. R. Campbell (AI):<br>**The different cardinal truths neither clash not mesh. No one is invalidated, but nobody is right.**
+> Col. R. Campbell (AI):<br>**The different cardinal truths neither clash nor mesh. No one is invalidated, but nobody is right.**
 > Rose (AI):<br>**Not even natural selection can take place here. The world is being engulfed in “truth”.**
 > Col. R. Campbell (AI):<br>**And that is the way the world ends. Not with a bang, but a whimper.**
 
@@ -188,7 +188,7 @@ In the reality of MGS2, however, a hypothetical solution is presented: because p
 
 The AI (will) go into more detail regarding this solution as the conversation goes on.
 
-[…] (Thus far,) the Patriot AI argues that in the Internet age, the flow of information has become far too complex and grandiose. The natural outcome of this overabundance of information is that human beings, on account of their natural fallibility, are unable to separate factual and valuable information from information that is at best incomplete, and at worst filled with outright lies.
+[…] [Thus far,] the Patriot AI argues that in the Internet age, the flow of information has become far too complex and grandiose. The natural outcome of this overabundance of information is that human beings, on account of their natural fallibility, are unable to separate factual and valuable information from information that is at best incomplete, and at worst filled with outright lies.
 
 On account of our tribal instincts, our political biases our emotional fragility and flawed intellect, we will potentially embrace information that conforms to our worldview best, rather than information that is true. In the era of Fake News, this has undoubtedly been demonstrated as fact as we build up echo chambers that confirm our political leanings and demonize those who express dissent.
 
@@ -197,7 +197,7 @@ In response to the inherent truth of this argument, the AI proposed a frightenin
 Though such a system is repulsive to myself and hopefully many of you, the AIs will demonstrate how human beings might abuse their freedom so much that such a system might be inevitable. Worse yet, they demonstrate how easily a system could be implemented without protest, as the main character Raiden so clearly proves.
 
 > Raiden / Jack:<br>**I’ll decide for myself what to believe and what to pass on!**
-> Col. R. Campbell (AI):<br>**But is that even you’re own idea?**
+> Col. R. Campbell (AI):<br>**But is that even your own idea?**
 > Rose (AI):<br>**Or something Snake told you?**
 > Raiden / Jack:<br>**…**
 > Col. R. Campbell (AI):<br>**That’s the proof of your incompetence, right there.**<br>**You lack the qualifications to exercise free will.**
@@ -216,7 +216,7 @@ Put aside just for a second whether or not quote unquote "free will" is a valid 
 
 For example, if you believe that abortion is an unethical practice, or an ethical practice, did you come to that conclusion yourself?
 
-Did you put together a bunch of arguments from opposing sides and decide for yourself what the best answer was? Or did you hear one person's argument and close yourself off to opposing arguments?... much like an ideologue tends to do. In regards to Raiden, the A.I. goes on to demonstrate that he, like billions of people on the planet, tend to embrace ideas and actions not necessarily based on their adherence to truth, but rather based on how effectively they promote a certain way of being.
+Did you put together a bunch of arguments from opposing sides and decide for yourself what the best answer was? Or did you hear one person's argument and close yourself off to opposing arguments? (Much like an ideologue tends to do). In regards to Raiden, the AI goes on to demonstrate that he, like billions of people on the planet, tend to embrace ideas and actions not necessarily based on their adherence to truth, but rather based on how effectively they promote a certain way of being.
 
 This goes back to Nietzsche's famous criticism of philosophers and Beyond Good and Evil.
 
@@ -250,7 +250,7 @@ For Raiden to find out that he was not in fact a legendary mercenary, but rather
 
 However, it is when the AI offers the more ideal fiction to Raiden that he is "simply the best", that the insult has its greatest effect.
 
-Raiden cringes and hold back a scream because he sees the truth inherent in the A.I.'s argument.
+Raiden cringes and hold back a scream because he sees the truth inherent in the AI's argument.
 
 That argument being that Raiden is not his own person. His actions and emotions are all controlled by a higher power.
 
@@ -262,10 +262,10 @@ The AI then go on to show how Raiden's lack of self is endemic to billions of pe
 
 > Col. R. Campbell (AI):<br>**Oh, what happened? Do you feel lost? Why not try a little bit of soul-searching?**
 > Rose (AI):<br>**Don’t think you’ll find anything, though…**
-> Col. R. Campbell (AI):<br>**Ironic that although “self” is something that oyu yourself fashioned, every time that something goes wrong, you turn around and place the blame on something else.**
+> Col. R. Campbell (AI):<br>**Ironic that although “self” is something that you yourself fashioned, every time that something goes wrong, you turn around and place the blame on something else.**
 > Rose (AI):<br>**It’s not my fault. It’s not your fault.**
 > Col. R. Campbell (AI):<br>**In denial, you simply resort to looking for another, more convenient “truth” in order to make yourself feel better.**
-> Rose (AI):<br>**…Leaving behing in an instant the so-called “truth” you once embraced.**
+> Rose (AI):<br>**…Leaving behind in an instant the so-called “truth” you once embraced.**
 
 Once again, the AI demonstrate how people will gravitate to quote-unquote "truths" not because they are based entirely on empirical fact, but because they satisfy the instinctual need for structure and stability.
 
@@ -277,7 +277,7 @@ Such a truth might be that the evidence presented to them was doctored, and that
 
 This is why people still uphold certain superstitious beliefs despite their scientific invalidity.
 
-This behavior is not relegated to a few irrational individuals. It's something that everybody does, regardless of their political position. I do it, and you do it... and worst of all, in a democracy, the emotionally fragile have a say in what is truth... which the AI shall now criticize.
+This behavior is not relegated to a few irrational individuals. It's something that everybody does, regardless of their political position. I do it, and you do it, and worst of all, in a democracy, the emotionally fragile have a say in what is truth, which the AI shall now criticize.
 
 > Col. R. Campbell (AI):<br>**Should someone like that be able to decide what is “truth”?**
 > Rose (AI):<br>**Should someone like you even have the right to decide?**
@@ -312,9 +312,9 @@ In the social media age, this ruination becomes all the more likely as almost an
 
 ![](./images/liberty.png)[size: l, aspect: 860x480]
 
-[…] Before I play the final clip, I wish to summarize with the AI accomplished.
+[…] Before [ending], I wish to summarize with the AI accomplished.
 
-They created a scenario where Raiden, and by extension the player, had to obey several different orders from their commanding officer. It did not matter if many of those orders seemed unjustifiable... what mattered to Raiden and the gamer was being able to live out a fantasy as a legendary mercenary.
+They created a scenario where Raiden, and by extension the player, had to obey several different orders from their commanding officer. It did not matter if many of those orders seemed unjustifiable; what mattered to Raiden and the gamer was being able to live out a fantasy as a legendary mercenary.
 
 That emotional desire was so strong that it prevented any form of rationality.
 
