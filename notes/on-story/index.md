@@ -1,6 +1,6 @@
 ---
 title: On Story: Structure, Elements & Shapes
-date: 2025-09-19
+date: 2026-03-21
 description_short: The best story wins.
 description_long: The best story wins.
 image:
@@ -102,7 +102,7 @@ And you can obviously also use them to write great stories too! ✍️
 
 ### A Good Story
 
-And so, roughly, a good story looks something like this:
+A good story more or less looks something like this:
 
 1. A **protagonist** has a strong **desire** either inherently, or as a result of an **inciting incident**.
 2. But there’s a formidable **antagonist** in the way.
@@ -144,7 +144,7 @@ There has to be a formidable antagonist to be defeated (or overcome). An antagon
 
 The antagonist can be something physical (like a door that’s locked, or a boulder that’s in the way), or even something abstract (like time running out, or a personality weakness like self-doubt or arrogance).
 
-A great antagonist forces the protagonist into making difficult choices to get what they desire.
+**A great antagonist forces the protagonist into making difficult choices to get what they desire.**
 
 The protagonist and antagonist might even want the same thing, and there might be only one winner in the end. (Batman vs Joker, Allies vs Axis, Yankees vs Red Sox, Federer vs Nadal, Lee Sedol vs AlphaGo).
 
@@ -188,14 +188,16 @@ It’s what determines the path the protagonist will go on, and whether there’
 
 Stories have 6 primary arcs:
 
-- **"Rags-to-riches"** (Rise)
-- **"Tragedy"** (Fall)
-- **"Man-in-a-hole"** (Fall-Rise)
-- **"Icarus"** (Rise-Fall)
-- **"Cinderella"** (Rise-Fall-Rise)
-- **"Oedipus"** (Fall-Rise-Fall)
+- **"Rags-to-riches"**: Rise (e.g. *The Pursuit of Happyness*)
+- **"Tragedy"**: Fall (e.g. *Requiem for a Dream*)
+- **"Man-in-a-hole"**: Fall-Rise (e.g. *The Shawshank Redemption*)
+- **"Icarus"**: Rise-Fall (e.g. *Scarface*)
+- **"Cinderella"**: Rise-Fall-Rise (e.g. *The Lion King*)
+- **"Oedipus"**: Fall-Rise-Fall (e.g. *American Beauty*)
 
 ![Story Arcs](./images/story-arcs.png)[size: l, aspect: 720x540]
+
+![Story Arcs in Films](./images/arcs-in-films.png)[size: l, aspect: 720x540]
 
 From this, we can basically conclude that there are 2 main arc types:
 
