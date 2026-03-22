@@ -18,7 +18,7 @@ _:
 
 The best stories rule the world.
 
-Whether it’s culture, history, politics, business, or even science and technology and anything in between.
+Whether it’s culture, history, politics, business, and even science, technology and anything in between, the best story wins.
 
 That’s why understanding the DNA of stories matters.
 
@@ -62,7 +62,9 @@ There are many more structures, but they’re all basically the same:
 
 ![Story Structures](./images/story-structures.png)[size: l, aspect: 860x540]
 
-The problem is that structures don’t actually explain _why_ a story works well, or why it doesn’t (and what to do about it). That’s where "elements" come in.
+The problem is that structures don’t actually explain _why_ a story works well, or why it doesn’t (and what to do about it). 
+
+That’s where "elements" come in.
 
 ## Elements (Best)
 
