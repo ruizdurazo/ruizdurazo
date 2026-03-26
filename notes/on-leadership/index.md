@@ -1,6 +1,6 @@
 ---
 title: On Leadership
-date: 2026-02-07
+date: 2026-03-26
 description_short: Lessons on leadership and management.
 description_long: Lessons on leadership and management.
 image:
@@ -140,9 +140,28 @@ video {
 
 If you actually tell people what you want, you’ll be surprised to find out that most people will actually want to help you (or at least cheer you on).
 
+Once you figure out what to say, communicate this internally (of course), but also strategically communicate it externally for hiring/recruiting and marketing/branding purposes.
+
 Whether it’s the grand mission or the problem _du jour_, if you can’t communicate clearly and simply, then you’re already failing as a leader.
 
-Once you figure out what to say, communicate this internally (of course), but also strategically communicate it externally for hiring/recruiting and marketing/branding purposes.
+In fact, it’s not only about communicating, it’s about _framing_.
+
+People will interpret and understand a situation differently based on the way you frame it. This matters more than you could ever imagine.
+
+Just look at what Abraham Lincoln was able to say about a terrible situation that he had to lead through. A situation that he himself, in a way, had brought upon his people. He gave it weight and meaning in what is likely one of the most famous speeches in all of history:
+
+> quote
+> Four score and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.
+>
+> Now we are engaged in a great civil war, testing whether that nation, or any nation so conceived and so dedicated, can long endure. We are met on a great battle-field of that war. We have come to dedicate a portion of that field, as a final resting place for those who here gave their lives that that nation might live. It is altogether fitting and proper that we should do this.
+>
+> But, in a larger sense, we can not dedicate—we can not consecrate—we can not hallow—this ground. The brave men, living and dead, who struggled here, have consecrated it, far above our poor power to add or detract. The world will little note, nor long remember what we say here, but it can never forget what they did here. It is for us the living, rather, to be dedicated here to the unfinished work which they who fought here have thus far so nobly advanced. It is rather for us to be here dedicated to the great task remaining before us—that from these honored dead we take increased devotion to that cause for which they gave the last full measure of devotion—that we here highly resolve that these dead shall not have died in vain—that this nation, under God, shall have a new birth of freedom—and that government of the people, by the people, for the people, shall not perish from the earth.
+>
+> byline
+> Abraham Lincoln
+
+Jaw-dropping.
+
 
 <!-- --- -->
 
@@ -183,6 +202,12 @@ Habits and behavior (especially the leader’s habits and behavior) are what sha
 - If you want people to be on time, you’ll have to _always_ be on time.
 - If you want people to do good work, you’ll have to do _impeccable_ work.
 - If you want people to show and own their mistakes, show and _own_ your mistakes.
+
+> quote
+> I slept on the floor so the team going through a hard time could see me on the floor, and knew I was not in some ivory tower. Whatever pain they experienced, I experienced more.
+>
+> byline
+> Elon Musk
 
 People respect leaders that are on the frontlines leading and helping out, even if it’s just performative. Remember that, for better or worse, appearances matter _a lot_ in leadership.
 
