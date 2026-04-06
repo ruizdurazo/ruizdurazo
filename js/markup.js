@@ -354,8 +354,8 @@ fetch(url)
       ) {
         // Continue quote blockquote
         if (element.slice(1).trim() === "byline") {
-          // End the quote body with `"`
-          out = '<span class="end-quote"> "</span></p>'
+          // End the quote body with a typographic closing double quote (U+201D)
+          out = '<span class="end-quote"> \u201d</span></p>'
           previousElement.type = "blockquote-byline"
         } else {
           // Continue the quote body
@@ -383,9 +383,9 @@ fetch(url)
           previousElement.type = "callout"
           previousElement.state = "open"
         } else if (element.slice(1).trim() === "quote") {
-          // Start quote blockquote
+          // Start quote blockquote (typographic opening double quote U+201C)
           out =
-            '<blockquote class="quote"><span class="start-quote">"</span><p>'
+            '<blockquote class="quote"><span class="start-quote">\u201c</span><p>'
           previousElement.type = "blockquote-quote"
           previousElement.state = "open"
           previousElement.isFirstElement = true
