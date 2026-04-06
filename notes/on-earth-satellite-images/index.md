@@ -166,7 +166,7 @@ Farms out in the middle of nowhere in the Saharan Desert / Al Wadi Al Aadid Dese
 
 ### Oil & Gas
 
-<!-- The world runs on carbon and petrochemicals. We’ll need oil and gas (methane) forever. Not necessarily to power the world (though they still do), but because we need them for plastics, fertilizer, medicines, and more. -->
+<!-- The world runs on carbon and petrochemicals. We'll need oil and gas (methane) forever. Not necessarily to power the world (though they still do), but because we need them for plastics, fertilizer, medicines, and more. -->
 
 <!-- --- -->
 

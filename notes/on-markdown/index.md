@@ -131,7 +131,7 @@ _ _ _ _ _ _
 
 In Markdown, you can easily make text **bold**, _italic_ or ~~strikethrough~~.
 
-In HTML, _italic_ is "emphasis" (`<em>`), and **bold** is "strong" (`<strong>`).
+In HTML, _italic_ is “emphasis” (`<em>`), and **bold** is “strong” (`<strong>`).
 
 You can style single words, phrases, or entire paragraphs with asterisks (`*`) or underscores (`_`).
 
@@ -255,7 +255,7 @@ Markdown syntax:
 
 Want to quote someone? You can use blockquotes for that.
 
-Blockquotes are indented. You start each line with a "greater than" character (`>`).
+Blockquotes are indented. You start each line with a “greater than” character (`>`).
 
 Result:
 

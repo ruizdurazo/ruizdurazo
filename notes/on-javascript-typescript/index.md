@@ -373,7 +373,7 @@ const numberUnitOptions = {
 number.toLocaleString("en-US", numberUnitOptions) // '1,000 kg'
 ```
 
-For `Intl.RelativeTimeFormat` (e.g. "1 day ago"), you can check the [On CSS/SCSS & Styling](/notes/on-css-scss-styling) notes.
+For `Intl.RelativeTimeFormat` (e.g. “1 day ago”), you can check the [On CSS/SCSS & Styling](/notes/on-css-scss-styling) notes.
 
 <!-- --- -->
 

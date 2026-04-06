@@ -15,6 +15,7 @@ previousElement.type = "none" // Type of element
 previousElement.state = "closed" // State of multi-line element
 previousElement.isFirstElement = false // Whether the element is the first element in a multi-line element
 previousElement.nestedType = "none" // Type of nested element
+previousElement.ulDepth = 0 // Nesting depth for article body unordered lists (0 = top-level <li>)
 noteData.word_count = 0
 
 // Date settings
@@ -398,9 +399,20 @@ fetch(url)
           if (previousElement.nestedType !== "none") {
             previousElement.nestedType = "none"
           }
-          const p_element = p(content)
-          if (p_element.length > 0) {
-            inner += "<p>" + p_element + "</p>"
+          if (content.startsWith("- ") || content.startsWith("* ")) {
+            const item = p(content.slice(2).trim())
+            inner += '<ul class="ul"><li>' + item + "</li>"
+            previousElement.nestedType = "ul"
+          } else if (content.match(/^\d+\. /)) {
+            const match = content.match(/^\d+\. /)[0]
+            const item = p(content.slice(match.length).trim())
+            inner += '<ol class="ol"><li>' + item + "</li>"
+            previousElement.nestedType = "ol"
+          } else {
+            const p_element = p(content)
+            if (p_element.length > 0) {
+              inner += "<p>" + p_element + "</p>"
+            }
           }
           if (inner.length > 0) {
             out = '<blockquote class="blockquote">' + inner
@@ -509,19 +521,47 @@ fetch(url)
       return out
     }
 
-    // Unordered lists
+    // Unordered lists (nested items: leading indent, 4 spaces per level)
     ul = (element) => {
-      // TODO?: nesting?
+      const m = element.match(/^(\s*)([*-] )(.*)$/)
+      if (!m) return ""
+      const indentStr = m[1].replace(/\t/g, "    ")
+      let depth = Math.floor(indentStr.length / 4)
+      const rawContent = m[3].trim()
+
+      const continuing =
+        previousElement.state === "open" && previousElement.type === "ul"
+      const prevDepth = continuing ? previousElement.ulDepth : -1
+
+      if (!continuing) {
+        depth = 0
+      } else if (depth > prevDepth + 1) {
+        depth = prevDepth + 1
+      }
+
       let out
-      if (previousElement.state === "open" && previousElement.type === "ul") {
-        // Continue
-        out = "<li>" + p(element.slice(2).trim()) + "</li>"
-      } else if (previousElement.state === "closed") {
-        // Start
-        out = '<ul class="ul"><li>' + p(element.slice(1).trim()) + "</li>"
+      if (!continuing) {
+        out = '<ul class="ul"><li>' + p(rawContent)
         previousElement.type = "ul"
         previousElement.state = "open"
+        previousElement.ulDepth = depth
+        return out
       }
+
+      if (depth > prevDepth) {
+        out = '<ul class="ul"><li>' + p(rawContent)
+      } else if (depth === prevDepth) {
+        out = "</li><li>" + p(rawContent)
+      } else {
+        out = ""
+        let d = prevDepth
+        while (d > depth) {
+          out += "</li></ul>"
+          d--
+        }
+        out += "</li><li>" + p(rawContent)
+      }
+      previousElement.ulDepth = depth
       return out
     }
 
@@ -545,6 +585,18 @@ fetch(url)
         previousElement.state = "open"
       }
       return out
+    }
+
+    // If `images/foo.png` exists, optional `images/foo@2x.png` is used on high-DPI via srcset.
+    retinaSrcsetAttr = (src) => {
+      if (!src || typeof src !== "string") return ""
+      const base = src.split("?")[0].split("#")[0]
+      const m = base.match(/^(.+)(\.[a-zA-Z0-9]+)$/)
+      if (!m) return ""
+      if (/@2x$/i.test(m[1])) return ""
+      const src2x = m[1] + "@2x" + m[2] + src.slice(base.length)
+      const esc = src2x.replace(/&/g, "&amp;").replace(/"/g, "&quot;")
+      return ' srcset="' + esc + ' 2x"'
     }
 
     // Images
@@ -585,7 +637,9 @@ fetch(url)
             out =
               '<div class="img-size-m"><img class="img" src="' +
               img_src +
-              '" alt="' +
+              '"' +
+              retinaSrcsetAttr(img_src) +
+              ' alt="' +
               img_alt +
               '" draggable="false"><small class="img-caption">' +
               img_capt +
@@ -601,7 +655,9 @@ fetch(url)
             out =
               '<div class="img-size-m"><img class="img" src="' +
               img_src +
-              '" alt="' +
+              '"' +
+              retinaSrcsetAttr(img_src) +
+              ' alt="' +
               img_alt +
               '" draggable="false"><small class="img-caption">' +
               img_capt +
@@ -610,9 +666,11 @@ fetch(url)
         } else {
           const img_src = img_src_capt
           out =
-            '<div> class="img-size-m"<img class="img" src="' +
+            '<div class="img-size-m"><img class="img" src="' +
             img_src +
-            '" alt="' +
+            '"' +
+            retinaSrcsetAttr(img_src) +
+            ' alt="' +
             img_alt +
             '" draggable="false"></div>'
         }
@@ -689,7 +747,9 @@ fetch(url)
             img_size +
             '"><img class="img" src="' +
             img_src +
-            '" alt="' +
+            '"' +
+            retinaSrcsetAttr(img_src) +
+            ' alt="' +
             img_alt +
             '" draggable="false" loading="lazy" width="' +
             img_width +
@@ -1060,9 +1120,17 @@ fetch(url)
         previousElement.state === "open" &&
         previousElement.type === "ul"
       ) {
-        out = "</ul>"
+        let close = ""
+        let d = previousElement.ulDepth
+        while (d > 0) {
+          close += "</li></ul>"
+          d--
+        }
+        close += "</li></ul>"
+        out = close
         previousElement.type = "none"
         previousElement.state = "closed"
+        previousElement.ulDepth = 0
       } else if (
         previousElement.state === "open" &&
         previousElement.type === "ol"
@@ -1274,8 +1342,8 @@ fetch(url)
       } else if (element.startsWith(">")) {
         // Blockquotes (Standard / Default syntax), quotes, and callouts
         noteArticle += blockquote(element)
-      } else if (element.startsWith("- ") || element.startsWith("* ")) {
-        // Unordered lists
+      } else if (/^\s*[-*] /.test(element)) {
+        // Unordered lists (optional leading whitespace for nesting)
         noteArticle += ul(element)
       } else if (element.match(/^\d+\. /)) {
         // Ordered lists

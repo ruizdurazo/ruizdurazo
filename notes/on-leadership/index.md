@@ -54,12 +54,12 @@ These are some of the key leadership lessons I’ve seen that work in highly-pro
 
 ## Key Lessons (Less Summarized)
 
-1. **Management = Leverage**. The main problem you’re trying to solve is maximizing your output by leveraging your productivity or effectiveness. An army can do more than a single person. Therefore, a leader/manager has to raise an army, align resources, and focus effort towards a goal or problem. Read **High Output Management**. Elon Musk says that leading a company is all about "vector alignment". You’re the coach, and you have to call the plays.
+1. **Management = Leverage**. The main problem you’re trying to solve is maximizing your output by leveraging your productivity or effectiveness. An army can do more than a single person. Therefore, a leader/manager has to raise an army, align resources, and focus effort towards a goal or problem. Read **High Output Management**. Elon Musk says that leading a company is all about “vector alignment”. You’re the coach, and you have to call the plays.
 2. **Spread the gospel. Repeat it**. Repeat the mission, goals, and problems over and over again. You need to say what you want, and what you need them to do. Remind them what matters and _why_ it matters. And repeat it again and again. Your subordinates should know these things by heart.
 3. **It’s all up to you. If you** (or your team) **don’t do it, no one will.** No one’s going to save you or tell you what to do. If you don’t act or decide, no one will. When there’s a boss (a hierarchy) the people below will abdicate responsibility and decision-making. They’re waiting on you, the leader. The leader has to take decisions _and own them_. Especially in bad times.
 4. **You lead by example. Lead from the front.** If you want your team to have high standards, you’ll have to live up to (and beyond) that standard. People copy other people, especially those that hold power and status. You will model both good and bad behavior. Lead from the front. People respect leaders that are on the frontlines leading and helping out, even if it’s just performative (remember that, for better or worse, appearances matter _a lot_ in leadership).
 5. **Admit mistakes. Be prepared**. Part of the unwritten contract of leadership is that leaders will own the majority share of credit and responsibility. It’s easy for leaders to claim wins and successes, but the flip side must also be true. Leaders assume all responsibility and blame for failures. Leaders that try to dodge this are the weakest, shittiest leaders around. And there _will_ be failures. **The longer you’re a leader, the higher the likelihood you’ll face a severe crisis**, whether internal or external, and of your own doing, or not. **Have a plan**.
-6. **Hire people that are better than you, but prove you can lead them**. You have to have legitimacy in order to lead effectively. The easiest way is to prove that the leader has done the thing their subordinates have to do now. The next best thing is proving that you know the details and _could_ do the thing, if needed. And you need to find and lead great people. And **great people only want to work on great things with great people**. So you better make sure that you yourself are great and that you’re working on something great. Otherwise, you’ll struggle to build a formidable team. And you can’t outsource recruiting the team either. You need to source them, pitch them, and accommodate them. "**The single most important task of a manager is to elicit peak performance from his subordinates**. So if two things limit high output, a manager has two ways to tackle the issue: through **_training_** and **_motivation_**."
+6. **Hire people that are better than you, but prove you can lead them**. You have to have legitimacy in order to lead effectively. The easiest way is to prove that the leader has done the thing their subordinates have to do now. The next best thing is proving that you know the details and _could_ do the thing, if needed. And you need to find and lead great people. And **great people only want to work on great things with great people**. So you better make sure that you yourself are great and that you’re working on something great. Otherwise, you’ll struggle to build a formidable team. And you can’t outsource recruiting the team either. You need to source them, pitch them, and accommodate them. “**The single most important task of a manager is to elicit peak performance from his subordinates**. So if two things limit high output, a manager has two ways to tackle the issue: through **_training_** and **_motivation_**.”
 7. **Judgement & Foresight: Strive for simplicity and solve real, valuable problems.** You need to manage your time and resources. Easiest is to strive for simplicity and solve the real, valuable problems. **Strive for simplicity.** You can’t do everything but you have to understand everything that’s going on. Best way to do that is to keep things simple. Keep teams small. Don’t bloat the structure or overcomplicate things. Prune the unnecessary: unnecessary layers, unnecessary meetings, unnecessary projects. Delete, delete, delete. **Solving real, valuable problems**. The world is constantly changing. Choosing what problems to solve (or avoid) and when is incredibly important. You don’t get refunds on your time. Delete and ignore what doesn’t matter, and go all in on what really matters. Don’t copy. Think for yourself. Ultimately, are you a dead or live player?
 
 ## Key Lessons
@@ -88,7 +88,7 @@ Andrew Grove says so explicitly:
 
 > **The role of the manager here is also clear: it is that of the coach. First, an ideal coach takes no personal credit for the success of his team, and because of that his players trust him. Second, he is tough on his team. By being critical, he tries to get the best performance his team members can provide. Third, a good coach was likely a good player himself at one time. And having played the game well, he also understands it well.**
 
-Elon Musk too says that leading a company is all about "vector alignment". Meaning that individuals, left alone, might go off in different directions. When in reality, you, the leader, have to make sure that their efforts are all adding up towards a single direction, a single vector.
+Elon Musk too says that leading a company is all about “vector alignment”. Meaning that individuals, left alone, might go off in different directions. When in reality, you, the leader, have to make sure that their efforts are all adding up towards a single direction, a single vector.
 
 Which is just nerd-speak for: you’re the coach, and you have to call the plays.
 
@@ -114,7 +114,7 @@ video {
 > quote
 > There needs to be someone who is […] the keeper and reiterator of the vision.
 >
-> Because there’s just a ton of work to do and […] when you have to walk a thousand miles and you take the first step, it looks like a long ways and it really helps if there’s someone there saying ’well, we’re one step closer’. You know that the goal definitely exists, it’s not just a mirage out there.
+> Because there’s just a ton of work to do and […] when you have to walk a thousand miles and you take the first step, it looks like a long ways and it really helps if there’s someone there saying ‘well, we’re one step closer’. You know that the goal definitely exists, it’s not just a mirage out there.
 >
 > So in a thousand and one little (and sometimes larger) ways, the vision needs to be reiterated.
 >
@@ -173,7 +173,7 @@ No one’s going to save you, or tell you what to do. If you don’t act or deci
 
 **You can’t hide**. Everyone will be looking to you for guidance. **Especially in bad, scary times**.
 
-- Almost no one will tell you what to do or what the "right" thing to do is. It’s all up to you.
+- Almost no one will tell you what to do or what the “right” thing to do is. It’s all up to you.
 - People will turn to you for answers and instructions. It’s all up to you.
 - People will turn to you for motivation. It’s all up to you.
 
@@ -193,7 +193,7 @@ You need to have **high agency** and act!
 
 People copy other people, especially those that hold power and status. You will lead by example no matter what. You will model the culture of your team. You will model both good and bad behavior.
 
-As Ben Horowitz would put it: "what you do is who you are". 
+As Ben Horowitz would put it: “what you do is who you are”. 
 
 Habits and behavior (especially the leader’s habits and behavior) are what shape the team’s culture.
 
@@ -325,7 +325,7 @@ Put in the work to clean up, make things as simple, easy, and fast as possible. 
 
 You need to keep your ability to make things fast and nimble. **So much of innovation and progress is the ability to do as many tweaks and experiments as fast as possible and keep the learnings-/feedback-loop churning smoothly**. Anything that makes this complicated or slow should be a red flag. So ask yourself: what change could allow for a faster speed of iteration/innovation?
 
-Elon has an answer for himself: "Be less dumb. Delete. Simplify. Accelerate. Automate. In that order."
+Elon has an answer for himself: “Be less dumb. Delete. Simplify. Accelerate. Automate. In that order.”
 
 Also, simplicity matters because, past a certain point of complexity, it becomes cognitively exhausting to keep a clear overview of information and org structure.
 

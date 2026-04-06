@@ -1501,7 +1501,7 @@ Add these styles to the element that overflows.
 
 <div id="scrollbar-example" class="box box--padding">
   <div>
-    <p>"We choose to go to the moon in this decade and do the other things, not because they are easy, but because they are hard, because that goal will serve to organize and measure the best of our energies and skills, because that challenge is one that we are willing to accept, one we are unwilling to postpone, and one which we intend to win, and the others, too." – John F. Kennedy</p>
+    <p>“We choose to go to the moon in this decade and do the other things, not because they are easy, but because they are hard, because that goal will serve to organize and measure the best of our energies and skills, because that challenge is one that we are willing to accept, one we are unwilling to postpone, and one which we intend to win, and the others, too.” – John F. Kennedy</p>
   </div>
 </div>
 
@@ -2773,7 +2773,7 @@ With ellipsis
 </style>
 <div class="box box--padding">
   <div id="ellipsis-example">
-    "Humans are distinguished from other species by our ability to work miracles. We call these miracles technology." – Peter Thiel
+    “Humans are distinguished from other species by our ability to work miracles. We call these miracles technology.” – Peter Thiel
   </div>
 </div>
 
@@ -2781,7 +2781,7 @@ Without
 
 <div class="box box--padding">
   <div>
-    "Humans are distinguished from other species by our ability to work miracles. We call these miracles technology." – Peter Thiel
+    “Humans are distinguished from other species by our ability to work miracles. We call these miracles technology.” – Peter Thiel
 
   </div>
 </div>
@@ -2891,7 +2891,7 @@ With `text-wrap: balance;`
 
 <div class="box box--padding text-wrap-example">
   <h3 class="text-wrap-example-balanced">
-    "Humans are distinguished from other species by our ability to work miracles. We call these miracles technology."
+    “Humans are distinguished from other species by our ability to work miracles. We call these miracles technology.”
   </h3>
 </div>
 
@@ -2899,7 +2899,7 @@ With the default `text-wrap: wrap;`
 
 <div class="box box--padding text-wrap-example">
   <h3>
-    "Humans are distinguished from other species by our ability to work miracles. We call these miracles technology."
+    “Humans are distinguished from other species by our ability to work miracles. We call these miracles technology.”
   </h3>
 </div>
 
@@ -2914,7 +2914,7 @@ With the default `text-wrap: wrap;`
 
 ## [JS] How to show human readable times: RelativeTimeFormat
 
-To show time differences in a human readable way (like "1 day ago", "in 2 weeks", etc.), you can use `Intl.RelativeTimeFormat`.
+To show time differences in a human readable way (like “1 day ago”, “in 2 weeks”, etc.), you can use `Intl.RelativeTimeFormat`.
 
 <div class="box box--padding">
   <p>Time since you visited this page: <strong id="relative-time-format-example"></strong></p>

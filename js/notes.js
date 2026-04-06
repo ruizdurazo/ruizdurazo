@@ -37,6 +37,15 @@ const notes = [
   //   thumbnailImageAlt: '',
   // },
   {
+    folder: "on-startups-product-market-fit",
+    date: "2026-04-06",
+    title: "On Startups: Product-Market Fit",
+    description: "What is Product-Market Fit? And how do you find it?",
+    thumbnail: false,
+    thumbnailImage: "",
+    thumbnailImageAlt: "",
+  },
+  {
     folder: "on-leadership",
     date: "2026-03-26",
     title: "On Leadership",

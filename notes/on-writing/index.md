@@ -39,19 +39,19 @@ Below, you will find a word-for-word copy of the writing advice from these great
 
 ### Scott Adams: The Day You Became A Better Writer
 
-> I went from being a bad writer to a good writer after taking a one-day course in "business writing." I couldn’t believe how simple it was. I’ll tell you the main tricks here so you don’t have to waste a day in class.
+> I went from being a bad writer to a good writer after taking a one-day course in “business writing.” I couldn’t believe how simple it was. I’ll tell you the main tricks here so you don’t have to waste a day in class.
 >
 > Business writing is about clarity and persuasion. The main technique is keeping things simple. Simple writing is persuasive. A good argument in five sentences will sway more people than a brilliant argument in a hundred sentences. Don’t fight it.
 >
-> Simple means getting rid of extra words. Don’t write, "He was very happy" when you can write "He was happy." You think the word "very" adds something. It doesn’t. Prune your sentences.
+> Simple means getting rid of extra words. Don’t write, “He was very happy” when you can write “He was happy.” You think the word “very” adds something. It doesn’t. Prune your sentences.
 >
-> Humor writing is a lot like business writing. It needs to be simple. The main difference is in the choice of words. For humor, don’t say "drink" when you can say "swill."
+> Humor writing is a lot like business writing. It needs to be simple. The main difference is in the choice of words. For humor, don’t say “drink” when you can say “swill.”
 >
 > Your first sentence needs to grab the reader. Go back and read my first sentence to this post. I rewrote it a dozen times. It makes you curious. That’s the key.
 >
 > Write short sentences. Avoid putting multiple thoughts in one sentence. Readers aren’t as smart as you’d think.
 >
-> Learn how brains organize ideas. Readers comprehend "the boy hit the ball" quicker than "the ball was hit by the boy." Both sentences mean the same, but it’s easier to imagine the object (the boy) before the action (the hitting). All brains work that way. (Notice I didn’t say, "That is the way all brains work"?)
+> Learn how brains organize ideas. Readers comprehend “the boy hit the ball” quicker than “the ball was hit by the boy.” Both sentences mean the same, but it’s easier to imagine the object (the boy) before the action (the hitting). All brains work that way. (Notice I didn’t say, “That is the way all brains work”?)
 >
 > That’s it. You just learned 80% of the rules of good writing. You’re welcome.
 
@@ -86,13 +86,13 @@ Below, you will find a word-for-word copy of the writing advice from these great
 
 > Here’s a simple trick for getting more people to read what you write: write in spoken language.
 >
-> Something comes over most people when they start writing. They write in a different language than they’d use if they were talking to a friend. The sentence structure and even the words are different. No one uses "pen" as a verb in spoken English. You’d feel like an idiot using "pen" instead of "write" in a conversation with a friend.
+> Something comes over most people when they start writing. They write in a different language than they’d use if they were talking to a friend. The sentence structure and even the words are different. No one uses “pen” as a verb in spoken English. You’d feel like an idiot using “pen” instead of “write” in a conversation with a friend.
 >
 > The last straw for me was a sentence I read a couple days ago:
 >
-> _The mercurial Spaniard himself declared: "After Altamira, all is decadence."_
+> _The mercurial Spaniard himself declared: “After Altamira, all is decadence.”_
 >
-> It’s from Neil Oliver’s A History of Ancient Britain. I feel bad making an example of this book, because it’s no worse than lots of others. But just imagine calling Picasso "the mercurial Spaniard" when talking to a friend. Even one sentence of this would raise eyebrows in conversation. And yet people write whole books of it.
+> It’s from Neil Oliver’s A History of Ancient Britain. I feel bad making an example of this book, because it’s no worse than lots of others. But just imagine calling Picasso “the mercurial Spaniard” when talking to a friend. Even one sentence of this would raise eyebrows in conversation. And yet people write whole books of it.
 >
 > Ok, so written and spoken language are different. Does that make written language worse?
 >
@@ -104,7 +104,7 @@ Below, you will find a word-for-word copy of the writing advice from these great
 >
 > I’m not saying spoken language always works best. Poetry is as much music as text, so you can say things you wouldn’t say in conversation. And there are a handful of writers who can get away with using fancy language in prose. And then of course there are cases where writers don’t want to make it easy to understand what they’re saying—in corporate announcements of bad news, for example, or at the more bogus end of the humanities. But for nearly everyone else, spoken language is better.
 >
-> It seems to be hard for most people to write in spoken language. So perhaps the best solution is to write your first draft the way you usually would, then afterward look at each sentence and ask "Is this the way I’d say this if I were talking to a friend?" If it isn’t, imagine what you would say, and use that instead. After a while this filter will start to operate as you write. When you write something you wouldn’t say, you’ll hear the clank as it hits the page.
+> It seems to be hard for most people to write in spoken language. So perhaps the best solution is to write your first draft the way you usually would, then afterward look at each sentence and ask “Is this the way I’d say this if I were talking to a friend?” If it isn’t, imagine what you would say, and use that instead. After a while this filter will start to operate as you write. When you write something you wouldn’t say, you’ll hear the clank as it hits the page.
 >
 > Before I publish a new essay, I read it out loud and fix everything that doesn’t sound like conversation. I even fix bits that are phonetically awkward; I don’t know if that’s necessary, but it doesn’t cost much.
 >
@@ -132,7 +132,7 @@ Below, you will find a word-for-word copy of the writing advice from these great
 >
 > (iii) Often the occasion is best met by submitting not a full-dress Report, but an Aide-memoire consisting of headings only, which can be expanded orally if needed.
 >
-> (iv) Let us have an end of such phrases as these: "_It is also of importance to beer in mind the following considerations......_", or "_Consideration should be given to the possibility of carrying into effect....._". Most of these woolly phrases are mere padding, which can be left out altogether, or replaced by a single word. Let us not shrink from using the short expressive phrase, even if it is conversational.
+> (iv) Let us have an end of such phrases as these: “_It is also of importance to beer in mind the following considerations......_”, or “_Consideration should be given to the possibility of carrying into effect....._”. Most of these woolly phrases are mere padding, which can be left out altogether, or replaced by a single word. Let us not shrink from using the short expressive phrase, even if it is conversational.
 >
 > Reports drawn up on the lines I propose may at first seem rough as compared with the flat surface of officialese jargon. But the saving in time will be great, while the discipline of setting out the real points concisely will prove an aid to clearer thinking.
 >

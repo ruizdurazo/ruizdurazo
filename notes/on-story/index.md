@@ -56,7 +56,7 @@ But, honestly, most story structures are basically the same. They fit the typica
 - Having **changed**
 
 > callout
-> The _Story Circle_ works well for cyclical or episodic content, or for when someone goes on an eventful adventure or holiday, for example, but then have to go back to their "normal" lives and routine afterward.
+> The _Story Circle_ works well for cyclical or episodic content, or for when someone goes on an eventful adventure or holiday, for example, but then have to go back to their “normal” lives and routine afterward.
 
 There are many more structures, but they’re all basically the same:
 
@@ -64,7 +64,7 @@ There are many more structures, but they’re all basically the same:
 
 The problem is that structures don’t actually explain _why_ a story works well, or why it doesn’t (and what to do about it). 
 
-That’s where "elements" come in.
+That’s where “elements” come in.
 
 ## Elements (Best)
 
@@ -120,7 +120,7 @@ That being said, there are a couple more things you should constantly be thinkin
 
 ### Pro Tips
 
-#### 1. "Who am I?"
+#### 1. “Who am I?”
 
 That’s what the audience thinks/feels at the beginning of any story (whether consciously or subconsciously). So that’s the question that you have to answer at the beginning of a story.
 
@@ -137,7 +137,7 @@ The greater the gap between the protagonist and their desire, the better the sto
 The larger, badder, more powerful the antagonist, the better the story.
 
 > quote
-> "If there isn’t a great villain, there isn’t a good story."
+> “If there isn’t a great villain, there isn’t a good story.”
 >
 > byline
 > Steven Pressfield
@@ -154,7 +154,7 @@ The hero must struggle, and even suffer. But try to make the suffering worthwhil
 
 #### 3. Consequentiality
 
-Link story elements with **"therefore"** or **"but"**. Never just **"and then"**.
+Link story elements with **“therefore”** or **“but”**. Never just **“and then”**.
 
 _A_ → _B_
 
@@ -162,13 +162,13 @@ _A_ leads to _B_, and there’s no going back.
 
 Make it _feel_ consequential.
 
-Never tell a story using "and then", "and then", "and then" because that’s just horrible storytelling. Usually, that’s just a list of inconsequential elements that you can rearrange without changing the quality of the story.
+Never tell a story using “and then”, “and then”, “and then” because that’s just horrible storytelling. Usually, that’s just a list of inconsequential elements that you can rearrange without changing the quality of the story.
 
 Make sure that each of the parts of your story create, or respond to, _consequences_ (even if they are out of chronological order).
 
 #### 4. Multiple plot lines
 
-If you have a complex story with several plot lines, you can use "**meanwhile back at the ranch**" to switch between them.
+If you have a complex story with several plot lines, you can use “**meanwhile back at the ranch**” to switch between them.
 
 Meaning: start with one plot line and build suspense, and then cut to the other one in order to avoid it feeling drawn out, to skip boring parts, or to just keep it interesting.
 
@@ -190,12 +190,12 @@ It’s what determines the path the protagonist will go on, and whether there’
 
 Stories have 6 primary arcs:
 
-- **"Rags-to-riches"**: Rise (e.g. *The Pursuit of Happyness*)
-- **"Tragedy"**: Fall (e.g. *Requiem for a Dream*)
-- **"Man-in-a-hole"**: Fall-Rise (e.g. *The Shawshank Redemption*)
-- **"Icarus"**: Rise-Fall (e.g. *Scarface*)
-- **"Cinderella"**: Rise-Fall-Rise (e.g. *The Lion King*)
-- **"Oedipus"**: Fall-Rise-Fall (e.g. *American Beauty*)
+- **“Rags-to-riches”**: Rise (e.g. *The Pursuit of Happyness*)
+- **“Tragedy”**: Fall (e.g. *Requiem for a Dream*)
+- **“Man-in-a-hole”**: Fall-Rise (e.g. *The Shawshank Redemption*)
+- **“Icarus”**: Rise-Fall (e.g. *Scarface*)
+- **“Cinderella”**: Rise-Fall-Rise (e.g. *The Lion King*)
+- **“Oedipus”**: Fall-Rise-Fall (e.g. *American Beauty*)
 
 ![Story Arcs](./images/story-arcs.png)[size: l, aspect: 720x540]
 
