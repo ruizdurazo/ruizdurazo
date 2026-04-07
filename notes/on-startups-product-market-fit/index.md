@@ -165,7 +165,7 @@ video {
 
 Listen to that over and over again.
 
-You don’t want to fight an uphill battle trying to convince customers that your convoluted solution is something they want when it’s something they’ve never even thought about or care about. 
+You don’t want to fight an uphill battle trying to convince customers that your confangled solution is something they want when it’s something they’ve never even thought about or care about. 
 
 Customers should already have the meme of your product in their minds. If they don’t, you better work on that first, or pray to God that someone can do this for you (culture, media, movies, influencers, industry influencers).
 
