@@ -37,6 +37,15 @@ const notes = [
   //   thumbnailImageAlt: '',
   // },
   {
+    folder: "on-building-and-running-product",
+    date: "2026-04-07",
+    title: "On Building & Running Product",
+    description: "Lessons on teamwork and building products.",
+    thumbnail: false,
+    thumbnailImage: "",
+    thumbnailImageAlt: "",
+  },
+  {
     folder: "on-startups-product-market-fit",
     date: "2026-04-06",
     title: "On Startups: Product-Market Fit",

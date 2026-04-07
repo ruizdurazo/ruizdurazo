@@ -354,6 +354,19 @@ It doesn’t matter what others do, or what others expect you to do. _You_ have 
 
 Ultimately, are you a [dead or live player](https://medium.com/@samo.burja/live-versus-dead-players-2b24f6e9eae2)?
 
+Can you lead your team to rise to challenges that have never been seen before? 
+
+Can you lead your team to do things that others didn’t even think were possible?
+
+And do it well? And win?
+
+> quote
+> When God wanted to make David a king, he didn’t give him a crown, he gave him Goliath.
+>
+> byline
+> Joshua Kushner
+
+
 ## Addendum
 
 I hope you agree that the advice here works well for assuming the role of a leader and thriving in that role.

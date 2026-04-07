@@ -228,6 +228,17 @@ fetch(url)
       )
     }
 
+    // "12. item" → slice after prefix; opening <ol> gets start="12" when not 1
+    olMdOrderedPrefix = (line) => {
+      const m = line.match(/^(\d+)\.\s/)
+      return m
+        ? {
+            sliceLen: m[0].length,
+            startAttr: m[1] !== "1" ? ' start="' + m[1] + '"' : "",
+          }
+        : null
+    }
+
     // Blockquotes, quotes, and callouts
     blockquote = (element) => {
       // DONE: normal blockquotes
@@ -288,26 +299,28 @@ fetch(url)
           } else {
             out = "<li>" + item + "</li>"
           }
-        } else if (content.match(/^\d+\. /)) {
-          const match = content.match(/^\d+\. /)[0]
-          const item = p(content.slice(match.length).trim())
-          if (previousElement.nestedType !== "ol") {
-            previousElement.nestedType = "ol"
-            out = '<ol class="ol"><li>' + item + "</li>"
-          } else {
-            out = "<li>" + item + "</li>"
-          }
         } else {
-          out =
-            previousElement.nestedType !== "none"
-              ? "</" + previousElement.nestedType + ">"
-              : ""
-          if (previousElement.nestedType !== "none") {
-            previousElement.nestedType = "none"
-          }
-          const p_element = p(content)
-          if (p_element.length > 0) {
-            out += "<p>" + p_element + "</p>"
+          const olPre = olMdOrderedPrefix(content)
+          if (olPre) {
+            const item = p(content.slice(olPre.sliceLen).trim())
+            if (previousElement.nestedType !== "ol") {
+              previousElement.nestedType = "ol"
+              out = '<ol class="ol"' + olPre.startAttr + '><li>' + item + "</li>"
+            } else {
+              out = "<li>" + item + "</li>"
+            }
+          } else {
+            out =
+              previousElement.nestedType !== "none"
+                ? "</" + previousElement.nestedType + ">"
+                : ""
+            if (previousElement.nestedType !== "none") {
+              previousElement.nestedType = "none"
+            }
+            const p_element = p(content)
+            if (p_element.length > 0) {
+              out += "<p>" + p_element + "</p>"
+            }
           }
         }
       } else if (
@@ -326,26 +339,28 @@ fetch(url)
           } else {
             out = "<li>" + item + "</li>"
           }
-        } else if (content.match(/^\d+\. /)) {
-          const match = content.match(/^\d+\. /)[0]
-          const item = p(content.slice(match.length).trim())
-          if (previousElement.nestedType !== "ol") {
-            previousElement.nestedType = "ol"
-            out = '<ol class="ol"><li>' + item + "</li>"
-          } else {
-            out = "<li>" + item + "</li>"
-          }
         } else {
-          out =
-            previousElement.nestedType !== "none"
-              ? "</" + previousElement.nestedType + ">"
-              : ""
-          if (previousElement.nestedType !== "none") {
-            previousElement.nestedType = "none"
-          }
-          const p_element = p(content)
-          if (p_element.length > 0) {
-            out += "<p>" + p_element + "</p>"
+          const olPre = olMdOrderedPrefix(content)
+          if (olPre) {
+            const item = p(content.slice(olPre.sliceLen).trim())
+            if (previousElement.nestedType !== "ol") {
+              previousElement.nestedType = "ol"
+              out = '<ol class="ol"' + olPre.startAttr + '><li>' + item + "</li>"
+            } else {
+              out = "<li>" + item + "</li>"
+            }
+          } else {
+            out =
+              previousElement.nestedType !== "none"
+                ? "</" + previousElement.nestedType + ">"
+                : ""
+            if (previousElement.nestedType !== "none") {
+              previousElement.nestedType = "none"
+            }
+            const p_element = p(content)
+            if (p_element.length > 0) {
+              out += "<p>" + p_element + "</p>"
+            }
           }
         }
       } else if (
@@ -403,15 +418,18 @@ fetch(url)
             const item = p(content.slice(2).trim())
             inner += '<ul class="ul"><li>' + item + "</li>"
             previousElement.nestedType = "ul"
-          } else if (content.match(/^\d+\. /)) {
-            const match = content.match(/^\d+\. /)[0]
-            const item = p(content.slice(match.length).trim())
-            inner += '<ol class="ol"><li>' + item + "</li>"
-            previousElement.nestedType = "ol"
           } else {
-            const p_element = p(content)
-            if (p_element.length > 0) {
-              inner += "<p>" + p_element + "</p>"
+            const olPre = olMdOrderedPrefix(content)
+            if (olPre) {
+              const item = p(content.slice(olPre.sliceLen).trim())
+              inner +=
+                '<ol class="ol"' + olPre.startAttr + '><li>' + item + "</li>"
+              previousElement.nestedType = "ol"
+            } else {
+              const p_element = p(content)
+              if (p_element.length > 0) {
+                inner += "<p>" + p_element + "</p>"
+              }
             }
           }
           if (inner.length > 0) {
@@ -568,18 +586,17 @@ fetch(url)
     // Ordered lists
     ol = (element) => {
       // TODO?: nesting?
+      const pre = olMdOrderedPrefix(element)
+      if (!pre) return ""
       let out
       if (previousElement.state === "open" && previousElement.type === "ol") {
-        // Continue
-        out =
-          "<li>" +
-          p(element.slice(element.match(/^\d+\. /)[0].length).trim()) +
-          "</li>"
+        out = "<li>" + p(element.slice(pre.sliceLen).trim()) + "</li>"
       } else if (previousElement.state === "closed") {
-        // Start
         out =
-          '<ol class="ol"><li>' +
-          p(element.slice(element.match(/^\d+\. /)[0].length).trim()) +
+          '<ol class="ol"' +
+          pre.startAttr +
+          "><li>" +
+          p(element.slice(pre.sliceLen).trim()) +
           "</li>"
         previousElement.type = "ol"
         previousElement.state = "open"
@@ -1345,7 +1362,7 @@ fetch(url)
       } else if (/^\s*[-*] /.test(element)) {
         // Unordered lists (optional leading whitespace for nesting)
         noteArticle += ul(element)
-      } else if (element.match(/^\d+\. /)) {
+      } else if (olMdOrderedPrefix(element)) {
         // Ordered lists
         noteArticle += ol(element)
       } else if (
