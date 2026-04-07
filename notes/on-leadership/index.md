@@ -148,7 +148,7 @@ In fact, it’s not only about communicating, it’s about _framing_.
 
 People will interpret and understand a situation differently based on the way you frame it. This matters more than you could ever imagine.
 
-Just look at what Abraham Lincoln was able to say about a terrible situation that he had to lead through. A situation that he himself, in a way, had brought upon his people. He gave it weight and meaning in what is likely one of the most famous speeches in all of history:
+Just look at what Abraham Lincoln was able to say about a terrible situation that he had to lead through. A situation that he himself, in a way, had brought upon his people. He gave it weight and meaning in what is basically one of the best speeches in all of history:
 
 > quote
 > Four score and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.
@@ -160,8 +160,9 @@ Just look at what Abraham Lincoln was able to say about a terrible situation tha
 > byline
 > Abraham Lincoln
 
-Jaw-dropping.
+Jaw-dropping. Insane.
 
+Hearing that, instead of blaming him or feeling hopeless, I would go to the ends of the earth to advance that world-changing mission and honor those who were lost.
 
 <!-- --- -->
 

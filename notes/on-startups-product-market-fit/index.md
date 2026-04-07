@@ -496,7 +496,7 @@ Remember, your (startup’s) life depends on it.
 
 With all this in mind, it’ll be no less hard, but at least you won’t be going at it blindly. And who knows, you just might find **_Product-Market Fit_**. 
 
-Then (and only then) can you really focus on: Growth.
+Then (and only then) can you really focus on what startups are actually about: **Growth**.
 
 <!-- --- -->
 
