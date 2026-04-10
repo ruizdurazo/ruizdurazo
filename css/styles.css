@@ -314,8 +314,9 @@ button:active {
 }
 
 #navbar.scrolled .navbar--elements {
-  width: calc(100% - var(--font-size-3));
+  width: calc(100% - var(--font-size-2));
   height: var(--font-size-3);
+  /* height: 64px; */
 }
 
 /* Logo */
@@ -337,8 +338,9 @@ button:active {
 
 /* Menu */
 .menu {
-  margin: 20px 0;
-  height: 60px;
+  display: flex;
+  /* margin: 20px 0; */
+  /* height: 60px; */
 }
 
 .menu button {
@@ -349,9 +351,9 @@ button:active {
 
 .menu button img {
   display: block;
-  width: 60px;
+  width: 48px;
   height: 100%;
-  padding: 6px;
+  /* padding: 6px; */
   transition: all 0.5s;
 }
 

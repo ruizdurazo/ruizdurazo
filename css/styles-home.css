@@ -500,8 +500,9 @@ p {
 }
 
 html.scrolled .more--navbar--elements {
-  width: calc(100% - var(--font-size-3));
+  width: calc(100% - var(--font-size-2));
   height: var(--font-size-3);
+  /* height: 64px; */
 }
 
 #more--logo,
@@ -529,9 +530,9 @@ html.scrolled .more--navbar--elements {
 /* Close */
 #more--close svg {
   display: block;
-  width: 60px;
+  width: 48px;
   height: auto;
-  padding: 6px;
+  /* padding: 6px; */
 }
 
 #more--logo svg path,
