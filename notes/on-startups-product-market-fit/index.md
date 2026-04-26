@@ -95,12 +95,21 @@ The shape of a good product starts with the shape of the problem.
 
 ### Real Problems
 
-Problems are tricky. There are problems that are real and valuable and those that are not. 
+Problems are tricky. There are problems that are real and valuable and those that are not. And beyond that, there are also problems that are fit for startups and problems that are not.
 
-Often, founders seem to solve problems that are either not real or completely worthless. 
+Often, would-be founders want to solve a problem that’s either not real or completely worthless. And even if it is real, the problem might not be apt for a startup.
 
-Don’t make that mistake.
+Don’t make these mistakes.
 
+Again, the thing is that “startups = growth”. Startups are not small or medium-sized businesses. Startups have to have a way to scale and grow fast. From this realization, it becomes obvious that many ideas are ruled out. Consulting? Out of the question. Hand-crafted things? No shot. The only ideas that remain are things that you could produce on a large, global scale through either mass manufacturing or the internet. These are the only 2 technologies that enable rapid distribution of your product or service on a massive scale.
+
+> quote
+> Understanding growth is what starting a startup *consists* of. What you're really doing (and to the dismay of some observers, all you're really doing) when you start a startup is committing to solve a harder type of problem than ordinary businesses do. You're committing to search for one of the rare ideas that generates rapid growth. Because these ideas are so valuable, finding one is hard.
+> 
+> byline
+> Paul Graham
+
+So if growth is what matters, what kind of problems are real, startup problems?
 One of the best frameworks I’ve ever come across was [Kevin Hale’s criteria for “good” startup problems](https://www.youtube.com/watch?v=DOtCl5PU8F0) (former YC partner).
 
 *Good Problems* are:
