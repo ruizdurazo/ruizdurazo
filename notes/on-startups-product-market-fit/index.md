@@ -101,15 +101,22 @@ Often, would-be founders want to solve a problem that’s either not real or com
 
 Don’t make these mistakes.
 
-Again, the thing is that “startups = growth”. Startups are not small or medium-sized businesses. Startups have to have a way to scale and grow fast. From this realization, it becomes obvious that many ideas are ruled out. Consulting? Out of the question. Hand-crafted things? No shot. The only ideas that remain are things that you could produce on a large, global scale through either mass manufacturing or the internet. These are the only 2 technologies that enable rapid distribution of your product or service on a massive scale.
+Again, the thing is that “startups = growth”. Startups are not small or medium-sized businesses. Startups have to have a way to scale and grow fast. From this realization, it becomes obvious that many business ideas are ruled out. Consulting? Out of the question. Hand-crafted things? No shot.
+
+The only ideas that remain are things that you could produce and distribute on a large, global scale through either mass manufacturing, the internet, or, now, AI tokens. These are the only technologies that enable rapid distribution of your product or service on a massive scale.
+
+Heuristic: if you don’t have a way to produce and distribute it fast and on a large scale, it’s probably not a startup problem.
+
+Now, with AI, certain ideas that were off-limits for startups (e.g. professional services) can now be delivered scalably through AI agents and tokens. Now is a great time to build those and other ideas.
 
 > quote
-> Understanding growth is what starting a startup *consists* of. What you're really doing (and to the dismay of some observers, all you're really doing) when you start a startup is committing to solve a harder type of problem than ordinary businesses do. You're committing to search for one of the rare ideas that generates rapid growth. Because these ideas are so valuable, finding one is hard.
+> Understanding growth is what starting a startup *consists* of. What you’re really doing (and to the dismay of some observers, all you’re really doing) when you start a startup is committing to solve a harder type of problem than ordinary businesses do. You’re committing to search for one of the rare ideas that generates rapid growth. Because these ideas are so valuable, finding one is hard.
 > 
 > byline
 > Paul Graham
 
 So if growth is what matters, what kind of problems are real, startup problems?
+
 One of the best frameworks I’ve ever come across was [Kevin Hale’s criteria for “good” startup problems](https://www.youtube.com/watch?v=DOtCl5PU8F0) (former YC partner).
 
 *Good Problems* are:
