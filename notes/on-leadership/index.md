@@ -1,6 +1,6 @@
 ---
 title: On Leadership
-date: 2026-03-26
+date: 2026-05-07
 description_short: Lessons on leadership and management.
 description_long: Lessons on leadership and management.
 image:
@@ -148,6 +148,20 @@ In fact, it’s not only about communicating, it’s about _framing_.
 
 People will interpret and understand a situation differently based on the way you frame it. This matters more than you could ever imagine.
 
+Listen to [Lulu Cheng Meservey](https://youtu.be/OQ0OOzOwsJY?t=3247):
+
+<video src="./videos/lulu.mp4" width="100%" height="100%" controls></video>
+
+> quote
+> […] When the moment calls for it and you as a founder or as a cult leader see that there is just a quarter turn to be made that leads us to a more glorious future (but everybody has to get on board), it is your job to look inside your mental dictionary of language and identify 500 to 1,000 (it's not that many) words in the right order that is going to jailbreak people and reprogram them to come and join you off the path.
+>
+> And it's very doable. And it has been done again and again in big ways and in small ways. It's been done to convince an entire nation to continue fighting a war. It's been done to convince racists to consider the possibility of allowing civil rights. It's been done to inspire a nation to go to the moon.
+>
+> I mean, these things, we've seen them. We just don't really recognize them for what they are, which is packaging 1000 words in the right order and combination with the right curation and delivering them such that they jailbreak people at scale.
+>
+> byline
+> Lulu Cheng Meservey
+
 Just look at what Abraham Lincoln was able to say about a terrible situation that he had to lead through. A situation that he himself, in a way, had brought upon his people. He gave it weight and meaning in what is basically one of the best speeches in all of history:
 
 > quote
@@ -163,6 +177,10 @@ Just look at what Abraham Lincoln was able to say about a terrible situation tha
 Jaw-dropping. Insane.
 
 Hearing that, instead of blaming him or feeling hopeless, I would go to the ends of the earth to advance that world-changing mission and honor those who were lost.
+
+For those keeping count, 271 words.
+
+It's doable.
 
 <!-- --- -->
 
