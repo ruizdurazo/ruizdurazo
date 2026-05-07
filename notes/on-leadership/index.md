@@ -108,6 +108,7 @@ video {
   border-radius: 16px;
   box-shadow: 0 10px 20px #e4e6e840;
   margin: calc(var(--font-size) * 3) auto;
+  scroll-margin-top: calc(var(--font-size) * 3);
 }
 </style>
 
