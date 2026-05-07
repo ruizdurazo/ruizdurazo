@@ -150,14 +150,14 @@ People will interpret and understand a situation differently based on the way yo
 
 Listen to [Lulu Cheng Meservey](https://youtu.be/OQ0OOzOwsJY?t=3247):
 
-<video src="./videos/lulu.mp4" width="100%" height="100%" controls></video>
+<video id="lulu" src="./videos/lulu.mp4" width="100%" height="100%" controls></video>
 
 > quote
 > […] When the moment calls for it and you as a founder or as a cult leader see that there is just a quarter turn to be made that leads us to a more glorious future (but everybody has to get on board), it is your job to look inside your mental dictionary of language and identify 500 to 1,000 (it's not that many) words in the right order that is going to jailbreak people and reprogram them to come and join you off the path.
 >
 > And it's very doable. And it has been done again and again in big ways and in small ways. It's been done to convince an entire nation to continue fighting a war. It's been done to convince racists to consider the possibility of allowing civil rights. It's been done to inspire a nation to go to the moon.
 >
-> I mean, these things, we've seen them. We just don't really recognize them for what they are, which is packaging 1000 words in the right order and combination with the right curation and delivering them such that they jailbreak people at scale.
+> I mean, these things, we've seen them. We just don't really recognize them for what they are, which is packaging 1,000 words in the right order and combination with the right curation and delivering them such that they jailbreak people at scale.
 >
 > byline
 > Lulu Cheng Meservey
