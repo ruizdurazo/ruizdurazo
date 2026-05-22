@@ -119,6 +119,8 @@
         <!-- Section - Quotes -->
         <section id="quotes-section">
           <a id="quotes" href="#">
+            <div class="quote-nav quote-nav-prev" aria-hidden="true"></div>
+            <div class="quote-nav quote-nav-next" aria-hidden="true"></div>
             <div class="quote-text">
               <span id="quote"> </span>
             </div>
@@ -454,22 +456,27 @@
         url = `http://localhost:3000/api/quotes`;
       }
 
-      // Get quotes element
+      // Get quotes element and nav zones
       const quotes = document.getElementById("quotes");
+      const quoteNavPrev = quotes.querySelector(".quote-nav-prev");
+      const quoteNavNext = quotes.querySelector(".quote-nav-next");
+
+      function goToPrevQuote(e) {
+        e.preventDefault();
+        quoteId = ((quoteId - 2 + count) % count) + 1;
+        fetchQuote(quoteId);
+      }
+
+      function goToNextQuote(e) {
+        e.preventDefault();
+        quoteId = (quoteId % count) + 1;
+        fetchQuote(quoteId);
+      }
 
       // First fetch the count and initialize
       fetchQuoteCount().then(() => {
-        // Add click event listener after we have the count
-        quotes.addEventListener("click", async (e) => {
-          e.preventDefault();
-          // If it's a shift click, cycle backwards
-          if (e.shiftKey) {
-            quoteId = ((quoteId - 2 + count) % count) + 1;
-          } else {
-            quoteId = (quoteId % count) + 1; // This ensures we cycle from 1 to count
-          }
-          fetchQuote(quoteId);
-        });
+        quoteNavPrev.addEventListener("click", goToPrevQuote);
+        quoteNavNext.addEventListener("click", goToNextQuote);
       });
 
       // Fetch quote count

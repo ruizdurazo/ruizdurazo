@@ -24,10 +24,6 @@
   text-wrap: balance;
 }
 
-#quotes:hover {
-  cursor: pointer;
-}
-
 #quotes:focus-visible {
   box-shadow: 0 0 0 4px var(--blue);
   border-radius: 16px;
@@ -50,8 +46,33 @@
   color: var(--_70);
 }
 
-#quotes:hover {
-  cursor: pointer;
+#quotes .quote-nav {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+}
+
+#quotes .quote-nav-prev {
+  left: 0;
+  width: 31%;
+  cursor:
+    url("/assets/icons/icon-arrow_left-cursor.svg") 12 12,
+    w-resize;
+}
+
+#quotes .quote-nav-next {
+  left: 31%;
+  width: 69%;
+  cursor:
+    url("/assets/icons/icon-arrow_right-cursor.svg") 12 12,
+    e-resize;
+}
+
+#quotes .quote-text,
+#quotes .quote-attribution,
+#quotes #loader {
+  pointer-events: none;
 }
 
 #quotes .quote-text,
