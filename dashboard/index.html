@@ -473,10 +473,22 @@
         fetchQuote(quoteId);
       }
 
+      function handleQuoteKeydown(e) {
+        if (e.key !== "Enter" && e.key !== " ") return;
+        if (count === 0) return;
+        e.preventDefault();
+        if (e.shiftKey) {
+          goToPrevQuote(e);
+        } else {
+          goToNextQuote(e);
+        }
+      }
+
       // First fetch the count and initialize
       fetchQuoteCount().then(() => {
         quoteNavPrev.addEventListener("click", goToPrevQuote);
         quoteNavNext.addEventListener("click", goToNextQuote);
+        quotes.addEventListener("keydown", handleQuoteKeydown);
       });
 
       // Fetch quote count
