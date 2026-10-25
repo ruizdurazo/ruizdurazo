@@ -370,7 +370,7 @@ fetch(url)
         // Continue quote blockquote
         if (element.slice(1).trim() === "byline") {
           // End the quote body with a typographic closing double quote (U+201D)
-          out = '<span class="end-quote"> \u201d</span></p>'
+          out = '<span class="end-quote">&nbsp;\u201d</span></p>'
           previousElement.type = "blockquote-byline"
         } else {
           // Continue the quote body
