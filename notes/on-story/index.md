@@ -1,6 +1,6 @@
 ---
 title: On Story: Structure, Elements & Shapes
-date: 2026-03-21
+date: 2026-10-25
 description_short: The best story wins.
 description_long: The best story wins.
 image:
@@ -164,7 +164,26 @@ Make it _feel_ consequential.
 
 Never tell a story using “and then”, “and then”, “and then” because that’s just horrible storytelling. Usually, that’s just a list of inconsequential elements that you can rearrange without changing the quality of the story.
 
-Make sure that each of the parts of your story create, or respond to, _consequences_ (even if they are out of chronological order).
+Listen to South Park creators Matt Stone and Trey Parker:
+
+<video src="./videos/matt-stone-trey-parker.mp4" width="100%" height="100%" controls></video>
+
+<style>
+video {
+  display: block;
+  max-width: min(720px, calc(100% - (var(--font-size) * 2)));
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px #e4e6e840;
+  margin: calc(var(--font-size) * 3) auto;
+  scroll-margin-top: calc(var(--font-size) * 3);
+}
+</style>
+
+
+Make sure that each part of your story creates, or responds to, _consequences_ (even if they are out of chronological order).
 
 #### 4. Multiple plot lines
 

@@ -1136,8 +1136,8 @@ interface User {
 
 const user: User = { name: "Alice", age: 25 }
 
-// Error: Property 'email' does not exist on type 'User'.
-console.log(user.email?.toUpperCase())
+// Error: 'user.email' is possibly 'undefined'.
+console.log(user.email.toUpperCase())
 
 // - - - - - - - - - -
 

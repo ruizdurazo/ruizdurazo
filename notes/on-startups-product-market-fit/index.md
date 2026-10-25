@@ -1,6 +1,6 @@
 ---
 title: On Startups: Product-Market Fit
-date: 2026-04-06
+date: 2026-10-25
 description_short: What is Product-Market Fit? And how do you find it?
 description_long: What is Product-Market Fit? And how do you find it?
 image:
@@ -18,7 +18,7 @@ _:
 
 **Product-Market Fit (PMF) is the state where a product has insatiable demand in a market.**
 
-Marc Andreessen describes PMF as the market literally taking it from your hands. Meaning that your users seemingly start taking over your product, maybe even using it for things beyond what it was intended for, and your main problem becomes keeping up with the nonstop demand. 
+Marc Andreessen describes PMF as the market literally taking it from your hands. Your users seemingly start taking over your product, maybe even using it for things beyond what it was intended for, and your main problem becomes keeping up with the nonstop demand.
 
 A meme accurately describes it:
 
@@ -181,19 +181,17 @@ video {
 
 Listen to that over and over again.
 
-You don’t want to fight an uphill battle trying to convince customers that your confangled solution is something they want when it’s something they’ve never even thought about or care about. 
+Don’t fight an uphill battle trying to convince customers that your confangled solution is something they want when it’s something they’ve never even thought about nor care about. 
 
 Customers should already have the meme of your product in their minds. If they don’t, you better work on that first, or pray to God that someone can do this for you (culture, media, movies, influencers, industry influencers).
 
 Your solution not only has to solve The Problem (or create value), it has to look like what customers would expect it to look like, or they should be able to “just get it”.
 
-So beyond your technical ability to solve The Problem (e.g. design, engineering, delivery), you have to have the memetic ability to communicate and sell your Solution as a *desirable* one.
+So beyond your technical ability to solve The Problem (e.g. design, engineering, delivery), you have to have the memetic ability to communicate and sell your Solution as the *desirable* one.
 
 Founders sometimes fall into a trap. They try to invent and innovate on every front: new technology, new product, and even new market! And make everything too refined and too technically impressive. But of course, they might be creating a technology, product and/or market no one needs or wants. 
 
-If you’re serious, more often than not, you have to **_retardmaxx_**: Just focus on your customer and create simple, convenient solutions for them.
-
-That’s it. 
+If you’re serious, more often than not, you have to **_retardmaxx_**: just focus on your customer, and create simple, convenient solutions for them. That’s it. 
 
 It’s hard enough as it is. Don’t make it any harder.
 
@@ -215,26 +213,28 @@ Your initial version probably won’t be fancy or technically impressive. Heck, 
 - **Henry Ford**’s first automobile was the “Quadricycle”, a crude, open-frame vehicle built in a small shed.
 - **Coca-Cola** began life as a “medicinal” syrup sold at a single Atlanta pharmacy soda fountain.
 - **Stripe**’s earliest version was randomly built in Buenos Aires, Argentina. The Collison brothers flew there for a month, lived cheap, and hacked in cafés until they had the bare-bones tool that let any developer accept credit cards online with just a few lines of code.
+- **Notion** was also scrappy and scrambling at the start. Their original app-builder idea was a dud. But cofounders Ivan Zhao and Simon Last decided to sublet their apartments and move to Kyoto (Japan) for about a year to lock in and complete the pivot to the first version of the blocks-based notes workspace.
 - **PayPal** started as “Confinity”, something that let people beam money to each other via Palm Pilots. **Peter Thiel** himself admits “it was voted one of the 10 worst business ideas in 1999, and 1999 was a year where there were many bad ideas in technology”.
 
 <video src="./videos/thiel-paypal.mp4" width="100%" height="100%" controls></video>
 
-Just launch, refine, and be prepared to relentlessly obsess about your customer for as long as you’re alive.
-
 Finding a **good solution** to a **real problem** will likely take longer than you think. 
+
+It's ok if your first version is a bit janky. Just launch and pay attention if customers are actually using your janky product. It'll be a sign that if you refine it, more customers will come.
 
 Developing an impressive Product takes iteration. 
 
 Iteration is not free: it costs time, effort, money. Plan and budget accordingly. 
 
-Because you probably won’t hit it out of the park on your first try, you’ll be having to try and try again. Maximize attempts by staying lean and resourceful. Make sure you don’t die. The goal is to stay alive long enough to find PMF. You have to be lean, scrappy, and fast. 
-
 There’s that saying that it takes at least 3 versions of a product for it to be truly good and ready for mass scale. So iterate, iterate, iterate.
 
 ![Raptor](./images/raptor.png "Evolution of the SpaceX Raptor rocket engine.")[size: l, aspect: 720x480]
 
-Launch and **talk to customers**. You need feedback. Iterating without talking to them will be like trying to hit the bullseye with a blindfold. Sure, you might have several shots, but if you can’t see anything, you’ll be relying on blind luck, literally.
+![Launch](./images/launch.png)[size: l, aspect: 720x480]
 
+Because you probably won’t hit it out of the park on your first try, you’ll be having to try and try again. Maximize attempts by staying lean and resourceful. Make sure you don’t die. The goal is to stay alive long enough to find PMF. You have to be lean, scrappy, fast, and, again, **obsess about your customers**. 
+
+**Launch and talk to customers**. You'll need the feedback. Iterating without stress testing your product or talking to customers will be like trying to hit the bullseye with a blindfold. Sure, you might have several shots, but if you can’t see anything, you’ll be relying on blind luck, literally.
 Speaking of customers...
 
 <!-- --- -->
@@ -285,7 +285,7 @@ The “purchase and sale” or “commercial dealings” from the dictionary def
 
 There must be a good *fit* between seller and buyer, between *product* and *market*!
 
-Thus, “The Market” *is* those customer needs and desires themselves, along with their expression. 
+Therefore, “The Market” *is* those customer needs and desires themselves, along with their expression. 
 
 The expression can be obvious, in-your-face, well-known, or subtle, hidden, novel; explicit or implicit. It can be a pressing, recurring need or desire, or it can be something fleeting, tenuous, impulsive.
 
@@ -350,7 +350,7 @@ Metrics like revenue, retention, or conversion rates offer a good, obvious bar.
 
 There are plenty of resources out there on the hard business metrics you should be tracking depending on your industry, market, or business model.
 
-Basically the question is: are your business metrics growing without even spending on ads? Meaning that somehow word got out and spread, and customers are actually paying and using your product. If that happens, you might have found PMF.
+Basically, the question is: are your business metrics growing without even spending on ads? Meaning that somehow word got out and spread, and customers are actually paying and using your product. If that happens, you might have found PMF.
 
 But sometimes either revenue signals are not clear enough, or there is no revenue at all yet. Here I want to talk about the other ways to know if you’re on your way towards product-market fit: **how do your customers feel, and do they even care?**
 
