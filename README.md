@@ -6,10 +6,10 @@ I'm a software engineer and designer, obsessed with crafting great websites, app
 
 I write code...
 
-- [UI Design Library](https://github.com/ruizdurazo/ui-design-library)
-- [Pookmarks: Chrome Bookmarks Manager](https://github.com/ruizdurazo/pookmarks)
-- [Markedly: macOS Markdown Viewer](https://github.com/ruizdurazo/markedly)
-- [Vocalis: Local macOS Text-to-Speech Engines](https://github.com/ruizdurazo/vocalis)
+- [UI Design Library: Modern React UI Components](https://github.com/ruizdurazo/ui-design-library)
+- [Pookmarks: Chrome Bookmarks Manager Extension](https://github.com/ruizdurazo/pookmarks)
+- [Markedly: macOS Markdown Viewer/Editor App](https://github.com/ruizdurazo/markedly)
+- [Vocalis: macOS Local Text-to-Speech Models Menu Bar App](https://github.com/ruizdurazo/vocalis)
 
 I also write notes...
 
