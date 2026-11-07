@@ -1269,6 +1269,409 @@ hr {
   }
 }
 
+/* Media player */
+.player {
+  position: relative;
+  display: block;
+  width: calc(var(--grid-unit) * 6);
+  margin: calc(var(--font-size) * 3) auto;
+}
+
+.player.is-error {
+  opacity: 0.55;
+}
+
+.player__toggle {
+  border: 0;
+  padding: 0;
+  border-radius: 999px;
+  background: var(--black-900);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.player__toggle svg {
+  width: 12px;
+  height: 12px;
+  display: block;
+  fill: #fff;
+  color: #fff;
+}
+
+.player__icon--pause {
+  display: none;
+}
+
+.player.is-playing .player__icon--play {
+  display: none;
+}
+
+.player.is-playing .player__icon--pause {
+  display: block;
+}
+
+.player__icon--play {
+  margin-left: 2px;
+}
+
+.player__toggle:focus-visible,
+.player__track:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.player__track {
+  touch-action: none;
+  cursor: pointer;
+}
+
+.player__bar {
+  overflow: hidden;
+  border-radius: 999px;
+}
+
+.player__fill {
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+}
+
+/* Audio: hide the element, keep it playing */
+.player--audio {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 14px 8px 8px;
+  /* background: #f4f6f8; */
+  /* border: 1px solid #eee; */
+  /* border-radius: 16px; */
+  /* box-shadow: 0 8px 24px #00000008; */
+}
+
+/* The browser hides audio without controls (display:none !important).
+   Override that, then hide it visually so playback still works. */
+.player--audio audio {
+  display: block !important;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.player--audio .player__toggle {
+  width: 36px;
+  height: 36px;
+  flex: none;
+  /* background: var(--black-900); */
+  /* color: #fff; */
+  background: #eeeeee80;
+  color: var(--black-900);
+  transform: scale(1);
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.player--audio .player__toggle svg {
+  /* fill: #fff; */
+  /* color: #fff; */
+  fill: var(--black-900);
+  color: var(--black-900);
+  transition: fill 0.2s ease;
+}
+
+.player--audio.is-playing .player__toggle {
+  background: #eeeeee80;
+  color: var(--black-900);
+}
+
+.player--audio.is-playing .player__toggle svg {
+  fill: var(--black-900);
+  color: var(--black-900);
+}
+
+.player--audio .player__toggle:hover,
+.player--audio .player__toggle:focus-visible {
+  /* background: var(--black-900); */
+  /* color: #fff; */
+  background: #cccccc80;
+  color: var(--black-900);
+  transform: scale(1.08);
+}
+
+.player--audio .player__toggle:hover svg,
+.player--audio .player__toggle:focus-visible svg {
+  /* fill: #fff; */
+  /* color: #fff; */
+  fill: var(--black-900);
+  color: var(--black-900);
+}
+
+.player--audio .player__toggle:active {
+  transform: scale(1.02);
+}
+
+.player--audio .player__track {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  height: 36px;
+}
+
+.player--audio .player__bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 4px;
+  transform: translateY(-50%);
+  background: #e6e6e6;
+}
+
+.player--audio .player__fill {
+  background: var(--text);
+}
+
+.player__time {
+  flex: none;
+  font-size: calc(var(--font-size) * 0.7);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: var(--text-description);
+  white-space: nowrap;
+}
+
+/* Video: the element is the picture. Controls sit on top. */
+.player--video {
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px #e4e6e840;
+}
+
+.player--video video {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  margin: 0;
+  border-radius: 16px;
+  object-fit: contain;
+  background: #101010;
+  cursor: pointer;
+}
+
+/* Before the first play, the button sits in the middle and the bar stays hidden. */
+.player--video .player__controls {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.player--video .player__toggle {
+  width: 56px;
+  height: 56px;
+  pointer-events: auto;
+}
+
+.player--video:not(.has-played) .player__toggle {
+  /* semi-transparent white background */
+  background: rgba(250, 250, 250, 0.2);
+  /* blur the background */
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(2px);
+  transform: scale(1);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.player--video:not(.has-played):hover .player__toggle,
+.player--video:not(.has-played) .player__toggle:focus-visible {
+  transform: scale(1.2);
+}
+
+.player--video:not(.has-played):active .player__toggle {
+  transform: scale(1.04);
+}
+
+.player--video .player__toggle svg {
+  width: 14px;
+  height: 14px;
+}
+
+.player--video .player__track,
+.player--video .player__time {
+  display: none;
+}
+
+/* After the first play, button and bar share a bottom row. */
+.player--video.has-played .player__controls {
+  inset: auto 0 0 0;
+  justify-content: flex-start;
+  gap: 12px;
+  padding: 48px 14px 10px 10px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s ease;
+}
+
+.player--video.has-played .player__controls::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(40, 40, 40, 0.62),
+    rgba(40, 40, 40, 0)
+  );
+  pointer-events: none;
+}
+
+.player--video.has-played .player__controls > * {
+  position: relative;
+  z-index: 1;
+}
+
+.player--video.has-played:hover .player__controls,
+.player--video.has-played:focus-within .player__controls,
+.player--video.has-played.is-scrubbing .player__controls {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.player--video.has-played .player__toggle {
+  width: 36px;
+  height: 36px;
+  flex: none;
+  background-color: transparent;
+  transition:
+    /* background-color 0.2s ease, */
+    backdrop-filter 0.2s ease;
+}
+
+.player--video.has-played .player__toggle:hover,
+.player--video.has-played .player__toggle:focus-visible {
+  /* semi-transparent white background */
+  background-color: rgba(255, 255, 255, 0.2);
+  /* blur the background */
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.player--video.has-played .player__toggle svg {
+  width: 12px;
+  height: 12px;
+}
+
+.player--video.has-played .player__track {
+  display: block;
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  height: 36px;
+}
+
+.player--video.has-played .player__track::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -8px;
+  bottom: -8px;
+}
+
+.player--video.has-played .player__bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 4px;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.player--video.has-played .player__fill {
+  background: #fff;
+}
+
+.player--video.has-played .player__time {
+  display: block;
+  position: static;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.player video::-webkit-media-controls,
+.player video::-webkit-media-controls-start-playback-button,
+.player audio::-webkit-media-controls {
+  display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .player--video.has-played .player__controls {
+    transition: none;
+    transform: none;
+  }
+
+  .player--video:not(.has-played) .player__toggle,
+  .player--video.has-played .player__toggle {
+    transition: none;
+  }
+
+  .player--video:not(.has-played):hover .player__toggle,
+  .player--video:not(.has-played) .player__toggle:focus-visible,
+  .player--video:not(.has-played):active .player__toggle,
+  .player--audio .player__toggle:hover,
+  .player--audio .player__toggle:focus-visible,
+  .player--audio .player__toggle:active {
+    transform: none;
+  }
+
+  .player--audio .player__toggle {
+    transition: none;
+  }
+}
+
+@media only screen and (max-width: 780px) {
+  .player {
+    width: calc(100% - (1px * var(--offset) * 0.75));
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .player {
+    width: calc(
+      100% -
+        (
+          (1px * var(--offset) / 2) +
+            ((var(--offset) * 0.75) - var(--offset) / 2) * (100vw - 480px) /
+            (768 - 480)
+        )
+    );
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .player {
+    width: calc(100% - (1px * var(--offset) / 2));
+  }
+}
+
 /* Print */
 @media print {
   #content {

@@ -193,8 +193,11 @@ fetch(url)
       // IDs: lowercase, replace spaces with dashes
       // TODO: track uniqueness of ids
       let headerText = element.slice(level + 1).trim()
-      // Remove `\` escapes
-      headerText = headerText.replace(/\\(.)/g, "$1")
+      // Remove `\` escapes (ASCII punctuation only, same rule as inline text)
+      headerText = headerText.replace(
+        /\\([!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~])/g,
+        "$1",
+      )
 
       // Generate id
       let id = headerText
@@ -782,21 +785,50 @@ fetch(url)
       return out
     }
 
+    // `\` + ASCII punctuation is a literal character, not markup.
+    // Emitted as a numeric reference so later inline parsers don't see the delimiter.
+    // Inside inline code, the backslash stays as typed.
+    shieldEscapes = (input) =>
+      input.replace(
+        /\\([!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~])/g,
+        (_, ch) => "&#" + ch.charCodeAt(0) + ";",
+      )
+
+    // Next backtick that is not escaped by a backslash.
+    nextUnescapedBacktick = (input, from) => {
+      for (let i = from; i < input.length; i++) {
+        if (input[i] === "\\") {
+          i += 1
+          continue
+        }
+        if (input[i] === "`") return i
+      }
+      return -1
+    }
+
     // Code
     code = (element) => {
-      let out
-      const match = element.match(/\u0060[^]*?\u0060/g)
-      if (match) {
-        match.forEach((i) => {
-          let code_element =
-            '<code class="code">' +
-            i.slice(1, -1).replace(/\</g, "&lt;").replace(/\>/g, "&gt;") +
-            "</code>"
-          element = element.replace(i, code_element)
-          out = element
-        })
-      } else {
-        out = element
+      let out = ""
+      let i = 0
+      while (i < element.length) {
+        const open = nextUnescapedBacktick(element, i)
+        if (open === -1) {
+          out += shieldEscapes(element.slice(i))
+          break
+        }
+        out += shieldEscapes(element.slice(i, open))
+        // Inside a code span the next backtick closes it. Backslashes stay literal.
+        const close = element.indexOf("`", open + 1)
+        if (close === -1) {
+          out += shieldEscapes(element.slice(open))
+          break
+        }
+        const inner = element
+          .slice(open + 1, close)
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+        out += '<code class="code">' + inner + "</code>"
+        i = close + 1
       }
       return out
     }
@@ -1448,6 +1480,10 @@ fetch(url)
 
     // Finally, push parsed Markup to DOM
     document.getElementById("note").innerHTML += noteArticle
+
+    if (typeof mountPlayers === "function") {
+      mountPlayers(document.getElementById("note"))
+    }
 
     // Execute any script tags that were added via innerHTML
     function executeInlineScripts() {

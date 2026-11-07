@@ -18,19 +18,19 @@ _:
 
 The best stories rule the world.
 
-Whether it’s culture, history, politics, business, and even science, technology and anything in between, the best story wins.
+Whether it’s culture, history, politics, business, or even science and technology and anything in between, the best story wins.
 
-That’s why understanding the DNA of stories matters.
+It's worth knowing what makes a good story.
 
-The Oxford English Dictionary defines **_narrative_** as:
+The Oxford English Dictionary defines _**narrative**_ as:
 
-> **_An account of a series of events, facts, etc., given in order and with the establishing of connections between them._**
+> _**An account of a series of events, facts, etc., given in order and with the establishing of connections between them.**_
 
-Central to this definition is the notion of **_a chain of causally related events_**.
+In other words: something happens.
 
-In other words, stories have a beginning, middle, and end: an introduction, an unfolding series of events often involving tension or conflict, and, finally, a resolution (or cliffhanger).
+But in recounting what happened, there is a world of difference between telling a series of facts, and telling a good story.
 
-But at a deeper level, stories can essentially be seen through the lens of three main abstractions: **_structures_**, **_elements_**, and **_shapes_**.
+At a deeper level, stories can essentially be constructed (and deconstructed) through three main abstractions: _**structures**_, _**elements**_, and _**shapes**_.
 
 ## Structures (Good)
 
@@ -38,13 +38,13 @@ There’s plenty of material out there about analyzing stories through the lens 
 
 But, honestly, most story structures are basically the same. They fit the typical pattern of: beginning, middle, and end.
 
-**_3 Act Structure_** (Syd Field)
+_**3 Act Structure**_ (Syd Field)
 
 - **Setup**: hero has a goal or desire
 - **Confrontation**: tries to chase it, but there’s a crisis (it’s not easy to achieve)
-- **Resolution**: makes a change, hard choice, or fights the battle, and then achieves the goal (happy ending), or doesn’t (tragedy)
+- **Resolution**: makes a change, hard choice, or fights the battle, and then achieves the goal (happy ending), doesn't yet (cliffhanger), or flat-out doesn't (tragedy)
 
-**_Story Circle_** (Dan Harmon, Rick and Morty co-creator)
+_**Story Circle**_ (Dan Harmon, Rick and Morty co-creator)
 
 - A **character** is in a zone of comfort
 - But they **want** something
@@ -70,7 +70,7 @@ That’s where “elements” come in.
 
 A more profound and flexible way of understanding and crafting stories is with their individual parts, their _elements_.
 
-**_Elements of Story_** (John Yorke)
+_**Elements of Story**_ (John Yorke)
 
 - **Protagonist**
 - **Antagonist**
@@ -166,22 +166,7 @@ Never tell a story using “and then”, “and then”, “and then” because 
 
 Listen to South Park creators Matt Stone and Trey Parker:
 
-<video src="./videos/matt-stone-trey-parker.mp4" width="100%" height="100%" controls></video>
-
-<style>
-video {
-  display: block;
-  max-width: min(720px, calc(100% - (var(--font-size) * 2)));
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 16px;
-  box-shadow: 0 10px 20px #e4e6e840;
-  margin: calc(var(--font-size) * 3) auto;
-  scroll-margin-top: calc(var(--font-size) * 3);
-}
-</style>
-
+<video src="./videos/matt-stone-trey-parker.mp4" controls data-time></video>
 
 Make sure that each part of your story creates, or responds to, _consequences_ (even if they are out of chronological order).
 
@@ -241,8 +226,6 @@ Because our entire civilization runs on stories.
 And because **best story wins**.
 
 Not sometimes wins, not most of the time wins, but _always_ wins.
-
-The best story _always_ wins.
 
 > quote
 > Best story wins. It’s not the best idea, it’s not the right answer, it’s the best story that gets people nodding their heads.

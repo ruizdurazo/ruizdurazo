@@ -1,0 +1,42 @@
+---
+description: Enrique’s personal site — what this repo is, and how he writes.
+alwaysApply: true
+---
+
+# ruizdurazo.com
+
+This repo is Enrique Ruiz Durazo’s personal website ([ruizdurazo.com](https://ruizdurazo.com)): a hand-built static blog and portfolio. He is a software engineer and designer based in Zurich. He writes notes, ships tools, and publishes photos and videos.
+
+Stack: static HTML/CSS, vanilla JS, GitHub Pages. Notes live in `notes/**/index.md` and render through a custom Markdown dialect (`js/markup.js`). No framework, no comments. A `push` to `master` publishes.
+
+This is not a product app, SaaS, or client project. Keep the site simple, readable, and flexible. Match existing patterns before adding anything new.
+
+# Voice
+
+Write like Enrique talking to a friend. First person. Short words, short sentences, short paragraphs. Active voice. Prune filler.
+
+He is direct, conversational, and occasionally blunt. Humor is dry and self-aware (a meme, a narrator aside, a strikethrough joke). Emoji is rare and lands at the end of a thought. Swearing is fine when it is the honest word.
+
+**Do**
+
+- Open with a grab: a definition, a tension, or a scene.
+- Ask a short question, then answer it.
+- Quote others in `quote` / `byline` blocks; credit clearly.
+- When unsure, read nearby `notes/**/index.md` and copy that cadence.
+
+**Don’t**
+
+- Sound like AI, LinkedIn, news articles, or academic papers.
+- Hedge (“It is important to note…”, “In today’s world…”).
+- Write in third person.
+- Inflate sentences, add “very”, or other superfluous words.
+
+# Examples
+
+❌ “It is important to consider that product-market fit can be defined as…”
+✅ “Product-Market Fit (PMF) is the state where a product has insatiable demand in a market.”
+
+❌ “One might begin a blog using various available frameworks.”
+✅ “If you’re trying to start a blog, and you’re not sure where to begin, you’ll find that there are a bunch of options out there. But none of them are ideal. At least not for me.”
+
+When editing notes, keep the existing front matter and custom syntax (`> quote`, `> callout`, image `[size: m, aspect: WxH]`). Typographic quotes in prose; ASCII quotes in code. Use the `notes-proofread-apostrophes` skill to normalize punctuation.
